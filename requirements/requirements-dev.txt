@@ -203,17 +203,17 @@ ghp-import==2.1.0 \
     --hash=sha256:8337dd7b50877f163d4c0289bc1f1c7f127550241988d568c1db512c4324a619 \
     --hash=sha256:9c535c4c61193c2df8871222567d7fd7e5014d835f97dc7b7439069e2413d343
     # via mkdocs
-griffe==0.27.1 \
-    --hash=sha256:867008786a17532ec529cbf58cee7c4f131b85d61f38691c2046b1883f7be253 \
-    --hash=sha256:f213e87f99bf3b76d2d4da999d5a38c2ec01b9a6ce3660c5ab52b663d785edba
+griffe==0.27.2 \
+    --hash=sha256:833990074c8c0b323a55f37f72265fdd841cb0a756122303505bf4bc80800e82 \
+    --hash=sha256:8d6bc40e7bede3fb5879598c1f71b8902d245804ab59ae55516f864b2bdc25c6
     # via mkdocstrings-python
 idna==3.4 \
     --hash=sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4 \
     --hash=sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2
     # via requests
-importlib-metadata==4.13.0 \
-    --hash=sha256:8a8a81bcf996e74fee46f0d16bd3eaa382a7eb20fd82445c3ad11f4090334116 \
-    --hash=sha256:dd0173e8f150d6815e098fd354f6414b0f079af4644ddfe90c71e2fc6174346d
+importlib-metadata==6.6.0 \
+    --hash=sha256:43dd286a2cd8995d5eaef7fee2066340423b818ed3fd70adf0bad5f1fac53fed \
+    --hash=sha256:92501cdf9cc66ebd3e612f1b4f0c0765dfa42f0fa38ffb319b6bd84dd675d705
     # via
     #   markdown
     #   mkdocs
@@ -322,7 +322,6 @@ mkdocs==1.4.3 \
     # via
     #   -r requirements.in
     #   mkdocs-autorefs
-    #   mkdocs-exclude
     #   mkdocs-material
     #   mkdocstrings
 mkdocs-autorefs==0.4.1 \
@@ -333,9 +332,6 @@ mkdocs-click==0.8.0 \
     --hash=sha256:965f38231eb04d8c980406c5ab4becf7303ef3ffc68fdb29be91927eff1adfbe \
     --hash=sha256:f9c26d4abd505bca4113d1529d03d1ae709a68a82fc364db289634788d029353
     # via -r requirements.in
-mkdocs-exclude==1.0.2 \
-    --hash=sha256:ba6fab3c80ddbe3fd31d3e579861fd3124513708271180a5f81846da8c7e2a51
-    # via textual
 mkdocs-material==9.1.9 \
     --hash=sha256:74d8da1371ab3a326868fe47bae3cbc4aa22e93c048b4ca5117e6817b88bd734 \
     --hash=sha256:7db24261cb17400e132c46d17eea712bfe71056d892a9beba32cf68210297141
@@ -766,9 +762,9 @@ six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
     # via python-dateutil
-textual==0.15.1 \
-    --hash=sha256:b86d4668a072fc85092f081e157e1e7575b353b2f6b728755752bbbe23123063 \
-    --hash=sha256:be79dd8d7f3f5b5c40893da4d5d8228e54c5c9f7b844abfb0e8a13ce2b3a7930
+textual==0.22.3 \
+    --hash=sha256:1ef6457b9d8b727a67d2344bf2d0b530dce1afab55e1bf4e964e430929301baa \
+    --hash=sha256:a68172f7797e9f269270491e039f1e48096530dff64dbfe893e8477f2d4e200c
     # via -r requirements.in
 tomli==2.0.1 \
     --hash=sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc \
