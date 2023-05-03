@@ -891,7 +891,7 @@
 <a id="__codelineno-0-195" name="__codelineno-0-195"></a>            <span class="n">file_size_mb</span> <span class="o">=</span> <span class="n">file_size</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">1000</span>
 <a id="__codelineno-0-196" name="__codelineno-0-196"></a>        <span class="k">else</span><span class="p">:</span>
 <a id="__codelineno-0-197" name="__codelineno-0-197"></a>            <span class="n">file_size_mb</span> <span class="o">=</span> <span class="n">stat</span><span class="o">.</span><span class="n">st_size</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">1000</span>
-<a id="__codelineno-0-198" name="__codelineno-0-198"></a>        <span class="n">max_file_size</span> <span class="o">=</span> <span class="mi">80</span>
+<a id="__codelineno-0-198" name="__codelineno-0-198"></a>        <span class="n">max_file_size</span> <span class="o">=</span> <span class="mi">8</span>
 <a id="__codelineno-0-199" name="__codelineno-0-199"></a>        <span class="n">too_large</span> <span class="o">=</span> <span class="n">file_size_mb</span> <span class="o">&gt;=</span> <span class="n">max_file_size</span>
 <a id="__codelineno-0-200" name="__codelineno-0-200"></a>        <span class="n">exception</span> <span class="o">=</span> <span class="p">(</span>
 <a id="__codelineno-0-201" name="__codelineno-0-201"></a>            <span class="kc">True</span>
