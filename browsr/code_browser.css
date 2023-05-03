@@ -23,3 +23,8 @@ CodeBrowser.-show-tree #tree-view {
 #code {
     width: auto;
 }
+#table-view {
+    overflow: auto scroll;
+    min-width: 100%;
+    height: 100%;
+}

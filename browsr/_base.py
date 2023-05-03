@@ -38,7 +38,8 @@ class TextualAppContext:
         """
         Resolve `file_path` to a upath.UPath object
         """
-
+        if str(self.file_path).endswith("/"):
+            self.file_path = str(self.file_path)[:-1]
         return (
             upath.UPath(self.file_path).resolve()
             if self.file_path

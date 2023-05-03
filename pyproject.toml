@@ -83,6 +83,7 @@ dependencies = [
   "pandas-stubs~=2.0.0.230412",
   "pip-tools~=6.13.0"
 ]
+features = ["all"]
 pre-install-commands = ["pip install -U --no-deps -r requirements/requirements-dev.txt"]
 
 [tool.hatch.envs.default.scripts]
@@ -97,9 +98,9 @@ docs-serve = ["mkdocs serve --dev-addr localhost:8000"]
 format = ["ruff --fix {args:.}", "black {args:.}"]
 lint = ["ruff {args:.}", "black --check {args:.}"]
 requirements = [
-  "hatch dep show requirements --project-only > requirements.in",
+  "hatch dep show requirements --project-only --all > requirements.in",
   "_pip_compile --output-file requirements/requirements-prod.txt",
-  "hatch dep show requirements > requirements.in",
+  "hatch dep show requirements --all > requirements.in",
   "_pip_compile --output-file requirements/requirements-dev.txt",
   "rm requirements.in"
 ]

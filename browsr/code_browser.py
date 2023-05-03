@@ -21,7 +21,7 @@ from rich import traceback
 from rich.markdown import Markdown
 from rich.syntax import Syntax
 from rich.traceback import Traceback
-from textual.containers import Container, Vertical
+from textual.containers import Container, VerticalScroll
 from textual.reactive import var
 from textual.widget import Widget
 from textual.widgets import DataTable, DirectoryTree, Footer, Header, Static
@@ -118,9 +118,9 @@ class CodeBrowser(BrowsrTextualApp):
         self.header = Header()
         yield self.header
         self.directory_tree = UniversalDirectoryTree(str(file_path), id="tree-view")
-        self.code_view = Vertical(Static(id="code", expand=True), id="code-view")
+        self.code_view = VerticalScroll(Static(id="code", expand=True), id="code-view")
         self.table_view: DataTable[str] = DataTable(
-            zebra_stripes=True, show_header=True, show_cursor=True
+            zebra_stripes=True, show_header=True, show_cursor=True, id="table-view"
         )
         self.table_view.display = False
         self.container = Container(self.directory_tree, self.code_view, self.table_view)
