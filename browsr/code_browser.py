@@ -195,7 +195,7 @@ class CodeBrowser(BrowsrTextualApp):
             file_size_mb = file_size / 1000 / 1000
         else:
             file_size_mb = stat.st_size / 1000 / 1000
-        max_file_size = 80
+        max_file_size = 8
         too_large = file_size_mb >= max_file_size
         exception = (
             True
