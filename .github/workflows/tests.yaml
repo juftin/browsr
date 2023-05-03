@@ -1,0 +1,49 @@
+name: Tests
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - browsr/**
+            - pyproject.toml
+            - .github/workflows/tests.yaml
+    pull_request:
+        branches: ["**"]
+        paths:
+            - browsr/**
+            - pyproject.toml
+            - .github/workflows/tests.yaml
+    schedule:
+        - cron: 0 12 1 * *
+jobs:
+    test-suite:
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: true
+            matrix:
+                include:
+                    - { name: Python 3.11, python: "3.11" }
+                    - { name: Python 3.10, python: "3.10" }
+                    - { name: Python 3.9, python: "3.9" }
+                    - { name: Python 3.8, python: "3.8" }
+        steps:
+            - name: Set up Github Workspace
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+            - name: Set up Python Environment ${{ matrix.python }}
+              uses: actions/setup-python@v4
+              with:
+                  python-version: ${{ matrix.python }}
+            - name: Install Hatch
+              run: |
+                  python -m pip install --upgrade pip
+                  python -m pip install -q hatch
+                  hatch env create
+                  hatch --version
+            - name: Test Suite
+              run: |
+                  echo "::add-matcher::.github/workflows/matchers/python.json"
+                  hatch run test
+                  echo "::remove-matcher owner=python::"

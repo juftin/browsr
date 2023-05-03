@@ -1,0 +1,68 @@
+# schema: https://squidfunk.github.io/mkdocs-material/schema.json
+
+site_name: browsr
+nav:
+    - index.md
+    - Command Line Interface ⌨️: cli.md
+    - Contributing 🤝: contributing.md
+    - API Documentation 🤖: api_documentation.md
+theme:
+    favicon: https://raw.githubusercontent.com/juftin/juftin/main/static/juftin.png
+    logo: https://i.imgur.com/QiAXcEm.png
+    name: material
+    features:
+        - navigation.tracking
+        - content.code.annotate
+        - content.code.copy
+        - navigation.indexes
+    palette:
+        - media: "(prefers-color-scheme: light)"
+          scheme: default
+          accent: purple
+          toggle:
+              icon: material/weather-sunny
+              name: Switch to dark mode
+        - media: "(prefers-color-scheme: dark)"
+          scheme: slate
+          primary: black
+          toggle:
+              icon: material/weather-night
+              name: Switch to light mode
+repo_url: https://github.com/juftin/browsr
+repo_name: browsr
+edit_uri: blob/main/docs/
+site_author: Justin Flannery
+remote_branch: gh-pages
+copyright: Copyright © 2023 Justin Flannery
+extra:
+    generator: false
+markdown_extensions:
+    - toc:
+          permalink: "#"
+    - pymdownx.snippets
+    - pymdownx.magiclink
+    - attr_list
+    - md_in_html
+    - pymdownx.highlight:
+          anchor_linenums: true
+    - pymdownx.inlinehilite
+    - pymdownx.superfences
+    - markdown.extensions.attr_list
+    - pymdownx.keys
+    - pymdownx.tasklist:
+          custom_checkbox: true
+    - pymdownx.tilde
+    - admonition
+    - pymdownx.details
+    - mkdocs-click
+plugins:
+    - search
+    - mkdocstrings:
+          handlers:
+              python:
+                  import:
+                      - https://docs.python.org/3/objects.inv
+                      - https://numpy.org/doc/stable/objects.inv
+                      - https://pandas.pydata.org/docs/objects.inv
+                  options:
+                      docstring_style: numpy

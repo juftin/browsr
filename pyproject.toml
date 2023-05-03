@@ -1,0 +1,165 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[project]
+authors = [{name = "Justin Flannery", email = "justin.flannery@juftin.com"}]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11"
+]
+# Poetry Dependencies
+dependencies = [
+  "art~=5.7",
+  "click~=8.1.3",
+  "fsspec~=2023.1.0",
+  "pandas~=1.5.2",
+  "rich~=13.3.2",
+  "rich-click~=1.5.2",
+  "rich-pixels~=2.1.1",
+  "textual~=0.15.1",
+  "universal-pathlib~=0.0.21"
+]
+description = "TUI File Browser App"
+dynamic = ["version"]
+keywords = []
+license = "MIT"
+name = "browsr"
+readme = "README.md"
+requires-python = ">=3.8,<4.0"
+
+[project.optional-dependencies]
+all = [
+  "s3fs~=2023.1.0",
+  "pyarrow~=10.0.0",
+  "requests~=2.28.2",
+  "gcsfs~=2023.1.0",
+  "adlfs~=2023.1.0",
+  "aiohttp~=3.8.3"
+]
+parquet = [
+  "pyarrow~=10.0.0"
+]
+remote = [
+  "s3fs~=2023.1.0",
+  "requests~=2.28.2",
+  "gcsfs~=2023.1.0",
+  "adlfs~=2023.1.0",
+  "aiohttp~=3.8.3"
+]
+
+[project.scripts]
+browsr = "browsr.__main__:browse"
+
+[project.urls]
+Documentation = "https://github.com/juftin/browsr#readme"
+Issues = "https://github.com/juftin/browsr/issues"
+Source = "https://github.com/juftin/browsr"
+
+[tool.coverage.report]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
+
+[tool.coverage.run]
+branch = true
+omit = ["browsr/_version.py"]
+parallel = true
+
+[tool.hatch.envs.default]
+dependencies = [
+  "pytest~=7.3.1",
+  "pytest-cov~=4.0.0",
+  "pytest-mock~=3.10.0",
+  "mkdocs~=1.4.2",
+  "mkdocs-material~=9.1.6",
+  "mkdocs-click~=0.8.0",
+  "mkdocstrings[python]~=0.21.2",
+  "black~=23.3.0",
+  "ruff~=0.0.261",
+  "mypy~=1.2.0",
+  "pandas-stubs~=2.0.0.230412",
+  "pip-tools~=6.13.0"
+]
+pre-install-commands = ["pip install -U --no-deps -r requirements/requirements-dev.txt"]
+
+[tool.hatch.envs.default.scripts]
+_pip_compile = "pip-compile --resolver=backtracking --generate-hashes requirements.in"
+all = ["format", "lint", "check", "test"]
+check = [
+  "mypy --install-types --strict-optional --non-interactive {args:browsr/ tests/}"
+]
+docs-build = ["mkdocs build --clean --strict"]
+docs-deploy = ["mkdocs gh-deploy {args:}"]
+docs-serve = ["mkdocs serve --dev-addr localhost:8000"]
+format = ["ruff --fix {args:.}", "black {args:.}"]
+lint = ["ruff {args:.}", "black --check {args:.}"]
+requirements = [
+  "hatch dep show requirements --project-only > requirements.in",
+  "_pip_compile --output-file requirements/requirements-prod.txt",
+  "hatch dep show requirements > requirements.in",
+  "_pip_compile --output-file requirements/requirements-dev.txt",
+  "rm requirements.in"
+]
+requirements-upgrade = [
+  "hatch dep show requirements --project-only --all > requirements.in",
+  "_pip_compile --output-file requirements/requirements-prod.txt --upgrade",
+  "hatch dep show requirements --all > requirements.in",
+  "_pip_compile --output-file requirements/requirements-dev.txt --upgrade",
+  "rm requirements.in"
+]
+semantic-release = [
+  "npm install --prefix .github/semantic_release/",
+  "npx --prefix .github/semantic_release/ semantic-release {args:}"
+]
+test = "pytest --cov=browsr --cov-report={env:COVERAGE_REPORT:term-missing} --cov-config=pyproject.toml {args:tests/}"
+
+[[tool.hatch.envs.test.matrix]]
+python = ["3.8", "3.9", "3.10", "3.11"]
+
+[tool.hatch.envs.test.scripts]
+matrix = "test"
+
+[tool.hatch.version]
+path = "browsr/_version.py"
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_untyped_defs = true
+follow_imports = "silent"
+no_implicit_reexport = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+ignore_errors = true
+module = [
+  "rich_click.*"
+]
+
+[tool.ruff]
+ignore = [
+  "E501"  # line too long, handled by black
+]
+select = [
+  "E",  # pycodestyle errors
+  "W",  # pycodestyle warnings
+  "F",  # pyflakes
+  "I",  # isort
+  "C",  # flake8-comprehensions
+  "Q",  # flake8-quotes
+  "B",  # flake8-bugbear
+  "PLE",  # pylint
+  "PLR",  # pylint
+  "PLW",  # pylint
+  "RUF",  # ruff
+  "C90"  # mccabe
+]
+
+[tool.ruff.per-file-ignores]
+"tests/**" = [
+  "PLR2004"  # Magic value used in comparison
+]
