@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import pathlib
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Iterable, Optional
 
 import numpy as np
 import rich_click as click
@@ -129,17 +129,36 @@ class UniversalDirectoryTree(DirectoryTree):
         assert node.data is not None
         dir_path = UPath(node.data.path)
         node.data.loaded = True
-        directory = sorted(
-            dir_path.iterdir(),
-            key=lambda path: (not path.is_dir(), path.name.lower()),
-        )
-        for path in directory:
+        top_level_buckets = self._handle_top_level_bucket(dir_path=dir_path)
+        if top_level_buckets is None:
+            directory = sorted(
+                dir_path.iterdir(),
+                key=lambda path: (not path.is_dir(), path.name.lower()),
+            )
+        for path in top_level_buckets or directory:
+            if top_level_buckets is None:
+                path_name = path.name
+            else:
+                path_name = str(path).replace("s3://", "").rstrip("/")
             node.add(
-                path.name,
+                path_name,
                 data=DirEntry(str(path), path.is_dir()),
                 allow_expand=path.is_dir(),
             )
         node.expand()
+
+    def _handle_top_level_bucket(self, dir_path: UPath) -> Optional[Iterable[UPath]]:
+        """
+        Handle scenarios when someone wants to browse all of s3
+
+        This is because S3FS handles the root directory differently than other filesystems
+        """
+        if str(dir_path) == "s3:/":
+            sub_buckets = sorted(
+                UPath(f"s3://{bucket.name}") for bucket in dir_path.iterdir()
+            )
+            return sub_buckets
+        return None
 
 
 class FileSizeError(Exception):
