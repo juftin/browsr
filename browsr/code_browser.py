@@ -1,8 +1,8 @@
 """
-Code browser example.
+Browsr TUI App
 
-Run with:
-    python code_browser.py PATH
+This module contains the code browser app for the browsr package.
+This app was inspired by the CodeBrowser example from textual
 """
 
 import json
