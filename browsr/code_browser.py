@@ -158,7 +158,8 @@ class CodeBrowser(BrowsrTextualApp):
             return self.df_to_table(pandas_dataframe=df, table=self.table_view)
         elif document.suffix.lower() in [".png", ".jpg", ".jpeg"]:
             screen_width = self.app.size.width / 4
-            with Image.open(document) as image:
+            with document.open("rb") as buf:
+                image = Image.open(buf)
                 image_width = image.width
                 image_height = image.height
                 size_ratio = image_width / screen_width
