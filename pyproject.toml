@@ -23,7 +23,7 @@ dependencies = [
   "rich-pixels~=2.1.1",
   "textual~=0.22.3",
   "universal-pathlib~=0.0.21",
-  "Pillow~=9.1.0"
+  "Pillow>=9.1.0"
 ]
 description = "TUI File Browser App"
 dynamic = ["version"]
