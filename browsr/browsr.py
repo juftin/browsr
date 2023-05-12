@@ -7,20 +7,18 @@ This app was inspired by the CodeBrowser example from textual
 
 import json
 import pathlib
-from os import getenv
-from typing import TYPE_CHECKING, Any, Iterable, List, Optional, Union
+from typing import TYPE_CHECKING, Any, Iterable, Optional, Union
 
 import click
 import pandas as pd
 import rich_click
-import rich_pixels
 import upath
 from art import text2art  # type: ignore[import]
-from PIL import Image
 from rich import traceback
 from rich.markdown import Markdown
 from rich.syntax import Syntax
 from rich.traceback import Traceback
+from rich_pixels import Pixels
 from textual.containers import Container, VerticalScroll
 from textual.reactive import var
 from textual.widget import Widget
@@ -35,41 +33,9 @@ from browsr._base import (
     UniversalDirectoryTree,
     debug_option,
 )
-
-rich_click.rich_click.MAX_WIDTH = 100
-rich_click.rich_click.STYLE_OPTION = "bold green"
-rich_click.rich_click.STYLE_SWITCH = "bold blue"
-rich_click.rich_click.STYLE_METAVAR = "bold red"
-rich_click.rich_click.STYLE_HELPTEXT_FIRST_LINE = "bold blue"
-rich_click.rich_click.STYLE_HELPTEXT = ""
-rich_click.rich_click.STYLE_HEADER_TEXT = "bold green"
-rich_click.rich_click.STYLE_OPTION_DEFAULT = "bold yellow"
-rich_click.rich_click.STYLE_OPTION_HELP = ""
-rich_click.rich_click.STYLE_ERRORS_SUGGESTION = "bold red"
-rich_click.rich_click.STYLE_OPTIONS_TABLE_BOX = "SIMPLE_HEAVY"
-rich_click.rich_click.STYLE_COMMANDS_TABLE_BOX = "SIMPLE_HEAVY"
-
-favorite_themes: List[str] = [
-    "monokai",
-    "material",
-    "dracula",
-    "solarized-light",
-    "one-dark",
-    "solarized-dark",
-    "emacs",
-    "vim",
-    "github-dark",
-    "native",
-    "paraiso-dark",
-]
-
-rich_default_theme = getenv("RICH_THEME", None)
-if rich_default_theme in favorite_themes:
-    assert isinstance(rich_default_theme, str)
-    favorite_themes.remove(rich_default_theme)
-if rich_default_theme is not None:
-    assert isinstance(rich_default_theme, str)
-    favorite_themes.insert(0, rich_default_theme)
+from browsr._config import favorite_themes, image_file_extensions
+from browsr._utils import open_image
+from browsr._version import __application__, __version__
 
 
 class CodeBrowser(BrowsrTextualApp):
@@ -77,7 +43,8 @@ class CodeBrowser(BrowsrTextualApp):
     Textual code browser app.
     """
 
-    CSS_PATH = "code_browser.css"
+    TITLE = __application__
+    CSS_PATH = "browsr.css"
     BINDINGS = [
         ("q", "quit", "Quit"),
         ("f", "toggle_files", "Toggle Files"),
@@ -131,7 +98,7 @@ class CodeBrowser(BrowsrTextualApp):
     def render_document(
         self,
         document: pathlib.Path,
-    ) -> Union[Syntax, Markdown, DataTable[str]]:
+    ) -> Union[Syntax, Markdown, DataTable[str], Pixels]:
         """
         Render a Code Doc Given Its Extension
 
@@ -142,7 +109,7 @@ class CodeBrowser(BrowsrTextualApp):
 
         Returns
         -------
-        Union[Syntax, Markdown, DataTable[str]]
+        Union[Syntax, Markdown, DataTable[str], Pixels]
         """
         if document.suffix == ".md":
             return Markdown(
@@ -156,24 +123,18 @@ class CodeBrowser(BrowsrTextualApp):
         elif document.suffix == ".parquet":
             df = pd.read_parquet(document)[:500]
             return self.df_to_table(pandas_dataframe=df, table=self.table_view)
-        elif document.suffix.lower() in [".png", ".jpg", ".jpeg"]:
+        elif document.suffix.lower() in image_file_extensions:
             screen_width = self.app.size.width / 4
-            with document.open("rb") as buf:
-                image = Image.open(buf)
-                image_width = image.width
-                image_height = image.height
-                size_ratio = image_width / screen_width
-                new_width = min(int(image_width / size_ratio), image_width)
-                new_height = min(int(image_height / size_ratio), image_height)
-                resized = image.resize((new_width, new_height))
-                content = rich_pixels.Pixels.from_image(resized)
+            content = open_image(document=document, screen_width=screen_width)
             return content
         elif document.suffix.lower() in [".json"]:
             code_str = document.read_text()
             code_obj = json.loads(code_str)
             code_lines = json.dumps(code_obj, indent=2).splitlines()
         else:
-            code_lines = document.read_text().splitlines()
+            code_lines = document.read_text(
+                encoding="utf-8", errors="replace"
+            ).splitlines()
         code = "\n".join(code_lines[:1000])
         lexer = Syntax.guess_lexer(str(document), code=code)
         return Syntax(
@@ -276,7 +237,9 @@ class CodeBrowser(BrowsrTextualApp):
             self.render_code_page(file_path=self.selected_file_path)
         else:
             self.show_tree = True
-            self.render_code_page(file_path=pathlib.Path.cwd(), content="BROWSR")
+            self.render_code_page(
+                file_path=pathlib.Path.cwd(), content=__application__.upper()
+            )
 
     def on_directory_tree_file_selected(
         self, event: DirectoryTree.FileSelected
@@ -315,11 +278,12 @@ class CodeBrowser(BrowsrTextualApp):
         self.render_code_page(file_path=self.selected_file_path, scroll_home=False)
 
 
-@click.command(name="browse", cls=rich_click.rich_command.RichCommand)
+@click.command(name="browsr", cls=rich_click.rich_command.RichCommand)
 @click.argument("path", default=None, required=False, metavar="PATH")
+@click.version_option(version=__version__, prog_name=__application__)
 @click.pass_obj
 @debug_option
-def browse(
+def browsr(
     context: Optional[BrowsrClickContext], path: Optional[str], debug: bool
 ) -> None:
     """
@@ -339,4 +303,4 @@ def browse(
 
 
 if __name__ == "__main__":
-    browse()
+    browsr()
