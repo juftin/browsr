@@ -2,7 +2,7 @@
 
 <div align="center">
 <a href="https://github.com/juftin/browsr">
-  <img src=https://i.imgur.com/QiAXcEm.png
+  <img src=_static/browsr.png
     width="400" alt="browsr">
 </a>
 </div>
@@ -16,21 +16,12 @@
 It's a simple way to browse your files and take a peek at their contents. Plus it
 works on local and remote file systems.
 
----
-
-**Table of Contents**
-
--   [Installation](#installation)
-    -   [Extra Installation](#extra-installation)
--   [Usage](#usage)
--   [License](#license)
-
 <body>
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 10px;">
-  <img src="https://i.imgur.com/6apkI2Q.png" alt="Image 1">
-  <img src="https://i.imgur.com/y7ZLRTX.png" alt="Image 2">
-  <img src="https://i.imgur.com/oRBJ0vj.png" alt="Image 3">
-  <img src="https://i.imgur.com/HWSjWCY.png" alt="Image 4">
+  <img src="_static/screenshot_utils.png" alt="Image 1">
+  <img src="_static/screenshot_datatable.png" alt="Image 2">
+  <img src="_static/screenshot_mona_lisa.png" alt="Image 3">
+  <img src="_static/screenshot_markdown.png" alt="Image 4">
 </div>
 </body>
 
@@ -40,7 +31,7 @@ The below command recommends [pipx](https://pypa.github.io/pipx/) instead of pip
 an isolated environment and makes it easy to uninstall. If you'd like to use `pip` instead, just replace `pipx`
 with `pip` in the below command.
 
-```console
+```shell
 pipx install browsr
 ```
 
@@ -50,23 +41,19 @@ If you're looking to use `browsr` on remote file systems, like AWS S3, you'll ne
 If you'd like to browse parquet files, you'll need to install the `parquet` extra. Or, even simpler,
 you can install the `all` extra to get all the extras.
 
-```console
+```shell
 pipx install "browsr[all]"
 ```
 
 ## Usage
 
-```console
+```shell
 browsr ~/Downloads/
 ```
 
 Simply give `browsr` a path to a file/directory and it will open a browser window
 with a file browser. You can also give it a URL to a remote file system, like AWS S3.
 
-```console
+```shell
 browsr s3://my-bucket/my-file.parquet
 ```
-
-## License
-
-`browsr` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
