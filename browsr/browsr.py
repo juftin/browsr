@@ -7,38 +7,43 @@ This app was inspired by the CodeBrowser example from textual
 
 import json
 import pathlib
+import shutil
+from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Iterable, Optional, Union
 
-import click
 import pandas as pd
-import rich_click
 import upath
 from art import text2art  # type: ignore[import]
-from rich import traceback
 from rich.markdown import Markdown
 from rich.syntax import Syntax
 from rich.traceback import Traceback
 from rich_pixels import Pixels
-from textual.containers import Container, VerticalScroll
+from textual.binding import Binding
+from textual.containers import Container, Horizontal, VerticalScroll
 from textual.reactive import var
 from textual.widget import Widget
 from textual.widgets import DataTable, DirectoryTree, Footer, Header, Static
 from upath.implementations.cloud import CloudPath
 
 from browsr._base import (
-    BrowsrClickContext,
     BrowsrTextualApp,
+    ConfirmationPopUp,
+    CurrentFileInfoBar,
     FileSizeError,
     TextualAppContext,
     UniversalDirectoryTree,
-    debug_option,
 )
 from browsr._config import favorite_themes, image_file_extensions
-from browsr._utils import open_image
-from browsr._version import __application__, __version__
+from browsr._utils import (
+    FileInfo,
+    get_file_info,
+    handle_duplicate_filenames,
+    open_image,
+)
+from browsr._version import __application__
 
 
-class CodeBrowser(BrowsrTextualApp):
+class Browsr(BrowsrTextualApp):
     """
     Textual code browser app.
     """
@@ -46,11 +51,11 @@ class CodeBrowser(BrowsrTextualApp):
     TITLE = __application__
     CSS_PATH = "browsr.css"
     BINDINGS = [
-        ("q", "quit", "Quit"),
-        ("f", "toggle_files", "Toggle Files"),
-        ("t", "theme", "Toggle Theme"),
-        ("n", "linenos", "Toggle Line Numbers"),
-        ("d", "toggle_dark", "Toggle dark mode"),
+        Binding("q", "quit", "Quit"),
+        Binding("f", "toggle_files", "Toggle Files"),
+        Binding("t", "theme", "Toggle Theme"),
+        Binding("n", "linenos", "Toggle Line Numbers"),
+        Binding("d", "toggle_dark", "Toggle Dark Mode"),
     ]
 
     show_tree = var(True)
@@ -59,8 +64,7 @@ class CodeBrowser(BrowsrTextualApp):
     rich_themes = favorite_themes
     selected_file_path: Union[upath.UPath, pathlib.Path, None, var[None]] = var(None)
     force_show_tree = var(False)
-
-    traceback.install(show_locals=True)
+    hidden_table_view = var(False)
 
     def watch_show_tree(self, show_tree: bool) -> None:
         """
@@ -74,6 +78,8 @@ class CodeBrowser(BrowsrTextualApp):
         """
         assert isinstance(self.config_object, TextualAppContext)
         file_path = self.config_object.path
+        if isinstance(file_path, CloudPath):
+            self.bind("x", "download_file", description="Download File", show=True)
         if file_path.is_file():
             self.selected_file_path = file_path
             file_path = file_path.parent
@@ -90,8 +96,28 @@ class CodeBrowser(BrowsrTextualApp):
             zebra_stripes=True, show_header=True, show_cursor=True, id="table-view"
         )
         self.table_view.display = False
-        self.container = Container(self.directory_tree, self.code_view, self.table_view)
+        self.confirmation = ConfirmationPopUp()
+        self.confirmation_window = Container(
+            self.confirmation, id="confirmation-container"
+        )
+        self.confirmation_window.display = False
+        self.container = Container(
+            self.directory_tree,
+            self.code_view,
+            self.table_view,
+            self.confirmation_window,
+        )
         yield self.container
+        self.file_information = CurrentFileInfoBar()
+        self.info_bar = Horizontal(
+            self.file_information,
+            id="file-info-bar",
+        )
+        if self.selected_file_path is not None:
+            self.file_information.file_info = get_file_info(
+                file_path=self.selected_file_path
+            )
+        yield self.info_bar
         self.footer = Footer()
         yield self.footer
 
@@ -128,9 +154,12 @@ class CodeBrowser(BrowsrTextualApp):
             content = open_image(document=document, screen_width=screen_width)
             return content
         elif document.suffix.lower() in [".json"]:
-            code_str = document.read_text()
-            code_obj = json.loads(code_str)
-            code_lines = json.dumps(code_obj, indent=2).splitlines()
+            code_str = document.read_text(encoding="utf-8", errors="replace")
+            try:
+                code_obj = json.loads(code_str)
+                code_lines = json.dumps(code_obj, indent=2).splitlines()
+            except json.JSONDecodeError:
+                code_lines = code_str.splitlines()
         else:
             code_lines = document.read_text(
                 encoding="utf-8", errors="replace"
@@ -146,22 +175,16 @@ class CodeBrowser(BrowsrTextualApp):
             theme=self.rich_themes[self.theme_index],
         )
 
-    @classmethod
-    def _handle_file_size(cls, file_path: pathlib.Path) -> None:
+    def _handle_file_size(self, file_info: FileInfo) -> None:
         """
         Handle a File Size
         """
-        stat = file_path.stat()
-        if isinstance(stat, dict):
-            file_size = {key.lower(): value for key, value in stat.items()}["size"]
-            file_size_mb = file_size / 1000 / 1000
-        else:
-            file_size_mb = stat.st_size / 1000 / 1000
-        max_file_size = 8
-        too_large = file_size_mb >= max_file_size
+        file_size_mb = file_info.size / 1000 / 1000
+        too_large = file_size_mb >= self.config_object.max_file_size  # type: ignore[union-attr]
         exception = (
             True
-            if not isinstance(file_path, CloudPath) and ".csv" in file_path.suffixes
+            if not isinstance(file_info.file, CloudPath)
+            and ".csv" in file_info.file.suffixes
             else False
         )
         if too_large is True and exception is not True:
@@ -182,8 +205,9 @@ class CodeBrowser(BrowsrTextualApp):
             code_view.update(text2art(content, font=font))
             return
         try:
-            self._handle_file_size(file_path=file_path)
-            element = self.render_document(document=file_path)
+            file_info = get_file_info(file_path=file_path)
+            self._handle_file_size(file_info=file_info)
+            element = self.render_document(document=file_info.file)
         except FileSizeError:
             self.table_view.display = False
             self.code_view.display = True
@@ -248,7 +272,9 @@ class CodeBrowser(BrowsrTextualApp):
         Called when the user click a file in the directory tree.
         """
         self.selected_file_path = upath.UPath(event.path)
+        file_info = get_file_info(file_path=self.selected_file_path)
         self.render_code_page(file_path=upath.UPath(event.path))
+        self.file_information.file_info = file_info
 
     def action_toggle_files(self) -> None:
         """
@@ -277,30 +303,54 @@ class CodeBrowser(BrowsrTextualApp):
         self.linenos = not self.linenos
         self.render_code_page(file_path=self.selected_file_path, scroll_home=False)
 
+    def _get_download_file_name(self) -> pathlib.Path:
+        """
+        Get the download file name.
+        """
+        download_dir = pathlib.Path.home() / "Downloads"
+        if not download_dir.exists():
+            raise FileNotFoundError(f"Download directory {download_dir} not found")
+        download_path = download_dir / self.selected_file_path.name  # type: ignore[union-attr]
+        handled_download_path = handle_duplicate_filenames(file_path=download_path)
+        return handled_download_path
 
-@click.command(name="browsr", cls=rich_click.rich_command.RichCommand)
-@click.argument("path", default=None, required=False, metavar="PATH")
-@click.version_option(version=__version__, prog_name=__application__)
-@click.pass_obj
-@debug_option
-def browsr(
-    context: Optional[BrowsrClickContext], path: Optional[str], debug: bool
-) -> None:
-    """
-    Start the TUI File Browser
+    def download_selected_file(self) -> None:
+        """
+        Download the selected file.
+        """
+        if self.selected_file_path is None:
+            return
+        elif self.selected_file_path.is_dir():
+            return
+        elif isinstance(self.selected_file_path, CloudPath):
+            handled_download_path = self._get_download_file_name()
+            with self.selected_file_path.open("rb") as file_handle:
+                with handled_download_path.open("wb") as download_handle:
+                    shutil.copyfileobj(file_handle, download_handle)
 
-    This utility displays a TUI (textual user interface) application. The application
-    allows you to visually browse through a repository and display the contents of its
-    files
-    """
-    if context is None:
-        context = BrowsrClickContext(debug=debug)
-    elif context.debug is False:
-        context.debug = debug
-    config = TextualAppContext(file_path=path, debug=context.debug)
-    app = CodeBrowser(config_object=config)
-    app.run()
+    def action_download_file(self) -> None:
+        """
+        Download the selected file.
+        """
+        if self.selected_file_path is None:
+            return
+        elif self.selected_file_path.is_dir():
+            return
+        elif isinstance(self.selected_file_path, CloudPath):
+            handled_download_path = self._get_download_file_name()
+            prompt_message: str = dedent(
+                f"""
+                ## File Download
 
+                **Are you sure you want to download that file?**
 
-if __name__ == "__main__":
-    browsr()
+                **File:** `{self.selected_file_path}`
+
+                **Path:** `{handled_download_path}`
+                """
+            )
+            self.confirmation.download_message.update(Markdown(prompt_message))
+            self.confirmation.refresh()
+            self.hidden_table_view = self.table_view.display
+            self.table_view.display = False
+            self.confirmation_window.display = True
