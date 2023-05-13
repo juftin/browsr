@@ -37,6 +37,8 @@ works on local and remote file systems.
 
 </details>
 
+### [See the Documentation](https://juftin.com/browsr/)
+
 ## Installation
 
 The below command recommends [pipx](https://pypa.github.io/pipx/) instead of pip. `pipx` installs the package in
