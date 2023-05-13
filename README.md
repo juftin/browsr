@@ -37,8 +37,6 @@ works on local and remote file systems.
 
 </details>
 
-### [See the Documentation](https://juftin.com/browsr/)
-
 ## Installation
 
 The below command recommends [pipx](https://pypa.github.io/pipx/) instead of pip. `pipx` installs the package in
@@ -71,6 +69,8 @@ with a file browser. You can also give it a URL to a remote file system, like AW
 ```shell
 browsr s3://my-bucket/my-file.parquet
 ```
+
+### [Check out the Documentation](https://juftin.com/browsr/) for more
 
 ## License
 
