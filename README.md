@@ -18,61 +18,21 @@ works on local and remote file systems.
 
 <details open></summary></summary>
 
-<style>
-  .grid-item {
-    transition: all 0.5s ease;
-  }
-
-  .grid-item:hover {
-    transform: scale(1.2);
-  }
-
-  .expanded {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-  }
-
-  .expanded img {
-    max-width: 80%;
-    max-height: 80%;
-    object-fit: contain;
-  }
-</style>
-
 <body>
-  <div class="grid" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 10px;">
-    <div class="grid-item">
-      <img src="docs/_static/screenshot_utils.png" alt="Image 1" href="">
-    </div>
-    <div class="grid-item">
-      <img src="docs/_static/screenshot_datatable.png" alt="Image 2" href="">
-    </div>
-    <div class="grid-item">
-      <img src="docs/_static/screenshot_mona_lisa.png" alt="Image 3" href="">
-    </div>
-    <div class="grid-item">
-      <img src="docs/_static/screenshot_markdown.png" alt="Image 4" href="">
-    </div>
-  </div>
-
-  <div class="expanded" style="display: none;">
-    <img src="">
-  </div>
-
-  <script>
-    var expanded = document.querySelector('.expanded');
-    expanded.onclick = function() {
-      this.style.display = 'none';
-    };
-  </script>
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 10px;">
+    <picture>
+        <img src="docs/_static/screenshot_utils.png" alt="Image 1" href="">
+    </picture>
+    <picture>
+        <img src="docs/_static/screenshot_datatable.png" alt="Image 2" href="">
+    </picture>
+    <picture>
+        <img src="docs/_static/screenshot_mona_lisa.png" alt="Image 3" href="">
+    </picture>
+    <picture>
+        <img src="docs/_static/screenshot_markdown.png" alt="Image 4" href="">
+    </picture>
+</div>
 </body>
 
 </details>
