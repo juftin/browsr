@@ -5,16 +5,15 @@ nav:
     - index.md
     - Command Line Interface ⌨️: cli.md
     - Contributing 🤝: contributing.md
-    - API Documentation 🤖: api_documentation.md
+    - API Documentation 🤖: reference/
 theme:
-    favicon: https://raw.githubusercontent.com/juftin/juftin/main/static/juftin.png
-    logo: https://i.imgur.com/QiAXcEm.png
+    favicon: _static/browsr_no_label.png
+    logo: _static/browsr_no_label.png
     name: material
     features:
         - navigation.tracking
         - content.code.annotate
         - content.code.copy
-        - navigation.indexes
     palette:
         - media: "(prefers-color-scheme: light)"
           scheme: default
@@ -57,6 +56,12 @@ markdown_extensions:
     - mkdocs-click
 plugins:
     - search
+    - gen-files:
+          scripts:
+              - docs/gen_ref_pages.py
+    - literate-nav:
+          nav_file: SUMMARY.md
+    - section-index:
     - mkdocstrings:
           handlers:
               python:
