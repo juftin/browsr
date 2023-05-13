@@ -4,19 +4,32 @@ Extension Classes
 
 from __future__ import annotations
 
+import math
 import pathlib
+import stat
 from dataclasses import dataclass
-from typing import Any, Dict, Iterable, Optional
+from textwrap import dedent
+from typing import Any, Dict, Iterable, List, Optional, Union
 
 import numpy as np
 import rich_click as click
 import upath
 from pandas import DataFrame
-from textual.app import App
-from textual.widgets import DataTable, DirectoryTree
+from rich import traceback
+from rich.console import RenderableType
+from rich.markdown import Markdown
+from rich.text import Text
+from textual.app import App, ComposeResult
+from textual.containers import Container
+from textual.reactive import reactive, var
+from textual.widget import Widget
+from textual.widgets import Button, DataTable, DirectoryTree, Static
 from textual.widgets._directory_tree import DirEntry
 from textual.widgets._tree import TreeNode
 from upath import UPath
+
+from browsr._config import favorite_themes
+from browsr._utils import FileInfo
 
 debug_option = click.option(
     "--debug/--no-debug", default=False, help="Enable extra debugging output"
@@ -32,6 +45,7 @@ class TextualAppContext:
     file_path: Optional[str] = None
     config: Optional[Dict[str, Any]] = None
     debug: bool = False
+    max_file_size: int = 20
 
     @property
     def path(self) -> pathlib.Path:
@@ -52,6 +66,14 @@ class BrowsrTextualApp(App[str]):
     textual.app.App Extension
     """
 
+    show_tree = var(True)
+    theme_index = var(0)
+    linenos = var(False)
+    rich_themes = favorite_themes
+    selected_file_path: Union[upath.UPath, pathlib.Path, None, var[None]] = var(None)
+    force_show_tree = var(False)
+    hidden_table_view = var(False)
+
     def __init__(
         self,
         config_object: Optional[TextualAppContext] = None,
@@ -67,6 +89,7 @@ class BrowsrTextualApp(App[str]):
         """
         super().__init__()
         self.config_object = config_object
+        traceback.install(show_locals=True)
 
     @staticmethod
     def df_to_table(
@@ -108,15 +131,6 @@ class BrowsrTextualApp(App[str]):
         return table
 
 
-@dataclass
-class BrowsrClickContext:
-    """
-    Context Object to Pass Around CLI
-    """
-
-    debug: bool
-
-
 class UniversalDirectoryTree(DirectoryTree):
     """
     A Universal DirectoryTree supporting different filesystems
@@ -133,7 +147,7 @@ class UniversalDirectoryTree(DirectoryTree):
         if top_level_buckets is None:
             directory = sorted(
                 dir_path.iterdir(),
-                key=lambda path: (not path.is_dir(), path.name.lower()),
+                key=lambda x: (not x.is_dir(), x.name.lower()),
             )
         for path in top_level_buckets or directory:
             if top_level_buckets is None:
@@ -165,3 +179,117 @@ class FileSizeError(Exception):
     """
     File Too Large Error
     """
+
+
+class CurrentFileInfoBar(Widget):
+    """
+    A Widget that displays information about the currently selected file
+
+    Thanks, Kupo. https://github.com/darrenburns/kupo
+    """
+
+    file_info: Union[FileInfo, var[None]] = reactive(None)  # type: ignore[assignment]
+
+    def watch_file_info(self, new_file: Union[FileInfo, None]) -> None:
+        """
+        Watch the file property for changes
+        """
+        if new_file is None:
+            self.display = False
+        else:
+            self.display = True
+
+    @classmethod
+    def _convert_size(cls, size_bytes: int) -> str:
+        """
+        Convert Bytes to Human Readable String
+        """
+        if size_bytes == 0:
+            return " 0[dim]B"
+        size_name = ("B", "K", "M", "G", "T", "P", "E", "Z", "Y")
+        index = int(math.floor(math.log(size_bytes, 1024)))
+        p = math.pow(1024, index)
+        number = round(size_bytes / p, 2)
+        unit = size_name[index]
+        return f"{number:.0f}[dim]{unit}[/]"
+
+    @classmethod
+    def _render_mode_string(cls, file_info: FileInfo) -> List[Any]:
+        """
+        Render the Mode String for the Current File Info Bar
+        """
+        if file_info.is_local is False:
+            return [("----------", "dim"), (" ╲ ", "dim cyan")]
+        perm_string = stat.filemode(file_info.stat.st_mode)  # type: ignore[union-attr]
+        perm_string = Text.assemble(  # type: ignore[assignment]
+            (perm_string[0], "b dim"),
+            (perm_string[1], "yellow b" if perm_string[1] == "r" else "dim"),
+            (perm_string[2], "red b" if perm_string[2] == "w" else "dim"),
+            (perm_string[3], "green b" if perm_string[3] == "x" else "dim"),
+            (perm_string[4], "yellow b" if perm_string[4] == "r" else "dim"),
+            (perm_string[5], "red b" if perm_string[5] == "w" else "dim"),
+            (perm_string[6], "green b" if perm_string[6] == "x" else "dim"),
+            (perm_string[7], "b yellow" if perm_string[7] == "r" else "dim"),
+            (perm_string[8], "b red" if perm_string[8] == "w" else "dim"),
+            (perm_string[9], "b green" if perm_string[9] == "x" else "dim"),
+        )
+        assembled = [
+            perm_string,
+            (" ╲ ", "dim cyan"),
+        ]
+        return assembled
+
+    def render(self) -> RenderableType:
+        """
+        Render the Current File Info Bar
+        """
+        if self.file_info is None:
+            return Text("")
+        modify_time = self.file_info.last_modified.strftime("%-d %b %y %H:%M")
+        assembled = self._render_mode_string(file_info=self.file_info)
+        if self.file_info.is_file:
+            assembled += [
+                Text.from_markup(self._convert_size(self.file_info.size)),
+                (" ╲ ", "dim cyan"),
+            ]
+        assembled += [
+            modify_time,
+            (" ╲ ", "dim cyan"),
+            self.file_info.owner,
+            (" ╲ ", "dim cyan"),
+            self.file_info.group,
+        ]
+
+        return Text.assemble(*assembled)
+
+
+class ConfirmationPopUp(Container):
+    """
+    A Pop Up that asks for confirmation
+    """
+
+    __confirmation_message__: str = dedent(
+        """
+        ## File Download
+
+        Are you sure you want to download that file?
+        """
+    )
+
+    def compose(self) -> ComposeResult:
+        """
+        Compose the Confirmation Pop Up
+        """
+        self.download_message = Static(Markdown(""))
+        yield self.download_message
+        yield Button("Yes", variant="success")
+        yield Button("No", variant="error")
+
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        """
+        Handle Button Presses
+        """
+        self.app.confirmation_window.display = False  # type: ignore[attr-defined]
+        if event.button.variant == "success":
+            self.app.download_selected_file()  # type: ignore[attr-defined]
+        self.app.table_view.display = self.app.hidden_table_view  # type: ignore[attr-defined]
