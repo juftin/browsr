@@ -136,7 +136,7 @@ class UniversalDirectoryTree(DirectoryTree):
     A Universal DirectoryTree supporting different filesystems
     """
 
-    def load_directory(self, node: TreeNode[DirEntry]) -> None:
+    def _load_directory(self, node: TreeNode[DirEntry]) -> None:
         """
         Load Directory Using Universal Pathlib
         """
@@ -156,10 +156,23 @@ class UniversalDirectoryTree(DirectoryTree):
                 path_name = str(path).replace("s3://", "").rstrip("/")
             node.add(
                 path_name,
-                data=DirEntry(str(path), path.is_dir()),
+                data=DirEntry(path),
                 allow_expand=path.is_dir(),
             )
         node.expand()
+
+    def reload(self) -> None:
+        """
+        Reload the `DirectoryTree` contents.
+        """
+        self.reset(str(self.path), DirEntry(UPath(self.path)))
+        self._load_directory(self.root)
+
+    def validate_path(self, path: Union[str, UPath]) -> UPath:  # type: ignore[override]
+        """
+        Ensure that the path is of the `UPath` type.
+        """
+        return UPath(path)
 
     def _handle_top_level_bucket(self, dir_path: UPath) -> Optional[Iterable[UPath]]:
         """
