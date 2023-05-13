@@ -20,10 +20,18 @@ works on local and remote file systems.
 
 <body>
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 10px;">
-  <img src="docs/_static/screenshot_utils.png" alt="Image 1">
-  <img src="docs/_static/screenshot_datatable.png" alt="Image 2">
-  <img src="docs/_static/screenshot_mona_lisa.png" alt="Image 3">
-  <img src="docs/_static/screenshot_markdown.png" alt="Image 4">
+    <picture>
+        <img src="docs/_static/screenshot_utils.png" alt="Image 1" href="">
+    </picture>
+    <picture>
+        <img src="docs/_static/screenshot_datatable.png" alt="Image 2" href="">
+    </picture>
+    <picture>
+        <img src="docs/_static/screenshot_mona_lisa.png" alt="Image 3" href="">
+    </picture>
+    <picture>
+        <img src="docs/_static/screenshot_markdown.png" alt="Image 4" href="">
+    </picture>
 </div>
 </body>
 
@@ -61,6 +69,8 @@ with a file browser. You can also give it a URL to a remote file system, like AW
 ```shell
 browsr s3://my-bucket/my-file.parquet
 ```
+
+### [Check out the Documentation](https://juftin.com/browsr/) for more
 
 ## License
 
