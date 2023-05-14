@@ -7,8 +7,8 @@ nav:
     - Contributing 🤝: contributing.md
     - API Documentation 🤖: reference/
 theme:
-    favicon: _static/browsr_no_label.png
-    logo: _static/browsr_no_label.png
+    favicon: https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr_no_label.png
+    logo: https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr_no_label.png
     name: material
     features:
         - navigation.tracking

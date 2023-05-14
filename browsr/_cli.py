@@ -49,22 +49,22 @@ def browsr(
     max_file_size: int,
 ) -> None:
     """
-    browsr is a file browser TUI (textual user interface) application. The application
+    **`browsr`** is a file browser TUI (textual user interface) application. The application
     allows you to visually browse through a directory (local or cloud) and display the
     contents of its files
 
     \f
 
-    ![browsr](_static/screenshot_utils.png)
+    ![browsr](https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png)
 
     ## Installation
 
-    It's recommended to install browsr via [pipx](https://pypa.github.io/pipx/)
-    with **all** optional dependencies, this enables **browsr** to access
+    It's recommended to install **`browsr`** via [pipx](https://pypa.github.io/pipx/)
+    with **`all`** optional dependencies, this enables **`browsr`** to access
     remote cloud storage buckets and open parquet files.
 
-    ```bash
-    pipx install browsr
+    ```shell
+    pipx install "browsr[all]"
     ```
 
     ## Usage Examples
