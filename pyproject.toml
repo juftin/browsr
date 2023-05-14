@@ -21,7 +21,7 @@ dependencies = [
   "rich~=13.3.5",
   "rich-click~=1.5.2",
   "rich-pixels~=2.1.1",
-  "textual~=0.24.1",
+  "textual~=0.22.3",
   "universal-pathlib~=0.0.21",
   "Pillow>=9.1.0",
   "PyMuPDF~=1.22.3"
@@ -86,10 +86,12 @@ dependencies = [
   "ruff~=0.0.261",
   "mypy~=1.2.0",
   "pandas-stubs~=2.0.0.230412",
-  "pip-tools~=6.13.0"
+  "pip-tools~=6.13.0",
+  "textual[dev]~=0.22.3"
 ]
 features = ["all"]
 pre-install-commands = ["pip install -U --no-deps -r requirements/requirements-dev.txt"]
+python = "3.10"
 
 [tool.hatch.envs.default.scripts]
 _pip_compile = "pip-compile --resolver=backtracking --generate-hashes requirements.in"

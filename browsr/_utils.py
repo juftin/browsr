@@ -81,7 +81,6 @@ def get_file_info(file_path: pathlib.Path) -> FileInfo:
         file_size = lower_dict["size"]
         last_modified = lower_dict.get("lastmodified") or lower_dict.get("updated")
         if isinstance(last_modified, str):
-            # 2023-05-12T21:25:17.050Z
             last_modified = datetime.datetime.fromisoformat(last_modified[:-1])
         return FileInfo(
             file=file_path,

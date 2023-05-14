@@ -6,13 +6,11 @@ from __future__ import annotations
 
 import math
 import pathlib
-import stat
 from dataclasses import dataclass
 from textwrap import dedent
-from typing import Any, Dict, Iterable, List, Optional, Union
+from typing import Any, Dict, Iterable, Optional, Union
 
 import numpy as np
-import rich_click as click
 import upath
 from pandas import DataFrame
 from rich import traceback
@@ -30,10 +28,6 @@ from upath import UPath
 
 from browsr._config import favorite_themes
 from browsr._utils import FileInfo
-
-debug_option = click.option(
-    "--debug/--no-debug", default=False, help="Enable extra debugging output"
-)
 
 
 @dataclass
@@ -136,7 +130,7 @@ class UniversalDirectoryTree(DirectoryTree):
     A Universal DirectoryTree supporting different filesystems
     """
 
-    def _load_directory(self, node: TreeNode[DirEntry]) -> None:
+    def load_directory(self, node: TreeNode[DirEntry]) -> None:
         """
         Load Directory Using Universal Pathlib
         """
@@ -156,23 +150,10 @@ class UniversalDirectoryTree(DirectoryTree):
                 path_name = str(path).replace("s3://", "").rstrip("/")
             node.add(
                 path_name,
-                data=DirEntry(path),
+                data=DirEntry(str(path), path.is_dir()),
                 allow_expand=path.is_dir(),
             )
         node.expand()
-
-    def reload(self) -> None:
-        """
-        Reload the `DirectoryTree` contents.
-        """
-        self.reset(str(self.path), DirEntry(UPath(self.path)))
-        self._load_directory(self.root)
-
-    def validate_path(self, path: Union[str, UPath]) -> UPath:  # type: ignore[override]
-        """
-        Ensure that the path is of the `UPath` type.
-        """
-        return UPath(path)
 
     def _handle_top_level_bucket(self, dir_path: UPath) -> Optional[Iterable[UPath]]:
         """
@@ -205,7 +186,7 @@ class CurrentFileInfoBar(Widget):
 
     def watch_file_info(self, new_file: Union[FileInfo, None]) -> None:
         """
-        Watch the file property for changes
+        Watch the file_info property for changes
         """
         if new_file is None:
             self.display = False
@@ -218,62 +199,46 @@ class CurrentFileInfoBar(Widget):
         Convert Bytes to Human Readable String
         """
         if size_bytes == 0:
-            return " 0[dim]B"
-        size_name = ("B", "K", "M", "G", "T", "P", "E", "Z", "Y")
+            return " 0B"
+        size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
         index = int(math.floor(math.log(size_bytes, 1024)))
         p = math.pow(1024, index)
         number = round(size_bytes / p, 2)
         unit = size_name[index]
-        return f"{number:.0f}[dim]{unit}[/]"
-
-    @classmethod
-    def _render_mode_string(cls, file_info: FileInfo) -> List[Any]:
-        """
-        Render the Mode String for the Current File Info Bar
-        """
-        if file_info.is_local is False:
-            return [("----------", "dim"), (" ╲ ", "dim cyan")]
-        perm_string = stat.filemode(file_info.stat.st_mode)  # type: ignore[union-attr]
-        perm_string = Text.assemble(  # type: ignore[assignment]
-            (perm_string[0], "b dim"),
-            (perm_string[1], "yellow b" if perm_string[1] == "r" else "dim"),
-            (perm_string[2], "red b" if perm_string[2] == "w" else "dim"),
-            (perm_string[3], "green b" if perm_string[3] == "x" else "dim"),
-            (perm_string[4], "yellow b" if perm_string[4] == "r" else "dim"),
-            (perm_string[5], "red b" if perm_string[5] == "w" else "dim"),
-            (perm_string[6], "green b" if perm_string[6] == "x" else "dim"),
-            (perm_string[7], "b yellow" if perm_string[7] == "r" else "dim"),
-            (perm_string[8], "b red" if perm_string[8] == "w" else "dim"),
-            (perm_string[9], "b green" if perm_string[9] == "x" else "dim"),
-        )
-        assembled = [
-            perm_string,
-            (" ╲ ", "dim cyan"),
-        ]
-        return assembled
+        return f"{round(number, 0)}{unit}"
 
     def render(self) -> RenderableType:
         """
         Render the Current File Info Bar
         """
-        if self.file_info is None:
+        if self.file_info is None or not self.file_info.is_file:
             return Text("")
-        modify_time = self.file_info.last_modified.strftime("%-d %b %y %H:%M")
-        assembled = self._render_mode_string(file_info=self.file_info)
-        if self.file_info.is_file:
+        modify_time = self.file_info.last_modified.strftime("%b, %-d %Y %I:%M %p")
+        assembled = [
+            "🗄️️️  ",
+            self._convert_size(self.file_info.size),
+            "   📅️  ",
+            modify_time,
+            "  💾  ",
+            self.file_info.file.name,
+            "  📂  ",
+            self.file_info.file.parent.name,
+        ]
+        if self.file_info.owner not in ["", None]:
             assembled += [
-                Text.from_markup(self._convert_size(self.file_info.size)),
-                (" ╲ ", "dim cyan"),
+                "  👤  ",
+                self.file_info.owner,
+            ]
+        if self.file_info.group.strip() not in ["", None]:
+            assembled += [
+                "  🏠  ",
+                self.file_info.group,
             ]
         assembled += [
-            modify_time,
-            (" ╲ ", "dim cyan"),
-            self.file_info.owner,
-            (" ╲ ", "dim cyan"),
-            self.file_info.group,
+            "  ∙ ",
         ]
-
-        return Text.assemble(*assembled)
+        dim_text = [Text(item, style="dim") for item in assembled]
+        return Text.assemble(*dim_text)
 
 
 class ConfirmationPopUp(Container):
