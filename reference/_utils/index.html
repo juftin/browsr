@@ -736,8 +736,7 @@
 <span class="normal"><a href="#__codelineno-0-105">105</a></span>
 <span class="normal"><a href="#__codelineno-0-106">106</a></span>
 <span class="normal"><a href="#__codelineno-0-107">107</a></span>
-<span class="normal"><a href="#__codelineno-0-108">108</a></span>
-<span class="normal"><a href="#__codelineno-0-109">109</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="k">def</span> <span class="nf">get_file_info</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FileInfo</span><span class="p">:</span>
+<span class="normal"><a href="#__codelineno-0-108">108</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="k">def</span> <span class="nf">get_file_info</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FileInfo</span><span class="p">:</span>
 <a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    Get File Information, Regardless of the FileSystem</span>
 <a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">    &quot;&quot;&quot;</span>
@@ -750,32 +749,31 @@
 <a id="__codelineno-0-81" name="__codelineno-0-81"></a>        <span class="n">file_size</span> <span class="o">=</span> <span class="n">lower_dict</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
 <a id="__codelineno-0-82" name="__codelineno-0-82"></a>        <span class="n">last_modified</span> <span class="o">=</span> <span class="n">lower_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lastmodified&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">lower_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;updated&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-83" name="__codelineno-0-83"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">last_modified</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84"></a>            <span class="c1"># 2023-05-12T21:25:17.050Z</span>
-<a id="__codelineno-0-85" name="__codelineno-0-85"></a>            <span class="n">last_modified</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">last_modified</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86"></a>        <span class="k">return</span> <span class="n">FileInfo</span><span class="p">(</span>
-<a id="__codelineno-0-87" name="__codelineno-0-87"></a>            <span class="n">file</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span>
-<a id="__codelineno-0-88" name="__codelineno-0-88"></a>            <span class="n">size</span><span class="o">=</span><span class="n">file_size</span><span class="p">,</span>
-<a id="__codelineno-0-89" name="__codelineno-0-89"></a>            <span class="n">last_modified</span><span class="o">=</span><span class="n">last_modified</span><span class="p">,</span>
-<a id="__codelineno-0-90" name="__codelineno-0-90"></a>            <span class="n">stat</span><span class="o">=</span><span class="n">stat</span><span class="p">,</span>
-<a id="__codelineno-0-91" name="__codelineno-0-91"></a>            <span class="n">is_local</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<a id="__codelineno-0-92" name="__codelineno-0-92"></a>            <span class="n">is_file</span><span class="o">=</span><span class="n">is_file</span><span class="p">,</span>
-<a id="__codelineno-0-93" name="__codelineno-0-93"></a>            <span class="n">owner</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-94" name="__codelineno-0-94"></a>            <span class="n">group</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-95" name="__codelineno-0-95"></a>            <span class="n">is_cloudpath</span><span class="o">=</span><span class="n">is_cloudpath</span><span class="p">,</span>
-<a id="__codelineno-0-96" name="__codelineno-0-96"></a>        <span class="p">)</span>
-<a id="__codelineno-0-97" name="__codelineno-0-97"></a>    <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-98" name="__codelineno-0-98"></a>        <span class="n">last_modified</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">st_mtime</span><span class="p">)</span>
-<a id="__codelineno-0-99" name="__codelineno-0-99"></a>        <span class="k">return</span> <span class="n">FileInfo</span><span class="p">(</span>
-<a id="__codelineno-0-100" name="__codelineno-0-100"></a>            <span class="n">file</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span>
-<a id="__codelineno-0-101" name="__codelineno-0-101"></a>            <span class="n">size</span><span class="o">=</span><span class="n">stat</span><span class="o">.</span><span class="n">st_size</span><span class="p">,</span>
-<a id="__codelineno-0-102" name="__codelineno-0-102"></a>            <span class="n">last_modified</span><span class="o">=</span><span class="n">last_modified</span><span class="p">,</span>
-<a id="__codelineno-0-103" name="__codelineno-0-103"></a>            <span class="n">stat</span><span class="o">=</span><span class="n">stat</span><span class="p">,</span>
-<a id="__codelineno-0-104" name="__codelineno-0-104"></a>            <span class="n">is_local</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<a id="__codelineno-0-105" name="__codelineno-0-105"></a>            <span class="n">is_file</span><span class="o">=</span><span class="n">is_file</span><span class="p">,</span>
-<a id="__codelineno-0-106" name="__codelineno-0-106"></a>            <span class="n">owner</span><span class="o">=</span><span class="n">file_path</span><span class="o">.</span><span class="n">owner</span><span class="p">(),</span>
-<a id="__codelineno-0-107" name="__codelineno-0-107"></a>            <span class="n">group</span><span class="o">=</span><span class="n">file_path</span><span class="o">.</span><span class="n">group</span><span class="p">(),</span>
-<a id="__codelineno-0-108" name="__codelineno-0-108"></a>            <span class="n">is_cloudpath</span><span class="o">=</span><span class="n">is_cloudpath</span><span class="p">,</span>
-<a id="__codelineno-0-109" name="__codelineno-0-109"></a>        <span class="p">)</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>            <span class="n">last_modified</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">last_modified</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>        <span class="k">return</span> <span class="n">FileInfo</span><span class="p">(</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>            <span class="n">file</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>            <span class="n">size</span><span class="o">=</span><span class="n">file_size</span><span class="p">,</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>            <span class="n">last_modified</span><span class="o">=</span><span class="n">last_modified</span><span class="p">,</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>            <span class="n">stat</span><span class="o">=</span><span class="n">stat</span><span class="p">,</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>            <span class="n">is_local</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>            <span class="n">is_file</span><span class="o">=</span><span class="n">is_file</span><span class="p">,</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>            <span class="n">owner</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>            <span class="n">group</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>            <span class="n">is_cloudpath</span><span class="o">=</span><span class="n">is_cloudpath</span><span class="p">,</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>        <span class="p">)</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a>        <span class="n">last_modified</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">stat</span><span class="o">.</span><span class="n">st_mtime</span><span class="p">)</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a>        <span class="k">return</span> <span class="n">FileInfo</span><span class="p">(</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a>            <span class="n">file</span><span class="o">=</span><span class="n">file_path</span><span class="p">,</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>            <span class="n">size</span><span class="o">=</span><span class="n">stat</span><span class="o">.</span><span class="n">st_size</span><span class="p">,</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>            <span class="n">last_modified</span><span class="o">=</span><span class="n">last_modified</span><span class="p">,</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a>            <span class="n">stat</span><span class="o">=</span><span class="n">stat</span><span class="p">,</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a>            <span class="n">is_local</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a>            <span class="n">is_file</span><span class="o">=</span><span class="n">is_file</span><span class="p">,</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a>            <span class="n">owner</span><span class="o">=</span><span class="n">file_path</span><span class="o">.</span><span class="n">owner</span><span class="p">(),</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a>            <span class="n">group</span><span class="o">=</span><span class="n">file_path</span><span class="o">.</span><span class="n">group</span><span class="p">(),</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a>            <span class="n">is_cloudpath</span><span class="o">=</span><span class="n">is_cloudpath</span><span class="p">,</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a>        <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -800,7 +798,8 @@ in the form of "filename (1).ext", "filename (2).ext", etc.</p>
 
       <details class="quote">
         <summary>Source code in <code>browsr/_utils.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-112">112</a></span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-111">111</a></span>
+<span class="normal"><a href="#__codelineno-0-112">112</a></span>
 <span class="normal"><a href="#__codelineno-0-113">113</a></span>
 <span class="normal"><a href="#__codelineno-0-114">114</a></span>
 <span class="normal"><a href="#__codelineno-0-115">115</a></span>
@@ -815,24 +814,23 @@ in the form of "filename (1).ext", "filename (2).ext", etc.</p>
 <span class="normal"><a href="#__codelineno-0-124">124</a></span>
 <span class="normal"><a href="#__codelineno-0-125">125</a></span>
 <span class="normal"><a href="#__codelineno-0-126">126</a></span>
-<span class="normal"><a href="#__codelineno-0-127">127</a></span>
-<span class="normal"><a href="#__codelineno-0-128">128</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="k">def</span> <span class="nf">handle_duplicate_filenames</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">:</span>
-<a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-114" name="__codelineno-0-114"></a><span class="sd">    Handle Duplicate Filenames</span>
-<a id="__codelineno-0-115" name="__codelineno-0-115"></a>
-<a id="__codelineno-0-116" name="__codelineno-0-116"></a><span class="sd">    Duplicate filenames are handled by appending a number to the filename</span>
-<a id="__codelineno-0-117" name="__codelineno-0-117"></a><span class="sd">    in the form of &quot;filename (1).ext&quot;, &quot;filename (2).ext&quot;, etc.</span>
-<a id="__codelineno-0-118" name="__codelineno-0-118"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-119" name="__codelineno-0-119"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-<a id="__codelineno-0-120" name="__codelineno-0-120"></a>        <span class="k">return</span> <span class="n">file_path</span>
-<a id="__codelineno-0-121" name="__codelineno-0-121"></a>    <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-122" name="__codelineno-0-122"></a>        <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
-<a id="__codelineno-0-123" name="__codelineno-0-123"></a>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<a id="__codelineno-0-124" name="__codelineno-0-124"></a>            <span class="n">new_file_stem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_path</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">)&quot;</span>
-<a id="__codelineno-0-125" name="__codelineno-0-125"></a>            <span class="n">new_file_path</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">with_stem</span><span class="p">(</span><span class="n">new_file_stem</span><span class="p">)</span>
-<a id="__codelineno-0-126" name="__codelineno-0-126"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">new_file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-<a id="__codelineno-0-127" name="__codelineno-0-127"></a>                <span class="k">return</span> <span class="n">new_file_path</span>
-<a id="__codelineno-0-128" name="__codelineno-0-128"></a>            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="normal"><a href="#__codelineno-0-127">127</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="k">def</span> <span class="nf">handle_duplicate_filenames</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">:</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="sd">    Handle Duplicate Filenames</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a><span class="sd">    Duplicate filenames are handled by appending a number to the filename</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a><span class="sd">    in the form of &quot;filename (1).ext&quot;, &quot;filename (2).ext&quot;, etc.</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a>        <span class="k">return</span> <span class="n">file_path</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a>        <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a>            <span class="n">new_file_stem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_path</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">)&quot;</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a>            <span class="n">new_file_path</span> <span class="o">=</span> <span class="n">file_path</span><span class="o">.</span><span class="n">with_stem</span><span class="p">(</span><span class="n">new_file_stem</span><span class="p">)</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">new_file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+<a id="__codelineno-0-126" name="__codelineno-0-126"></a>                <span class="k">return</span> <span class="n">new_file_path</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a>            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
