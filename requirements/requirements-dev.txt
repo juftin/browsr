@@ -1515,9 +1515,9 @@ six==1.16.0 \
     #   google-auth
     #   isodate
     #   python-dateutil
-textual[dev]==0.24.1 \
-    --hash=sha256:4c7e1f4ed12b9615c63fa3eb7cb9df68d29e0ae5b2352997958cd7ee5533f926 \
-    --hash=sha256:a7deb7ac5a1502424c754fe165ae13cb3890e47ddc514d3f089cb2984c336d1d
+textual[dev]==0.22.3 \
+    --hash=sha256:1ef6457b9d8b727a67d2344bf2d0b530dce1afab55e1bf4e964e430929301baa \
+    --hash=sha256:a68172f7797e9f269270491e039f1e48096530dff64dbfe893e8477f2d4e200c
     # via -r requirements.in
 tomli==2.0.1 \
     --hash=sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc \

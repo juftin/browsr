@@ -71,5 +71,3 @@ plugins:
                       - https://pandas.pydata.org/docs/objects.inv
                   options:
                       docstring_style: numpy
-                  selection:
-                      filters: []
