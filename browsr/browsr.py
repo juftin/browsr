@@ -356,8 +356,7 @@ class Browsr(BrowsrTextualApp):
             self.confirmation_window.display = True
 
 
-_config = TextualAppContext(file_path=".", debug=True)
-app = Browsr(config_object=_config)
+app = Browsr(config_object=TextualAppContext(file_path=None, debug=True))
 
 if __name__ == "__main__":
     app.run()
