@@ -1,8 +1,10 @@
 # browsr
 
-<div align="center">
-    <img src=https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr.png
-         width="400" alt="browsr">
+<div align="center" href="https://github.com/juftin/browsr">
+    <a href="https://github.com/juftin/browsr">
+      <img src=https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr.png
+        width="400" alt="browsr">
+    </a>
 </div>
 
 [![browsr Version](https://img.shields.io/pypi/v/browsr?color=blue&label=browsr)](https://github.com/juftin/browsr)

@@ -39,7 +39,7 @@ Browsr.-show-tree #tree-view {
 }
 
 CurrentFileInfoBar {
-    width: auto;
+    width: 100%;
 }
 
 #confirmation-container {

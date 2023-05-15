@@ -8,7 +8,7 @@ import math
 import pathlib
 from dataclasses import dataclass
 from textwrap import dedent
-from typing import Any, Dict, Iterable, Optional, Union
+from typing import Any, Dict, Optional, Union
 
 import numpy as np
 import upath
@@ -21,10 +21,7 @@ from textual.app import App, ComposeResult
 from textual.containers import Container
 from textual.reactive import reactive, var
 from textual.widget import Widget
-from textual.widgets import Button, DataTable, DirectoryTree, Static
-from textual.widgets._directory_tree import DirEntry
-from textual.widgets._tree import TreeNode
-from upath import UPath
+from textual.widgets import Button, DataTable, Static
 
 from browsr._config import favorite_themes
 from browsr._utils import FileInfo
@@ -125,50 +122,6 @@ class BrowsrTextualApp(App[str]):
         return table
 
 
-class UniversalDirectoryTree(DirectoryTree):
-    """
-    A Universal DirectoryTree supporting different filesystems
-    """
-
-    def load_directory(self, node: TreeNode[DirEntry]) -> None:
-        """
-        Load Directory Using Universal Pathlib
-        """
-        assert node.data is not None
-        dir_path = UPath(node.data.path)
-        node.data.loaded = True
-        top_level_buckets = self._handle_top_level_bucket(dir_path=dir_path)
-        if top_level_buckets is None:
-            directory = sorted(
-                dir_path.iterdir(),
-                key=lambda x: (not x.is_dir(), x.name.lower()),
-            )
-        for path in top_level_buckets or directory:
-            if top_level_buckets is None:
-                path_name = path.name
-            else:
-                path_name = str(path).replace("s3://", "").rstrip("/")
-            node.add(
-                path_name,
-                data=DirEntry(str(path), path.is_dir()),
-                allow_expand=path.is_dir(),
-            )
-        node.expand()
-
-    def _handle_top_level_bucket(self, dir_path: UPath) -> Optional[Iterable[UPath]]:
-        """
-        Handle scenarios when someone wants to browse all of s3
-
-        This is because S3FS handles the root directory differently than other filesystems
-        """
-        if str(dir_path) == "s3:/":
-            sub_buckets = sorted(
-                UPath(f"s3://{bucket.name}") for bucket in dir_path.iterdir()
-            )
-            return sub_buckets
-        return None
-
-
 class FileSizeError(Exception):
     """
     File Too Large Error
@@ -205,7 +158,7 @@ class CurrentFileInfoBar(Widget):
         p = math.pow(1024, index)
         number = round(size_bytes / p, 2)
         unit = size_name[index]
-        return f"{round(number, 0)}{unit}"
+        return f"{number:.0f}{unit}"
 
     def render(self) -> RenderableType:
         """
@@ -214,31 +167,21 @@ class CurrentFileInfoBar(Widget):
         if self.file_info is None or not self.file_info.is_file:
             return Text("")
         modify_time = self.file_info.last_modified.strftime("%b, %-d %Y %I:%M %p")
-        assembled = [
-            "🗄️️️  ",
-            self._convert_size(self.file_info.size),
-            "   📅️  ",
-            modify_time,
-            "  💾  ",
-            self.file_info.file.name,
-            "  📂  ",
-            self.file_info.file.parent.name,
-        ]
+        status_string = (
+            "🗄️️️  "
+            + self._convert_size(self.file_info.size)
+            + "   📅️  "
+            + modify_time
+            + "  💾  "
+            + self.file_info.file.name
+            + "  📂  "
+            + self.file_info.file.parent.name
+        )
         if self.file_info.owner not in ["", None]:
-            assembled += [
-                "  👤  ",
-                self.file_info.owner,
-            ]
+            status_string += "  👤  " + self.file_info.owner
         if self.file_info.group.strip() not in ["", None]:
-            assembled += [
-                "  🏠  ",
-                self.file_info.group,
-            ]
-        assembled += [
-            "  ∙ ",
-        ]
-        dim_text = [Text(item, style="dim") for item in assembled]
-        return Text.assemble(*dim_text)
+            status_string += "  🏠  " + self.file_info.group
+        return Text(status_string, style="dim")
 
 
 class ConfirmationPopUp(Container):

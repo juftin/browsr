@@ -22,7 +22,7 @@ from textual.binding import Binding
 from textual.containers import Container, Horizontal, VerticalScroll
 from textual.reactive import var
 from textual.widget import Widget
-from textual.widgets import DataTable, DirectoryTree, Footer, Header, Static
+from textual.widgets import DataTable, Footer, Header, Static
 from upath.implementations.cloud import CloudPath
 
 from browsr._base import (
@@ -31,7 +31,6 @@ from browsr._base import (
     CurrentFileInfoBar,
     FileSizeError,
     TextualAppContext,
-    UniversalDirectoryTree,
 )
 from browsr._config import favorite_themes, image_file_extensions
 from browsr._utils import (
@@ -41,6 +40,7 @@ from browsr._utils import (
     open_image,
 )
 from browsr._version import __application__
+from browsr.universal_directory_tree import UniversalDirectoryTree
 
 
 class Browsr(BrowsrTextualApp):
@@ -265,8 +265,8 @@ class Browsr(BrowsrTextualApp):
                 file_path=pathlib.Path.cwd(), content=__application__.upper()
             )
 
-    def on_directory_tree_file_selected(
-        self, event: DirectoryTree.FileSelected
+    def on_universal_directory_tree_file_selected(
+        self, event: UniversalDirectoryTree.FileSelected
     ) -> None:
         """
         Called when the user click a file in the directory tree.
@@ -354,3 +354,10 @@ class Browsr(BrowsrTextualApp):
             self.hidden_table_view = self.table_view.display
             self.table_view.display = False
             self.confirmation_window.display = True
+
+
+_config = TextualAppContext(file_path=".", debug=True)
+app = Browsr(config_object=_config)
+
+if __name__ == "__main__":
+    app.run()
