@@ -2,7 +2,7 @@
 
 <div align="center">
     <picture>
-        <img src=https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr.png
+        <img src=_static/browsr.png
              width="400" alt="browsr">
     </picture>
 </div>
@@ -48,16 +48,16 @@ works on local and remote file systems.
 <body>
   <div class="grid" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 10px;">
     <div class="grid-item">
-      <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png" alt="Image 1">
+      <img src="_static/screenshot_utils.png" alt="Image 1">
     </div>
     <div class="grid-item">
-      <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_datatable.png" alt="Image 2">
+      <img src="_static/screenshot_datatable.png" alt="Image 2">
     </div>
     <div class="grid-item">
-      <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_mona_lisa.png" alt="Image 3">
+      <img src="_static/screenshot_mona_lisa.png" alt="Image 3">
     </div>
     <div class="grid-item">
-      <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_markdown.png" alt="Image 4">
+      <img src="_static/screenshot_markdown.png" alt="Image 4">
     </div>
   </div>
 
