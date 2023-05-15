@@ -167,31 +167,21 @@ class CurrentFileInfoBar(Widget):
         if self.file_info is None or not self.file_info.is_file:
             return Text("")
         modify_time = self.file_info.last_modified.strftime("%b, %-d %Y %I:%M %p")
-        assembled = [
-            "🗄️️️  ",
-            self._convert_size(self.file_info.size),
-            "   📅️  ",
-            modify_time,
-            "  💾  ",
-            self.file_info.file.name,
-            "  📂  ",
-            self.file_info.file.parent.name,
-        ]
+        status_string = (
+            "🗄️️️  "
+            + self._convert_size(self.file_info.size)
+            + "   📅️  "
+            + modify_time
+            + "  💾  "
+            + self.file_info.file.name
+            + "  📂  "
+            + self.file_info.file.parent.name
+        )
         if self.file_info.owner not in ["", None]:
-            assembled += [
-                "  👤  ",
-                self.file_info.owner,
-            ]
+            status_string += "  👤  " + self.file_info.owner
         if self.file_info.group.strip() not in ["", None]:
-            assembled += [
-                "  🏠  ",
-                self.file_info.group,
-            ]
-        assembled += [
-            "  ∙ ",
-        ]
-        dim_text = [Text(item, style="dim") for item in assembled]
-        return Text.assemble(*dim_text)
+            status_string += "  🏠  " + self.file_info.group
+        return Text(status_string, style="dim")
 
 
 class ConfirmationPopUp(Container):
