@@ -1,10 +1,8 @@
 # browsr
 
 <div align="center">
-    <picture>
-        <img src=https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr.png
-             width="400" alt="browsr">
-    </picture>
+    <img src=https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr.png
+         width="400" alt="browsr">
 </div>
 
 [![browsr Version](https://img.shields.io/pypi/v/browsr?color=blue&label=browsr)](https://github.com/juftin/browsr)
@@ -20,18 +18,10 @@ works on local and remote file systems.
 
 <body>
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 10px;">
-    <picture>
-        <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png" alt="Image 1">
-    </picture>
-    <picture>
-        <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_datatable.png" alt="Image 2">
-    </picture>
-    <picture>
-        <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_mona_lisa.png" alt="Image 3">
-    </picture>
-    <picture>
-        <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_markdown.png" alt="Image 4">
-    </picture>
+    <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png" alt="Image 1">
+    <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_datatable.png" alt="Image 2">
+    <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_mona_lisa.png" alt="Image 3">
+    <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_markdown.png" alt="Image 4">
 </div>
 </body>
 
