@@ -32,7 +32,7 @@ works on local and remote file systems.
 <details>
 <summary>Screen Recording</summary>
 
-![](https://user-images.githubusercontent.com/49741340/238535232-459847af-a15c-4d9b-91ac-fab9958bc74f.mp4)
+https://user-images.githubusercontent.com/49741340/238535232-459847af-a15c-4d9b-91ac-fab9958bc74f.mp4
 
 </details>
 
