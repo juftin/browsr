@@ -7,6 +7,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import ClassVar, Iterable, Optional
 
+from textual.events import Mount
 from textual.reactive import var
 from textual.widgets import DirectoryTree
 from textual.widgets._tree import Tree, TreeNode
@@ -36,7 +37,7 @@ class UniversalDirectoryTree(Tree[DirEntry]):
 
     - `from upath import UPath as Path`
     - CSS Change: DirectoryTree > UniversalDirectoryTree
-    - `_on_mount` -> This function has been deleted to prevent duplicate loading
+    - `_on_mount` -> This function has been modified to prevent duplicate loading
     - `_load_directory` -> This function has been modified to use `upath.Path`
     - `validate_path` -> This function has been modified to use `upath.Path`
     - `reload` -> This function has been modified to use `upath.Path`
@@ -94,6 +95,14 @@ class UniversalDirectoryTree(Tree[DirEntry]):
         Ensure that the path is of the `Path` type.
         """
         return Path(path)
+
+    def _on_mount(self, _: Mount) -> None:
+        """
+        Perform actions on widget mount.
+
+        This function overrides the original textual method to prevent duplicate loading.
+        """
+        pass
 
     @classmethod
     def _handle_top_level_bucket(cls, dir_path: Path) -> Optional[Iterable[Path]]:
