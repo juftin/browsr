@@ -29,6 +29,14 @@ works on local and remote file systems.
 
 </details>
 
+<details>
+<summary>Screen Recording</summary>
+<video controls>
+  <source src="https://user-images.githubusercontent.com/49741340/238535232-459847af-a15c-4d9b-91ac-fab9958bc74f.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</details>
+
 ## Installation
 
 The below command recommends [pipx](https://pypa.github.io/pipx/) instead of pip. `pipx` installs the package in
