@@ -16,11 +16,13 @@
 It's a simple way to browse your files and take a peek at their contents. Plus it
 works on local and remote file systems.
 
-<details open></summary></summary>
+![](https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png)
+
+<details>
+<summary>Screenshots</summary>
 
 <body>
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 10px;">
-    <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png" alt="Image 1">
+<div>
     <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_datatable.png" alt="Image 2">
     <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_mona_lisa.png" alt="Image 3">
     <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_markdown.png" alt="Image 4">
@@ -38,7 +40,7 @@ https://user-images.githubusercontent.com/49741340/238535232-459847af-a15c-4d9b-
 
 ## Installation
 
-The below command recommends [pipx](https://pypa.github.io/pipx/) instead of pip. `pipx` installs the package in
+It's recommended to use [pipx](https://pypa.github.io/pipx/) instead of pip. `pipx` installs the package in
 an isolated environment and makes it easy to uninstall. If you'd like to use `pip` instead, just replace `pipx`
 with `pip` in the below command.
 
