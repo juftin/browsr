@@ -14,6 +14,8 @@
         <link rel="prev" href="../_version/">
       
       
+        <link rel="next" href="../universal_directory_tree/">
+      
       <link rel="icon" href="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr_no_label.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
@@ -393,6 +395,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../_tools/" class="md-nav__link">
+        _tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../_utils/" class="md-nav__link">
         _utils
       </a>
@@ -466,6 +482,20 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#browsr.browsr.Browsr._get_download_file_name" class="md-nav__link">
+    _get_download_file_name()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browsr.browsr.Browsr._handle_file_size" class="md-nav__link">
+    _handle_file_size()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#browsr.browsr.Browsr.action_download_file" class="md-nav__link">
     action_download_file()
   </a>
@@ -508,15 +538,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#browsr.browsr.Browsr.on_directory_tree_file_selected" class="md-nav__link">
-    on_directory_tree_file_selected()
+  <a href="#browsr.browsr.Browsr.on_mount" class="md-nav__link">
+    on_mount()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#browsr.browsr.Browsr.on_mount" class="md-nav__link">
-    on_mount()
+  <a href="#browsr.browsr.Browsr.on_universal_directory_tree_file_selected" class="md-nav__link">
+    on_universal_directory_tree_file_selected()
   </a>
   
 </li>
@@ -551,6 +581,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../universal_directory_tree/" class="md-nav__link">
+        universal_directory_tree
+      </a>
     </li>
   
 
@@ -609,6 +653,20 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#browsr.browsr.Browsr._get_download_file_name" class="md-nav__link">
+    _get_download_file_name()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browsr.browsr.Browsr._handle_file_size" class="md-nav__link">
+    _handle_file_size()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#browsr.browsr.Browsr.action_download_file" class="md-nav__link">
     action_download_file()
   </a>
@@ -651,15 +709,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#browsr.browsr.Browsr.on_directory_tree_file_selected" class="md-nav__link">
-    on_directory_tree_file_selected()
+  <a href="#browsr.browsr.Browsr.on_mount" class="md-nav__link">
+    on_mount()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#browsr.browsr.Browsr.on_mount" class="md-nav__link">
-    on_mount()
+  <a href="#browsr.browsr.Browsr.on_universal_directory_tree_file_selected" class="md-nav__link">
+    on_universal_directory_tree_file_selected()
   </a>
   
 </li>
@@ -1284,8 +1342,8 @@ This app was inspired by the CodeBrowser example from textual</p>
 <a id="__codelineno-0-265" name="__codelineno-0-265"></a>                <span class="n">file_path</span><span class="o">=</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">(),</span> <span class="n">content</span><span class="o">=</span><span class="n">__application__</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 <a id="__codelineno-0-266" name="__codelineno-0-266"></a>            <span class="p">)</span>
 <a id="__codelineno-0-267" name="__codelineno-0-267"></a>
-<a id="__codelineno-0-268" name="__codelineno-0-268"></a>    <span class="k">def</span> <span class="nf">on_directory_tree_file_selected</span><span class="p">(</span>
-<a id="__codelineno-0-269" name="__codelineno-0-269"></a>        <span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">DirectoryTree</span><span class="o">.</span><span class="n">FileSelected</span>
+<a id="__codelineno-0-268" name="__codelineno-0-268"></a>    <span class="k">def</span> <span class="nf">on_universal_directory_tree_file_selected</span><span class="p">(</span>
+<a id="__codelineno-0-269" name="__codelineno-0-269"></a>        <span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">UniversalDirectoryTree</span><span class="o">.</span><span class="n">FileSelected</span>
 <a id="__codelineno-0-270" name="__codelineno-0-270"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-0-271" name="__codelineno-0-271"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <a id="__codelineno-0-272" name="__codelineno-0-272"></a><span class="sd">        Called when the user click a file in the directory tree.</span>
@@ -1387,6 +1445,96 @@ This app was inspired by the CodeBrowser example from textual</p>
 
 
 
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="browsr.browsr.Browsr._get_download_file_name" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_get_download_file_name</span><span class="p">()</span></code>
+
+<a href="#browsr.browsr.Browsr._get_download_file_name" class="headerlink" title="Permanent link">#</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Get the download file name.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>browsr/browsr.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-306">306</a></span>
+<span class="normal"><a href="#__codelineno-0-307">307</a></span>
+<span class="normal"><a href="#__codelineno-0-308">308</a></span>
+<span class="normal"><a href="#__codelineno-0-309">309</a></span>
+<span class="normal"><a href="#__codelineno-0-310">310</a></span>
+<span class="normal"><a href="#__codelineno-0-311">311</a></span>
+<span class="normal"><a href="#__codelineno-0-312">312</a></span>
+<span class="normal"><a href="#__codelineno-0-313">313</a></span>
+<span class="normal"><a href="#__codelineno-0-314">314</a></span>
+<span class="normal"><a href="#__codelineno-0-315">315</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-306" name="__codelineno-0-306"></a><span class="k">def</span> <span class="nf">_get_download_file_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">:</span>
+<a id="__codelineno-0-307" name="__codelineno-0-307"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-308" name="__codelineno-0-308"></a><span class="sd">    Get the download file name.</span>
+<a id="__codelineno-0-309" name="__codelineno-0-309"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-310" name="__codelineno-0-310"></a>    <span class="n">download_dir</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;Downloads&quot;</span>
+<a id="__codelineno-0-311" name="__codelineno-0-311"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">download_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+<a id="__codelineno-0-312" name="__codelineno-0-312"></a>        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Download directory </span><span class="si">{</span><span class="n">download_dir</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-313" name="__codelineno-0-313"></a>    <span class="n">download_path</span> <span class="o">=</span> <span class="n">download_dir</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">selected_file_path</span><span class="o">.</span><span class="n">name</span>  <span class="c1"># type: ignore[union-attr]</span>
+<a id="__codelineno-0-314" name="__codelineno-0-314"></a>    <span class="n">handled_download_path</span> <span class="o">=</span> <span class="n">handle_duplicate_filenames</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">download_path</span><span class="p">)</span>
+<a id="__codelineno-0-315" name="__codelineno-0-315"></a>    <span class="k">return</span> <span class="n">handled_download_path</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="browsr.browsr.Browsr._handle_file_size" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_handle_file_size</span><span class="p">(</span><span class="n">file_info</span><span class="p">)</span></code>
+
+<a href="#browsr.browsr.Browsr._handle_file_size" class="headerlink" title="Permanent link">#</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Handle a File Size</p>
+
+      <details class="quote">
+        <summary>Source code in <code>browsr/browsr.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-178">178</a></span>
+<span class="normal"><a href="#__codelineno-0-179">179</a></span>
+<span class="normal"><a href="#__codelineno-0-180">180</a></span>
+<span class="normal"><a href="#__codelineno-0-181">181</a></span>
+<span class="normal"><a href="#__codelineno-0-182">182</a></span>
+<span class="normal"><a href="#__codelineno-0-183">183</a></span>
+<span class="normal"><a href="#__codelineno-0-184">184</a></span>
+<span class="normal"><a href="#__codelineno-0-185">185</a></span>
+<span class="normal"><a href="#__codelineno-0-186">186</a></span>
+<span class="normal"><a href="#__codelineno-0-187">187</a></span>
+<span class="normal"><a href="#__codelineno-0-188">188</a></span>
+<span class="normal"><a href="#__codelineno-0-189">189</a></span>
+<span class="normal"><a href="#__codelineno-0-190">190</a></span>
+<span class="normal"><a href="#__codelineno-0-191">191</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-178" name="__codelineno-0-178"></a><span class="k">def</span> <span class="nf">_handle_file_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_info</span><span class="p">:</span> <span class="n">FileInfo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-179" name="__codelineno-0-179"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-180" name="__codelineno-0-180"></a><span class="sd">    Handle a File Size</span>
+<a id="__codelineno-0-181" name="__codelineno-0-181"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-182" name="__codelineno-0-182"></a>    <span class="n">file_size_mb</span> <span class="o">=</span> <span class="n">file_info</span><span class="o">.</span><span class="n">size</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">1000</span>
+<a id="__codelineno-0-183" name="__codelineno-0-183"></a>    <span class="n">too_large</span> <span class="o">=</span> <span class="n">file_size_mb</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_object</span><span class="o">.</span><span class="n">max_file_size</span>  <span class="c1"># type: ignore[union-attr]</span>
+<a id="__codelineno-0-184" name="__codelineno-0-184"></a>    <span class="n">exception</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-0-185" name="__codelineno-0-185"></a>        <span class="kc">True</span>
+<a id="__codelineno-0-186" name="__codelineno-0-186"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_info</span><span class="o">.</span><span class="n">file</span><span class="p">,</span> <span class="n">CloudPath</span><span class="p">)</span>
+<a id="__codelineno-0-187" name="__codelineno-0-187"></a>        <span class="ow">and</span> <span class="s2">&quot;.csv&quot;</span> <span class="ow">in</span> <span class="n">file_info</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">suffixes</span>
+<a id="__codelineno-0-188" name="__codelineno-0-188"></a>        <span class="k">else</span> <span class="kc">False</span>
+<a id="__codelineno-0-189" name="__codelineno-0-189"></a>    <span class="p">)</span>
+<a id="__codelineno-0-190" name="__codelineno-0-190"></a>    <span class="k">if</span> <span class="n">too_large</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">and</span> <span class="n">exception</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">True</span><span class="p">:</span>
+<a id="__codelineno-0-191" name="__codelineno-0-191"></a>        <span class="k">raise</span> <span class="n">FileSizeError</span><span class="p">(</span><span class="s2">&quot;File too large&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
 
 <div class="doc doc-object doc-function">
 
@@ -1740,47 +1888,6 @@ This app was inspired by the CodeBrowser example from textual</p>
 
 
 
-<h3 id="browsr.browsr.Browsr.on_directory_tree_file_selected" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">on_directory_tree_file_selected</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></code>
-
-<a href="#browsr.browsr.Browsr.on_directory_tree_file_selected" class="headerlink" title="Permanent link">#</a></h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Called when the user click a file in the directory tree.</p>
-
-      <details class="quote">
-        <summary>Source code in <code>browsr/browsr.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-268">268</a></span>
-<span class="normal"><a href="#__codelineno-0-269">269</a></span>
-<span class="normal"><a href="#__codelineno-0-270">270</a></span>
-<span class="normal"><a href="#__codelineno-0-271">271</a></span>
-<span class="normal"><a href="#__codelineno-0-272">272</a></span>
-<span class="normal"><a href="#__codelineno-0-273">273</a></span>
-<span class="normal"><a href="#__codelineno-0-274">274</a></span>
-<span class="normal"><a href="#__codelineno-0-275">275</a></span>
-<span class="normal"><a href="#__codelineno-0-276">276</a></span>
-<span class="normal"><a href="#__codelineno-0-277">277</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-268" name="__codelineno-0-268"></a><span class="k">def</span> <span class="nf">on_directory_tree_file_selected</span><span class="p">(</span>
-<a id="__codelineno-0-269" name="__codelineno-0-269"></a>    <span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">DirectoryTree</span><span class="o">.</span><span class="n">FileSelected</span>
-<a id="__codelineno-0-270" name="__codelineno-0-270"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-271" name="__codelineno-0-271"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-272" name="__codelineno-0-272"></a><span class="sd">    Called when the user click a file in the directory tree.</span>
-<a id="__codelineno-0-273" name="__codelineno-0-273"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-274" name="__codelineno-0-274"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">selected_file_path</span> <span class="o">=</span> <span class="n">upath</span><span class="o">.</span><span class="n">UPath</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-<a id="__codelineno-0-275" name="__codelineno-0-275"></a>    <span class="n">file_info</span> <span class="o">=</span> <span class="n">get_file_info</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_file_path</span><span class="p">)</span>
-<a id="__codelineno-0-276" name="__codelineno-0-276"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">render_code_page</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">upath</span><span class="o">.</span><span class="n">UPath</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
-<a id="__codelineno-0-277" name="__codelineno-0-277"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">file_information</span><span class="o">.</span><span class="n">file_info</span> <span class="o">=</span> <span class="n">file_info</span>
-</code></pre></div></td></tr></table></div>
-      </details>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-
 <h3 id="browsr.browsr.Browsr.on_mount" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">on_mount</span><span class="p">()</span></code>
 
@@ -1816,6 +1923,47 @@ This app was inspired by the CodeBrowser example from textual</p>
 <a id="__codelineno-0-264" name="__codelineno-0-264"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">render_code_page</span><span class="p">(</span>
 <a id="__codelineno-0-265" name="__codelineno-0-265"></a>            <span class="n">file_path</span><span class="o">=</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">(),</span> <span class="n">content</span><span class="o">=</span><span class="n">__application__</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
 <a id="__codelineno-0-266" name="__codelineno-0-266"></a>        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="browsr.browsr.Browsr.on_universal_directory_tree_file_selected" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">on_universal_directory_tree_file_selected</span><span class="p">(</span><span class="n">event</span><span class="p">)</span></code>
+
+<a href="#browsr.browsr.Browsr.on_universal_directory_tree_file_selected" class="headerlink" title="Permanent link">#</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Called when the user click a file in the directory tree.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>browsr/browsr.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-268">268</a></span>
+<span class="normal"><a href="#__codelineno-0-269">269</a></span>
+<span class="normal"><a href="#__codelineno-0-270">270</a></span>
+<span class="normal"><a href="#__codelineno-0-271">271</a></span>
+<span class="normal"><a href="#__codelineno-0-272">272</a></span>
+<span class="normal"><a href="#__codelineno-0-273">273</a></span>
+<span class="normal"><a href="#__codelineno-0-274">274</a></span>
+<span class="normal"><a href="#__codelineno-0-275">275</a></span>
+<span class="normal"><a href="#__codelineno-0-276">276</a></span>
+<span class="normal"><a href="#__codelineno-0-277">277</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-268" name="__codelineno-0-268"></a><span class="k">def</span> <span class="nf">on_universal_directory_tree_file_selected</span><span class="p">(</span>
+<a id="__codelineno-0-269" name="__codelineno-0-269"></a>    <span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">UniversalDirectoryTree</span><span class="o">.</span><span class="n">FileSelected</span>
+<a id="__codelineno-0-270" name="__codelineno-0-270"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-271" name="__codelineno-0-271"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-272" name="__codelineno-0-272"></a><span class="sd">    Called when the user click a file in the directory tree.</span>
+<a id="__codelineno-0-273" name="__codelineno-0-273"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-274" name="__codelineno-0-274"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">selected_file_path</span> <span class="o">=</span> <span class="n">upath</span><span class="o">.</span><span class="n">UPath</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+<a id="__codelineno-0-275" name="__codelineno-0-275"></a>    <span class="n">file_info</span> <span class="o">=</span> <span class="n">get_file_info</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selected_file_path</span><span class="p">)</span>
+<a id="__codelineno-0-276" name="__codelineno-0-276"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">render_code_page</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">upath</span><span class="o">.</span><span class="n">UPath</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">path</span><span class="p">))</span>
+<a id="__codelineno-0-277" name="__codelineno-0-277"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">file_information</span><span class="o">.</span><span class="n">file_info</span> <span class="o">=</span> <span class="n">file_info</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>

@@ -11,7 +11,7 @@
       
       
       
-        <link rel="prev" href="../_config/">
+        <link rel="prev" href="../_tools/">
       
       
         <link rel="next" href="../_version/">
@@ -393,6 +393,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../_tools/" class="md-nav__link">
+        _tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -434,6 +448,13 @@
         <li class="md-nav__item">
   <a href="#browsr._utils.FileInfo" class="md-nav__link">
     FileInfo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#browsr._utils._open_pdf_as_image" class="md-nav__link">
+    _open_pdf_as_image()
   </a>
   
 </li>
@@ -496,6 +517,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../universal_directory_tree/" class="md-nav__link">
+        universal_directory_tree
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -543,6 +578,13 @@
         <li class="md-nav__item">
   <a href="#browsr._utils.FileInfo" class="md-nav__link">
     FileInfo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#browsr._utils._open_pdf_as_image" class="md-nav__link">
+    _open_pdf_as_image()
   </a>
   
 </li>
@@ -682,6 +724,57 @@
 
 </div>
 
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="browsr._utils._open_pdf_as_image" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">_open_pdf_as_image</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span></code>
+
+<a href="#browsr._utils._open_pdf_as_image" class="headerlink" title="Permanent link">#</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Open a PDF file and return a PIL.Image object</p>
+
+      <details class="quote">
+        <summary>Source code in <code>browsr/_utils.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="k">def</span> <span class="nf">_open_pdf_as_image</span><span class="p">(</span><span class="n">buf</span><span class="p">:</span> <span class="n">BinaryIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="sd">    Open a PDF file and return a PIL.Image object</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>    <span class="n">doc</span> <span class="o">=</span> <span class="n">fitz</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">buf</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">filetype</span><span class="o">=</span><span class="s2">&quot;pdf&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>    <span class="n">pix</span><span class="p">:</span> <span class="n">Pixmap</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">()</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a>    <span class="k">if</span> <span class="n">pix</span><span class="o">.</span><span class="n">colorspace</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>        <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;L&quot;</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a>    <span class="k">elif</span> <span class="n">pix</span><span class="o">.</span><span class="n">colorspace</span><span class="o">.</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># PLR2004</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a>        <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;L&quot;</span> <span class="k">if</span> <span class="n">pix</span><span class="o">.</span><span class="n">alpha</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;LA&quot;</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a>    <span class="k">elif</span> <span class="n">pix</span><span class="o">.</span><span class="n">colorspace</span><span class="o">.</span><span class="n">n</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># noqa PLR2004</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a>        <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;RGB&quot;</span> <span class="k">if</span> <span class="n">pix</span><span class="o">.</span><span class="n">alpha</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;RGBA&quot;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a>        <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;CMYK&quot;</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">frombytes</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">pix</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">pix</span><span class="o">.</span><span class="n">height</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">pix</span><span class="o">.</span><span class="n">samples</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
 
 <div class="doc doc-object doc-function">
 
