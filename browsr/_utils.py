@@ -6,14 +6,17 @@ import datetime
 import os
 import pathlib
 from dataclasses import dataclass
-from typing import Any, BinaryIO, Dict, Union
+from typing import Any, BinaryIO, Dict, Optional, Union
 
 import fitz  # type: ignore[import]
+import requests
 import rich_pixels
 from fitz import Pixmap
 from PIL import Image
 from rich_pixels import Pixels
 from upath.implementations.cloud import CloudPath
+
+from browsr.universal_directory_tree import GitHubPath
 
 
 def _open_pdf_as_image(buf: BinaryIO) -> Image.Image:
@@ -24,9 +27,9 @@ def _open_pdf_as_image(buf: BinaryIO) -> Image.Image:
     pix: Pixmap = doc[0].get_pixmap()
     if pix.colorspace is None:
         mode = "L"
-    elif pix.colorspace.n == 1:  # PLR2004
+    elif pix.colorspace.n == 1:
         mode = "L" if pix.alpha == 0 else "LA"
-    elif pix.colorspace.n == 3:  # noqa PLR2004
+    elif pix.colorspace.n == 3:  # noqa: PLR2004
         mode = "RGB" if pix.alpha == 0 else "RGBA"
     else:
         mode = "CMYK"
@@ -59,7 +62,7 @@ class FileInfo:
 
     file: pathlib.Path
     size: int
-    last_modified: datetime.datetime
+    last_modified: Optional[datetime.datetime]
     stat: Union[Dict[str, Any], os.stat_result]
     is_local: bool
     is_file: bool
@@ -74,9 +77,8 @@ def get_file_info(file_path: pathlib.Path) -> FileInfo:
     """
     stat = file_path.stat()
     is_file = file_path.is_file()
-    is_cloudpath = isinstance(file_path, CloudPath)
+    is_cloudpath = isinstance(file_path, (CloudPath, GitHubPath))
     if isinstance(stat, dict):
-        # raise ValueError(json.dumps(stat, indent=4))
         lower_dict = {key.lower(): value for key, value in stat.items()}
         file_size = lower_dict["size"]
         last_modified = lower_dict.get("lastmodified") or lower_dict.get("updated")
@@ -125,3 +127,27 @@ def handle_duplicate_filenames(file_path: pathlib.Path) -> pathlib.Path:
             if not new_file_path.exists():
                 return new_file_path
             i += 1
+
+
+def handle_github_url(url: str) -> str:
+    """
+    Handle GitHub URLs
+
+    GitHub URLs are handled by converting them to the raw URL.
+    """
+    if "github://" in url and "@" not in url:
+        _, user_password = url.split("github://")
+        org, repo = user_password.split(":")
+    elif "github://" in url and "@" in url:
+        return url
+    elif "github.com" in url and "https" in url:
+        _, url = url.split("://")
+        _, org, repo, *args = url.split("/")
+    resp = requests.get(
+        f"https://api.github.com/repos/{org}/{repo}",
+        headers={"Accept": "application/vnd.github.v3+json"},
+    )
+    resp.raise_for_status()
+    default_branch = resp.json()["default_branch"]
+    github_uri = f"github://{org}:{repo}@{default_branch}"
+    return github_uri

@@ -5,13 +5,18 @@ A universal directory tree widget for Textual.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import ClassVar, Iterable, Optional
+from typing import Any, ClassVar, Iterable, Optional
 
+import upath
 from textual.events import Mount
 from textual.reactive import var
 from textual.widgets import DirectoryTree
 from textual.widgets._tree import Tree, TreeNode
 from upath import UPath as Path
+
+upath.registry._registry.known_implementations[
+    "github"
+] = "browsr.universal_directory_tree.GitHubPath"
 
 
 @dataclass
@@ -143,3 +148,50 @@ class UniversalDirectoryTree(Tree[DirEntry]):
                 allow_expand=path.is_dir(),
             )
         node.expand()
+
+
+class GitHubPath(upath.core.UPath):
+    """
+    GitHubPath
+
+    UPath implementation for GitHub to be compatible with
+    the Universal Directory Tree
+    """
+
+    @property
+    def path(self) -> str:
+        """
+        Paths get their leading slash stripped
+        """
+        return super().path.strip("/")
+
+    @property
+    def name(self) -> str:
+        """
+        Override the name for top level repo
+        """
+        if self.path == "":
+            org = self._accessor._fs.org
+            repo = self._accessor._fs.repo
+            sha = self._accessor._fs.sha
+            github_name = f"{org}:{repo}@{sha}"
+            return github_name
+        else:
+            return super().name
+
+    def __getattr__(self, item: str) -> Any:
+        """
+        Override the getattr method to allow for the name attribute override
+
+        This is necessary because the name attribute is not a property
+        of the UPath class
+        """
+        if item == "name":
+            github_name = (
+                f"{self._accessor._fs.org}:"
+                f"{self._accessor._fs.repo}"
+                f"@{self._accessor._fs.storage_options['sha']}"
+            )
+            return github_name
+        else:
+            return super().__getattr__(item)

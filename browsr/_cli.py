@@ -49,9 +49,12 @@ def browsr(
     max_file_size: int,
 ) -> None:
     """
-    **`browsr`** is a file browser TUI (textual user interface) application. The application
-    allows you to visually browse through a directory (local or cloud) and display the
-    contents of its files
+    browsr 🗂️  a pleasant file explorer in your terminal
+
+    Navigate through directories and peek at files whether they're hosted locally,
+    in GitHub, AWS S3, Google Cloud Storage, or Azure Blob Storage. View code files
+    with syntax highlighting, format JSON files, render images, convert data files to navigable
+    datatables, and more.
 
     \f
 
@@ -69,18 +72,38 @@ def browsr(
 
     ## Usage Examples
 
-    - Load your current working directory: **`browsr`**
-    - Load a specific directory: **`browsr /path/to/directory`**
-    - Load an S3 bucket: **`browsr s3://bucket-name`**
-    - Load a GCS bucket: **`browsr gs://bucket-name`**
+    - Load your current working directory
+        ```shell
+        browsr
+        ```
+    - Load a local directory
+        ```shell
+        browsr/path/to/directory
+        ```
+    - Load an S3 bucket
+        ```shell
+        browsr s3://bucket-name
+        ```
+    - Load a GCS bucket
+        ```shell
+        browsr gs://bucket-name
+        ```
+    - Load a GitHub repository
+        ```shell
+        browsr github://juftin:browsr
+        ```
+    - Load a GitHub repository branch
+        ```shell
+        browsr github://juftin:browsr@main
+        ```
 
     ## Key Bindings
-    - **`q`** - Quit the application
-    - **`f`** - Toggle the file tree sidebar
-    - **`t`** - Toggle the rich theme for code formatting
-    - **`n`** - Toggle line numbers for code formatting
-    - **`d`** - Toggle dark mode for the application
-    - **`x`** - Download the file from cloud storage
+    - **`Q`** - Quit the application
+    - **`F`** - Toggle the file tree sidebar
+    - **`T`** - Toggle the rich theme for code formatting
+    - **`N`** - Toggle line numbers for code formatting
+    - **`D`** - Toggle dark mode for the application
+    - **`X`** - Download the file from cloud storage
     """
     config = TextualAppContext(file_path=path, debug=debug, max_file_size=max_file_size)
     app = Browsr(config_object=config)

@@ -12,9 +12,14 @@
 [![Testing Status](https://github.com/juftin/browsr/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/juftin/browsr/actions/workflows/tests.yaml?query=branch%3Amain)
 [![GitHub License](https://img.shields.io/github/license/juftin/browsr?color=blue&label=License)](https://github.com/juftin/browsr/blob/main/LICENSE)
 
-**`browsr`** is a TUI (text-based user interface) file browser for your terminal.
-It's a simple way to browse your files and take a peek at their contents. Plus it
-works on local and remote file systems.
+**`browsr`** 🗂️ is a pleasant **file explorer** in your terminal. It's a command line **TUI**
+(text-based user interface) application that empowers you to browse the contents of local
+and remote filesystems with your keyboard or mouse.
+
+You can quickly navigate through directories and peek at files whether they're hosted **locally**,
+in **GitHub**, **AWS S3**, **Google Cloud Storage**, or **Azure Blob Storage**. View code files
+with syntax highlighting, format JSON files, render images, convert data files to navigable
+datatables, and more.
 
 <style>
   .grid-item {
@@ -83,17 +88,17 @@ works on local and remote file systems.
 
 ## Installation
 
-The below command recommends [pipx](https://pypa.github.io/pipx/) instead of pip. `pipx` installs the package in
-an isolated environment and makes it easy to uninstall. If you'd like to use `pip` instead, just replace `pipx`
+It's recommended to use [pipx](https://pypa.github.io/pipx/) instead of pip. `pipx` installs the package in
+an isolated environment and makes it available everywhere. If you'd like to use `pip` instead, just replace `pipx`
 with `pip` in the below command.
 
 ```shell
 pipx install browsr
 ```
 
-## Extra Installation
+### Extra Installation
 
-If you're looking to use **`browsr`** on remote file systems, like AWS S3, you'll need to install the `remote` extra.
+If you're looking to use **`browsr`** on remote file systems, like GitHub or AWS S3, you'll need to install the `remote` extra.
 If you'd like to browse parquet files, you'll need to install the `parquet` extra. Or, even simpler,
 you can install the `all` extra to get all the extras.
 
@@ -103,13 +108,26 @@ pipx install "browsr[all]"
 
 ## Usage
 
+Simply give **`browsr`** a path to a local or remote file / directory.
+[Check out the Documentation](https://juftin.com/browsr/) for more information
+about the file systems supported.
+
+### Local
+
 ```shell
 browsr ~/Downloads/
 ```
 
-Simply give **`browsr`** a path to a file/directory and it will open a browser window
-with a file browser. You can also give it a URL to a remote file system, like AWS S3.
+### GitHub
+
+```
+browsr github://juftin:browsr
+```
+
+### Cloud
 
 ```shell
-browsr s3://my-bucket/my-file.parquet
+browsr s3://my-bucket
 ```
+
+** _Currently AWS S3, Google Cloud Storage, and Azure Blob Storage are supported._
