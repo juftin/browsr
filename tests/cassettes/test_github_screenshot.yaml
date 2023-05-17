@@ -1,0 +1,178 @@
+interactions:
+    - request:
+          body: null
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate
+              Connection:
+                  - keep-alive
+              User-Agent:
+                  - python-requests/2.28.2
+          method: GET
+          uri: https://api.github.com/repos/juftin/browsr/git/trees/v1.6.0
+      response:
+          body:
+              string: !!binary |
+                  H4sIAAAAAAAAA6WWTW/bOBCG/4vOqcXh5zC3YjeHBdoetsdiDzPkMHHWtlxJxiIt8t9LbYJavRRs
+                  5YNtQiYeP+TwHX7tpgfqbjtGJQTRBBe0siBaMqItJkOIECkYbVmh4u6mu4yHOuFhns/Tbd/Teb+7
+                  388PF96l4diPch6m/vFS5v2p53H4bxr7+rifR5Gp/wXKMqG7/fS1O9P8UHmvkMo/Drk+6ZRV9VXH
+                  89N5Gf8/4eZVh6ICkhw92yBJSpbiuRhnFDqvvKPgS4kFt+k0U55vfvDY35+GcfmzryqglLf2qsKH
+                  YVnol50JorLN1ikyjmIwkl0dgwgHG9FDKexRUlkm7L/UldCo7G/u0gKe+mbiWus8yptaAMf9XD9O
+                  ZX+/e6LjodGRYsagLGFCByCerFHKaEnag0smlypbGJclenEEE+Imx2bi2nGUg9AkY9o9To1mAYQ5
+                  m2riIDjkEsVQ8gxJW48KqcSsMdLVzIWNu9dKXJm9++uPuw8f7xqdTAEAnzmmRExogApnG5zVhJml
+                  QBLWgPHqBGrbbjUTV05/37398/3d7pgbrYCD1kEjCFCKiqPySTlCnSR6ZJ+dGACbrues/nhTDTYT
+                  V1YvkXpV+mkK5myLYvJoEDnVdw1asTdIYG0MTCWbaN3GUG+mrDTykFYn6OcSddlzzQWyYAoWnXKu
+                  LckoXSOcKDmJRkpKS7Vt6Ey5lbKSOP67aPxKzmUHrgZ2AetAAaRMNRdsMsE6ASehxkEItRdcawzQ
+                  /KbXS5Y3E1de56fzODxKmnfz0BzhEVm8AsQl5GxKBTIVCk7FXKtPqDZeEySH72rW2m3Hp5m4Uhvl
+                  82U/ylFOc2v9GVbW5kIpJ1Y159jkyLU5GV8vR8Ylh9GKheUmsqH+mikrmVmmZotaZw6xGIGYtBLx
+                  aGtGOweZgzeO61c2qWw8Rc2U53/qvW28nBLNkrvbQodJnr8BMK8OzowKAAA=
+          headers:
+              Accept-Ranges:
+                  - bytes
+              Access-Control-Allow-Origin:
+                  - "*"
+              Access-Control-Expose-Headers:
+                  - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+                    X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+                    X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+                    X-GitHub-Request-Id, Deprecation, Sunset
+              Cache-Control:
+                  - public, max-age=60, s-maxage=60
+              Content-Encoding:
+                  - gzip
+              Content-Length:
+                  - "728"
+              Content-Security-Policy:
+                  - default-src 'none'
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Wed, 17 May 2023 21:30:44 GMT
+              ETag:
+                  - W/"91ee3d202828b3c28fcd9be69924424a4f792f5f17ff608d6d4ac2b1e19e5fcd"
+              Last-Modified:
+                  - Wed, 17 May 2023 21:16:30 GMT
+              Referrer-Policy:
+                  - origin-when-cross-origin, strict-origin-when-cross-origin
+              Server:
+                  - GitHub.com
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; preload
+              Vary:
+                  - Accept, Accept-Encoding, Accept, X-Requested-With
+              X-Content-Type-Options:
+                  - nosniff
+              X-Frame-Options:
+                  - deny
+              X-GitHub-Media-Type:
+                  - github.v3; format=json
+              X-GitHub-Request-Id:
+                  - CEAA:5DE3:FF9051:20DD28A:64654784
+              X-RateLimit-Limit:
+                  - "60"
+              X-RateLimit-Remaining:
+                  - "42"
+              X-RateLimit-Reset:
+                  - "1684359062"
+              X-RateLimit-Resource:
+                  - core
+              X-RateLimit-Used:
+                  - "18"
+              X-XSS-Protection:
+                  - "0"
+              x-github-api-version-selected:
+                  - "2022-11-28"
+          status:
+              code: 200
+              message: OK
+    - request:
+          body: null
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate
+              Connection:
+                  - keep-alive
+              User-Agent:
+                  - python-requests/2.28.2
+          method: GET
+          uri: https://raw.githubusercontent.com/juftin/browsr/v1.6.0/README.md
+      response:
+          body:
+              string: !!binary |
+                  H4sIAAAAAAAAA7VWUW/bNhB+16+4KdgaB46UNH1K7QRFG6wGsi1Ykg2DUcSUdJZYU6RGUnb0st++
+                  o0ilcb1kHYbkwaHJu/s+Hu+78x5kWm2MjqJJwdfABC/lNM5RWtQxVBqX07iytjGnaVpyW7VZkqs6
+                  /dwuLZep943PIqC/Cftv9uTB6xKMzqeDh2abxHu1BnWuiIW0uwHSmtG6ULlJ74xllufhIGlkGWID
+                  bHhhq2n85ugopnvZabzNNmVn0SSlS59F0fy7uT+E31AbruSn/YESUUxMxVEUJuEqbbqGp+sAd54r
+                  ofQ0Ey3+IFiGYur3R1/cn8rByGFedVez55Gabu0JmXQntDNIms5WSiZKl94hJKgPf4OGAEu4phS1
+                  5t85pSy3PdRG6dVS0FZqKYRJOlaLNGNFiYlZl+eZZjKvpu4RvuGmz0Y9/7NF3U19xO9P3vUxHfcf
+                  uf3YZnDJqRQNPpkkD5oKb7YNvPs6Idq3kM6EynyZXc7eX/x8fTGKooODhT9dHBwAN8Dg5nYG+xbv
+                  7WHGDBbgqha4086S5TiCJRfoBUb7S6WhU60GOq65ZCKJZvaVC2N43ZDhhnVgVbD3pi4AWcgCLFsh
+                  mTaIK2AWbIVcQ1CISeBKtAa4jVySDSgJQuVM9J4aa2XRczGdsVibxMkdLeOCbBuUZ5PUtHXNdPdo
+                  RTaZKuh/3xmM7QRO44KbRrDuFErNi7f95yFFpD2Lh5TwtpbmlCAbZHb/9RiOl3oUzErWnMLxUXP/
+                  dpDgIP/4/+vf5BrpbStl71pL13KdIMh+VrMS4fhlQQtGWywTuAP8+mWBayXZneCG7QCfvDAw06tC
+                  beQO7pv4obFOUl9B7rsvN1rv7cFMUjxBNUONIYpuKhIJUmegeqbS60vWrVAWBuYNb+63mh4L3Psm
+                  SYfpiCRHZc0KUEugnQQWbn/RbxOMcWqBhuUrR4/LiEmSr3IlWwDKNddKEpjt1VKTzpySAJnp5djK
+                  ECaB2dKp8lUBgpMY3Rnp1GEtBgZj+Nwa6+pfUAMIPKIN8X2w68lsXZfUuFgsTIVCRM5h4D2MZjrs
+                  s3ZxbzX7KneBkkYSvFq5bh9obTUr6gf/0AXG/h7vfr+G65NxH4dAJVJWKMhAwtFdeO8FoKOQRDuJ
+                  CD2rYZoauvVt6/mIwXQICb/oMeAaZWiGehyRN+TuqR670SK4uIglYQ1H/aZ5Mpdh+s9p/Sl+SOmt
+                  oZJ45BJ+BfyVfqDKFooVJvW2145VByVff5VaasmMXpfIsP7aVPhUvVbpri8nKqQNJ3jXZclimAUb
+                  Lkk7vjDY1phI4I9wbyaM8oAUhMHtr5ceZfcltx4y2b2OOSHl1N1h1uYrtG7lnJPwBEMy9mD+vsJ8
+                  Bart5wt8UHnrdNGX2hcJ+h7Rt4vh10Y/22qlsU9qGLO7A5OGh9U8a53uWllQHhyMG4fGSdd9mf80
+                  uwExTP1h9ibR3/TD34GoCgAA
+          headers:
+              Accept-Ranges:
+                  - bytes
+              Access-Control-Allow-Origin:
+                  - "*"
+              Cache-Control:
+                  - max-age=300
+              Connection:
+                  - keep-alive
+              Content-Encoding:
+                  - gzip
+              Content-Length:
+                  - "1101"
+              Content-Security-Policy:
+                  - default-src 'none'; style-src 'unsafe-inline'; sandbox
+              Content-Type:
+                  - text/plain; charset=utf-8
+              Date:
+                  - Wed, 17 May 2023 21:30:44 GMT
+              ETag:
+                  - W/"e3f73ab855fd90588244244759492697dae0221aaa9e819693338d2cd1ad119e"
+              Expires:
+                  - Wed, 17 May 2023 21:35:44 GMT
+              Source-Age:
+                  - "0"
+              Strict-Transport-Security:
+                  - max-age=31536000
+              Vary:
+                  - Authorization,Accept-Encoding,Origin
+              Via:
+                  - 1.1 varnish
+              X-Cache:
+                  - HIT
+              X-Cache-Hits:
+                  - "1"
+              X-Content-Type-Options:
+                  - nosniff
+              X-Fastly-Request-ID:
+                  - 8db268a9faffcad81d0b18decbadb968a115ce12
+              X-Frame-Options:
+                  - deny
+              X-GitHub-Request-Id:
+                  - 5E1C:093A:1CF866C:221F6FC:646545DF
+              X-Served-By:
+                  - cache-den8228-DEN
+              X-Timer:
+                  - S1684359045.859318,VS0,VE120
+              X-XSS-Protection:
+                  - 1; mode=block
+          status:
+              code: 200
+              message: OK
+version: 1
