@@ -1,0 +1,82 @@
+interactions:
+    - request:
+          body: null
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate
+              Connection:
+                  - keep-alive
+              User-Agent:
+                  - python-requests/2.28.2
+          method: GET
+          uri: https://raw.githubusercontent.com/juftin/browsr/v1.6.0/LICENSE
+      response:
+          body:
+              string: !!binary |
+                  H4sIAAAAAAAAA11SW2/aMBR+51cc8dRKGZu6t2ma5gZTvIUkckwZjyFxiKsQo9gZ4t/vHJOu6yQk
+                  dG7fzdkIBYmpdO/0bBbb83Uwx9bDXXUPD58ePn84D9rp3sOP0XnTw6or+14PV/j6EhqLZmp8fxkb
+                  qit7+jab5Xo4GeeM7cE4aPWgD1c4DmXvdR1BM2gNtoGqLYejjsBbKPsrnPXg8MAefGl60x+hhAoF
+                  0aZvEcbZxl/KQeNyDaVztjIl4kFtq/GEGktPfI3ptIM732qYF9PF/D6Q1LrsAE3Q7HUEF+NbO3pA
+                  n34wFWFEuFR1Y00aXsedOZmJgc5DSo5AR4cOSGcEJ1ubhv51sHUeD51xbQS1IejD6LHpqBnijsjH
+                  RzuA011HCAZ1B69v6sIOsZwpUD9FFHgvrT29d4IRNePQI6UON7XFyALji648dWi9sV1nL2Stsn1t
+                  yJH7MpspHJUH+1sHL7ePoLcepd4k0AOc3151Grm2RO0HPQWGvBhv+Y+dgeidx4c3mP3ZDoHvf5sL
+                  5F9zKLKV2jHJQRSQy+xZLPkS5qzAeh7BTqh1tlWAG5Klag/ZCli6h58iXUbAf+WSFwVkEsQmTwTH
+                  nkjjZLsU6RM84l2a4ZcuNkIhqMqACCcowQsC23AZr7FkjyIRah/BSqiUMFcIyiBnUol4mzAJ+Vbm
+                  WcGRfomwqUhXEln4hqdqgazYA/6MBRRrliSBim1RvQz64izfS/G0VrDOkiXH5iNHZewx4TcqNBUn
+                  TGwiWLINe+LhKkMUGdYmdbs1Dy3kY/iLlchSshFnqZJYRuhSqr+nO1HwCJgUBQWykhnCU5x4kQUQ
+                  vEv5DYWihncvgitUbwv+pmXJWYJYBR3/u7yY/QHuFHbQVQQAAA==
+          headers:
+              Accept-Ranges:
+                  - bytes
+              Access-Control-Allow-Origin:
+                  - "*"
+              Cache-Control:
+                  - max-age=300
+              Connection:
+                  - keep-alive
+              Content-Encoding:
+                  - gzip
+              Content-Length:
+                  - "664"
+              Content-Security-Policy:
+                  - default-src 'none'; style-src 'unsafe-inline'; sandbox
+              Content-Type:
+                  - text/plain; charset=utf-8
+              Date:
+                  - Wed, 17 May 2023 22:18:05 GMT
+              ETag:
+                  - W/"7317880eca0696f93222e0968307748f383c87a2a37112679931db91bdd5f000"
+              Expires:
+                  - Wed, 17 May 2023 22:23:05 GMT
+              Source-Age:
+                  - "0"
+              Strict-Transport-Security:
+                  - max-age=31536000
+              Vary:
+                  - Authorization,Accept-Encoding,Origin
+              Via:
+                  - 1.1 varnish
+              X-Cache:
+                  - HIT
+              X-Cache-Hits:
+                  - "1"
+              X-Content-Type-Options:
+                  - nosniff
+              X-Fastly-Request-ID:
+                  - 42e5a40071fd4ee6de7a60bc4d1ee42e41a1b3a5
+              X-Frame-Options:
+                  - deny
+              X-GitHub-Request-Id:
+                  - E4AE:7A76:1C7A999:21A49D2:64654B2B
+              X-Served-By:
+                  - cache-den8280-DEN
+              X-Timer:
+                  - S1684361886.730164,VS0,VE120
+              X-XSS-Protection:
+                  - 1; mode=block
+          status:
+              code: 200
+              message: OK
+version: 1
