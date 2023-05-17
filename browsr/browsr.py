@@ -40,7 +40,7 @@ from browsr._utils import (
     open_image,
 )
 from browsr._version import __application__
-from browsr.universal_directory_tree import UniversalDirectoryTree
+from browsr.universal_directory_tree import GitHubPath, UniversalDirectoryTree
 
 
 class Browsr(BrowsrTextualApp):
@@ -78,7 +78,7 @@ class Browsr(BrowsrTextualApp):
         """
         assert isinstance(self.config_object, TextualAppContext)
         file_path = self.config_object.path
-        if isinstance(file_path, CloudPath):
+        if isinstance(file_path, (CloudPath, GitHubPath)):
             self.bind("x", "download_file", description="Download File", show=True)
         if file_path.is_file():
             self.selected_file_path = file_path
@@ -183,7 +183,7 @@ class Browsr(BrowsrTextualApp):
         too_large = file_size_mb >= self.config_object.max_file_size  # type: ignore[union-attr]
         exception = (
             True
-            if not isinstance(file_info.file, CloudPath)
+            if not isinstance(file_info.file, (CloudPath, GitHubPath))
             and ".csv" in file_info.file.suffixes
             else False
         )
@@ -322,7 +322,7 @@ class Browsr(BrowsrTextualApp):
             return
         elif self.selected_file_path.is_dir():
             return
-        elif isinstance(self.selected_file_path, CloudPath):
+        elif isinstance(self.selected_file_path, (CloudPath, GitHubPath)):
             handled_download_path = self._get_download_file_name()
             with self.selected_file_path.open("rb") as file_handle:
                 with handled_download_path.open("wb") as download_handle:
@@ -336,7 +336,7 @@ class Browsr(BrowsrTextualApp):
             return
         elif self.selected_file_path.is_dir():
             return
-        elif isinstance(self.selected_file_path, CloudPath):
+        elif isinstance(self.selected_file_path, (CloudPath, GitHubPath)):
             handled_download_path = self._get_download_file_name()
             prompt_message: str = dedent(
                 f"""

@@ -24,7 +24,7 @@ from textual.widget import Widget
 from textual.widgets import Button, DataTable, Static
 
 from browsr._config import favorite_themes
-from browsr._utils import FileInfo
+from browsr._utils import FileInfo, handle_github_url
 
 
 @dataclass
@@ -45,6 +45,8 @@ class TextualAppContext:
         """
         if str(self.file_path).endswith("/"):
             self.file_path = str(self.file_path)[:-1]
+        if "github" in str(self.file_path):
+            self.file_path = handle_github_url(url=str(self.file_path))
         return (
             upath.UPath(self.file_path).resolve()
             if self.file_path
@@ -166,13 +168,12 @@ class CurrentFileInfoBar(Widget):
         """
         if self.file_info is None or not self.file_info.is_file:
             return Text("")
-        modify_time = self.file_info.last_modified.strftime("%b, %-d %Y %I:%M %p")
-        status_string = (
-            "🗄️️️  "
-            + self._convert_size(self.file_info.size)
-            + "   📅️  "
-            + modify_time
-            + "  💾  "
+        status_string = "🗄️️️  " + self._convert_size(self.file_info.size)
+        if self.file_info.last_modified is not None:
+            modify_time = self.file_info.last_modified.strftime("%b, %-d %Y %I:%M %p")
+            status_string += "  📅  " + modify_time
+        status_string += (
+            "  💾  "
             + self.file_info.file.name
             + "  📂  "
             + self.file_info.file.parent.name
