@@ -660,9 +660,11 @@
 
   <div class="doc doc-contents ">
   
-      <p><strong><code>browsr</code></strong> is a file browser TUI (textual user interface) application. The application
-allows you to visually browse through a directory (local or cloud) and display the
-contents of its files</p>
+      <p>browsr 🗂️  a pleasant file explorer in your terminal</p>
+<p>Navigate through directories and peek at files whether they're hosted locally,
+in GitHub, AWS S3, Google Cloud Storage, or Azure Blob Storage. View code files
+with syntax highlighting, format JSON files, render images, convert data files to navigable
+datatables, and more.</p>
 <p><img alt="browsr" src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png" /></p>
 <h4 id="browsr._cli.browsr--installation">Installation<a class="headerlink" href="#browsr._cli.browsr--installation" title="Permanent link">#</a></h4>
 <p>It's recommended to install <strong><code>browsr</code></strong> via <a href="https://pypa.github.io/pipx/">pipx</a>
@@ -672,81 +674,118 @@ remote cloud storage buckets and open parquet files.</p>
 </code></pre></div>
 <h4 id="browsr._cli.browsr--usage-examples">Usage Examples<a class="headerlink" href="#browsr._cli.browsr--usage-examples" title="Permanent link">#</a></h4>
 <ul>
-<li>Load your current working directory: <strong><code>browsr</code></strong></li>
-<li>Load a specific directory: <strong><code>browsr /path/to/directory</code></strong></li>
-<li>Load an S3 bucket: <strong><code>browsr s3://bucket-name</code></strong></li>
-<li>Load a GCS bucket: <strong><code>browsr gs://bucket-name</code></strong></li>
+<li>Load your current working directory
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>browsr
+</code></pre></div></li>
+<li>Load a local directory
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>browsr/path/to/directory
+</code></pre></div></li>
+<li>Load an S3 bucket
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>browsr<span class="w"> </span>s3://bucket-name
+</code></pre></div></li>
+<li>Load a GCS bucket
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>browsr<span class="w"> </span>gs://bucket-name
+</code></pre></div></li>
+<li>Load a GitHub repository
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>browsr<span class="w"> </span>github://juftin:browsr
+</code></pre></div></li>
+<li>Load a GitHub repository branch
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>browsr<span class="w"> </span>github://juftin:browsr@main
+</code></pre></div></li>
 </ul>
 <h4 id="browsr._cli.browsr--key-bindings">Key Bindings<a class="headerlink" href="#browsr._cli.browsr--key-bindings" title="Permanent link">#</a></h4>
 <ul>
-<li><strong><code>q</code></strong> - Quit the application</li>
-<li><strong><code>f</code></strong> - Toggle the file tree sidebar</li>
-<li><strong><code>t</code></strong> - Toggle the rich theme for code formatting</li>
-<li><strong><code>n</code></strong> - Toggle line numbers for code formatting</li>
-<li><strong><code>d</code></strong> - Toggle dark mode for the application</li>
-<li><strong><code>x</code></strong> - Download the file from cloud storage</li>
+<li><strong><code>Q</code></strong> - Quit the application</li>
+<li><strong><code>F</code></strong> - Toggle the file tree sidebar</li>
+<li><strong><code>T</code></strong> - Toggle the rich theme for code formatting</li>
+<li><strong><code>N</code></strong> - Toggle line numbers for code formatting</li>
+<li><strong><code>D</code></strong> - Toggle dark mode for the application</li>
+<li><strong><code>X</code></strong> - Download the file from cloud storage</li>
 </ul>
 
       <details class="quote">
         <summary>Source code in <code>browsr/_cli.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-30">30</a></span>
-<span class="normal"><a href="#__codelineno-0-31">31</a></span>
-<span class="normal"><a href="#__codelineno-0-32">32</a></span>
-<span class="normal"><a href="#__codelineno-0-33">33</a></span>
-<span class="normal"><a href="#__codelineno-0-34">34</a></span>
-<span class="normal"><a href="#__codelineno-0-35">35</a></span>
-<span class="normal"><a href="#__codelineno-0-36">36</a></span>
-<span class="normal"><a href="#__codelineno-0-37">37</a></span>
-<span class="normal"><a href="#__codelineno-0-38">38</a></span>
-<span class="normal"><a href="#__codelineno-0-39">39</a></span>
-<span class="normal"><a href="#__codelineno-0-40">40</a></span>
-<span class="normal"><a href="#__codelineno-0-41">41</a></span>
-<span class="normal"><a href="#__codelineno-0-42">42</a></span>
-<span class="normal"><a href="#__codelineno-0-43">43</a></span>
-<span class="normal"><a href="#__codelineno-0-44">44</a></span>
-<span class="normal"><a href="#__codelineno-0-45">45</a></span>
-<span class="normal"><a href="#__codelineno-0-46">46</a></span>
-<span class="normal"><a href="#__codelineno-0-47">47</a></span>
-<span class="normal"><a href="#__codelineno-0-48">48</a></span>
-<span class="normal"><a href="#__codelineno-0-49">49</a></span>
-<span class="normal"><a href="#__codelineno-0-50">50</a></span>
-<span class="normal"><a href="#__codelineno-0-51">51</a></span>
-<span class="normal"><a href="#__codelineno-0-52">52</a></span>
-<span class="normal"><a href="#__codelineno-0-53">53</a></span>
-<span class="normal"><a href="#__codelineno-0-54">54</a></span>
-<span class="normal"><a href="#__codelineno-0-55">55</a></span>
-<span class="normal"><a href="#__codelineno-0-56">56</a></span>
-<span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span>
-<span class="normal"><a href="#__codelineno-0-59">59</a></span>
-<span class="normal"><a href="#__codelineno-0-60">60</a></span>
-<span class="normal"><a href="#__codelineno-0-61">61</a></span>
-<span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
-<span class="normal"><a href="#__codelineno-0-64">64</a></span>
-<span class="normal"><a href="#__codelineno-0-65">65</a></span>
-<span class="normal"><a href="#__codelineno-0-66">66</a></span>
-<span class="normal"><a href="#__codelineno-0-67">67</a></span>
-<span class="normal"><a href="#__codelineno-0-68">68</a></span>
-<span class="normal"><a href="#__codelineno-0-69">69</a></span>
-<span class="normal"><a href="#__codelineno-0-70">70</a></span>
-<span class="normal"><a href="#__codelineno-0-71">71</a></span>
-<span class="normal"><a href="#__codelineno-0-72">72</a></span>
-<span class="normal"><a href="#__codelineno-0-73">73</a></span>
-<span class="normal"><a href="#__codelineno-0-74">74</a></span>
-<span class="normal"><a href="#__codelineno-0-75">75</a></span>
-<span class="normal"><a href="#__codelineno-0-76">76</a></span>
-<span class="normal"><a href="#__codelineno-0-77">77</a></span>
-<span class="normal"><a href="#__codelineno-0-78">78</a></span>
-<span class="normal"><a href="#__codelineno-0-79">79</a></span>
-<span class="normal"><a href="#__codelineno-0-80">80</a></span>
-<span class="normal"><a href="#__codelineno-0-81">81</a></span>
-<span class="normal"><a href="#__codelineno-0-82">82</a></span>
-<span class="normal"><a href="#__codelineno-0-83">83</a></span>
-<span class="normal"><a href="#__codelineno-0-84">84</a></span>
-<span class="normal"><a href="#__codelineno-0-85">85</a></span>
-<span class="normal"><a href="#__codelineno-0-86">86</a></span>
-<span class="normal"><a href="#__codelineno-0-87">87</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;browsr&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">rich_click</span><span class="o">.</span><span class="n">rich_command</span><span class="o">.</span><span class="n">RichCommand</span><span class="p">)</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-0-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-0-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-0-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-0-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-0-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-0-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-0-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-0-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-0-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-0-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-0-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-0-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-0-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-0-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-0-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-0-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-0-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-0-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-0-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-0-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-0-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-0-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-0-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-0-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-0-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-0-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-0-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-0-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-0-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-0-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-0-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-0-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-0-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-0-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-0-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-0-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-0-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-0-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-0-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-0-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-0-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-0-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-0-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-0-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-0-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-0-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-0-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#__codelineno-0-104">104</a></span>
+<span class="normal"><a href="#__codelineno-0-105">105</a></span>
+<span class="normal"><a href="#__codelineno-0-106">106</a></span>
+<span class="normal"><a href="#__codelineno-0-107">107</a></span>
+<span class="normal"><a href="#__codelineno-0-108">108</a></span>
+<span class="normal"><a href="#__codelineno-0-109">109</a></span>
+<span class="normal"><a href="#__codelineno-0-110">110</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;browsr&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">rich_click</span><span class="o">.</span><span class="n">rich_command</span><span class="o">.</span><span class="n">RichCommand</span><span class="p">)</span>
 <a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;PATH&quot;</span><span class="p">)</span>
 <a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span>
 <a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="s2">&quot;-m&quot;</span><span class="p">,</span>
@@ -768,42 +807,65 @@ remote cloud storage buckets and open parquet files.</p>
 <a id="__codelineno-0-49" name="__codelineno-0-49"></a>    <span class="n">max_file_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
 <a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">    **`browsr`** is a file browser TUI (textual user interface) application. The application</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="sd">    allows you to visually browse through a directory (local or cloud) and display the</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">    contents of its files</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">    \f</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    ![browsr](https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png)</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">    ## Installation</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">    It&#39;s recommended to install **`browsr`** via [pipx](https://pypa.github.io/pipx/)</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">    with **`all`** optional dependencies, this enables **`browsr`** to access</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">    remote cloud storage buckets and open parquet files.</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">    ```shell</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">    pipx install &quot;browsr[all]&quot;</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd">    ```</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">    ## Usage Examples</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a>
-<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">    - Load your current working directory: **`browsr`**</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    - Load a specific directory: **`browsr /path/to/directory`**</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">    - Load an S3 bucket: **`browsr s3://bucket-name`**</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">    - Load a GCS bucket: **`browsr gs://bucket-name`**</span>
-<a id="__codelineno-0-76" name="__codelineno-0-76"></a>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">    ## Key Bindings</span>
-<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="sd">    - **`q`** - Quit the application</span>
-<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">    - **`f`** - Toggle the file tree sidebar</span>
-<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">    - **`t`** - Toggle the rich theme for code formatting</span>
-<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">    - **`n`** - Toggle line numbers for code formatting</span>
-<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">    - **`d`** - Toggle dark mode for the application</span>
-<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">    - **`x`** - Download the file from cloud storage</span>
-<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">TextualAppContext</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">,</span> <span class="n">max_file_size</span><span class="o">=</span><span class="n">max_file_size</span><span class="p">)</span>
-<a id="__codelineno-0-86" name="__codelineno-0-86"></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">Browsr</span><span class="p">(</span><span class="n">config_object</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
-<a id="__codelineno-0-87" name="__codelineno-0-87"></a>    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">    browsr 🗂️  a pleasant file explorer in your terminal</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">    Navigate through directories and peek at files whether they&#39;re hosted locally,</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">    in GitHub, AWS S3, Google Cloud Storage, or Azure Blob Storage. View code files</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">    with syntax highlighting, format JSON files, render images, convert data files to navigable</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">    datatables, and more.</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">    \f</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">    ![browsr](https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png)</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">    ## Installation</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">    It&#39;s recommended to install **`browsr`** via [pipx](https://pypa.github.io/pipx/)</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="sd">    with **`all`** optional dependencies, this enables **`browsr`** to access</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">    remote cloud storage buckets and open parquet files.</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd">    ```shell</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">    pipx install &quot;browsr[all]&quot;</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="sd">    ```</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    ## Usage Examples</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">    - Load your current working directory</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">        ```shell</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">        browsr</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">    - Load a local directory</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">        ```shell</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">        browsr/path/to/directory</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">    - Load an S3 bucket</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="sd">        ```shell</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">        browsr s3://bucket-name</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="sd">    - Load a GCS bucket</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="sd">        ```shell</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="sd">        browsr gs://bucket-name</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="sd">    - Load a GitHub repository</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a><span class="sd">        ```shell</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="sd">        browsr github://juftin:browsr</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="sd">    - Load a GitHub repository branch</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="sd">        ```shell</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">        browsr github://juftin:browsr@main</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">        ```</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="sd">    ## Key Bindings</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a><span class="sd">    - **`Q`** - Quit the application</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="sd">    - **`F`** - Toggle the file tree sidebar</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="sd">    - **`T`** - Toggle the rich theme for code formatting</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="sd">    - **`N`** - Toggle line numbers for code formatting</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="sd">    - **`D`** - Toggle dark mode for the application</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="sd">    - **`X`** - Download the file from cloud storage</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">TextualAppContext</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">,</span> <span class="n">max_file_size</span><span class="o">=</span><span class="n">max_file_size</span><span class="p">)</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a>    <span class="n">app</span> <span class="o">=</span> <span class="n">Browsr</span><span class="p">(</span><span class="n">config_object</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a>    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>

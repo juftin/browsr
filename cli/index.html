@@ -516,9 +516,11 @@
 
 <h1 id="command-line-interface">Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permanent link">#</a></h1>
 <h1 id="browsr">browsr<a class="headerlink" href="#browsr" title="Permanent link">#</a></h1>
-<p><strong><code>browsr</code></strong> is a file browser TUI (textual user interface) application. The application
-allows you to visually browse through a directory (local or cloud) and display the
-contents of its files</p>
+<p>browsr 🗂️  a pleasant file explorer in your terminal</p>
+<p>Navigate through directories and peek at files whether they're hosted locally,
+in GitHub, AWS S3, Google Cloud Storage, or Azure Blob Storage. View code files
+with syntax highlighting, format JSON files, render images, convert data files to navigable
+datatables, and more.</p>
 <p><img alt="browsr" src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png" /></p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
 <p>It's recommended to install <strong><code>browsr</code></strong> via <a href="https://pypa.github.io/pipx/">pipx</a>
@@ -528,22 +530,36 @@ remote cloud storage buckets and open parquet files.</p>
 </code></pre></div>
 <h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">#</a></h2>
 <ul>
-<li>Load your current working directory: <strong><code>browsr</code></strong></li>
-<li>Load a specific directory: <strong><code>browsr /path/to/directory</code></strong></li>
-<li>Load an S3 bucket: <strong><code>browsr s3://bucket-name</code></strong></li>
-<li>Load a GCS bucket: <strong><code>browsr gs://bucket-name</code></strong></li>
+<li>Load your current working directory
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>browsr
+</code></pre></div></li>
+<li>Load a local directory
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>browsr/path/to/directory
+</code></pre></div></li>
+<li>Load an S3 bucket
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>browsr<span class="w"> </span>s3://bucket-name
+</code></pre></div></li>
+<li>Load a GCS bucket
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>browsr<span class="w"> </span>gs://bucket-name
+</code></pre></div></li>
+<li>Load a GitHub repository
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>browsr<span class="w"> </span>github://juftin:browsr
+</code></pre></div></li>
+<li>Load a GitHub repository branch
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>browsr<span class="w"> </span>github://juftin:browsr@main
+</code></pre></div></li>
 </ul>
 <h2 id="key-bindings">Key Bindings<a class="headerlink" href="#key-bindings" title="Permanent link">#</a></h2>
 <ul>
-<li><strong><code>q</code></strong> - Quit the application</li>
-<li><strong><code>f</code></strong> - Toggle the file tree sidebar</li>
-<li><strong><code>t</code></strong> - Toggle the rich theme for code formatting</li>
-<li><strong><code>n</code></strong> - Toggle line numbers for code formatting</li>
-<li><strong><code>d</code></strong> - Toggle dark mode for the application</li>
-<li><strong><code>x</code></strong> - Download the file from cloud storage</li>
+<li><strong><code>Q</code></strong> - Quit the application</li>
+<li><strong><code>F</code></strong> - Toggle the file tree sidebar</li>
+<li><strong><code>T</code></strong> - Toggle the rich theme for code formatting</li>
+<li><strong><code>N</code></strong> - Toggle line numbers for code formatting</li>
+<li><strong><code>D</code></strong> - Toggle dark mode for the application</li>
+<li><strong><code>X</code></strong> - Download the file from cloud storage</li>
 </ul>
 <p><strong>Usage:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>browsr [OPTIONS] PATH
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>browsr [OPTIONS] PATH
 </code></pre></div>
 <p><strong>Options:</strong></p>
 <table>

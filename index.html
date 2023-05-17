@@ -280,12 +280,18 @@
     Installation
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#extra-installation" class="md-nav__link">
     Extra Installation
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -293,6 +299,33 @@
   <a href="#usage" class="md-nav__link">
     Usage
   </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local" class="md-nav__link">
+    Local
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    GitHub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud" class="md-nav__link">
+    Cloud
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -552,12 +585,18 @@
     Installation
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#extra-installation" class="md-nav__link">
     Extra Installation
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -565,6 +604,33 @@
   <a href="#usage" class="md-nav__link">
     Usage
   </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local" class="md-nav__link">
+    Local
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    GitHub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloud" class="md-nav__link">
+    Cloud
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -598,9 +664,13 @@
 <a href="https://pypi.python.org/pypi/browsr/"><img alt="PyPI" src="https://img.shields.io/pypi/pyversions/browsr" /></a>
 <a href="https://github.com/juftin/browsr/actions/workflows/tests.yaml?query=branch%3Amain"><img alt="Testing Status" src="https://github.com/juftin/browsr/actions/workflows/tests.yaml/badge.svg?branch=main" /></a>
 <a href="https://github.com/juftin/browsr/blob/main/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/juftin/browsr?color=blue&amp;label=License" /></a></p>
-<p><strong><code>browsr</code></strong> is a TUI (text-based user interface) file browser for your terminal.
-It's a simple way to browse your files and take a peek at their contents. Plus it
-works on local and remote file systems.</p>
+<p><strong><code>browsr</code></strong> 🗂️ is a pleasant <strong>file explorer</strong> in your terminal. It's a command line <strong>TUI</strong>
+(text-based user interface) application that empowers you to browse the contents of local
+and remote filesystems with your keyboard or mouse.</p>
+<p>You can quickly navigate through directories and peek at files whether they're hosted <strong>locally</strong>,
+in <strong>GitHub</strong>, <strong>AWS S3</strong>, <strong>Google Cloud Storage</strong>, or <strong>Azure Blob Storage</strong>. View code files
+with syntax highlighting, format JSON files, render images, convert data files to navigable
+datatables, and more.</p>
 <style>
   .grid-item {
     transition: all 0.5s ease;
@@ -667,24 +737,31 @@ works on local and remote file systems.</p>
 </details>
 
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
-<p>The below command recommends <a href="https://pypa.github.io/pipx/">pipx</a> instead of pip. <code>pipx</code> installs the package in
-an isolated environment and makes it easy to uninstall. If you'd like to use <code>pip</code> instead, just replace <code>pipx</code>
+<p>It's recommended to use <a href="https://pypa.github.io/pipx/">pipx</a> instead of pip. <code>pipx</code> installs the package in
+an isolated environment and makes it available everywhere. If you'd like to use <code>pip</code> instead, just replace <code>pipx</code>
 with <code>pip</code> in the below command.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pipx<span class="w"> </span>install<span class="w"> </span>browsr
 </code></pre></div>
-<h2 id="extra-installation">Extra Installation<a class="headerlink" href="#extra-installation" title="Permanent link">#</a></h2>
-<p>If you're looking to use <strong><code>browsr</code></strong> on remote file systems, like AWS S3, you'll need to install the <code>remote</code> extra.
+<h3 id="extra-installation">Extra Installation<a class="headerlink" href="#extra-installation" title="Permanent link">#</a></h3>
+<p>If you're looking to use <strong><code>browsr</code></strong> on remote file systems, like GitHub or AWS S3, you'll need to install the <code>remote</code> extra.
 If you'd like to browse parquet files, you'll need to install the <code>parquet</code> extra. Or, even simpler,
 you can install the <code>all</code> extra to get all the extras.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pipx<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;browsr[all]&quot;</span>
 </code></pre></div>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">#</a></h2>
+<p>Simply give <strong><code>browsr</code></strong> a path to a local or remote file / directory.
+<a href="https://juftin.com/browsr/">Check out the Documentation</a> for more information
+about the file systems supported.</p>
+<h3 id="local">Local<a class="headerlink" href="#local" title="Permanent link">#</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>browsr<span class="w"> </span>~/Downloads/
 </code></pre></div>
-<p>Simply give <strong><code>browsr</code></strong> a path to a file/directory and it will open a browser window
-with a file browser. You can also give it a URL to a remote file system, like AWS S3.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>browsr<span class="w"> </span>s3://my-bucket/my-file.parquet
+<h3 id="github">GitHub<a class="headerlink" href="#github" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>browsr github://juftin:browsr
 </code></pre></div>
+<h3 id="cloud">Cloud<a class="headerlink" href="#cloud" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>browsr<span class="w"> </span>s3://my-bucket
+</code></pre></div>
+<p>** <em>Currently AWS S3, Google Cloud Storage, and Azure Blob Storage are supported.</em></p>
 
 
 
