@@ -94,6 +94,9 @@ features = ["all"]
 pre-install-commands = ["pip install -U --no-deps -r requirements/requirements-dev.txt"]
 python = "3.10"
 
+[tool.hatch.envs.default.env-vars]
+GITHUB_TOKEN = "{env:GITHUB_TOKEN:placeholder}"
+
 [tool.hatch.envs.default.scripts]
 _pip_compile = "pip-compile --resolver=backtracking --generate-hashes requirements.in"
 all = ["format", "lint", "check", "test"]
@@ -151,7 +154,8 @@ module = [
 
 [tool.ruff]
 ignore = [
-  "E501"  # line too long, handled by black
+  "E501",  # line too long, handled by black
+  "B005"  # Using `.strip()` with multi-character strings is misleading the reader
 ]
 select = [
   "E",  # pycodestyle errors

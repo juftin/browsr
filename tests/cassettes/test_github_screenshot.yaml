@@ -49,11 +49,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 17 May 2023 21:30:44 GMT
+                  - Thu, 18 May 2023 01:01:44 GMT
               ETag:
                   - W/"91ee3d202828b3c28fcd9be69924424a4f792f5f17ff608d6d4ac2b1e19e5fcd"
               Last-Modified:
-                  - Wed, 17 May 2023 21:16:30 GMT
+                  - Wed, 17 May 2023 23:39:58 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -69,17 +69,112 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - CEAA:5DE3:FF9051:20DD28A:64654784
+                  - C66F:5F92:13EA1B3:28FFF1A:646578F8
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "42"
+                  - "53"
               X-RateLimit-Reset:
-                  - "1684359062"
+                  - "1684374609"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "18"
+                  - "7"
+              X-XSS-Protection:
+                  - "0"
+              x-github-api-version-selected:
+                  - "2022-11-28"
+          status:
+              code: 200
+              message: OK
+    - request:
+          body: null
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate
+              Connection:
+                  - keep-alive
+              User-Agent:
+                  - python-requests/2.28.2
+              authorization:
+                  - XXXXXXXXXX
+          method: GET
+          uri: https://api.github.com/repos/juftin/browsr/git/trees/v1.6.0
+      response:
+          body:
+              string: !!binary |
+                  H4sIAAAAAAAAA6WWTW/bOBCG/4vOqcXh5zC3YjeHBdoetsdiDzPkMHHWtlxJxiIt8t9LbYJavRRs
+                  5YNtQiYeP+TwHX7tpgfqbjtGJQTRBBe0siBaMqItJkOIECkYbVmh4u6mu4yHOuFhns/Tbd/Teb+7
+                  388PF96l4diPch6m/vFS5v2p53H4bxr7+rifR5Gp/wXKMqG7/fS1O9P8UHmvkMo/Drk+6ZRV9VXH
+                  89N5Gf8/4eZVh6ICkhw92yBJSpbiuRhnFDqvvKPgS4kFt+k0U55vfvDY35+GcfmzryqglLf2qsKH
+                  YVnol50JorLN1ikyjmIwkl0dgwgHG9FDKexRUlkm7L/UldCo7G/u0gKe+mbiWus8yptaAMf9XD9O
+                  ZX+/e6LjodGRYsagLGFCByCerFHKaEnag0smlypbGJclenEEE+Imx2bi2nGUg9AkY9o9To1mAYQ5
+                  m2riIDjkEsVQ8gxJW48KqcSsMdLVzIWNu9dKXJm9++uPuw8f7xqdTAEAnzmmRExogApnG5zVhJml
+                  QBLWgPHqBGrbbjUTV05/37398/3d7pgbrYCD1kEjCFCKiqPySTlCnSR6ZJ+dGACbrues/nhTDTYT
+                  V1YvkXpV+mkK5myLYvJoEDnVdw1asTdIYG0MTCWbaN3GUG+mrDTykFYn6OcSddlzzQWyYAoWnXKu
+                  LckoXSOcKDmJRkpKS7Vt6Ey5lbKSOP67aPxKzmUHrgZ2AetAAaRMNRdsMsE6ASehxkEItRdcawzQ
+                  /KbXS5Y3E1de56fzODxKmnfz0BzhEVm8AsQl5GxKBTIVCk7FXKtPqDZeEySH72rW2m3Hp5m4Uhvl
+                  82U/ylFOc2v9GVbW5kIpJ1Y159jkyLU5GV8vR8Ylh9GKheUmsqH+mikrmVmmZotaZw6xGIGYtBLx
+                  aGtGOweZgzeO61c2qWw8Rc2U53/qvW28nBLNkrvbQodJnr8BMK8OzowKAAA=
+          headers:
+              Access-Control-Allow-Origin:
+                  - "*"
+              Access-Control-Expose-Headers:
+                  - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+                    X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+                    X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+                    X-GitHub-Request-Id, Deprecation, Sunset
+              Cache-Control:
+                  - private, max-age=60, s-maxage=60
+              Content-Encoding:
+                  - gzip
+              Content-Security-Policy:
+                  - default-src 'none'
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Thu, 18 May 2023 01:01:44 GMT
+              ETag:
+                  - W/"020b9c645dc6800fbd32a722b2d8f51d3a58cc017d63e5da3554a56489b157ec"
+              Last-Modified:
+                  - Wed, 17 May 2023 23:39:58 GMT
+              Referrer-Policy:
+                  - origin-when-cross-origin, strict-origin-when-cross-origin
+              Server:
+                  - GitHub.com
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; preload
+              Transfer-Encoding:
+                  - chunked
+              Vary:
+                  - Accept, Authorization, Cookie, X-GitHub-OTP
+                  - Accept-Encoding, Accept, X-Requested-With
+              X-Accepted-OAuth-Scopes:
+                  - ""
+              X-Content-Type-Options:
+                  - nosniff
+              X-Frame-Options:
+                  - deny
+              X-GitHub-Media-Type:
+                  - github.v3; format=json
+              X-GitHub-Request-Id:
+                  - C670:14FC:14A1CE8:2A6CA7E:646578F8
+              X-OAuth-Scopes:
+                  - admin:gpg_key, admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
+                    admin:ssh_signing_key, audit_log, codespace, delete:packages, gist, notifications,
+                    project, read:enterprise, repo, user, workflow, write:discussion, write:packages
+              X-RateLimit-Limit:
+                  - "5000"
+              X-RateLimit-Remaining:
+                  - "4981"
+              X-RateLimit-Reset:
+                  - "1684373394"
+              X-RateLimit-Resource:
+                  - core
+              X-RateLimit-Used:
+                  - "19"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -141,11 +236,11 @@ interactions:
               Content-Type:
                   - text/plain; charset=utf-8
               Date:
-                  - Wed, 17 May 2023 21:30:44 GMT
+                  - Thu, 18 May 2023 01:01:44 GMT
               ETag:
                   - W/"e3f73ab855fd90588244244759492697dae0221aaa9e819693338d2cd1ad119e"
               Expires:
-                  - Wed, 17 May 2023 21:35:44 GMT
+                  - Thu, 18 May 2023 01:06:44 GMT
               Source-Age:
                   - "0"
               Strict-Transport-Security:
@@ -155,21 +250,21 @@ interactions:
               Via:
                   - 1.1 varnish
               X-Cache:
-                  - HIT
+                  - MISS
               X-Cache-Hits:
-                  - "1"
+                  - "0"
               X-Content-Type-Options:
                   - nosniff
               X-Fastly-Request-ID:
-                  - 8db268a9faffcad81d0b18decbadb968a115ce12
+                  - 7459b3f705b11601e933e9db121561cfa0dae324
               X-Frame-Options:
                   - deny
               X-GitHub-Request-Id:
-                  - 5E1C:093A:1CF866C:221F6FC:646545DF
+                  - F40E:6E4E:3A21014:443B1B9:646578F8
               X-Served-By:
-                  - cache-den8228-DEN
+                  - cache-den8272-DEN
               X-Timer:
-                  - S1684359045.859318,VS0,VE120
+                  - S1684371705.820747,VS0,VE131
               X-XSS-Protection:
                   - 1; mode=block
           status:

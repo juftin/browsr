@@ -81,6 +81,11 @@ browsr ~/Downloads/
 browsr github://juftin:browsr
 ```
 
+```
+export GITHUB_TOKEN="ghp_1234567890"
+browsr github://juftin:browsr-private@main
+```
+
 ### Cloud
 
 ```shell

@@ -72,30 +72,73 @@ def browsr(
 
     ## Usage Examples
 
-    - Load your current working directory
-        ```shell
-        browsr
-        ```
-    - Load a local directory
-        ```shell
-        browsr/path/to/directory
-        ```
-    - Load an S3 bucket
-        ```shell
-        browsr s3://bucket-name
-        ```
-    - Load a GCS bucket
-        ```shell
-        browsr gs://bucket-name
-        ```
-    - Load a GitHub repository
-        ```shell
-        browsr github://juftin:browsr
-        ```
-    - Load a GitHub repository branch
-        ```shell
-        browsr github://juftin:browsr@main
-        ```
+    ### Local
+
+    #### Browse your current working directory
+
+    ```shell
+    browsr
+    ```
+
+    #### Browse a local directory
+
+    ```shell
+    browsr/path/to/directory
+    ```
+
+    ### Cloud Storage
+
+    #### Browse an S3 bucket
+
+    ```shell
+    browsr s3://bucket-name
+    ```
+
+    #### Browse a GCS bucket
+
+    ```shell
+    browsr gs://bucket-name
+    ```
+
+    #### Browse Azure Services
+
+    ```shell
+    browsr adl://bucket-name
+    browsr az://bucket-name
+    ```
+
+    ### GitHub
+
+    #### Browse a GitHub repository
+
+    ```shell
+    browsr github://juftin:browsr
+    ```
+
+    #### Browse a GitHub Repository Branch
+
+    ```shell
+    browsr github://juftin:browsr@main
+    ```
+
+    #### Browse a Private GitHub Repository
+
+    ```shell
+    export GITHUB_TOKEN="ghp_1234567890"
+    browsr github://juftin:browsr-private@main
+    ```
+
+    #### Browse a GitHub Repository Subdirectory
+
+    ```shell
+    browsr github://juftin:browsr@main/tests
+    ```
+
+    #### Browse a GitHub URL
+
+    ```shell
+    browsr https://github.com/juftin/browsr
+    ```
 
     ## Key Bindings
     - **`Q`** - Quit the application

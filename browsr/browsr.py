@@ -8,6 +8,7 @@ This app was inspired by the CodeBrowser example from textual
 import json
 import pathlib
 import shutil
+from os import getenv
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Iterable, Optional, Union
 
@@ -356,7 +357,9 @@ class Browsr(BrowsrTextualApp):
             self.confirmation_window.display = True
 
 
-app = Browsr(config_object=TextualAppContext(file_path=None, debug=True))
+app = Browsr(
+    config_object=TextualAppContext(file_path=getenv("BROWSR_PATH"), debug=True)
+)
 
 if __name__ == "__main__":
     app.run()
