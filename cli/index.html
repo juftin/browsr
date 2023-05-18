@@ -518,7 +518,7 @@
 <h1 id="browsr">browsr<a class="headerlink" href="#browsr" title="Permanent link">#</a></h1>
 <p>browsr 🗂️  a pleasant file explorer in your terminal</p>
 <p>Navigate through directories and peek at files whether they're hosted locally,
-in GitHub, AWS S3, Google Cloud Storage, or Azure Blob Storage. View code files
+over SSH, in GitHub, AWS S3, Google Cloud Storage, or Azure Blob Storage. View code files
 with syntax highlighting, format JSON files, render images, convert data files to navigable
 datatables, and more.</p>
 <p><img alt="browsr" src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png" /></p>
@@ -564,6 +564,12 @@ remote cloud storage buckets and open parquet files.</p>
 <h4 id="browse-a-github-url">Browse a GitHub URL<a class="headerlink" href="#browse-a-github-url" title="Permanent link">#</a></h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>browsr<span class="w"> </span>https://github.com/juftin/browsr
 </code></pre></div>
+<h4 id="browse-a-filesystem-over-ssh">Browse a Filesystem over SSH<a class="headerlink" href="#browse-a-filesystem-over-ssh" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>browsr ssh://user@host:22
+</code></pre></div>
+<h4 id="browse-a-sftp-server">Browse a SFTP Server<a class="headerlink" href="#browse-a-sftp-server" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>browsr sftp://user@host:22/path/to/directory
+</code></pre></div>
 <h2 id="key-bindings">Key Bindings<a class="headerlink" href="#key-bindings" title="Permanent link">#</a></h2>
 <ul>
 <li><strong><code>Q</code></strong> - Quit the application</li>
@@ -574,7 +580,7 @@ remote cloud storage buckets and open parquet files.</p>
 <li><strong><code>X</code></strong> - Download the file from cloud storage</li>
 </ul>
 <p><strong>Usage:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>browsr [OPTIONS] PATH
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>browsr [OPTIONS] PATH
 </code></pre></div>
 <p><strong>Options:</strong></p>
 <table>
