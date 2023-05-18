@@ -17,7 +17,7 @@
 and remote filesystems with your keyboard or mouse.
 
 You can quickly navigate through directories and peek at files whether they're hosted **locally**,
-in **GitHub**, **AWS S3**, **Google Cloud Storage**, or **Azure Blob Storage**. View code files
+in **GitHub**, over **SSH**, in **AWS S3**, **Google Cloud Storage**, or **Azure Blob Storage**. View code files
 with syntax highlighting, format JSON files, render images, convert data files to navigable
 datatables, and more.
 
@@ -92,7 +92,13 @@ browsr github://juftin:browsr-private@main
 browsr s3://my-bucket
 ```
 
-\*\* _Currently AWS S3, Google Cloud Storage, and Azure Blob Storage are supported._
+\*\* _Currently AWS S3, Google Cloud Storage, and Azure Blob Storage / Data Lake are supported._
+
+### SSH / SFTP
+
+```shell
+browsr ssh://username@example.com:22
+```
 
 ## License
 

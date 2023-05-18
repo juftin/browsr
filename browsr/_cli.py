@@ -52,7 +52,7 @@ def browsr(
     browsr 🗂️  a pleasant file explorer in your terminal
 
     Navigate through directories and peek at files whether they're hosted locally,
-    in GitHub, AWS S3, Google Cloud Storage, or Azure Blob Storage. View code files
+    over SSH, in GitHub, AWS S3, Google Cloud Storage, or Azure Blob Storage. View code files
     with syntax highlighting, format JSON files, render images, convert data files to navigable
     datatables, and more.
 
@@ -138,6 +138,18 @@ def browsr(
 
     ```shell
     browsr https://github.com/juftin/browsr
+    ```
+
+    #### Browse a Filesystem over SSH
+
+    ```
+    browsr ssh://user@host:22
+    ```
+
+    #### Browse a SFTP Server
+
+    ```
+    browsr sftp://user@host:22/path/to/directory
     ```
 
     ## Key Bindings
