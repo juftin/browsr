@@ -3,7 +3,7 @@ Helpers for the tests
 """
 
 import pathlib
-from os import environ
+from os import environ, getenv
 from typing import List, Optional, Tuple
 
 from browsr import Browsr
@@ -34,6 +34,8 @@ class Screenshotter:
         """
         screenshot = take_screenshot(app=self.app, press=press)
         screenshot_path = self._get_screenshot_path()
+        if getenv("BROWSR_REGENERATE_SCREENSHOTS", "0") != "0":
+            screenshot_path.write_text(screenshot)
         return screenshot, screenshot_path
 
     @classmethod
