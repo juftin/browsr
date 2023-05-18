@@ -19,8 +19,10 @@ from rich.markdown import Markdown
 from rich.syntax import Syntax
 from rich.traceback import Traceback
 from rich_pixels import Pixels
+from textual import on
 from textual.binding import Binding
 from textual.containers import Container, Horizontal, VerticalScroll
+from textual.events import Mount
 from textual.reactive import var
 from textual.widget import Widget
 from textual.widgets import DataTable, Footer, Header, Static
@@ -253,7 +255,8 @@ class Browsr(BrowsrTextualApp):
                 self.query_one("#code-view").scroll_home(animate=False)
             self.sub_title = f"{file_path} [{self.rich_themes[self.theme_index]}]"
 
-    def on_mount(self) -> None:
+    @on(Mount)
+    def start_up_app(self) -> None:
         """
         On Application Mount - See If a File Should be Displayed
         """
@@ -266,15 +269,16 @@ class Browsr(BrowsrTextualApp):
                 file_path=pathlib.Path.cwd(), content=__application__.upper()
             )
 
-    def on_universal_directory_tree_file_selected(
-        self, event: UniversalDirectoryTree.FileSelected
+    @on(UniversalDirectoryTree.FileSelected)
+    def handle_file_selected(
+        self, message: UniversalDirectoryTree.FileSelected
     ) -> None:
         """
         Called when the user click a file in the directory tree.
         """
-        self.selected_file_path = upath.UPath(event.path)
+        self.selected_file_path = upath.UPath(message.path)
         file_info = get_file_info(file_path=self.selected_file_path)
-        self.render_code_page(file_path=upath.UPath(event.path))
+        self.render_code_page(file_path=upath.UPath(message.path))
         self.file_information.file_info = file_info
 
     def action_toggle_files(self) -> None:

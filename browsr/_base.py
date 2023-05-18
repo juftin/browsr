@@ -17,6 +17,7 @@ from rich import traceback
 from rich.console import RenderableType
 from rich.markdown import Markdown
 from rich.text import Text
+from textual import on
 from textual.app import App, ComposeResult
 from textual.containers import Container
 from textual.reactive import reactive, var
@@ -213,11 +214,12 @@ class ConfirmationPopUp(Container):
         yield Button("Yes", variant="success")
         yield Button("No", variant="error")
 
-    def on_button_pressed(self, event: Button.Pressed) -> None:
+    @on(Button.Pressed)
+    def handle_download_selection(self, message: Button.Pressed) -> None:
         """
         Handle Button Presses
         """
         self.app.confirmation_window.display = False  # type: ignore[attr-defined]
-        if event.button.variant == "success":
+        if message.button.variant == "success":
             self.app.download_selected_file()  # type: ignore[attr-defined]
         self.app.table_view.display = self.app.hidden_table_view  # type: ignore[attr-defined]

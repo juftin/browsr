@@ -965,9 +965,9 @@ six==1.16.0 \
     #   google-auth
     #   isodate
     #   python-dateutil
-textual==0.24.1 \
-    --hash=sha256:4c7e1f4ed12b9615c63fa3eb7cb9df68d29e0ae5b2352997958cd7ee5533f926 \
-    --hash=sha256:a7deb7ac5a1502424c754fe165ae13cb3890e47ddc514d3f089cb2984c336d1d
+textual==0.25.0 \
+    --hash=sha256:5e2d6320026dd8ff86e0d023fc4988071e80ec2e34de913bd63263a8301d664b \
+    --hash=sha256:8258499a09793696e13a1d1e1391810916828015a91770abd7ce3d9ab64cfd9e
     # via -r requirements.in
 typing-extensions==4.5.0 \
     --hash=sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb \
