@@ -529,26 +529,41 @@ remote cloud storage buckets and open parquet files.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pipx<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;browsr[all]&quot;</span>
 </code></pre></div>
 <h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">#</a></h2>
-<ul>
-<li>Load your current working directory
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>browsr
-</code></pre></div></li>
-<li>Load a local directory
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>browsr/path/to/directory
-</code></pre></div></li>
-<li>Load an S3 bucket
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>browsr<span class="w"> </span>s3://bucket-name
-</code></pre></div></li>
-<li>Load a GCS bucket
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>browsr<span class="w"> </span>gs://bucket-name
-</code></pre></div></li>
-<li>Load a GitHub repository
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>browsr<span class="w"> </span>github://juftin:browsr
-</code></pre></div></li>
-<li>Load a GitHub repository branch
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>browsr<span class="w"> </span>github://juftin:browsr@main
-</code></pre></div></li>
-</ul>
+<h3 id="local">Local<a class="headerlink" href="#local" title="Permanent link">#</a></h3>
+<h4 id="browse-your-current-working-directory">Browse your current working directory<a class="headerlink" href="#browse-your-current-working-directory" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>browsr
+</code></pre></div>
+<h4 id="browse-a-local-directory">Browse a local directory<a class="headerlink" href="#browse-a-local-directory" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>browsr/path/to/directory
+</code></pre></div>
+<h3 id="cloud-storage">Cloud Storage<a class="headerlink" href="#cloud-storage" title="Permanent link">#</a></h3>
+<h4 id="browse-an-s3-bucket">Browse an S3 bucket<a class="headerlink" href="#browse-an-s3-bucket" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>browsr<span class="w"> </span>s3://bucket-name
+</code></pre></div>
+<h4 id="browse-a-gcs-bucket">Browse a GCS bucket<a class="headerlink" href="#browse-a-gcs-bucket" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>browsr<span class="w"> </span>gs://bucket-name
+</code></pre></div>
+<h4 id="browse-azure-services">Browse Azure Services<a class="headerlink" href="#browse-azure-services" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>browsr<span class="w"> </span>adl://bucket-name
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>browsr<span class="w"> </span>az://bucket-name
+</code></pre></div>
+<h3 id="github">GitHub<a class="headerlink" href="#github" title="Permanent link">#</a></h3>
+<h4 id="browse-a-github-repository">Browse a GitHub repository<a class="headerlink" href="#browse-a-github-repository" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>browsr<span class="w"> </span>github://juftin:browsr
+</code></pre></div>
+<h4 id="browse-a-github-repository-branch">Browse a GitHub Repository Branch<a class="headerlink" href="#browse-a-github-repository-branch" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>browsr<span class="w"> </span>github://juftin:browsr@main
+</code></pre></div>
+<h4 id="browse-a-private-github-repository">Browse a Private GitHub Repository<a class="headerlink" href="#browse-a-private-github-repository" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GITHUB_TOKEN</span><span class="o">=</span><span class="s2">&quot;ghp_1234567890&quot;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>browsr<span class="w"> </span>github://juftin:browsr-private@main
+</code></pre></div>
+<h4 id="browse-a-github-repository-subdirectory">Browse a GitHub Repository Subdirectory<a class="headerlink" href="#browse-a-github-repository-subdirectory" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>browsr<span class="w"> </span>github://juftin:browsr@main/tests
+</code></pre></div>
+<h4 id="browse-a-github-url">Browse a GitHub URL<a class="headerlink" href="#browse-a-github-url" title="Permanent link">#</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>browsr<span class="w"> </span>https://github.com/juftin/browsr
+</code></pre></div>
 <h2 id="key-bindings">Key Bindings<a class="headerlink" href="#key-bindings" title="Permanent link">#</a></h2>
 <ul>
 <li><strong><code>Q</code></strong> - Quit the application</li>
@@ -559,7 +574,7 @@ remote cloud storage buckets and open parquet files.</p>
 <li><strong><code>X</code></strong> - Download the file from cloud storage</li>
 </ul>
 <p><strong>Usage:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>browsr [OPTIONS] PATH
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>browsr [OPTIONS] PATH
 </code></pre></div>
 <p><strong>Options:</strong></p>
 <table>
