@@ -140,12 +140,16 @@ def handle_github_url(url: str) -> str:
         org, repo = user_password.split(":")
     elif "github://" in url and "@" in url:
         return url
-    elif "github.com" in url and "https" in url:
-        _, url = url.split("://")
+    elif "github.com" in url.lower():
         _, org, repo, *args = url.split("/")
+    else:
+        raise ValueError(f"Invalid GitHub URL: {url}")
+    token = os.getenv("GITHUB_TOKEN")
+    auth = {"auth": ("Bearer", token)} if token is not None else {}
     resp = requests.get(
         f"https://api.github.com/repos/{org}/{repo}",
         headers={"Accept": "application/vnd.github.v3+json"},
+        **auth,  # type: ignore[arg-type]
     )
     resp.raise_for_status()
     default_branch = resp.json()["default_branch"]

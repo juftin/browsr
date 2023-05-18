@@ -5,6 +5,7 @@ A universal directory tree widget for Textual.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from os import getenv
 from typing import Any, ClassVar, Iterable, Optional
 
 import upath
@@ -157,6 +158,15 @@ class GitHubPath(upath.core.UPath):
     UPath implementation for GitHub to be compatible with
     the Universal Directory Tree
     """
+
+    def __new__(cls, *args, **kwargs) -> "GitHubPath":  # type: ignore[no-untyped-def]
+        """
+        Attempt to set the username and token from the environment
+        """
+        token = getenv("GITHUB_TOKEN")
+        kwargs.update({"username": "Bearer", "token": token})
+        github_path = super().__new__(cls, *args, **kwargs)
+        return github_path
 
     @property
     def path(self) -> str:

@@ -43,10 +43,16 @@ class TextualAppContext:
         """
         Resolve `file_path` to a upath.UPath object
         """
+        if "github" in str(self.file_path).lower():
+            file_path = str(self.file_path)
+            file_path = file_path.lstrip("https://")
+            file_path = file_path.lstrip("http://")
+            file_path = file_path.lstrip("www.")
+            file_path = file_path.rstrip(".git")
+            file_path = handle_github_url(url=str(file_path))
+            self.file_path = file_path
         if str(self.file_path).endswith("/"):
             self.file_path = str(self.file_path)[:-1]
-        if "github" in str(self.file_path):
-            self.file_path = handle_github_url(url=str(self.file_path))
         return (
             upath.UPath(self.file_path).resolve()
             if self.file_path
