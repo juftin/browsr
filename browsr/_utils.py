@@ -14,9 +14,8 @@ import rich_pixels
 from fitz import Pixmap
 from PIL import Image
 from rich_pixels import Pixels
-from upath.implementations.cloud import CloudPath
 
-from browsr.universal_directory_tree import GitHubPath
+from browsr.universal_directory_tree import is_cloud_path
 
 
 def _open_pdf_as_image(buf: BinaryIO) -> Image.Image:
@@ -75,13 +74,22 @@ def get_file_info(file_path: pathlib.Path) -> FileInfo:
     """
     Get File Information, Regardless of the FileSystem
     """
-    stat = file_path.stat()
-    is_file = file_path.is_file()
-    is_cloudpath = isinstance(file_path, (CloudPath, GitHubPath))
+    try:
+        stat: Union[Dict[str, Any], os.stat_result] = file_path.stat()
+        is_file = file_path.is_file()
+    except PermissionError:
+        stat = {"size": 0}
+        is_file = True
+    is_cloudpath = is_cloud_path(file_path)
     if isinstance(stat, dict):
         lower_dict = {key.lower(): value for key, value in stat.items()}
         file_size = lower_dict["size"]
-        last_modified = lower_dict.get("lastmodified") or lower_dict.get("updated")
+        modified_keys = ["lastmodified", "updated", "mtime"]
+        last_modified = None
+        for modified_key in modified_keys:
+            if modified_key in lower_dict:
+                last_modified = lower_dict[modified_key]
+                break
         if isinstance(last_modified, str):
             last_modified = datetime.datetime.fromisoformat(last_modified[:-1])
         return FileInfo(

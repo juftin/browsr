@@ -4,6 +4,7 @@ A universal directory tree widget for Textual.
 
 from __future__ import annotations
 
+import pathlib
 from os import getenv
 from typing import Iterable, Optional
 
@@ -13,10 +14,18 @@ from textual.widgets import DirectoryTree
 from textual.widgets._directory_tree import DirEntry
 from textual.widgets._tree import TreeNode
 from upath import UPath as Path
+from upath.core import _FSSpecAccessor
+from upath.implementations.cloud import S3Path
 
 upath.registry._registry.known_implementations[
     "github"
 ] = "browsr.universal_directory_tree.GitHubPath"
+upath.registry._registry.known_implementations[
+    "s3"
+] = "browsr.universal_directory_tree.S3BrowsrPath"
+upath.registry._registry.known_implementations[
+    "s3a"
+] = "browsr.universal_directory_tree.S3BrowsrPath"
 
 # This is the secret sauce behind the UniversalDirectoryTree
 # It allows us to use the upath.Path as the Path implementation in the
@@ -71,6 +80,22 @@ class UniversalDirectoryTree(DirectoryTree):
         node.expand()
 
 
+class S3BrowsrPath(S3Path):
+    """
+    S3BrowsrPath
+    """
+
+    @property
+    def name(self) -> str:
+        """
+        Override the name for top level repo
+        """
+        if len(self.parts) == 1 and self.parts[0] == "/":
+            return f"{self._url.scheme}://{self._url.netloc}"  # type: ignore[union-attr]
+        else:
+            return super().name
+
+
 class GitHubPath(upath.core.UPath):
     """
     GitHubPath
@@ -109,3 +134,18 @@ class GitHubPath(upath.core.UPath):
             return github_name
         else:
             return super().name
+
+
+def is_cloud_path(path: pathlib.Path) -> bool:
+    """
+    Check if the path is a cloud path
+    """
+    accessor = getattr(path, "_accessor", None)
+    return isinstance(accessor, _FSSpecAccessor)
+
+
+def is_local_path(path: pathlib.Path) -> bool:
+    """
+    Check if the path is a local path
+    """
+    return not is_cloud_path(path)
