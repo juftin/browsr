@@ -143,10 +143,12 @@ def handle_github_url(url: str) -> str:
 
     GitHub URLs are handled by converting them to the raw URL.
     """
-    if "github://" in url and "@" not in url:
+    gitub_prefix = "github://"
+    if gitub_prefix in url and "@" not in url:
         _, user_password = url.split("github://")
-        org, repo = user_password.split(":")
-    elif "github://" in url and "@" in url:
+        org, repo_str = user_password.split(":")
+        repo, *args = repo_str.split("/")
+    elif gitub_prefix in url and "@" in url:
         return url
     elif "github.com" in url.lower():
         _, org, repo, *args = url.split("/")
@@ -161,5 +163,6 @@ def handle_github_url(url: str) -> str:
     )
     resp.raise_for_status()
     default_branch = resp.json()["default_branch"]
-    github_uri = f"github://{org}:{repo}@{default_branch}"
+    arg_str = "/".join(args)
+    github_uri = f"{gitub_prefix}{org}:{repo}@{default_branch}/{arg_str}".rstrip("/")
     return github_uri

@@ -49,7 +49,8 @@ class TextualAppContext:
             file_path = file_path.lstrip("https://")
             file_path = file_path.lstrip("http://")
             file_path = file_path.lstrip("www.")
-            file_path = file_path.rstrip(".git")
+            if file_path.endswith(".git"):
+                file_path = file_path[:-4]
             file_path = handle_github_url(url=str(file_path))
             self.file_path = file_path
         if str(self.file_path).endswith("/"):
