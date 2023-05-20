@@ -1,7 +1,6 @@
 """
 Helpers for the tests
 """
-
 import pathlib
 from os import environ, getenv
 from typing import List, Optional, Tuple
@@ -48,3 +47,16 @@ class Screenshotter:
         current_test = environ["PYTEST_CURRENT_TEST"].split("::")[-1].split(" ")[0]
         screenshot_path = screenshot_dir / f"{current_test}.svg"
         return screenshot_path
+
+    def compare_screenshots(self, former: str, new: str) -> None:
+        """
+        Compare two screenshots
+        """
+        try:
+            assert former == new
+        except AssertionError as e:
+            screenshot_path = self._get_screenshot_path()
+            former_name = screenshot_path.stem
+            diff_path = screenshot_path.with_stem(f"{former_name}_svg_diff")
+            diff_path.write_text(new)
+            raise e

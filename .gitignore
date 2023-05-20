@@ -160,3 +160,5 @@ cython_debug/
 
 # JetBrains IDEs
 .idea/
+
+*svg_diff.svg

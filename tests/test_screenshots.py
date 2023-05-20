@@ -2,7 +2,8 @@
 Screenshot Testing Using Cassettes!
 """
 
-from browsr.universal_directory_tree import GitHubPath
+from textual_universal_directorytree import GitHubPath
+
 from tests.conftest import cassette
 from tests.helpers import Screenshotter
 
@@ -14,8 +15,9 @@ def test_github_screenshot(github_release_path: GitHubPath) -> None:
     """
     file_path = str(github_release_path)
     screenshotter = Screenshotter(file_path=file_path)
-    screenshot, screenshot_path = screenshotter.take_screenshot()
-    assert screenshot_path.read_text() == screenshot
+    screenshot, screenshot_path = screenshotter.take_screenshot(press=["_"])
+    former_screenshot = screenshot_path.read_text()
+    screenshotter.compare_screenshots(former=former_screenshot, new=screenshot)
 
 
 @cassette
@@ -25,5 +27,6 @@ def test_github_screenshot_license(github_release_path: GitHubPath) -> None:
     """
     file_path = str(github_release_path / "LICENSE")
     screenshotter = Screenshotter(file_path=file_path)
-    screenshot, screenshot_path = screenshotter.take_screenshot()
-    assert screenshot_path.read_text() == screenshot
+    screenshot, screenshot_path = screenshotter.take_screenshot(press=["_"])
+    former_screenshot = screenshot_path.read_text()
+    screenshotter.compare_screenshots(former=former_screenshot, new=screenshot)
