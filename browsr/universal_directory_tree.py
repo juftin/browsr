@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import pathlib
 from os import getenv
-from typing import Iterable, Optional
+from typing import Any, Iterable, Optional
 
 import textual
 import upath
@@ -96,6 +96,21 @@ class S3BrowsrPath(S3Path):
             return super().name
 
 
+class _GitHubAccessor(_FSSpecAccessor):
+    """
+    FSSpec Accessor for GitHub
+    """
+
+    def __init__(self, *args: Any, **kwargs: Any):
+        """
+        Initialize the GitHub Accessor
+        """
+        token = getenv("GITHUB_TOKEN")
+        if token is not None:
+            kwargs.update({"username": "Bearer", "token": token})
+        super().__init__(*args, **kwargs)
+
+
 class GitHubPath(upath.core.UPath):
     """
     GitHubPath
@@ -104,15 +119,7 @@ class GitHubPath(upath.core.UPath):
     the Universal Directory Tree
     """
 
-    def __new__(cls, *args, **kwargs) -> "GitHubPath":  # type: ignore[no-untyped-def]
-        """
-        Attempt to set the username and token from the environment
-        """
-        token = getenv("GITHUB_TOKEN")
-        if token is not None:
-            kwargs.update({"username": "Bearer", "token": token})
-        github_path = super().__new__(cls, *args, **kwargs)
-        return github_path
+    _default_accessor = _GitHubAccessor
 
     @property
     def path(self) -> str:
