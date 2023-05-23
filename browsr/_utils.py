@@ -9,7 +9,6 @@ from dataclasses import dataclass
 from typing import Any, BinaryIO, Dict, Optional, Union
 
 import fitz  # type: ignore[import]
-import requests
 import rich_pixels
 from fitz import Pixmap
 from PIL import Image
@@ -143,6 +142,14 @@ def handle_github_url(url: str) -> str:
 
     GitHub URLs are handled by converting them to the raw URL.
     """
+    try:
+        import requests
+    except ImportError as e:
+        raise ImportError(
+            "The requests library is required to browse GitHub files. "
+            "Install browsr with the `remote` extra to install requests."
+        ) from e
+
     gitub_prefix = "github://"
     if gitub_prefix in url and "@" not in url:
         _, user_password = url.split("github://")
