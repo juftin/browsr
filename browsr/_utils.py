@@ -9,7 +9,11 @@ from dataclasses import dataclass
 from typing import Any, BinaryIO, Dict, Optional, Union
 
 import fitz  # type: ignore[import]
-import requests
+
+try:
+    import requests
+except ImportError:
+    pass
 import rich_pixels
 from fitz import Pixmap
 from PIL import Image
