@@ -104,6 +104,12 @@ def get_file_info(file_path: pathlib.Path) -> FileInfo:
         )
     else:
         last_modified = datetime.datetime.fromtimestamp(stat.st_mtime)
+        try:
+            owner = file_path.owner()
+            group = file_path.group()
+        except NotImplementedError:
+            owner = ""
+            group = ""
         return FileInfo(
             file=file_path,
             size=stat.st_size,
@@ -111,8 +117,8 @@ def get_file_info(file_path: pathlib.Path) -> FileInfo:
             stat=stat,
             is_local=True,
             is_file=is_file,
-            owner=file_path.owner(),
-            group=file_path.group(),
+            owner=owner,
+            group=group,
             is_cloudpath=is_cloudpath,
         )
 
