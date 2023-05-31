@@ -178,7 +178,7 @@ class CurrentFileInfoBar(Widget):
             return Text("")
         status_string = "🗄️️️  " + self._convert_size(self.file_info.size)
         if self.file_info.last_modified is not None:
-            modify_time = self.file_info.last_modified.strftime("%b, %-d %Y %I:%M %p")
+            modify_time = self.file_info.last_modified.strftime("%b %d, %Y %I:%M %p")
             status_string += "  📅  " + modify_time
         status_string += (
             "  💾  "
