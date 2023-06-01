@@ -36,10 +36,12 @@ from browsr._base import (
 )
 from browsr._config import favorite_themes, image_file_extensions
 from browsr._utils import (
+    ArchiveFileError,
     FileInfo,
     get_file_info,
     handle_duplicate_filenames,
     open_image,
+    render_file_to_string,
 )
 from browsr._version import __application__
 from browsr.universal_directory_tree import (
@@ -129,20 +131,21 @@ class Browsr(BrowsrTextualApp):
 
     def render_document(
         self,
-        document: pathlib.Path,
+        file_info: FileInfo,
     ) -> Union[Syntax, Markdown, DataTable[str], Pixels]:
         """
         Render a Code Doc Given Its Extension
 
         Parameters
         ----------
-        document: pathlib.Path
-            File Path to Render
+        file_info: FileInfo
+            The file info object for the file to render.
 
         Returns
         -------
         Union[Syntax, Markdown, DataTable[str], Pixels]
         """
+        document = file_info.file
         if document.suffix == ".md":
             return Markdown(
                 document.read_text(encoding="utf-8"),
@@ -150,26 +153,25 @@ class Browsr(BrowsrTextualApp):
                 hyperlinks=True,
             )
         elif ".csv" in document.suffixes:
-            df = pd.read_csv(document, nrows=500)
+            df = pd.read_csv(document, nrows=1000)
             return self.df_to_table(pandas_dataframe=df, table=self.table_view)
         elif document.suffix == ".parquet":
-            df = pd.read_parquet(document)[:500]
+            df = pd.read_parquet(document)[:1000]
             return self.df_to_table(pandas_dataframe=df, table=self.table_view)
         elif document.suffix.lower() in image_file_extensions:
             screen_width = self.app.size.width / 4
             content = open_image(document=document, screen_width=screen_width)
             return content
         elif document.suffix.lower() in [".json"]:
-            code_str = document.read_text(encoding="utf-8", errors="replace")
+            code_str = render_file_to_string(file_info=file_info)
             try:
                 code_obj = json.loads(code_str)
                 code_lines = json.dumps(code_obj, indent=2).splitlines()
             except json.JSONDecodeError:
                 code_lines = code_str.splitlines()
         else:
-            code_lines = document.read_text(
-                encoding="utf-8", errors="replace"
-            ).splitlines()
+            code_str = render_file_to_string(file_info=file_info)
+            code_lines = code_str.splitlines()
         code = "\n".join(code_lines[:1000])
         lexer = Syntax.guess_lexer(str(document), code=code)
         return Syntax(
@@ -195,24 +197,17 @@ class Browsr(BrowsrTextualApp):
         if too_large is True and exception is not True:
             raise FileSizeError("File too large")
 
-    def render_code_page(
-        self,
-        file_path: pathlib.Path,
-        scroll_home: bool = True,
-        content: Optional[Any] = None,
-    ) -> None:
+    def _render_file(
+        self, file_path: pathlib.Path, code_view: Static, font: str
+    ) -> Union[Syntax, Markdown, DataTable[str], Pixels, None]:
         """
-        Render the Code Page with Rich Syntax
+        Render a File
         """
-        code_view = self.query_one("#code", Static)
-        font = "univers"
-        if content is not None:
-            code_view.update(text2art(content, font=font))
-            return
         try:
             file_info = get_file_info(file_path=file_path)
             self._handle_file_size(file_info=file_info)
-            element = self.render_document(document=file_info.file)
+            element = self.render_document(file_info=file_info)
+            return element
         except FileSizeError:
             self.table_view.display = False
             self.code_view.display = True
@@ -236,6 +231,13 @@ class Browsr(BrowsrTextualApp):
                 text2art("ENCODING", font=font) + "\n\n" + text2art("ERROR", font=font)
             )
             self.sub_title = f"ERROR [{self.rich_themes[self.theme_index]}]"
+        except ArchiveFileError:
+            self.table_view.display = False
+            self.code_view.display = True
+            code_view.update(
+                text2art("ARCHIVE", font=font) + "\n\n" + text2art("FILE", font=font)
+            )
+            self.sub_title = f"ERROR [{self.rich_themes[self.theme_index]}]"
         except Exception:
             self.table_view.display = False
             self.code_view.display = True
@@ -243,16 +245,32 @@ class Browsr(BrowsrTextualApp):
                 Traceback(theme=self.rich_themes[self.theme_index], width=None)
             )
             self.sub_title = "ERROR" + f" [{self.rich_themes[self.theme_index]}]"
-        else:
-            if isinstance(element, DataTable):
-                self.code_view.display = False
-                self.table_view.display = True
-                if scroll_home is True:
-                    self.query_one(DataTable).scroll_home(animate=False)
-            else:
-                self.table_view.display = False
-                self.code_view.display = True
-                code_view.update(element)
+        return None
+
+    def render_code_page(
+        self,
+        file_path: pathlib.Path,
+        scroll_home: bool = True,
+        content: Optional[Any] = None,
+    ) -> None:
+        """
+        Render the Code Page with Rich Syntax
+        """
+        code_view = self.query_one("#code", Static)
+        font = "univers"
+        if content is not None:
+            code_view.update(text2art(content, font=font))
+            return
+        element = self._render_file(file_path=file_path, code_view=code_view, font=font)
+        if isinstance(element, DataTable):
+            self.code_view.display = False
+            self.table_view.display = True
+            if scroll_home is True:
+                self.query_one(DataTable).scroll_home(animate=False)
+        elif element is not None:
+            self.table_view.display = False
+            self.code_view.display = True
+            code_view.update(element)
             if scroll_home is True:
                 self.query_one("#code-view").scroll_home(animate=False)
             self.sub_title = f"{file_path} [{self.rich_themes[self.theme_index]}]"

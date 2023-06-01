@@ -179,3 +179,34 @@ def handle_github_url(url: str) -> str:
     arg_str = "/".join(args)
     github_uri = f"{gitub_prefix}{org}:{repo}@{default_branch}/{arg_str}".rstrip("/")
     return github_uri
+
+
+class ArchiveFileError(Exception):
+    """
+    Archive File Error
+    """
+
+
+def render_file_to_string(file_info: FileInfo) -> str:
+    """
+    Render File to String
+
+    Parameters
+    ----------
+    file_info : FileInfo
+        The file to render.
+
+    Returns
+    -------
+    str
+        The rendered file as a string.
+    """
+    try:
+        return file_info.file.read_text(encoding="utf-8")
+    except UnicodeDecodeError as e:
+        if file_info.file.suffix.lower() in [".tar", ".gz", ".zip", ".tgz"]:
+            raise ArchiveFileError(
+                f"Cannot render archive file {file_info.file}."
+            ) from e
+        else:
+            raise e
