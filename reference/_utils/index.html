@@ -446,6 +446,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#browsr._utils.ArchiveFileError" class="md-nav__link">
+    ArchiveFileError
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#browsr._utils.FileInfo" class="md-nav__link">
     FileInfo
   </a>
@@ -483,6 +490,13 @@
         <li class="md-nav__item">
   <a href="#browsr._utils.open_image" class="md-nav__link">
     open_image()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#browsr._utils.render_file_to_string" class="md-nav__link">
+    render_file_to_string()
   </a>
   
 </li>
@@ -583,6 +597,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#browsr._utils.ArchiveFileError" class="md-nav__link">
+    ArchiveFileError
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#browsr._utils.FileInfo" class="md-nav__link">
     FileInfo
   </a>
@@ -620,6 +641,13 @@
         <li class="md-nav__item">
   <a href="#browsr._utils.open_image" class="md-nav__link">
     open_image()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#browsr._utils.render_file_to_string" class="md-nav__link">
+    render_file_to_string()
   </a>
   
 </li>
@@ -662,6 +690,41 @@
 
 
 
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="browsr._utils.ArchiveFileError" class="doc doc-heading">
+        <code>ArchiveFileError</code>
+
+
+<a href="#browsr._utils.ArchiveFileError" class="headerlink" title="Permanent link">#</a></h2>
+
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#Exception">Exception</a></code></p>
+
+  
+      <p>Archive File Error</p>
+
+
+        <details class="quote">
+          <summary>Source code in <code>browsr/_utils.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-184">184</a></span>
+<span class="normal"><a href="#__codelineno-0-185">185</a></span>
+<span class="normal"><a href="#__codelineno-0-186">186</a></span>
+<span class="normal"><a href="#__codelineno-0-187">187</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-184" name="__codelineno-0-184"></a><span class="k">class</span> <span class="nc">ArchiveFileError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<a id="__codelineno-0-185" name="__codelineno-0-185"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-186" name="__codelineno-0-186"></a><span class="sd">    Archive File Error</span>
+<a id="__codelineno-0-187" name="__codelineno-0-187"></a><span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+        </details>
+
+  </div>
+
+</div>
 
 <div class="doc doc-object doc-class">
 
@@ -1115,6 +1178,115 @@ in the form of "filename (1).ext", "filename (2).ext", etc.</p>
 <a id="__codelineno-0-50" name="__codelineno-0-50"></a>        <span class="n">new_height</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">image_height</span> <span class="o">/</span> <span class="n">size_ratio</span><span class="p">),</span> <span class="n">image_height</span><span class="p">)</span>
 <a id="__codelineno-0-51" name="__codelineno-0-51"></a>        <span class="n">resized</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">new_width</span><span class="p">,</span> <span class="n">new_height</span><span class="p">))</span>
 <a id="__codelineno-0-52" name="__codelineno-0-52"></a>        <span class="k">return</span> <span class="n">rich_pixels</span><span class="o">.</span><span class="n">Pixels</span><span class="o">.</span><span class="n">from_image</span><span class="p">(</span><span class="n">resized</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="browsr._utils.render_file_to_string" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">render_file_to_string</span><span class="p">(</span><span class="n">file_info</span><span class="p">)</span></code>
+
+<a href="#browsr._utils.render_file_to_string" class="headerlink" title="Permanent link">#</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Render File to String</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>file_info</code></td>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="browsr._utils.FileInfo" href="#browsr._utils.FileInfo">FileInfo</a></code>
+          </td>
+          <td><p>The file to render.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td><p>The rendered file as a string.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>browsr/_utils.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-190">190</a></span>
+<span class="normal"><a href="#__codelineno-0-191">191</a></span>
+<span class="normal"><a href="#__codelineno-0-192">192</a></span>
+<span class="normal"><a href="#__codelineno-0-193">193</a></span>
+<span class="normal"><a href="#__codelineno-0-194">194</a></span>
+<span class="normal"><a href="#__codelineno-0-195">195</a></span>
+<span class="normal"><a href="#__codelineno-0-196">196</a></span>
+<span class="normal"><a href="#__codelineno-0-197">197</a></span>
+<span class="normal"><a href="#__codelineno-0-198">198</a></span>
+<span class="normal"><a href="#__codelineno-0-199">199</a></span>
+<span class="normal"><a href="#__codelineno-0-200">200</a></span>
+<span class="normal"><a href="#__codelineno-0-201">201</a></span>
+<span class="normal"><a href="#__codelineno-0-202">202</a></span>
+<span class="normal"><a href="#__codelineno-0-203">203</a></span>
+<span class="normal"><a href="#__codelineno-0-204">204</a></span>
+<span class="normal"><a href="#__codelineno-0-205">205</a></span>
+<span class="normal"><a href="#__codelineno-0-206">206</a></span>
+<span class="normal"><a href="#__codelineno-0-207">207</a></span>
+<span class="normal"><a href="#__codelineno-0-208">208</a></span>
+<span class="normal"><a href="#__codelineno-0-209">209</a></span>
+<span class="normal"><a href="#__codelineno-0-210">210</a></span>
+<span class="normal"><a href="#__codelineno-0-211">211</a></span>
+<span class="normal"><a href="#__codelineno-0-212">212</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-190" name="__codelineno-0-190"></a><span class="k">def</span> <span class="nf">render_file_to_string</span><span class="p">(</span><span class="n">file_info</span><span class="p">:</span> <span class="n">FileInfo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-191" name="__codelineno-0-191"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-192" name="__codelineno-0-192"></a><span class="sd">    Render File to String</span>
+<a id="__codelineno-0-193" name="__codelineno-0-193"></a>
+<a id="__codelineno-0-194" name="__codelineno-0-194"></a><span class="sd">    Parameters</span>
+<a id="__codelineno-0-195" name="__codelineno-0-195"></a><span class="sd">    ----------</span>
+<a id="__codelineno-0-196" name="__codelineno-0-196"></a><span class="sd">    file_info : FileInfo</span>
+<a id="__codelineno-0-197" name="__codelineno-0-197"></a><span class="sd">        The file to render.</span>
+<a id="__codelineno-0-198" name="__codelineno-0-198"></a>
+<a id="__codelineno-0-199" name="__codelineno-0-199"></a><span class="sd">    Returns</span>
+<a id="__codelineno-0-200" name="__codelineno-0-200"></a><span class="sd">    -------</span>
+<a id="__codelineno-0-201" name="__codelineno-0-201"></a><span class="sd">    str</span>
+<a id="__codelineno-0-202" name="__codelineno-0-202"></a><span class="sd">        The rendered file as a string.</span>
+<a id="__codelineno-0-203" name="__codelineno-0-203"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-204" name="__codelineno-0-204"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-205" name="__codelineno-0-205"></a>        <span class="k">return</span> <span class="n">file_info</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-206" name="__codelineno-0-206"></a>    <span class="k">except</span> <span class="ne">UnicodeDecodeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-207" name="__codelineno-0-207"></a>        <span class="k">if</span> <span class="n">file_info</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;.tar&quot;</span><span class="p">,</span> <span class="s2">&quot;.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;.zip&quot;</span><span class="p">,</span> <span class="s2">&quot;.tgz&quot;</span><span class="p">]:</span>
+<a id="__codelineno-0-208" name="__codelineno-0-208"></a>            <span class="k">raise</span> <span class="n">ArchiveFileError</span><span class="p">(</span>
+<a id="__codelineno-0-209" name="__codelineno-0-209"></a>                <span class="sa">f</span><span class="s2">&quot;Cannot render archive file </span><span class="si">{</span><span class="n">file_info</span><span class="o">.</span><span class="n">file</span><span class="si">}</span><span class="s2">.&quot;</span>
+<a id="__codelineno-0-210" name="__codelineno-0-210"></a>            <span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+<a id="__codelineno-0-211" name="__codelineno-0-211"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-212" name="__codelineno-0-212"></a>            <span class="k">raise</span> <span class="n">e</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
