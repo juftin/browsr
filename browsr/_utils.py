@@ -13,8 +13,7 @@ import rich_pixels
 from fitz import Pixmap
 from PIL import Image
 from rich_pixels import Pixels
-
-from browsr.universal_directory_tree import is_cloud_path
+from textual_universal_directorytree import is_remote_path
 
 
 def _open_pdf_as_image(buf: BinaryIO) -> Image.Image:
@@ -79,7 +78,7 @@ def get_file_info(file_path: pathlib.Path) -> FileInfo:
     except PermissionError:
         stat = {"size": 0}
         is_file = True
-    is_cloudpath = is_cloud_path(file_path)
+    is_cloudpath = is_remote_path(file_path)
     if isinstance(stat, dict):
         lower_dict = {key.lower(): value for key, value in stat.items()}
         file_size = lower_dict["size"]
