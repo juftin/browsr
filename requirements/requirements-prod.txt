@@ -11,7 +11,7 @@ adal==1.2.7 \
 adlfs==2023.1.0 \
     --hash=sha256:ccbdd6d33d5b7bce99a4a07c884c82fb135745d39b2d9b7b672f8e9d4d04407f \
     --hash=sha256:eca53f53d88fc8e2e7a2f1d8f5a40b8a1c56aa3b541e4aa2e7eaf55a6a789262
-    # via -r requirements.in
+    # via textual-universal-directorytree
 aiobotocore==2.4.2 \
     --hash=sha256:0603b74a582dffa7511ce7548d07dc9b10ec87bc5fb657eb0b34f9bd490958bf \
     --hash=sha256:4acd1ebe2e44be4b100aa553910bda899f6dc090b3da2bc1cf3d5de2146ed208
@@ -105,11 +105,11 @@ aiohttp==3.8.4 \
     --hash=sha256:fe11310ae1e4cd560035598c3f29d86cef39a83d244c7466f95c27ae04850f10 \
     --hash=sha256:fe7ba4a51f33ab275515f66b0a236bcde4fb5561498fe8f898d4e549b2e4509f
     # via
-    #   -r requirements.in
     #   adlfs
     #   aiobotocore
     #   gcsfs
     #   s3fs
+    #   textual-universal-directorytree
 aioitertools==0.11.0 \
     --hash=sha256:04b95e3dab25b449def24d7df809411c10e62aab0cbe31a50ca4e68748c43394 \
     --hash=sha256:42c68b8dd3a69c2bf7f2233bf7df4bb58b557bca5252ac02ed5187bbc67d6831
@@ -451,7 +451,6 @@ fsspec==2023.1.0 \
     --hash=sha256:b833e2e541e9e8cde0ab549414187871243177feb3d344f9d27b25a93f5d8139 \
     --hash=sha256:fbae7f20ff801eb5f7d0bedf81f25c787c0dfac5e982d98fa3884a9cde2b5411
     # via
-    #   -r requirements.in
     #   adlfs
     #   gcsfs
     #   s3fs
@@ -459,7 +458,7 @@ fsspec==2023.1.0 \
 gcsfs==2023.1.0 \
     --hash=sha256:0a7b7ca8c1affa126a14ba35d7b7dff81c49e2aaceedda9732c7f159a4837a26 \
     --hash=sha256:62c491b9e2a8e9e58b8a899eec2ce111f827718a65539019ff3cadf447e48f41
-    # via -r requirements.in
+    # via textual-universal-directorytree
 google-api-core==2.11.0 \
     --hash=sha256:4b9bb5d5a380a0befa0573b302651b8a9a89262c1730e37bf423cec511804c22 \
     --hash=sha256:ce222e27b0de0d7bc63eb043b956996d6dccab14cc3b690aaea91c9cc99dc16e
@@ -758,7 +757,7 @@ pandas==1.5.3 \
 paramiko==3.1.0 \
     --hash=sha256:6950faca6819acd3219d4ae694a23c7a87ee38d084f70c1724b0c0dbb8b75769 \
     --hash=sha256:f0caa660e797d9cd10db6fc6ae81e2c9b2767af75c3180fcd0e46158cd368d7f
-    # via -r requirements.in
+    # via textual-universal-directorytree
 pillow==9.5.0 \
     --hash=sha256:07999f5834bdc404c442146942a2ecadd1cb6292f5229f4ed3b31e0a108746b1 \
     --hash=sha256:0852ddb76d85f127c135b6dd1f0bb88dbb9ee990d2cd9aa9e28526c93e794fba \
@@ -960,7 +959,6 @@ requests==2.28.2 \
     --hash=sha256:64299f4909223da747622c030b781c0d7811e359c37124b4bd368fb8c6518baa \
     --hash=sha256:98b1b2782e3c6c4904938b84c0eb932721069dfdb9134313beff7c83c2df24bf
     # via
-    #   -r requirements.in
     #   adal
     #   azure-core
     #   azure-datalake-store
@@ -969,6 +967,7 @@ requests==2.28.2 \
     #   google-cloud-storage
     #   msal
     #   requests-oauthlib
+    #   textual-universal-directorytree
 requests-oauthlib==1.3.1 \
     --hash=sha256:2577c501a2fb8d05a304c09d090d6e47c306fef15809d102b327cf8364bddab5 \
     --hash=sha256:75beac4a47881eeb94d5ea5d6ad31ef88856affe2332b9aafb52c6452ccf0d7a
@@ -996,7 +995,7 @@ rsa==4.9 \
 s3fs==2023.1.0 \
     --hash=sha256:8b2e28372423e93f26312208a9272e22a962ddd0a79d63f9a68693b6af5ff187 \
     --hash=sha256:a549ae518fff4388bd6fca5248575c29f521e7e39efcd2bfab476651701fd114
-    # via -r requirements.in
+    # via textual-universal-directorytree
 six==1.16.0 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926 \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254
@@ -1006,9 +1005,15 @@ six==1.16.0 \
     #   google-auth
     #   isodate
     #   python-dateutil
-textual==0.25.0 \
-    --hash=sha256:5e2d6320026dd8ff86e0d023fc4988071e80ec2e34de913bd63263a8301d664b \
-    --hash=sha256:8258499a09793696e13a1d1e1391810916828015a91770abd7ce3d9ab64cfd9e
+textual==0.28.1 \
+    --hash=sha256:cb6f6230fea390178f8e727d2f9e542337a655549ea44331e22336da799a900f \
+    --hash=sha256:f63a873d810b5d01f7318d8eb8f706d530550f3a90a6892628d17d47ecefcd41
+    # via
+    #   -r requirements.in
+    #   textual-universal-directorytree
+textual-universal-directorytree[remote]==1.0.1 \
+    --hash=sha256:4101fb541a69152721e4099a8c04cfe0a2f72c94e8d82fbc2608ed3c61392b2b \
+    --hash=sha256:fc5ac0d36a49a486c2a83ed054e06da84e5cc27bfa89eff71e08665d704f691e
     # via -r requirements.in
 typing-extensions==4.5.0 \
     --hash=sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb \
@@ -1024,7 +1029,7 @@ uc-micro-py==1.0.2 \
 universal-pathlib==0.0.23 \
     --hash=sha256:76cbc91d66ddb2c0c0c939d147bcd8fa2c79882b5451d2a59009811fc4f80bd3 \
     --hash=sha256:bd7ed0ad5c6a31b3bf0835b9e7526ed0974ec3a49e4a6a02b1f4058ce63ec79c
-    # via -r requirements.in
+    # via textual-universal-directorytree
 urllib3==1.26.15 \
     --hash=sha256:8a388717b9476f934a21484e8c8e61875ab60644d29b9b39e11e4b9dc1c6b305 \
     --hash=sha256:aa751d169e23c7479ce47a0cb0da579e3ede798f994f5816a74e4f4500dcea42

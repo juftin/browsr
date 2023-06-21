@@ -7,8 +7,7 @@ from typing import Any, Dict, List
 
 import pytest
 from click.testing import CliRunner
-
-from browsr.universal_directory_tree import GitHubPath
+from textual_universal_directorytree import GitHubPath
 
 
 @pytest.fixture

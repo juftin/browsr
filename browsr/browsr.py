@@ -26,6 +26,7 @@ from textual.events import Mount
 from textual.reactive import var
 from textual.widget import Widget
 from textual.widgets import DataTable, Footer, Header, Static
+from textual_universal_directorytree import is_local_path, is_remote_path
 
 from browsr._base import (
     BrowsrTextualApp,
@@ -45,9 +46,7 @@ from browsr._utils import (
 )
 from browsr._version import __application__
 from browsr.universal_directory_tree import (
-    UniversalDirectoryTree,
-    is_cloud_path,
-    is_local_path,
+    BrowsrDirectoryTree,
 )
 
 
@@ -86,7 +85,7 @@ class Browsr(BrowsrTextualApp):
         """
         assert isinstance(self.config_object, TextualAppContext)
         file_path = self.config_object.path
-        if is_cloud_path(file_path):
+        if is_remote_path(file_path):
             self.bind("x", "download_file", description="Download File", show=True)
         if file_path.is_file():
             self.selected_file_path = file_path
@@ -98,7 +97,7 @@ class Browsr(BrowsrTextualApp):
             self.force_show_tree = True
         self.header = Header()
         yield self.header
-        self.directory_tree = UniversalDirectoryTree(str(file_path), id="tree-view")
+        self.directory_tree = BrowsrDirectoryTree(str(file_path), id="tree-view")
         self.code_view = VerticalScroll(Static(id="code", expand=True), id="code-view")
         self.table_view: DataTable[str] = DataTable(
             zebra_stripes=True, show_header=True, show_cursor=True, id="table-view"
@@ -289,10 +288,8 @@ class Browsr(BrowsrTextualApp):
                 file_path=pathlib.Path.cwd(), content=__application__.upper()
             )
 
-    @on(UniversalDirectoryTree.FileSelected)
-    def handle_file_selected(
-        self, message: UniversalDirectoryTree.FileSelected
-    ) -> None:
+    @on(BrowsrDirectoryTree.FileSelected)
+    def handle_file_selected(self, message: BrowsrDirectoryTree.FileSelected) -> None:
         """
         Called when the user click a file in the directory tree.
         """
@@ -347,7 +344,7 @@ class Browsr(BrowsrTextualApp):
             return
         elif self.selected_file_path.is_dir():
             return
-        elif is_cloud_path(self.selected_file_path):
+        elif is_remote_path(self.selected_file_path):
             handled_download_path = self._get_download_file_name()
             with self.selected_file_path.open("rb") as file_handle:
                 with handled_download_path.open("wb") as download_handle:
@@ -361,7 +358,7 @@ class Browsr(BrowsrTextualApp):
             return
         elif self.selected_file_path.is_dir():
             return
-        elif is_cloud_path(self.selected_file_path):
+        elif is_remote_path(self.selected_file_path):
             handled_download_path = self._get_download_file_name()
             prompt_message: str = dedent(
                 f"""

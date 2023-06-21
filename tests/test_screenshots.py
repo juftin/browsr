@@ -2,7 +2,8 @@
 Screenshot Testing Using Cassettes!
 """
 
-from browsr.universal_directory_tree import GitHubPath
+from textual_universal_directorytree import GitHubPath
+
 from tests.conftest import cassette
 from tests.helpers import Screenshotter
 

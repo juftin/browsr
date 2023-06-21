@@ -4,9 +4,10 @@ Config / Context Tests
 import pathlib
 from dataclasses import is_dataclass
 
+from textual_universal_directorytree import GitHubPath
+
 from browsr._base import TextualAppContext
 from browsr._config import favorite_themes
-from browsr.universal_directory_tree import GitHubPath
 from tests.conftest import cassette
 
 
