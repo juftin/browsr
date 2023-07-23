@@ -21,7 +21,7 @@ from rich.traceback import Traceback
 from rich_pixels import Pixels
 from textual import on
 from textual.binding import Binding
-from textual.containers import Container, Horizontal, VerticalScroll
+from textual.containers import Container, Horizontal
 from textual.events import Mount
 from textual.reactive import var
 from textual.widget import Widget
@@ -34,6 +34,8 @@ from browsr._base import (
     CurrentFileInfoBar,
     FileSizeError,
     TextualAppContext,
+    VimDataTable,
+    VimScroll,
 )
 from browsr._config import favorite_themes, image_file_extensions
 from browsr._utils import (
@@ -58,11 +60,11 @@ class Browsr(BrowsrTextualApp):
     TITLE = __application__
     CSS_PATH = "browsr.css"
     BINDINGS = [
-        Binding("q", "quit", "Quit"),
-        Binding("f", "toggle_files", "Toggle Files"),
-        Binding("t", "theme", "Toggle Theme"),
-        Binding("n", "linenos", "Toggle Line Numbers"),
-        Binding("d", "toggle_dark", "Toggle Dark Mode"),
+        Binding(key="q", action="quit", description="Quit"),
+        Binding(key="f", action="toggle_files", description="Toggle Files"),
+        Binding(key="t", action="theme", description="Toggle Theme"),
+        Binding(key="n", action="linenos", description="Toggle Line Numbers"),
+        Binding(key="d", action="toggle_dark", description="Toggle Dark Mode"),
     ]
 
     show_tree = var(True)
@@ -98,8 +100,8 @@ class Browsr(BrowsrTextualApp):
         self.header = Header()
         yield self.header
         self.directory_tree = BrowsrDirectoryTree(str(file_path), id="tree-view")
-        self.code_view = VerticalScroll(Static(id="code", expand=True), id="code-view")
-        self.table_view: DataTable[str] = DataTable(
+        self.code_view = VimScroll(Static(id="code", expand=True), id="code-view")
+        self.table_view: DataTable[str] = VimDataTable(
             zebra_stripes=True, show_header=True, show_cursor=True, id="table-view"
         )
         self.table_view.display = False
@@ -264,11 +266,15 @@ class Browsr(BrowsrTextualApp):
         if isinstance(element, DataTable):
             self.code_view.display = False
             self.table_view.display = True
+            if self.code_view.has_focus:
+                self.table_view.focus()
             if scroll_home is True:
                 self.query_one(DataTable).scroll_home(animate=False)
         elif element is not None:
             self.table_view.display = False
             self.code_view.display = True
+            if self.table_view.has_focus:
+                self.code_view.focus()
             code_view.update(element)
             if scroll_home is True:
                 self.query_one("#code-view").scroll_home(animate=False)
@@ -282,6 +288,10 @@ class Browsr(BrowsrTextualApp):
         if self.selected_file_path is not None:
             self.show_tree = self.force_show_tree
             self.render_code_page(file_path=self.selected_file_path)
+            if self.show_tree is False and self.code_view.display is True:
+                self.code_view.focus()
+            elif self.show_tree is False and self.table_view.display is True:
+                self.table_view.focus()
         else:
             self.show_tree = True
             self.render_code_page(
