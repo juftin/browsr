@@ -19,7 +19,8 @@ from rich.markdown import Markdown
 from rich.text import Text
 from textual import on
 from textual.app import App, ComposeResult
-from textual.containers import Container
+from textual.binding import Binding
+from textual.containers import Container, VerticalScroll
 from textual.reactive import reactive, var
 from textual.widget import Widget
 from textual.widgets import Button, DataTable, Static
@@ -224,3 +225,40 @@ class ConfirmationPopUp(Container):
         if message.button.variant == "success":
             self.app.download_selected_file()  # type: ignore[attr-defined]
         self.app.table_view.display = self.app.hidden_table_view  # type: ignore[attr-defined]
+
+
+vim_scroll_bindings = [
+    Binding(key="k", action="scroll_up", description="Scroll Up", show=False),
+    Binding(key="j", action="scroll_down", description="Scroll Down", show=False),
+    Binding(key="h", action="scroll_left", description="Scroll Left", show=False),
+    Binding(key="l", action="scroll_right", description="Scroll Right", show=False),
+]
+
+vim_cursor_bindings = [
+    Binding(key="k", action="cursor_up", description="Cursor Up", show=False),
+    Binding(key="j", action="cursor_down", description="Cursor Down", show=False),
+    Binding(key="h", action="cursor_left", description="Cursor Left", show=False),
+    Binding(key="l", action="cursor_right", description="Cursor Right", show=False),
+]
+
+
+class VimScroll(VerticalScroll):
+    """
+    A VerticalScroll with Vim Keybindings
+    """
+
+    BINDINGS = [
+        *VerticalScroll.BINDINGS,
+        *vim_scroll_bindings,
+    ]
+
+
+class VimDataTable(DataTable[str]):
+    """
+    A DataTable with Vim Keybindings
+    """
+
+    BINDINGS = [
+        *DataTable.BINDINGS,
+        *vim_cursor_bindings,
+    ]

@@ -11,11 +11,18 @@ from textual.widgets._tree import TreeNode
 from textual_universal_directorytree import UniversalDirectoryTree
 from upath import UPath as Path
 
+from browsr._base import vim_cursor_bindings
+
 
 class BrowsrDirectoryTree(UniversalDirectoryTree):
     """
     A DirectoryTree that can handle any filesystem.
     """
+
+    BINDINGS = [
+        *UniversalDirectoryTree.BINDINGS,
+        *vim_cursor_bindings,
+    ]
 
     @classmethod
     def _handle_top_level_bucket(cls, dir_path: Path) -> Optional[Iterable[Path]]:
