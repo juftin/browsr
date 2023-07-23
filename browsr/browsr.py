@@ -10,7 +10,7 @@ import pathlib
 import shutil
 from os import getenv
 from textwrap import dedent
-from typing import TYPE_CHECKING, Any, Iterable, Optional, Union
+from typing import TYPE_CHECKING, Any, ClassVar, Iterable, List, Optional, Union
 
 import pandas as pd
 import upath
@@ -20,7 +20,7 @@ from rich.syntax import Syntax
 from rich.traceback import Traceback
 from rich_pixels import Pixels
 from textual import on
-from textual.binding import Binding
+from textual.binding import Binding, BindingType
 from textual.containers import Container, Horizontal
 from textual.events import Mount
 from textual.reactive import var
@@ -59,7 +59,7 @@ class Browsr(BrowsrTextualApp):
 
     TITLE = __application__
     CSS_PATH = "browsr.css"
-    BINDINGS = [
+    BINDINGS: ClassVar[List[BindingType]] = [
         Binding(key="q", action="quit", description="Quit"),
         Binding(key="f", action="toggle_files", description="Toggle Files"),
         Binding(key="t", action="theme", description="Toggle Theme"),
