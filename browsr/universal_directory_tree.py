@@ -4,8 +4,9 @@ A universal directory tree widget for Textual.
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import ClassVar, Iterable, List, Optional
 
+from textual.binding import BindingType
 from textual.widgets._directory_tree import DirEntry
 from textual.widgets._tree import TreeNode
 from textual_universal_directorytree import UniversalDirectoryTree
@@ -19,7 +20,7 @@ class BrowsrDirectoryTree(UniversalDirectoryTree):
     A DirectoryTree that can handle any filesystem.
     """
 
-    BINDINGS = [
+    BINDINGS: ClassVar[List[BindingType]] = [
         *UniversalDirectoryTree.BINDINGS,
         *vim_cursor_bindings,
     ]

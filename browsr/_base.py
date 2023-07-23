@@ -8,7 +8,7 @@ import math
 import pathlib
 from dataclasses import dataclass
 from textwrap import dedent
-from typing import Any, Dict, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional, Union
 
 import numpy as np
 import upath
@@ -19,7 +19,7 @@ from rich.markdown import Markdown
 from rich.text import Text
 from textual import on
 from textual.app import App, ComposeResult
-from textual.binding import Binding
+from textual.binding import Binding, BindingType
 from textual.containers import Container, VerticalScroll
 from textual.reactive import reactive, var
 from textual.widget import Widget
@@ -247,7 +247,7 @@ class VimScroll(VerticalScroll):
     A VerticalScroll with Vim Keybindings
     """
 
-    BINDINGS = [
+    BINDINGS: ClassVar[List[BindingType]] = [
         *VerticalScroll.BINDINGS,
         *vim_scroll_bindings,
     ]
@@ -258,7 +258,7 @@ class VimDataTable(DataTable[str]):
     A DataTable with Vim Keybindings
     """
 
-    BINDINGS = [
+    BINDINGS: ClassVar[List[BindingType]] = [
         *DataTable.BINDINGS,
         *vim_cursor_bindings,
     ]
