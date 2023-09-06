@@ -955,9 +955,9 @@ requests-oauthlib==1.3.1 \
     --hash=sha256:2577c501a2fb8d05a304c09d090d6e47c306fef15809d102b327cf8364bddab5 \
     --hash=sha256:75beac4a47881eeb94d5ea5d6ad31ef88856affe2332b9aafb52c6452ccf0d7a
     # via google-auth-oauthlib
-rich==13.3.5 \
-    --hash=sha256:2d11b9b8dd03868f09b4fffadc84a6a8cda574e40dc90821bd845720ebb8e89c \
-    --hash=sha256:69cdf53799e63f38b95b9bf9c875f8c90e78dd62b2f00c13a911c7a3b9fa4704
+rich==13.5.2 \
+    --hash=sha256:146a90b3b6b47cac4a73c12866a499e9817426423f57c5a66949c086191a8808 \
+    --hash=sha256:fb9d6c0a0f643c99eed3875b5377a184132ba9be4d61516a55273d3554d75a39
     # via
     #   -r requirements.in
     #   rich-click
@@ -988,9 +988,9 @@ six==1.16.0 \
     #   google-auth
     #   isodate
     #   python-dateutil
-textual==0.30.0 \
-    --hash=sha256:bf7045a7e9b7dc3ac589c38ce86ac31aecf0e76e8c8ce09aee474316bc2e2c03 \
-    --hash=sha256:e87d587e4569236f3809d41955ed9556287dbedaca64724e1d6ad5adbb69c9c5
+textual==0.36.0 \
+    --hash=sha256:7d04880bee0274f8cdf05cbe22d9effad3efa458676af2c431997a6d4576005c \
+    --hash=sha256:fbfc799a55938cfade6cfbf7c5ae3c3e5fc87ff9deaaed788a6dcefe72245451
     # via
     #   -r requirements.in
     #   textual-universal-directorytree
