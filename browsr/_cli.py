@@ -2,7 +2,7 @@
 browsr command line interface
 """
 
-from typing import Optional
+from typing import Optional, Tuple
 
 import click
 import rich_click
@@ -43,10 +43,14 @@ rich_click.rich_click.STYLE_COMMANDS_TABLE_BOX = "SIMPLE_HEAVY"
     help="Enable extra debugging output",
     type=click.BOOL,
 )
+@click.option(
+    "-k", "--kwargs", multiple=True, help="Key=Value pairs to pass to the filesystem"
+)
 def browsr(
     path: Optional[str],
     debug: bool,
     max_file_size: int,
+    kwargs: Tuple[str, ...],
 ) -> None:
     """
     browsr 🗂️  a pleasant file explorer in your terminal
@@ -107,6 +111,17 @@ def browsr(
     browsr az://bucket-name
     ```
 
+    #### Pass Extra Arguments to Cloud Storage
+
+    Some cloud storage providers require extra arguments to be passed to the
+    filesystem. For example, to browse an anonymous S3 bucket, you need to pass
+    the `anon=True` argument to the filesystem. This can be done with the `-k/--kwargs`
+    argument.
+
+    ```shell
+    browsr s3://anonymous-bucket -k anon=True
+    ```
+
     ### GitHub
 
     #### Browse a GitHub repository
@@ -160,7 +175,20 @@ def browsr(
     - **`D`** - Toggle dark mode for the application
     - **`X`** - Download the file from cloud storage
     """
-    config = TextualAppContext(file_path=path, debug=debug, max_file_size=max_file_size)
+    extra_kwargs = {}
+    if kwargs:
+        for kwarg in kwargs:
+            try:
+                key, value = kwarg.split("=")
+                extra_kwargs[key] = value
+            except ValueError as ve:
+                raise click.BadParameter(
+                    message=f"Invalid Key/Value pair: `{kwarg}` - must be in the format Key=Value",
+                    param_hint="kwargs",
+                ) from ve
+    config = TextualAppContext(
+        file_path=path, debug=debug, max_file_size=max_file_size, kwargs=extra_kwargs
+    )
     app = Browsr(config_object=config)
     app.run()
 
