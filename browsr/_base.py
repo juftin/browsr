@@ -6,7 +6,9 @@ from __future__ import annotations
 
 import math
 import pathlib
+from copy import copy
 from dataclasses import dataclass
+from os import PathLike
 from textwrap import dedent
 from typing import Any, ClassVar, Dict, List, Optional, Union
 
@@ -24,9 +26,24 @@ from textual.containers import Container, VerticalScroll
 from textual.reactive import reactive, var
 from textual.widget import Widget
 from textual.widgets import Button, DataTable, Static
+from upath import UPath
 
 from browsr._config import favorite_themes
 from browsr._utils import FileInfo, handle_github_url
+
+
+class BrowsrPath(UPath):
+    """
+    A UPath object that can be extended with persisted kwargs
+    """
+
+    __path_kwargs__: ClassVar[Dict[str, Any]] = {}
+
+    def __new__(cls, *args: str | PathLike[Any], **kwargs: Any) -> "BrowsrPath":
+        """
+        Create a new BrowsrPath object
+        """
+        return super().__new__(cls, *args, **kwargs, **cls.__path_kwargs__)
 
 
 @dataclass
@@ -39,6 +56,7 @@ class TextualAppContext:
     config: Optional[Dict[str, Any]] = None
     debug: bool = False
     max_file_size: int = 20
+    kwargs: Optional[Dict[str, Any]] = None
 
     @property
     def path(self) -> pathlib.Path:
@@ -56,8 +74,11 @@ class TextualAppContext:
             self.file_path = file_path
         if str(self.file_path).endswith("/"):
             self.file_path = str(self.file_path)[:-1]
+        kwargs = self.kwargs or {}
+        PathClass = copy(BrowsrPath)
+        PathClass.__path_kwargs__ = kwargs
         return (
-            upath.UPath(self.file_path).resolve()
+            PathClass(self.file_path).resolve()
             if self.file_path
             else pathlib.Path.cwd().resolve()
         )
