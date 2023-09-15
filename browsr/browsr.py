@@ -19,7 +19,7 @@ from rich.markdown import Markdown
 from rich.syntax import Syntax
 from rich.traceback import Traceback
 from rich_pixels import Pixels
-from textual import on
+from textual import on, work
 from textual.binding import Binding, BindingType
 from textual.containers import Container, Horizontal
 from textual.events import Mount
@@ -346,6 +346,7 @@ class Browsr(BrowsrTextualApp):
         handled_download_path = handle_duplicate_filenames(file_path=download_path)
         return handled_download_path
 
+    @work(thread=True)
     def download_selected_file(self) -> None:
         """
         Download the selected file.
