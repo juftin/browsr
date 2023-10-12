@@ -6,6 +6,7 @@ This app was inspired by the CodeBrowser example from textual
 """
 
 import json
+import os
 import pathlib
 import shutil
 from os import getenv
@@ -190,7 +191,7 @@ class Browsr(BrowsrTextualApp):
         Handle a File Size
         """
         file_size_mb = file_info.size / 1000 / 1000
-        too_large = file_size_mb >= self.config_object.max_file_size  # type: ignore[union-attr]
+        too_large = file_size_mb >= self.config_object.max_file_size
         exception = (
             True
             if is_local_path(file_info.file) and ".csv" in file_info.file.suffixes
@@ -400,7 +401,9 @@ class Browsr(BrowsrTextualApp):
 
 
 app = Browsr(
-    config_object=TextualAppContext(file_path=getenv("BROWSR_PATH"), debug=True)
+    config_object=TextualAppContext(
+        file_path=getenv("BROWSR_PATH", os.getcwd()), debug=True
+    )
 )
 
 if __name__ == "__main__":

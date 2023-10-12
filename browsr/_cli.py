@@ -2,6 +2,7 @@
 browsr command line interface
 """
 
+import os
 from typing import Optional, Tuple
 
 import click
@@ -186,8 +187,12 @@ def browsr(
                     message=f"Invalid Key/Value pair: `{kwarg}` - must be in the format Key=Value",
                     param_hint="kwargs",
                 ) from ve
+    file_path = path or os.getcwd()
     config = TextualAppContext(
-        file_path=path, debug=debug, max_file_size=max_file_size, kwargs=extra_kwargs
+        file_path=file_path,
+        debug=debug,
+        max_file_size=max_file_size,
+        kwargs=extra_kwargs,
     )
     app = Browsr(config_object=config)
     app.run()
