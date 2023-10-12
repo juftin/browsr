@@ -72,7 +72,7 @@ class TextualAppContext:
                 file_path = file_path[:-4]
             file_path = handle_github_url(url=str(file_path))
             self.file_path = file_path
-        if str(self.file_path).endswith("/"):
+        if str(self.file_path).endswith("/") and len(str(self.file_path)) > 1:
             self.file_path = str(self.file_path)[:-1]
         kwargs = self.kwargs or {}
         PathClass = copy(BrowsrPath)

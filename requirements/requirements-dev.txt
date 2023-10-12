@@ -1554,9 +1554,9 @@ six==1.16.0 \
     #   isodate
     #   python-dateutil
     #   vcrpy
-textual==0.36.0 \
-    --hash=sha256:7d04880bee0274f8cdf05cbe22d9effad3efa458676af2c431997a6d4576005c \
-    --hash=sha256:fbfc799a55938cfade6cfbf7c5ae3c3e5fc87ff9deaaed788a6dcefe72245451
+textual==0.39.0 \
+    --hash=sha256:4103c0cb4e87bf9f87f4960213d3c1c33fbe7301a1a1c2df0903ecb62212983c \
+    --hash=sha256:bf98d7eb5a8a39ed87488640e2a18b2825dd340d36eab6193c9a47af98a3b818
     # via
     #   -r requirements.in
     #   textual-dev

@@ -65,6 +65,7 @@ class Browsr(BrowsrTextualApp):
         Binding(key="t", action="theme", description="Toggle Theme"),
         Binding(key="n", action="linenos", description="Toggle Line Numbers"),
         Binding(key="d", action="toggle_dark", description="Toggle Dark Mode"),
+        Binding(key=".", action="parent_dir", description="Parent Directory"),
     ]
 
     show_tree = var(True)
@@ -387,6 +388,15 @@ class Browsr(BrowsrTextualApp):
             self.hidden_table_view = self.table_view.display
             self.table_view.display = False
             self.confirmation_window.display = True
+
+    def action_parent_dir(self) -> None:
+        """
+        Go to the parent directory
+        """
+        new_path = self.config_object.path.parent.resolve()
+        if new_path != self.config_object.path:
+            self.config_object.file_path = str(new_path)
+            self.directory_tree.path = new_path
 
 
 app = Browsr(
