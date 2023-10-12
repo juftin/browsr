@@ -21,7 +21,7 @@ dependencies = [
   "rich-click~=1.5.2",
   "rich-pixels~=2.1.1",
   "textual==0.39.0",
-  "textual-universal-directorytree~=1.0.1",
+  "textual-universal-directorytree~=1.0.2",
   "Pillow>=9.1.0",
   "PyMuPDF~=1.22.3"
 ]
@@ -36,13 +36,13 @@ requires-python = ">=3.8,<4.0"
 [project.optional-dependencies]
 all = [
   "pyarrow~=10.0.0",
-  "textual-universal-directorytree[remote]~=1.0.1"
+  "textual-universal-directorytree[remote]~=1.0.2"
 ]
 parquet = [
   "pyarrow~=10.0.0"
 ]
 remote = [
-  "textual-universal-directorytree[remote]~=1.0.1"
+  "textual-universal-directorytree[remote]~=1.0.2"
 ]
 
 [project.scripts]

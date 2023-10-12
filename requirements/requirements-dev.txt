@@ -1565,9 +1565,9 @@ textual-dev==1.0.1 \
     --hash=sha256:419fc426c120f04f89ab0cb1aa88f7873dd7cdb9c21618e709175c8eaff6b566 \
     --hash=sha256:9f4c40655cbb56af7ee92805ef14fa24ae98ff8b0ae778c59de7222f1caa7281
     # via -r requirements.in
-textual-universal-directorytree[remote]==1.0.1 \
-    --hash=sha256:4101fb541a69152721e4099a8c04cfe0a2f72c94e8d82fbc2608ed3c61392b2b \
-    --hash=sha256:fc5ac0d36a49a486c2a83ed054e06da84e5cc27bfa89eff71e08665d704f691e
+textual-universal-directorytree[remote]==1.0.2 \
+    --hash=sha256:74f0d6687076f9adb9ebcbe50a5cda4a143b971e2729f62b9270f9ae7451458e \
+    --hash=sha256:eb3a4fcedda94e5fb42c0e9af6352ebc6ceb945d1164fb05ec090c59623a71fc
     # via -r requirements.in
 tomli==2.0.1 \
     --hash=sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc \

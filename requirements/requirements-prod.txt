@@ -994,9 +994,9 @@ textual==0.39.0 \
     # via
     #   -r requirements.in
     #   textual-universal-directorytree
-textual-universal-directorytree[remote]==1.0.1 \
-    --hash=sha256:4101fb541a69152721e4099a8c04cfe0a2f72c94e8d82fbc2608ed3c61392b2b \
-    --hash=sha256:fc5ac0d36a49a486c2a83ed054e06da84e5cc27bfa89eff71e08665d704f691e
+textual-universal-directorytree[remote]==1.0.2 \
+    --hash=sha256:74f0d6687076f9adb9ebcbe50a5cda4a143b971e2729f62b9270f9ae7451458e \
+    --hash=sha256:eb3a4fcedda94e5fb42c0e9af6352ebc6ceb945d1164fb05ec090c59623a71fc
     # via -r requirements.in
 typing-extensions==4.7.1 \
     --hash=sha256:440d5dd3af93b060174bf433bccd69b0babc3b15b1a8dca43789fd7f61514b36 \
