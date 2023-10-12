@@ -35,13 +35,21 @@ def screenshot_dir(repo_dir: pathlib.Path) -> pathlib.Path:
 
 
 @pytest.fixture
-def github_release_path() -> GitHubPath:
+def github_release_path_str() -> str:
     """
-    Return the path to the Github Release
+    Return the path to the Github Release (str)
     """
     release = "v1.6.0"
     uri = f"github://juftin:browsr@{release}"
-    return GitHubPath(uri)
+    return uri
+
+
+@pytest.fixture
+def github_release_path(github_release_path_str: str) -> GitHubPath:
+    """
+    Return the path to the Github Release
+    """
+    return GitHubPath(github_release_path_str)
 
 
 @pytest.fixture(scope="module")

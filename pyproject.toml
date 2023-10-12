@@ -95,7 +95,8 @@ dependencies = [
   "textual-dev~=1.0.1",
   "pytest-cov~=4.0.0",
   "pytest-mock~=3.10.0",
-  "pytest-vcr~=1.0.2"
+  "pytest-vcr~=1.0.2",
+  "pytest-asyncio~=0.21.1"
 ]
 path = ".venv"
 post-install-commands = [
