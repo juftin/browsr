@@ -679,7 +679,7 @@ multidict==6.0.4 \
     # via
     #   aiohttp
     #   yarl
-numpy==1.26.0 \
+numpy==1.26.0 ; python_version > "3.8" \
     --hash=sha256:020cdbee66ed46b671429c7265cf00d8ac91c046901c55684954c3958525dab2 \
     --hash=sha256:0621f7daf973d34d18b4e4bafb210bbaf1ef5e0100b5fa750bd9cde84c7ac292 \
     --hash=sha256:0792824ce2f7ea0c82ed2e4fecc29bb86bee0567a080dacaf2e0a01fe7654369 \
@@ -713,6 +713,7 @@ numpy==1.26.0 \
     --hash=sha256:f8db2f125746e44dce707dd44d4f4efeea8d7e2b43aace3f8d1f235cfa2733dd \
     --hash=sha256:f93fc78fe8bf15afe2b8d6b6499f1c73953169fad1e9a8dd086cdff3190e7fdf
     # via
+    #   browsr (pyproject.toml)
     #   pandas
     #   pyarrow
 oauthlib==3.2.2 \
