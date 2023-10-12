@@ -5,9 +5,10 @@ Extension Classes
 from __future__ import annotations
 
 import math
+import os
 import pathlib
 from copy import copy
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from os import PathLike
 from textwrap import dedent
 from typing import Any, ClassVar, Dict, List, Optional, Union
@@ -52,7 +53,7 @@ class TextualAppContext:
     App Context Object
     """
 
-    file_path: Optional[str] = None
+    file_path: str = field(default_factory=os.getcwd)
     config: Optional[Dict[str, Any]] = None
     debug: bool = False
     max_file_size: int = 20
@@ -72,7 +73,7 @@ class TextualAppContext:
                 file_path = file_path[:-4]
             file_path = handle_github_url(url=str(file_path))
             self.file_path = file_path
-        if str(self.file_path).endswith("/"):
+        if str(self.file_path).endswith("/") and len(str(self.file_path)) > 1:
             self.file_path = str(self.file_path)[:-1]
         kwargs = self.kwargs or {}
         PathClass = copy(BrowsrPath)
@@ -111,7 +112,7 @@ class BrowsrTextualApp(App[str]):
             like a dictionary to pass into an application
         """
         super().__init__()
-        self.config_object = config_object
+        self.config_object = config_object or TextualAppContext()
         traceback.install(show_locals=True)
 
     @staticmethod

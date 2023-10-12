@@ -20,7 +20,7 @@ dependencies = [
   "rich~=13.5.2",
   "rich-click~=1.5.2",
   "rich-pixels~=2.1.1",
-  "textual==0.36.0",
+  "textual==0.39.0",
   "textual-universal-directorytree~=1.0.1",
   "Pillow>=9.1.0",
   "PyMuPDF~=1.22.3"
@@ -75,7 +75,7 @@ dependencies = [
   "mkdocs-literate-nav~=0.6.0",
   "mkdocs-section-index~=0.3.5",
   "black~=23.3.0",
-  "ruff~=0.0.261",
+  "ruff~=0.0.292",
   "mypy~=1.2.0",
   "pandas-stubs~=2.0.0.230412",
   "pip-tools~=6.13.0",
