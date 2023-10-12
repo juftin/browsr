@@ -26,9 +26,7 @@ class Screenshotter:
         )
         self.app = Browsr(config_object=self.context)
 
-    def take_screenshot(
-        self, press: Optional[List[str]] = None
-    ) -> Tuple[str, pathlib.Path]:
+    def take_screenshot(self, press: Optional[List[str]] = None) -> Tuple[str, pathlib.Path]:
         """
         Take a Screenshot
         """

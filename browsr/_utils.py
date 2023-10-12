@@ -8,7 +8,7 @@ import pathlib
 from dataclasses import dataclass
 from typing import Any, BinaryIO, Dict, Optional, Union
 
-import fitz  # type: ignore[import]
+import fitz
 import rich_pixels
 from fitz import Pixmap
 from PIL import Image
@@ -102,7 +102,7 @@ def get_file_info(file_path: pathlib.Path) -> FileInfo:
             is_cloudpath=is_cloudpath,
         )
     else:
-        last_modified = datetime.datetime.fromtimestamp(stat.st_mtime)
+        last_modified = datetime.datetime.fromtimestamp(stat.st_mtime, tz=datetime.timezone.utc)
         try:
             owner = file_path.owner()
             group = file_path.group()
@@ -150,10 +150,11 @@ def handle_github_url(url: str) -> str:
     try:
         import requests
     except ImportError as e:
-        raise ImportError(
-            "The requests library is required to browse GitHub files. "
-            "Install browsr with the `remote` extra to install requests."
-        ) from e
+        msg = (
+            "The requests library is required to browse GitHub files. Install browsr with "
+            "the `remote` extra to install requests."
+        )
+        raise ImportError(msg) from e
 
     gitub_prefix = "github://"
     if gitub_prefix in url and "@" not in url:
@@ -165,12 +166,14 @@ def handle_github_url(url: str) -> str:
     elif "github.com" in url.lower():
         _, org, repo, *args = url.split("/")
     else:
-        raise ValueError(f"Invalid GitHub URL: {url}")
+        msg = f"Invalid GitHub URL: {url}"
+        raise ValueError(msg)
     token = os.getenv("GITHUB_TOKEN")
     auth = {"auth": ("Bearer", token)} if token is not None else {}
     resp = requests.get(
         f"https://api.github.com/repos/{org}/{repo}",
         headers={"Accept": "application/vnd.github.v3+json"},
+        timeout=30,
         **auth,  # type: ignore[arg-type]
     )
     resp.raise_for_status()
@@ -204,8 +207,7 @@ def render_file_to_string(file_info: FileInfo) -> str:
         return file_info.file.read_text(encoding="utf-8")
     except UnicodeDecodeError as e:
         if file_info.file.suffix.lower() in [".tar", ".gz", ".zip", ".tgz"]:
-            raise ArchiveFileError(
-                f"Cannot render archive file {file_info.file}."
-            ) from e
+            msg = f"Cannot render archive file {file_info.file}."
+            raise ArchiveFileError(msg) from e
         else:
             raise e

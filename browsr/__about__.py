@@ -1,5 +1,5 @@
 """
-`browsr` version file.
+browsr info file
 """
 
 __author__ = "Justin Flannery"

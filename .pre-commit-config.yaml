@@ -9,19 +9,20 @@ repos:
             exclude: '\.svg$'
           - id: end-of-file-fixer
           - id: check-yaml
+            exclude: mkdocs.yaml
           - id: check-ast
           - id: check-docstring-first
           - id: check-merge-conflict
           - id: mixed-line-ending
 
     - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-      rev: v2.8.0
+      rev: v2.10.0
       hooks:
           - id: pretty-format-toml
             args: [--autofix]
 
     - repo: https://github.com/pre-commit/mirrors-prettier
-      rev: v3.0.0-alpha.9-for-vscode
+      rev: v3.0.0
       hooks:
           - id: prettier
             args: [--print-width=88, --tab-width=4]
@@ -37,13 +38,13 @@ repos:
           - id: format
             name: format
             description: Runs Code Auto-Formatters
-            entry: hatch run format
+            entry: hatch run lint:fmt
             language: system
             pass_filenames: false
           - id: lint
             name: lint
             description: Runs Code Linters
-            entry: hatch run format
+            entry: hatch run lint:all
             language: system
             pass_filenames: false
             require_serial: false

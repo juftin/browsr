@@ -11,7 +11,7 @@ from copy import copy
 from dataclasses import dataclass, field
 from os import PathLike
 from textwrap import dedent
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar
 
 import numpy as np
 import upath
@@ -38,9 +38,9 @@ class BrowsrPath(UPath):
     A UPath object that can be extended with persisted kwargs
     """
 
-    __path_kwargs__: ClassVar[Dict[str, Any]] = {}
+    __path_kwargs__: ClassVar[dict[str, Any]] = {}
 
-    def __new__(cls, *args: str | PathLike[Any], **kwargs: Any) -> "BrowsrPath":
+    def __new__(cls, *args: str | PathLike[Any], **kwargs: Any) -> BrowsrPath:
         """
         Create a new BrowsrPath object
         """
@@ -54,10 +54,10 @@ class TextualAppContext:
     """
 
     file_path: str = field(default_factory=os.getcwd)
-    config: Optional[Dict[str, Any]] = None
+    config: dict[str, Any] | None = None
     debug: bool = False
     max_file_size: int = 20
-    kwargs: Optional[Dict[str, Any]] = None
+    kwargs: dict[str, Any] | None = None
 
     @property
     def path(self) -> pathlib.Path:
@@ -76,12 +76,10 @@ class TextualAppContext:
         if str(self.file_path).endswith("/") and len(str(self.file_path)) > 1:
             self.file_path = str(self.file_path)[:-1]
         kwargs = self.kwargs or {}
-        PathClass = copy(BrowsrPath)
-        PathClass.__path_kwargs__ = kwargs
+        path_class = copy(BrowsrPath)
+        path_class.__path_kwargs__ = kwargs
         return (
-            PathClass(self.file_path).resolve()
-            if self.file_path
-            else pathlib.Path.cwd().resolve()
+            path_class(self.file_path).resolve() if self.file_path else pathlib.Path.cwd().resolve()
         )
 
 
@@ -94,13 +92,13 @@ class BrowsrTextualApp(App[str]):
     theme_index = var(0)
     linenos = var(False)
     rich_themes = favorite_themes
-    selected_file_path: Union[upath.UPath, pathlib.Path, None, var[None]] = var(None)
+    selected_file_path: upath.UPath | (pathlib.Path | (None | var[None])) = var(None)
     force_show_tree = var(False)
     hidden_table_view = var(False)
 
     def __init__(
         self,
-        config_object: Optional[TextualAppContext] = None,
+        config_object: TextualAppContext | None = None,
     ):
         """
         Like the textual.app.App class, but with an extra config_object property
@@ -120,7 +118,7 @@ class BrowsrTextualApp(App[str]):
         pandas_dataframe: DataFrame,
         table: DataTable[str],
         show_index: bool = True,
-        index_name: Optional[str] = None,
+        index_name: str | None = None,
     ) -> DataTable[str]:
         """
         Convert a pandas.DataFrame obj into a rich.Table obj.
@@ -168,9 +166,9 @@ class CurrentFileInfoBar(Widget):
     Thanks, Kupo. https://github.com/darrenburns/kupo
     """
 
-    file_info: Union[FileInfo, var[None]] = reactive(None)  # type: ignore[assignment]
+    file_info: FileInfo | var[None] = reactive(None)
 
-    def watch_file_info(self, new_file: Union[FileInfo, None]) -> None:
+    def watch_file_info(self, new_file: FileInfo | None) -> None:
         """
         Watch the file_info property for changes
         """
@@ -204,10 +202,7 @@ class CurrentFileInfoBar(Widget):
             modify_time = self.file_info.last_modified.strftime("%b %d, %Y %I:%M %p")
             status_string += "  📅  " + modify_time
         status_string += (
-            "  💾  "
-            + self.file_info.file.name
-            + "  📂  "
-            + self.file_info.file.parent.name
+            "  💾  " + self.file_info.file.name + "  📂  " + self.file_info.file.parent.name
         )
         if self.file_info.owner not in ["", None]:
             status_string += "  👤  " + self.file_info.owner
@@ -243,10 +238,10 @@ class ConfirmationPopUp(Container):
         """
         Handle Button Presses
         """
-        self.app.confirmation_window.display = False  # type: ignore[attr-defined]
+        self.app.confirmation_window.display = False
         if message.button.variant == "success":
-            self.app.download_selected_file()  # type: ignore[attr-defined]
-        self.app.table_view.display = self.app.hidden_table_view  # type: ignore[attr-defined]
+            self.app.download_selected_file()
+        self.app.table_view.display = self.app.hidden_table_view
 
 
 vim_scroll_bindings = [
@@ -269,7 +264,7 @@ class VimScroll(VerticalScroll):
     A VerticalScroll with Vim Keybindings
     """
 
-    BINDINGS: ClassVar[List[BindingType]] = [
+    BINDINGS: ClassVar[list[BindingType]] = [
         *VerticalScroll.BINDINGS,
         *vim_scroll_bindings,
     ]
@@ -280,7 +275,7 @@ class VimDataTable(DataTable[str]):
     A DataTable with Vim Keybindings
     """
 
-    BINDINGS: ClassVar[List[BindingType]] = [
+    BINDINGS: ClassVar[list[BindingType]] = [
         *DataTable.BINDINGS,
         *vim_cursor_bindings,
     ]

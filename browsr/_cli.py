@@ -8,10 +8,10 @@ from typing import Optional, Tuple
 import click
 import rich_click
 
+from browsr.__about__ import __application__, __version__
 from browsr._base import (
     TextualAppContext,
 )
-from browsr._version import __application__, __version__
 from browsr.browsr import Browsr
 
 rich_click.rich_click.MAX_WIDTH = 100
@@ -44,9 +44,7 @@ rich_click.rich_click.STYLE_COMMANDS_TABLE_BOX = "SIMPLE_HEAVY"
     help="Enable extra debugging output",
     type=click.BOOL,
 )
-@click.option(
-    "-k", "--kwargs", multiple=True, help="Key=Value pairs to pass to the filesystem"
-)
+@click.option("-k", "--kwargs", multiple=True, help="Key=Value pairs to pass to the filesystem")
 def browsr(
     path: Optional[str],
     debug: bool,

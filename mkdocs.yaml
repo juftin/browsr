@@ -1,4 +1,4 @@
-# schema: https://squidfunk.github.io/mkdocs-material/schema.json
+# $schema: https://squidfunk.github.io/mkdocs-material/schema.json
 
 site_name: browsr
 nav:
@@ -38,7 +38,9 @@ extra:
 markdown_extensions:
     - toc:
           permalink: "#"
-    - pymdownx.snippets
+    - pymdownx.snippets:
+          base_path:
+              - !relative $config_dir
     - pymdownx.magiclink
     - attr_list
     - md_in_html
@@ -54,8 +56,12 @@ markdown_extensions:
     - admonition
     - pymdownx.details
     - mkdocs-click
+    - pymdownx.emoji
+    - pymdownx.tabbed:
+          alternate_style: true
 plugins:
     - search
+    - markdown-exec
     - gen-files:
           scripts:
               - docs/gen_ref_pages.py
@@ -71,4 +77,3 @@ plugins:
                       - https://pandas.pydata.org/docs/objects.inv
                   options:
                       docstring_style: numpy
-                      filters: []

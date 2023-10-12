@@ -15,7 +15,7 @@ from typing import TYPE_CHECKING, Any, ClassVar, Iterable, List, Optional, Union
 
 import pandas as pd
 import upath
-from art import text2art  # type: ignore[import]
+from art import text2art
 from rich.markdown import Markdown
 from rich.syntax import Syntax
 from rich.traceback import Traceback
@@ -29,6 +29,7 @@ from textual.widget import Widget
 from textual.widgets import DataTable, Footer, Header, Static
 from textual_universal_directorytree import is_local_path, is_remote_path
 
+from browsr.__about__ import __application__
 from browsr._base import (
     BrowsrTextualApp,
     ConfirmationPopUp,
@@ -47,7 +48,6 @@ from browsr._utils import (
     open_image,
     render_file_to_string,
 )
-from browsr._version import __application__
 from browsr.universal_directory_tree import (
     BrowsrDirectoryTree,
 )
@@ -87,7 +87,6 @@ class Browsr(BrowsrTextualApp):
         """
         Compose our UI.
         """
-        assert isinstance(self.config_object, TextualAppContext)
         file_path = self.config_object.path
         if is_remote_path(file_path):
             self.bind("x", "download_file", description="Download File", show=True)
@@ -108,9 +107,7 @@ class Browsr(BrowsrTextualApp):
         )
         self.table_view.display = False
         self.confirmation = ConfirmationPopUp()
-        self.confirmation_window = Container(
-            self.confirmation, id="confirmation-container"
-        )
+        self.confirmation_window = Container(self.confirmation, id="confirmation-container")
         self.confirmation_window.display = False
         self.container = Container(
             self.directory_tree,
@@ -125,9 +122,7 @@ class Browsr(BrowsrTextualApp):
             id="file-info-bar",
         )
         if self.selected_file_path is not None:
-            self.file_information.file_info = get_file_info(
-                file_path=self.selected_file_path
-            )
+            self.file_information.file_info = get_file_info(file_path=self.selected_file_path)
         yield self.info_bar
         self.footer = Footer()
         yield self.footer
@@ -159,8 +154,8 @@ class Browsr(BrowsrTextualApp):
             df = pd.read_csv(document, nrows=1000)
             return self.df_to_table(pandas_dataframe=df, table=self.table_view)
         elif document.suffix == ".parquet":
-            df = pd.read_parquet(document)[:1000]
-            return self.df_to_table(pandas_dataframe=df, table=self.table_view)
+            df = pd.read_parquet(document)
+            return self.df_to_table(pandas_dataframe=df.head(1000), table=self.table_view)
         elif document.suffix.lower() in image_file_extensions:
             screen_width = self.app.size.width / 4
             content = open_image(document=document, screen_width=screen_width)
@@ -193,12 +188,11 @@ class Browsr(BrowsrTextualApp):
         file_size_mb = file_info.size / 1000 / 1000
         too_large = file_size_mb >= self.config_object.max_file_size
         exception = (
-            True
-            if is_local_path(file_info.file) and ".csv" in file_info.file.suffixes
-            else False
+            True if is_local_path(file_info.file) and ".csv" in file_info.file.suffixes else False
         )
         if too_large is True and exception is not True:
-            raise FileSizeError("File too large")
+            msg = "File too large"
+            raise FileSizeError(msg)
 
     def _render_file(
         self, file_path: pathlib.Path, code_view: Static, font: str
@@ -222,9 +216,7 @@ class Browsr(BrowsrTextualApp):
             self.table_view.display = False
             self.code_view.display = True
             code_view.update(
-                text2art("PERMISSION", font=font)
-                + "\n\n"
-                + text2art("ERROR", font=font)
+                text2art("PERMISSION", font=font) + "\n\n" + text2art("ERROR", font=font)
             )
             self.sub_title = f"ERROR [{self.rich_themes[self.theme_index]}]"
         except UnicodeError:
@@ -237,16 +229,12 @@ class Browsr(BrowsrTextualApp):
         except ArchiveFileError:
             self.table_view.display = False
             self.code_view.display = True
-            code_view.update(
-                text2art("ARCHIVE", font=font) + "\n\n" + text2art("FILE", font=font)
-            )
+            code_view.update(text2art("ARCHIVE", font=font) + "\n\n" + text2art("FILE", font=font))
             self.sub_title = f"ERROR [{self.rich_themes[self.theme_index]}]"
         except Exception:
             self.table_view.display = False
             self.code_view.display = True
-            code_view.update(
-                Traceback(theme=self.rich_themes[self.theme_index], width=None)
-            )
+            code_view.update(Traceback(theme=self.rich_themes[self.theme_index], width=None))
             self.sub_title = "ERROR" + f" [{self.rich_themes[self.theme_index]}]"
         return None
 
@@ -296,12 +284,12 @@ class Browsr(BrowsrTextualApp):
                 self.table_view.focus()
         else:
             self.show_tree = True
-            self.render_code_page(
-                file_path=pathlib.Path.cwd(), content=__application__.upper()
-            )
+            self.render_code_page(file_path=pathlib.Path.cwd(), content=__application__.upper())
 
     @on(BrowsrDirectoryTree.FileSelected)
-    def handle_file_selected(self, message: BrowsrDirectoryTree.FileSelected) -> None:
+    def handle_file_selected(
+        self, message: BrowsrDirectoryTree.FileSelected  # type: ignore[name-defined]
+    ) -> None:
         """
         Called when the user click a file in the directory tree.
         """
@@ -343,7 +331,8 @@ class Browsr(BrowsrTextualApp):
         """
         download_dir = pathlib.Path.home() / "Downloads"
         if not download_dir.exists():
-            raise FileNotFoundError(f"Download directory {download_dir} not found")
+            msg = f"Download directory {download_dir} not found"
+            raise FileNotFoundError(msg)
         download_path = download_dir / self.selected_file_path.name  # type: ignore[union-attr]
         handled_download_path = handle_duplicate_filenames(file_path=download_path)
         return handled_download_path
@@ -401,9 +390,7 @@ class Browsr(BrowsrTextualApp):
 
 
 app = Browsr(
-    config_object=TextualAppContext(
-        file_path=getenv("BROWSR_PATH", os.getcwd()), debug=True
-    )
+    config_object=TextualAppContext(file_path=getenv("BROWSR_PATH", os.getcwd()), debug=True)
 )
 
 if __name__ == "__main__":
