@@ -10,13 +10,17 @@ classifiers = [
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11"
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12"
 ]
 # Poetry Dependencies
 dependencies = [
   "art~=5.7",
   "click~=8.1.3",
-  "pandas~=1.5.2",
+  "pandas~=2.0.3; python_version < '3.9'",
+  "pandas~=2.1.2; python_version > '3.8'",
+  "numpy~=1.24.4; python_version < '3.9'",
+  "numpy~=1.26.1; python_version > '3.8'",
   "rich~=13.5.2",
   "rich-click~=1.5.2",
   "rich-pixels~=2.1.1",
