@@ -124,7 +124,7 @@ semantic-release = [
 test = "pytest --cov=browsr --cov-report={env:COVERAGE_REPORT:term-missing} --cov-config=pyproject.toml {args:tests/}"
 
 [[tool.hatch.envs.test.matrix]]
-python = ["3.8", "3.9", "3.10", "3.11"]
+python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
 [tool.hatch.envs.test.scripts]
 matrix = "test"
