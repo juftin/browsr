@@ -21,13 +21,13 @@ dependencies = [
   "pandas~=2.1.2; python_version > '3.8'",
   "numpy~=1.24.4; python_version < '3.9'",
   "numpy~=1.26.1; python_version > '3.8'",
-  "rich~=13.5.2",
-  "rich-click~=1.5.2",
+  "rich~=13.7.0",
+  "rich-click~=1.7.1",
   "rich-pixels~=2.1.1",
-  "textual==0.39.0",
+  "textual==0.41.0",
   "textual-universal-directorytree~=1.0.2",
   "Pillow>=9.1.0",
-  "PyMuPDF~=1.22.3"
+  "PyMuPDF~=1.23.6"
 ]
 description = "TUI File Browser App"
 dynamic = ["version"]
@@ -39,11 +39,11 @@ requires-python = ">=3.8,<4.0"
 
 [project.optional-dependencies]
 all = [
-  "pyarrow~=10.0.0",
+  "pyarrow~=14.0.1",
   "textual-universal-directorytree[remote]~=1.0.2"
 ]
 parquet = [
-  "pyarrow~=10.0.0"
+  "pyarrow~=14.0.1"
 ]
 remote = [
   "textual-universal-directorytree[remote]~=1.0.2"
