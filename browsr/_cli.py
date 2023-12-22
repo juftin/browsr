@@ -57,9 +57,9 @@ def browsr(
     browsr 🗂️  a pleasant file explorer in your terminal
 
     Navigate through directories and peek at files whether they're hosted locally,
-    over SSH, in GitHub, AWS S3, Google Cloud Storage, or Azure Blob Storage. View code files
-    with syntax highlighting, format JSON files, render images, convert data files to navigable
-    datatables, and more.
+    over SSH, in GitHub, AWS S3, Google Cloud Storage, or Azure Blob Storage.
+    View code files with syntax highlighting, format JSON files, render images,
+    convert data files to navigable datatables, and more.
 
     \f
 
@@ -184,7 +184,10 @@ def browsr(
                 extra_kwargs[key] = value
             except ValueError as ve:
                 raise click.BadParameter(
-                    message=f"Invalid Key/Value pair: `{kwarg}` - must be in the format Key=Value",
+                    message=(
+                        f"Invalid Key/Value pair: `{kwarg}` "
+                        "- must be in the format Key=Value"
+                    ),
                     param_hint="kwargs",
                 ) from ve
     file_path = path or os.getcwd()

@@ -14,6 +14,7 @@ theme:
         - navigation.tracking
         - content.code.annotate
         - content.code.copy
+        - navigation.indexes
     palette:
         - media: "(prefers-color-scheme: light)"
           scheme: default
@@ -35,6 +36,8 @@ remote_branch: gh-pages
 copyright: Copyright © 2023 Justin Flannery
 extra:
     generator: false
+exclude_docs: |
+    gen_pages.py
 markdown_extensions:
     - toc:
           permalink: "#"
@@ -48,14 +51,18 @@ markdown_extensions:
     - pymdownx.superfences
     - markdown.extensions.attr_list
     - pymdownx.keys
-    - pymdownx.tasklist:
-          custom_checkbox: true
+    - pymdownx.tasklist
     - pymdownx.tilde
-    - admonition
+    - callouts
     - pymdownx.details
     - mkdocs-click
+    - pymdownx.emoji
+    - pymdownx.tabbed:
+          alternate_style: true
 plugins:
     - search
+    - markdown-exec
+    - autorefs
     - gen-files:
           scripts:
               - docs/gen_ref_pages.py
