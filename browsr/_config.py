@@ -21,10 +21,8 @@ favorite_themes: List[str] = [
 rich_default_theme = getenv("RICH_THEME", None)
 
 if rich_default_theme in favorite_themes:
-    assert isinstance(rich_default_theme, str)
     favorite_themes.remove(rich_default_theme)
 if rich_default_theme is not None:
-    assert isinstance(rich_default_theme, str)
     favorite_themes.insert(0, rich_default_theme)
 
 image_file_extensions = [

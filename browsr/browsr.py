@@ -15,7 +15,7 @@ from typing import TYPE_CHECKING, Any, ClassVar, Iterable, List, Optional, Union
 
 import pandas as pd
 import upath
-from art import text2art  # type: ignore[import]
+from art import text2art
 from rich.markdown import Markdown
 from rich.syntax import Syntax
 from rich.traceback import Traceback
@@ -87,7 +87,6 @@ class Browsr(BrowsrTextualApp):
         """
         Compose our UI.
         """
-        assert isinstance(self.config_object, TextualAppContext)
         file_path = self.config_object.path
         if is_remote_path(file_path):
             self.bind("x", "download_file", description="Download File", show=True)
@@ -301,7 +300,10 @@ class Browsr(BrowsrTextualApp):
             )
 
     @on(BrowsrDirectoryTree.FileSelected)
-    def handle_file_selected(self, message: BrowsrDirectoryTree.FileSelected) -> None:
+    def handle_file_selected(
+        self,
+        message: BrowsrDirectoryTree.FileSelected,  # type: ignore[name-defined]
+    ) -> None:
         """
         Called when the user click a file in the directory tree.
         """
@@ -343,7 +345,8 @@ class Browsr(BrowsrTextualApp):
         """
         download_dir = pathlib.Path.home() / "Downloads"
         if not download_dir.exists():
-            raise FileNotFoundError(f"Download directory {download_dir} not found")
+            msg = f"Download directory {download_dir} not found"
+            raise FileNotFoundError(msg)
         download_path = download_dir / self.selected_file_path.name  # type: ignore[union-attr]
         handled_download_path = handle_duplicate_filenames(file_path=download_path)
         return handled_download_path

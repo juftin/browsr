@@ -28,7 +28,7 @@ jobs:
                   hatch env create
                   hatch --version
             - name: Release
-              run: hatch run semantic-release
+              run: hatch run gen:release
               env:
                   GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
                   GIT_AUTHOR_NAME: github-actions[bot]
@@ -63,4 +63,4 @@ jobs:
                   git config user.name "github-actions[bot]"
                   git config user.email "github-actions[bot]@users.noreply.github.com"
             - name: Deploy Documentation Changes
-              run: hatch run docs-deploy --force
+              run: hatch run docs:gh-deploy --force

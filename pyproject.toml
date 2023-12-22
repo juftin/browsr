@@ -3,16 +3,20 @@ build-backend = "hatchling.build"
 requires = ["hatchling"]
 
 [project]
-authors = [{name = "Justin Flannery", email = "justin.flannery@juftin.com"}]
+authors = [
+  {name = "Justin Flannery", email = "juftin@juftin.com"}
+]
 classifiers = [
   "Development Status :: 4 - Beta",
+  "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11"
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy"
 ]
-# Poetry Dependencies
 dependencies = [
   "art~=5.7",
   "click~=8.1.3",
@@ -53,78 +57,105 @@ Documentation = "https://github.com/juftin/browsr#readme"
 Issues = "https://github.com/juftin/browsr/issues"
 Source = "https://github.com/juftin/browsr"
 
+[tool.coverage.paths]
+browsr = ["browsr", "*/browsr/browsr"]
+tests = ["tests", "*/browsr/tests"]
+
 [tool.coverage.report]
-exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:"
+]
 
 [tool.coverage.run]
 branch = true
 omit = ["browsr/_version.py"]
 parallel = true
+source_pkgs = ["browsr", "tests"]
+
+[tool.hatch.env]
+requires = ["hatch-pip-compile", "hatch-mkdocs"]
+
+[tool.hatch.env.collectors.mkdocs.docs]
+path = "mkdocs.yaml"
+
+[tool.hatch.envs.all]
+pip-compile-constraint = ""
+template = "test"
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.8", "3.9", "3.10", "3.11"]
 
 [tool.hatch.envs.default]
-dependencies = [
-  "pytest~=7.3.1",
-  "pytest-cov~=4.0.0",
-  "pytest-mock~=3.10.0",
-  "pytest-vcr~=1.0.2",
-  "mkdocs~=1.4.2",
-  "mkdocs-material~=9.1.6",
-  "mkdocs-click~=0.8.0",
-  "mkdocstrings[python]~=0.21.2",
-  "mkdocs-gen-files~=0.4.0",
-  "mkdocs-literate-nav~=0.6.0",
-  "mkdocs-section-index~=0.3.5",
-  "black~=23.3.0",
-  "ruff~=0.0.292",
-  "mypy~=1.2.0",
-  "pandas-stubs~=2.0.0.230412",
-  "pip-tools~=6.13.0",
-  "textual-dev~=1.0.1",
-  "pytest-textual-snapshot"
-]
 features = ["all"]
-pre-install-commands = ["pip install -U --no-deps -r requirements/requirements-dev.txt"]
-python = "3.10"
+pip-compile-constraint = "default"
+post-install-commands = [
+  "- pre-commit install"
+]
+type = "pip-compile"
 
 [tool.hatch.envs.default.env-vars]
 GITHUB_TOKEN = "{env:GITHUB_TOKEN:placeholder}"
 
 [tool.hatch.envs.default.scripts]
-_pip_compile = "pip-compile --resolver=backtracking --generate-hashes requirements.in"
-all = ["format", "lint", "check", "test"]
-check = [
-  "mypy --install-types --strict-optional --non-interactive {args:browsr/ tests/}"
-]
-docs-build = ["mkdocs build --clean --strict"]
-docs-deploy = ["mkdocs gh-deploy {args:}"]
-docs-serve = ["mkdocs serve --dev-addr localhost:8000"]
-format = ["ruff --fix {args:.}", "black {args:.}"]
-lint = ["ruff {args:.}", "black --check {args:.}"]
-requirements = [
-  "hatch dep show requirements --project-only --all > requirements.in",
-  "_pip_compile --output-file requirements/requirements-prod.txt",
-  "hatch dep show requirements --all > requirements.in",
-  "_pip_compile --output-file requirements/requirements-dev.txt",
-  "rm requirements.in"
-]
-requirements-upgrade = [
-  "hatch dep show requirements --project-only --all > requirements.in",
-  "_pip_compile --output-file requirements/requirements-prod.txt --upgrade",
-  "hatch dep show requirements --all > requirements.in",
-  "_pip_compile --output-file requirements/requirements-dev.txt --upgrade",
-  "rm requirements.in"
-]
-semantic-release = [
+cov = "hatch run test:cov"
+test = "hatch run test:test"
+
+[tool.hatch.envs.docs]
+detached = false
+pip-compile-constraint = "default"
+template = "docs"
+type = "pip-compile"
+
+[tool.hatch.envs.gen]
+detached = true
+
+[tool.hatch.envs.gen.scripts]
+release = [
   "npm install --prefix .github/semantic_release/",
   "npx --prefix .github/semantic_release/ semantic-release {args:}"
 ]
-test = "pytest --cov=browsr --cov-report={env:COVERAGE_REPORT:term-missing} --cov-config=pyproject.toml {args:tests/}"
 
-[[tool.hatch.envs.test.matrix]]
-python = ["3.8", "3.9", "3.10", "3.11"]
+[tool.hatch.envs.lint]
+dependencies = [
+  "mypy>=1.6.1",
+  "ruff~=0.1.7"
+]
+detached = true
+type = "pip-compile"
+
+[tool.hatch.envs.lint.scripts]
+all = [
+  "style",
+  "typing"
+]
+fmt = [
+  "ruff format {args:.}",
+  "ruff --fix {args:.}",
+  "style"
+]
+precommit = [
+  "pre-commit run --all-files"
+]
+style = [
+  "ruff {args:.}",
+  "ruff format --check --diff {args:.}"
+]
+typing = "mypy --install-types --non-interactive {args:browsr tests}"
+
+[tool.hatch.envs.test]
+dependencies = [
+  "pytest",
+  "pytest-cov",
+  "pytest-vcr~=1.0.2",
+  "textual-dev~=1.0.1",
+  "pytest-textual-snapshot"
+]
 
 [tool.hatch.envs.test.scripts]
-matrix = "test"
+cov = "pytest --cov --cov-config=pyproject.toml {args:tests}"
+test = "pytest {args:tests}"
 
 [tool.hatch.version]
 path = "browsr/_version.py"
@@ -134,37 +165,71 @@ check_untyped_defs = true
 disallow_any_generics = true
 disallow_untyped_defs = true
 follow_imports = "silent"
+ignore_missing_imports = true
 no_implicit_reexport = true
+strict_optional = true
 warn_redundant_casts = true
 warn_unused_ignores = true
 
-[[tool.mypy.overrides]]
-ignore_errors = true
-module = [
-  "rich_click.*"
-]
-
 [tool.ruff]
 ignore = [
-  "E501",  # line too long, handled by black
-  "B005"  # Using `.strip()` with multi-character strings is misleading the reader
+  # Ignore checks for possible passwords
+  "S105",
+  "S106",
+  "S107",
+  # Ignore complexity
+  "C901",
+  "PLR0911",
+  "PLR0912",
+  "PLR0913",
+  "PLR0915",
+  # Boolean-typed positional argument in function definition
+  "FBT001",
+  # Boolean default positional argument in function definition
+  "FBT002",
+  # Allow boolean positional values in function calls, like `dict.get(... True)`
+  "FBT003",
+  # Exception must not use a string literal, assign to variable first
+  "EM101"
 ]
+line-length = 88
 select = [
-  "E",  # pycodestyle errors
-  "W",  # pycodestyle warnings
-  "F",  # pyflakes
-  "I",  # isort
-  "C",  # flake8-comprehensions
-  "Q",  # flake8-quotes
+  "A",  # flake8-builtins
+  "ARG",  # flake8-unused-arguments
   "B",  # flake8-bugbear
-  "PLE",  # pylint
-  "PLR",  # pylint
-  "PLW",  # pylint
-  "RUF",  # ruff
-  "C90"  # mccabe
+  "C",  # mccabe
+  "DTZ",  # flake8-datetimez
+  "E",  # pycodestyle (Error)
+  "EM",  # flake8-errmsg
+  "F",  # Pyflakes
+  "FBT",  # flake8-boolean-trap
+  "I",  # isort
+  "ICN",  # flake8-import-conventions
+  "N",  # pep8-naming
+  "PLC",  # Pylint (Convention message)
+  "PLE",  # Pylint (Error message)
+  "PLR",  # Pylint (Refactor message)
+  "PLW",  # Pylint (Warning message)
+  "Q",  # flake8-quotes
+  "RUF",  # Ruff-specific rules
+  "S",  # flake8-bandit
+  "T",  # flake8-debugger (T10) and flake8-print (T20)
+  "TID",  # flake8-tidy-imports
+  "UP",  # pyupgrade
+  "W",  # pycodestyle (Warning)
+  "YTT"  # flake8-2020
 ]
+target-version = "py38"
+
+[tool.ruff.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.isort]
+known-first-party = ["browsr"]
 
 [tool.ruff.per-file-ignores]
-"tests/**" = [
-  "PLR2004"  # Magic value used in comparison
-]
+# Tests can use magic values, assertions, and relative imports
+"tests/**/*" = ["PLR2004", "S101", "TID252"]
+
+[tool.ruff.pydocstyle]
+convention = "numpy"

@@ -4,7 +4,7 @@ A universal directory tree widget for Textual.
 
 from __future__ import annotations
 
-from typing import ClassVar, Iterable, List, Optional, Type
+from typing import ClassVar, Iterable
 
 from textual.binding import BindingType
 from textual.widgets._directory_tree import DirEntry
@@ -20,19 +20,20 @@ class BrowsrDirectoryTree(UniversalDirectoryTree):
     A DirectoryTree that can handle any filesystem.
     """
 
-    PATH: Type[BrowsrPath] = BrowsrPath
+    PATH: type[BrowsrPath] = BrowsrPath
 
-    BINDINGS: ClassVar[List[BindingType]] = [
+    BINDINGS: ClassVar[list[BindingType]] = [
         *UniversalDirectoryTree.BINDINGS,
         *vim_cursor_bindings,
     ]
 
     @classmethod
-    def _handle_top_level_bucket(cls, dir_path: Path) -> Optional[Iterable[Path]]:
+    def _handle_top_level_bucket(cls, dir_path: Path) -> Iterable[Path] | None:
         """
         Handle scenarios when someone wants to browse all of s3
 
-        This is because S3FS handles the root directory differently than other filesystems
+        This is because S3FS handles the root directory differently
+        than other filesystems
         """
         if str(dir_path) == "s3:/":
             sub_buckets = sorted(
@@ -41,14 +42,14 @@ class BrowsrDirectoryTree(UniversalDirectoryTree):
             return sub_buckets
         return None
 
-    def _populate_node(self, node: TreeNode[DirEntry], content: Iterable[Path]) -> None:  # type: ignore[override]
+    def _populate_node(self, node: TreeNode[DirEntry], content: Iterable[Path]) -> None:
         """
         Populate the given tree node with the given directory content.
 
         This function overrides the original textual method to handle root level
         cloud buckets.
         """
-        top_level_buckets = self._handle_top_level_bucket(dir_path=node.data.path)  # type: ignore[union-attr, arg-type]
+        top_level_buckets = self._handle_top_level_bucket(dir_path=node.data.path)
         if top_level_buckets is not None:
             content = top_level_buckets
         node.remove_children()

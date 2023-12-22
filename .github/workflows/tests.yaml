@@ -44,5 +44,5 @@ jobs:
             - name: Test Suite
               run: |
                   echo "::add-matcher::.github/workflows/matchers/python.json"
-                  hatch run +py="${{ matrix.python }}" test:matrix
+                  hatch run +py="${{ matrix.python }}" all:cov
                   echo "::remove-matcher owner=python::"
