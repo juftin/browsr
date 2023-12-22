@@ -1,0 +1,100 @@
+interactions:
+    - request:
+          body: null
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate
+              Connection:
+                  - keep-alive
+              User-Agent:
+                  - python-requests/2.31.0
+              authorization:
+                  - XXXXXXXXXX
+          method: GET
+          uri: https://raw.githubusercontent.com/juftin/browsr/v1.6.0/mkdocs.yaml
+      response:
+          body:
+              string:
+                  "# schema: https://squidfunk.github.io/mkdocs-material/schema.json\n\nsite_name:
+                  browsr\nnav:\n    - index.md\n    - Command Line Interface \u2328\uFE0F: cli.md\n
+                  \   - Contributing \U0001F91D: contributing.md\n    - API Documentation \U0001F916:
+                  reference/\ntheme:\n    favicon: https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr_no_label.png\n
+                  \   logo: https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr_no_label.png\n
+                  \   name: material\n    features:\n        - navigation.tracking\n        -
+                  content.code.annotate\n        - content.code.copy\n    palette:\n        -
+                  media: \"(prefers-color-scheme: light)\"\n          scheme: default\n          accent:
+                  purple\n          toggle:\n              icon: material/weather-sunny\n              name:
+                  Switch to dark mode\n        - media: \"(prefers-color-scheme: dark)\"\n          scheme:
+                  slate\n          primary: black\n          toggle:\n              icon: material/weather-night\n
+                  \             name: Switch to light mode\nrepo_url: https://github.com/juftin/browsr\nrepo_name:
+                  browsr\nedit_uri: blob/main/docs/\nsite_author: Justin Flannery\nremote_branch:
+                  gh-pages\ncopyright: Copyright \xA9 2023 Justin Flannery\nextra:\n    generator:
+                  false\nmarkdown_extensions:\n    - toc:\n          permalink: \"#\"\n    -
+                  pymdownx.snippets\n    - pymdownx.magiclink\n    - attr_list\n    - md_in_html\n
+                  \   - pymdownx.highlight:\n          anchor_linenums: true\n    - pymdownx.inlinehilite\n
+                  \   - pymdownx.superfences\n    - markdown.extensions.attr_list\n    - pymdownx.keys\n
+                  \   - pymdownx.tasklist:\n          custom_checkbox: true\n    - pymdownx.tilde\n
+                  \   - admonition\n    - pymdownx.details\n    - mkdocs-click\nplugins:\n    -
+                  search\n    - gen-files:\n          scripts:\n              - docs/gen_ref_pages.py\n
+                  \   - literate-nav:\n          nav_file: SUMMARY.md\n    - section-index:\n
+                  \   - mkdocstrings:\n          handlers:\n              python:\n                  import:\n
+                  \                     - https://docs.python.org/3/objects.inv\n                      -
+                  https://numpy.org/doc/stable/objects.inv\n                      - https://pandas.pydata.org/docs/objects.inv\n
+                  \                 options:\n                      docstring_style: numpy\n
+                  \                     filters: []\n"
+          headers:
+              Accept-Ranges:
+                  - bytes
+              Access-Control-Allow-Origin:
+                  - "*"
+              Cache-Control:
+                  - max-age=300
+              Connection:
+                  - keep-alive
+
+              Content-Length:
+                  - "879"
+              Content-Security-Policy:
+                  - default-src 'none'; style-src 'unsafe-inline'; sandbox
+              Content-Type:
+                  - text/plain; charset=utf-8
+              Cross-Origin-Resource-Policy:
+                  - cross-origin
+              Date:
+                  - Fri, 22 Dec 2023 03:03:57 GMT
+              ETag:
+                  - W/"95920d25cd145c3ee86d6eecaab797adc36dbe478ad9976c065b7b0ece18ff37"
+              Expires:
+                  - Fri, 22 Dec 2023 03:08:57 GMT
+              Source-Age:
+                  - "0"
+              Strict-Transport-Security:
+                  - max-age=31536000
+              Vary:
+                  - Authorization,Accept-Encoding,Origin
+              Via:
+                  - 1.1 varnish
+              X-Cache:
+                  - MISS
+              X-Cache-Hits:
+                  - "0"
+              X-Content-Type-Options:
+                  - nosniff
+              X-Fastly-Request-ID:
+                  - 11e6b224a6be10f8c7b3560ea4e9b30f5c65b73b
+              X-Frame-Options:
+                  - deny
+              X-GitHub-Request-Id:
+                  - 0B6E:7FD9:125D10A:15C3F3F:6584FC9C
+              X-Served-By:
+                  - cache-den8236-DEN
+              X-Timer:
+                  - S1703214237.880066,VS0,VE378
+              X-XSS-Protection:
+                  - 1; mode=block
+          status:
+              code: 200
+              message: OK
+version: 1
