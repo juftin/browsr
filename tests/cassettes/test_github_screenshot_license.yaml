@@ -9,24 +9,39 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - python-requests/2.28.2
+                  - python-requests/2.31.0
+              authorization:
+                  - XXXXXXXXXX
           method: GET
           uri: https://raw.githubusercontent.com/juftin/browsr/v1.6.0/LICENSE
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA11SW2/aMBR+51cc8dRKGZu6t2ma5gZTvIUkckwZjyFxiKsQo9gZ4t/vHJOu6yQk
-                  dG7fzdkIBYmpdO/0bBbb83Uwx9bDXXUPD58ePn84D9rp3sOP0XnTw6or+14PV/j6EhqLZmp8fxkb
-                  qit7+jab5Xo4GeeM7cE4aPWgD1c4DmXvdR1BM2gNtoGqLYejjsBbKPsrnPXg8MAefGl60x+hhAoF
-                  0aZvEcbZxl/KQeNyDaVztjIl4kFtq/GEGktPfI3ptIM732qYF9PF/D6Q1LrsAE3Q7HUEF+NbO3pA
-                  n34wFWFEuFR1Y00aXsedOZmJgc5DSo5AR4cOSGcEJ1ubhv51sHUeD51xbQS1IejD6LHpqBnijsjH
-                  RzuA011HCAZ1B69v6sIOsZwpUD9FFHgvrT29d4IRNePQI6UON7XFyALji648dWi9sV1nL2Stsn1t
-                  yJH7MpspHJUH+1sHL7ePoLcepd4k0AOc3151Grm2RO0HPQWGvBhv+Y+dgeidx4c3mP3ZDoHvf5sL
-                  5F9zKLKV2jHJQRSQy+xZLPkS5qzAeh7BTqh1tlWAG5Klag/ZCli6h58iXUbAf+WSFwVkEsQmTwTH
-                  nkjjZLsU6RM84l2a4ZcuNkIhqMqACCcowQsC23AZr7FkjyIRah/BSqiUMFcIyiBnUol4mzAJ+Vbm
-                  WcGRfomwqUhXEln4hqdqgazYA/6MBRRrliSBim1RvQz64izfS/G0VrDOkiXH5iNHZewx4TcqNBUn
-                  TGwiWLINe+LhKkMUGdYmdbs1Dy3kY/iLlchSshFnqZJYRuhSqr+nO1HwCJgUBQWykhnCU5x4kQUQ
-                  vEv5DYWihncvgitUbwv+pmXJWYJYBR3/u7yY/QHuFHbQVQQAAA==
+              string: 'MIT License
+
+
+                  Copyright (c) 2023-present Justin Flannery <justin.flannery@juftin.com>
+
+
+                  Permission is hereby granted, free of charge, to any person obtaining a copy
+                  of this software and associated documentation files (the "Software"), to deal
+                  in the Software without restriction, including without limitation the rights
+                  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                  copies of the Software, and to permit persons to whom the Software is furnished
+                  to do so, subject to the following conditions:
+
+
+                  The above copyright notice and this permission notice shall be included in
+                  all copies or substantial portions of the Software.
+
+
+                  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+                  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+                  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+                  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+                  OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+                  '
           headers:
               Accept-Ranges:
                   - bytes
@@ -44,12 +59,14 @@ interactions:
                   - default-src 'none'; style-src 'unsafe-inline'; sandbox
               Content-Type:
                   - text/plain; charset=utf-8
+              Cross-Origin-Resource-Policy:
+                  - cross-origin
               Date:
-                  - Thu, 18 May 2023 01:01:45 GMT
+                  - Fri, 22 Dec 2023 02:35:37 GMT
               ETag:
                   - W/"7317880eca0696f93222e0968307748f383c87a2a37112679931db91bdd5f000"
               Expires:
-                  - Thu, 18 May 2023 01:06:45 GMT
+                  - Fri, 22 Dec 2023 02:40:37 GMT
               Source-Age:
                   - "0"
               Strict-Transport-Security:
@@ -59,21 +76,21 @@ interactions:
               Via:
                   - 1.1 varnish
               X-Cache:
-                  - MISS
+                  - HIT
               X-Cache-Hits:
-                  - "0"
+                  - "1"
               X-Content-Type-Options:
                   - nosniff
               X-Fastly-Request-ID:
-                  - d2531263c424560513b093dc95b27b5d1046121c
+                  - 610728dd0ab1b2a88737c8cc0d1fb651715a5424
               X-Frame-Options:
                   - deny
               X-GitHub-Request-Id:
-                  - B520:0A4A:1931F94:1D9B25C:646578F9
+                  - F05E:573D:112B22D:1495B2F:6584F370
               X-Served-By:
-                  - cache-den8283-DEN
+                  - cache-den8245-DEN
               X-Timer:
-                  - S1684371705.312640,VS0,VE131
+                  - S1703212537.491474,VS0,VE154
               X-XSS-Protection:
                   - 1; mode=block
           status:
