@@ -30,8 +30,7 @@ interactions:
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
                   - public, max-age=60, s-maxage=60
-              Content-Encoding:
-                  - gzip
+
               Content-Security-Policy:
                   - default-src 'none'
               Content-Type:
@@ -109,8 +108,7 @@ interactions:
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
                   - public, max-age=60, s-maxage=60
-              Content-Encoding:
-                  - gzip
+
               Content-Security-Policy:
                   - default-src 'none'
               Content-Type:
@@ -188,8 +186,7 @@ interactions:
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
                   - public, max-age=60, s-maxage=60
-              Content-Encoding:
-                  - gzip
+
               Content-Security-Policy:
                   - default-src 'none'
               Content-Type:
@@ -267,8 +264,7 @@ interactions:
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
                   - public, max-age=60, s-maxage=60
-              Content-Encoding:
-                  - gzip
+
               Content-Security-Policy:
                   - default-src 'none'
               Content-Type:
@@ -346,8 +342,7 @@ interactions:
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
                   - public, max-age=60, s-maxage=60
-              Content-Encoding:
-                  - gzip
+
               Content-Security-Policy:
                   - default-src 'none'
               Content-Type:
@@ -425,8 +420,7 @@ interactions:
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
                   - public, max-age=60, s-maxage=60
-              Content-Encoding:
-                  - gzip
+
               Content-Security-Policy:
                   - default-src 'none'
               Content-Type:

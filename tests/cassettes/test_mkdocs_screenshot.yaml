@@ -53,8 +53,7 @@ interactions:
                   - max-age=300
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
+
               Content-Length:
                   - "879"
               Content-Security-Policy:
