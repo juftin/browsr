@@ -79,7 +79,8 @@ dependencies = [
   "mypy~=1.2.0",
   "pandas-stubs~=2.0.0.230412",
   "pip-tools~=6.13.0",
-  "textual-dev~=1.0.1"
+  "textual-dev~=1.0.1",
+  "pytest-textual-snapshot"
 ]
 features = ["all"]
 pre-install-commands = ["pip install -U --no-deps -r requirements/requirements-dev.txt"]

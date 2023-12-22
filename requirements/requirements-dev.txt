@@ -438,7 +438,9 @@ coverage[toml]==7.2.7 \
     --hash=sha256:f6951407391b639504e3b3be51b7ba5f3528adbf1a8ac3302b687ecababf929e \
     --hash=sha256:f75f7168ab25dd93110c8a8117a22450c19976afbc44234cbf71481094c1b850 \
     --hash=sha256:fdec9e8cbf13a5bf63290fc6013d216a4c7232efb51548594ca3631a7f13c3a3
-    # via pytest-cov
+    # via
+    #   coverage
+    #   pytest-cov
 cryptography==41.0.2 \
     --hash=sha256:01f1d9e537f9a15b037d5d9ee442b8c22e3ae11ce65ea1f3316a41c78756b711 \
     --hash=sha256:079347de771f9282fbfe0e0236c716686950c19dee1b76240ab09ce1624d76d7 \
@@ -692,6 +694,7 @@ jinja2==3.1.2 \
     #   mkdocs
     #   mkdocs-material
     #   mkdocstrings
+    #   pytest-textual-snapshot
 jmespath==1.0.1 \
     --hash=sha256:02e2e4cc71b5bcab88332eebf907519190dd9e6e82107fa7f83b1003a6252980 \
     --hash=sha256:90261b206d6defd58fdd5e85f478bf633a2901798906be2ad389150c5c60edbe
@@ -714,6 +717,7 @@ markdown-it-py[linkify,plugins]==2.2.0 \
     --hash=sha256:5a35f8d1870171d9acc47b99612dc146129b631baf04970128b568f190d0cc30 \
     --hash=sha256:7c9a5e412688bc771c67432cbfebcdd686c93ce6484913dccf06cb5a0bea35a1
     # via
+    #   markdown-it-py
     #   mdit-py-plugins
     #   rich
     #   textual
@@ -827,6 +831,7 @@ mkdocstrings[python]==0.21.2 \
     --hash=sha256:949ef8da92df9d692ca07be50616459a6b536083a25520fd54b00e8814ce019b
     # via
     #   -r requirements.in
+    #   mkdocstrings
     #   mkdocstrings-python
 mkdocstrings-python==1.2.1 \
     --hash=sha256:7c08f33e9ba7b1655e9cf0608eba3ce7a9513bd8b42a68a8d24ffaf4a6a50cfc \
@@ -1258,7 +1263,9 @@ pygments==2.15.1 \
 pyjwt[crypto]==2.8.0 \
     --hash=sha256:57e28d156e3d5c10088e0c68abb90bfac3df82b40a71bd0daa20c65ccd5c23de \
     --hash=sha256:59127c392cc44c2da5bb3192169a91f429924e17aff6534d70fdc02ab3e04320
-    # via msal
+    # via
+    #   msal
+    #   pyjwt
 pymdown-extensions==10.1 \
     --hash=sha256:508009b211373058debb8247e168de4cbcb91b1bff7b5e961b2c3e864e00b195 \
     --hash=sha256:ef25dbbae530e8f67575d222b75ff0649b1e841e22c2ae9a20bad9472c2207dc
@@ -1320,7 +1327,9 @@ pytest==7.3.2 \
     #   -r requirements.in
     #   pytest-cov
     #   pytest-mock
+    #   pytest-textual-snapshot
     #   pytest-vcr
+    #   syrupy
 pytest-cov==4.0.0 \
     --hash=sha256:2feb1b751d66a8bd934e5edfa2e961d11309dc37b73b0eabe73b5945fee20f6b \
     --hash=sha256:996b79efde6433cdbd0088872dbc5fb3ed7fe1578b68cdbba634f14bb8dd0470
@@ -1328,6 +1337,10 @@ pytest-cov==4.0.0 \
 pytest-mock==3.10.0 \
     --hash=sha256:f4c973eeae0282963eb293eb173ce91b091a79c1334455acfac9ddee8a1c784b \
     --hash=sha256:fbbdb085ef7c252a326fd8cdcac0aa3b1333d8811f131bdcc701002e1be7ed4f
+    # via -r requirements.in
+pytest-textual-snapshot==0.4.0 \
+    --hash=sha256:63782e053928a925d88ff7359dd640f2900e23bc708b3007f8b388e65f2527cb \
+    --hash=sha256:879cc5de29cdd31cfe1b6daeb1dc5e42682abebcf4f88e7e3375bd5200683fc0
     # via -r requirements.in
 pytest-vcr==1.0.2 \
     --hash=sha256:23ee51b75abbcc43d926272773aae4f39f93aceb75ed56852d0bf618f92e1896 \
@@ -1506,6 +1519,7 @@ rich==13.5.2 \
     --hash=sha256:fb9d6c0a0f643c99eed3875b5377a184132ba9be4d61516a55273d3554d75a39
     # via
     #   -r requirements.in
+    #   pytest-textual-snapshot
     #   rich-click
     #   rich-pixels
     #   textual
@@ -1554,11 +1568,16 @@ six==1.16.0 \
     #   isodate
     #   python-dateutil
     #   vcrpy
+syrupy==4.6.0 \
+    --hash=sha256:231b1f5d00f1f85048ba81676c79448076189c4aef4d33f21ae32f3b4c565a54 \
+    --hash=sha256:747aae1bcf3cb3249e33b1e6d81097874d23615982d5686ebe637875b0775a1b
+    # via pytest-textual-snapshot
 textual==0.39.0 \
     --hash=sha256:4103c0cb4e87bf9f87f4960213d3c1c33fbe7301a1a1c2df0903ecb62212983c \
     --hash=sha256:bf98d7eb5a8a39ed87488640e2a18b2825dd340d36eab6193c9a47af98a3b818
     # via
     #   -r requirements.in
+    #   pytest-textual-snapshot
     #   textual-dev
     #   textual-universal-directorytree
 textual-dev==1.0.1 \
@@ -1568,7 +1587,9 @@ textual-dev==1.0.1 \
 textual-universal-directorytree[remote]==1.0.2 \
     --hash=sha256:74f0d6687076f9adb9ebcbe50a5cda4a143b971e2729f62b9270f9ae7451458e \
     --hash=sha256:eb3a4fcedda94e5fb42c0e9af6352ebc6ceb945d1164fb05ec090c59623a71fc
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   textual-universal-directorytree
 tomli==2.0.1 \
     --hash=sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc \
     --hash=sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f

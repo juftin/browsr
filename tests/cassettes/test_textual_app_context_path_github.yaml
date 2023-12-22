@@ -9,42 +9,17 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - python-requests/2.28.2
+                  - python-requests/2.31.0
               authorization:
                   - XXXXXXXXXX
           method: GET
           uri: https://api.github.com/repos/juftin/browsr
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA51Y3W7bNhR+FUO3c6PEjt3WwNANa1B0aNom9X7QYRBombaZSKJKUnFsITd7gV3u
-                  cq+xt9oeYd8hKVl2nbrWTRtT5/v48fAc8hyWgZgGo2F/MOwNB4OzbpDJKY9oLLiObucv3/3I39y+
-                  XQb4wFKO0YmSS63we1YkSeQHb4qZEVlYf8uVuGMG5jOWaN4N5DLjKhiVQSLnIgOLA4CFZjp//vT8
-                  rH9+2pz88uXV8Odf3ybxzdXg7frq/nJ9RSIYaJmKCpWAZGFMrkdh6Ab1yVyYRTEpNFexzAzPzEks
-                  07AIK/4Xd9+eg2OuPItdJQZ22HLhmRwcdDqs9S5MmuxM76a1xrXZTCaJXAK5K/Vx8rDGkHMtXmTz
-                  o/HAlKE0Cw4vQfoDLVhoc4wQa1+G9B8igRg0nK749AgxHgEptPUPZah4Li1VMdGxErkRMjtG1BYO
-                  PFLNWSbW7Fge4DTgJOeY6a09cPwOcXUM0AHK0KZEvCIXKB5zcQd3Hk22gwSXWeWUlT9hq8m5wvCI
-                  TVPKMZt6D11kyeGI3WTulNe7Uyd757+///rj33/+7LBOnnCmWWY6M5HwDr/PE6m46oiss5KF6hiu
-                  MDdLIGUm1W2d/1/MMOtanzobIYQ/4Oc9QCQRYJj+lq9aoAlVhvjXx32MNGQTqZiRh1J5n5gteBk2
-                  f1IcGM7SFiItDPCFlG08ZGGAC60L/lUhuG9pFq3DKrqzIp24w+ZrYnofocNBF9NazDPOW3imhpZh
-                  dfZNFMviRRuyClkiJonD7hibt5BFKIAniZy0QON6CS20DPWCufPcRO2UEBcht6gUn7WURciayqhW
-                  e2YlEbQmwtVhsH0tNFXIsPSeSlg2L9i8DVcNxc7RZTZn64PX+b643mBBRHWJEpOi7XGyQZMqd5Mi
-                  79q4agPeUNlL+cuX/N4lNq50u8g0FYfuyH08HrgVnK3JKK52Cen34ev7MWmELMPNSecOUM95vNf8
-                  CVppajL78rXFtlbIsPwmZ8aeWZggZ4ofL9ADw3LCUEicnJyUC85sOZhy1SqnHA4ETMULVEDHayor
-                  JO75lBlbV85I0hR1ZiLZtIXPaiho3KYcr8vhmnuYoz1qIcbCmjwpCi1tZNbmDNtgm4yZNGIm4q+p
-                  nPelwha8fKFFFvMuS5IuosyIWCDu0IPQnqB04m184HCQjI7T1ctUdbZxgOIOWYauj5lyFKyrlmdA
-                  A0xppTg63GnEDOrk3mmv/+R08OS0Pz4djHrDUf/5R9gU+fRzm7On414fBqPBM7LJC73YpXEmp71R
-                  b0AmOMp8ROIv9LufNZy+aqa2FeZaLzbm322MR1tdujeOE4TWTrwf4r/bvSMeA0DMQqY8xw3s23Wo
-                  dypsu+zeC0LSLNYwOTt/9ny4dd3Gssjg4PNeN1gyg0IOd11jrLqkwf5+ZRYyoxmZjlw6BiOjCrw+
-                  0Eiu5A2PjW6ObRK/YbgUt2ILSOXDFkrouECNiva17m9cs+KFQWsqlJL+mSJDRtcnHl4c/JPIVGg2
-                  SfhmQOY888KrJeJFJBExzzR8U1JLg3XiasUi/bvL5etx5423gN/y6b17usE4jL7YdXliHXrC+tnn
-                  8mU8HL9Kbj7+Mlh/HF+sA/SQSG+5jGiVSO3KGUJHhqd50nzoWfIJxNP9H1EVL2ezSPFPhcDjQb1y
-                  I3MRw3e/BdREPqmaSAjOqz3Uffwy/N4Utpc0hQh+7wZ3QouJSIQhP+TFBEvAR9fxjeD1hgeDEXxX
-                  RYyLnymfsSIxkavmyZMMbTImpZ612s8y8N2zixwyMWTmA4SStfobhZyNa2dJ57b7G+4it0Qus4y8
-                  5fTghYmcE/WngiFB7VVYgd0XO+S9t/1FcbqC92EYSslqvAosnHl4BXDLjFDP+an8ZzeXO5lqX/hv
-                  qLojry9XkREmwWuCjrzn6g1sLqHa7ZRr7dL8h3eXCL/o8uLDh+9fXXzAwvfZW3L4xVu/u47eX0fj
-                  1+M3FwA0PQH5FfNjFhXX5cX1q4tqYpqXx4VCtEQswzmNZ4mVFoi7kj4ojgiNWZbZgMaQbTogqM5L
-                  7OOOXUTbTyeJwUmC/H8EB2DGzRLJUuUxYrNZrFfnxMP/yO9Nb30VAAA=
+              string:
+                  "{\"id\":635626551,\"node_id\":\"R_kgDOJeLkNw\",\"name\":\"browsr\",\"full_name\":\"juftin/browsr\",\"private\":false,\"owner\":{\"login\":\"juftin\",\"id\":49741340,\"node_id\":\"MDQ6VXNlcjQ5NzQxMzQw\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/49741340?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/juftin\",\"html_url\":\"https://github.com/juftin\",\"followers_url\":\"https://api.github.com/users/juftin/followers\",\"following_url\":\"https://api.github.com/users/juftin/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/juftin/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/juftin/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/juftin/subscriptions\",\"organizations_url\":\"https://api.github.com/users/juftin/orgs\",\"repos_url\":\"https://api.github.com/users/juftin/repos\",\"events_url\":\"https://api.github.com/users/juftin/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/juftin/received_events\",\"type\":\"User\",\"site_admin\":false},\"html_url\":\"https://github.com/juftin/browsr\",\"description\":\"\U0001F5C2\uFE0F
+                  a pleasant file explorer in your terminal supporting remote and local filesystems\",\"fork\":false,\"url\":\"https://api.github.com/repos/juftin/browsr\",\"forks_url\":\"https://api.github.com/repos/juftin/browsr/forks\",\"keys_url\":\"https://api.github.com/repos/juftin/browsr/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/juftin/browsr/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/juftin/browsr/teams\",\"hooks_url\":\"https://api.github.com/repos/juftin/browsr/hooks\",\"issue_events_url\":\"https://api.github.com/repos/juftin/browsr/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/juftin/browsr/events\",\"assignees_url\":\"https://api.github.com/repos/juftin/browsr/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/juftin/browsr/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/juftin/browsr/tags\",\"blobs_url\":\"https://api.github.com/repos/juftin/browsr/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/juftin/browsr/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/juftin/browsr/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/juftin/browsr/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/juftin/browsr/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/juftin/browsr/languages\",\"stargazers_url\":\"https://api.github.com/repos/juftin/browsr/stargazers\",\"contributors_url\":\"https://api.github.com/repos/juftin/browsr/contributors\",\"subscribers_url\":\"https://api.github.com/repos/juftin/browsr/subscribers\",\"subscription_url\":\"https://api.github.com/repos/juftin/browsr/subscription\",\"commits_url\":\"https://api.github.com/repos/juftin/browsr/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/juftin/browsr/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/juftin/browsr/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/juftin/browsr/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/juftin/browsr/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/juftin/browsr/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/juftin/browsr/merges\",\"archive_url\":\"https://api.github.com/repos/juftin/browsr/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/juftin/browsr/downloads\",\"issues_url\":\"https://api.github.com/repos/juftin/browsr/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/juftin/browsr/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/juftin/browsr/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/juftin/browsr/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/juftin/browsr/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/juftin/browsr/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/juftin/browsr/deployments\",\"created_at\":\"2023-05-03T05:26:39Z\",\"updated_at\":\"2023-12-10T01:37:27Z\",\"pushed_at\":\"2023-11-16T19:38:09Z\",\"git_url\":\"git://github.com/juftin/browsr.git\",\"ssh_url\":\"git@github.com:juftin/browsr.git\",\"clone_url\":\"https://github.com/juftin/browsr.git\",\"svn_url\":\"https://github.com/juftin/browsr\",\"homepage\":\"http://juftin.com/browsr/\",\"size\":15231,\"stargazers_count\":118,\"watchers_count\":118,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":true,\"has_discussions\":false,\"forks_count\":7,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":5,\"license\":{\"key\":\"mit\",\"name\":\"MIT
+                  License\",\"spdx_id\":\"MIT\",\"url\":\"https://api.github.com/licenses/mit\",\"node_id\":\"MDc6TGljZW5zZTEz\"},\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"topics\":[\"file-explorer\",\"python\",\"s3\",\"textual\",\"tui\"],\"visibility\":\"public\",\"forks\":7,\"open_issues\":5,\"watchers\":118,\"default_branch\":\"main\",\"temp_clone_token\":null,\"network_count\":7,\"subscribers_count\":4}"
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -54,7 +29,7 @@ interactions:
                     X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
-                  - private, max-age=60, s-maxage=60
+                  - public, max-age=60, s-maxage=60
               Content-Encoding:
                   - gzip
               Content-Security-Policy:
@@ -62,11 +37,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 18 May 2023 01:11:52 GMT
+                  - Fri, 22 Dec 2023 02:07:03 GMT
               ETag:
-                  - W/"2c616d7658dd3e9d038de5acd0d7b638534992a3fb94898406872681f50b3561"
+                  - W/"5f419a39a5d15c54ae8cb52bdce7f33bf7b526027633c10b0d5df086f73e22d5"
               Last-Modified:
-                  - Wed, 17 May 2023 23:39:58 GMT
+                  - Sun, 10 Dec 2023 01:37:27 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -76,10 +51,8 @@ interactions:
               Transfer-Encoding:
                   - chunked
               Vary:
-                  - Accept, Authorization, Cookie, X-GitHub-OTP
+                  - Accept
                   - Accept-Encoding, Accept, X-Requested-With
-              X-Accepted-OAuth-Scopes:
-                  - repo
               X-Content-Type-Options:
                   - nosniff
               X-Frame-Options:
@@ -87,21 +60,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - CACC:22F6:211DE7D:4433A1B:64657B58
-              X-OAuth-Scopes:
-                  - admin:gpg_key, admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
-                    admin:ssh_signing_key, audit_log, codespace, delete:packages, gist, notifications,
-                    project, read:enterprise, repo, user, workflow, write:discussion, write:packages
+                  - FECE:78C9:8686C44:11501E51:6584EF47
               X-RateLimit-Limit:
-                  - "5000"
+                  - "60"
               X-RateLimit-Remaining:
-                  - "4978"
+                  - "59"
               X-RateLimit-Reset:
-                  - "1684373394"
+                  - "1703214423"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "22"
+                  - "1"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -119,42 +88,17 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - python-requests/2.28.2
+                  - python-requests/2.31.0
               authorization:
                   - XXXXXXXXXX
           method: GET
           uri: https://api.github.com/repos/juftin/browsr
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA51Y3W7bNhR+FUO3c6PEjt3WwNANa1B0aNom9X7QYRBombaZSKJKUnFsITd7gV3u
-                  cq+xt9oeYd8hKVl2nbrWTRtT5/v48fAc8hyWgZgGo2F/MOwNB4OzbpDJKY9oLLiObucv3/3I39y+
-                  XQb4wFKO0YmSS63we1YkSeQHb4qZEVlYf8uVuGMG5jOWaN4N5DLjKhiVQSLnIgOLA4CFZjp//vT8
-                  rH9+2pz88uXV8Odf3ybxzdXg7frq/nJ9RSIYaJmKCpWAZGFMrkdh6Ab1yVyYRTEpNFexzAzPzEks
-                  07AIK/4Xd9+eg2OuPItdJQZ22HLhmRwcdDqs9S5MmuxM76a1xrXZTCaJXAK5K/Vx8rDGkHMtXmTz
-                  o/HAlKE0Cw4vQfoDLVhoc4wQa1+G9B8igRg0nK749AgxHgEptPUPZah4Li1VMdGxErkRMjtG1BYO
-                  PFLNWSbW7Fge4DTgJOeY6a09cPwOcXUM0AHK0KZEvCIXKB5zcQd3Hk22gwSXWeWUlT9hq8m5wvCI
-                  TVPKMZt6D11kyeGI3WTulNe7Uyd757+///rj33/+7LBOnnCmWWY6M5HwDr/PE6m46oiss5KF6hiu
-                  MDdLIGUm1W2d/1/MMOtanzobIYQ/4Oc9QCQRYJj+lq9aoAlVhvjXx32MNGQTqZiRh1J5n5gteBk2
-                  f1IcGM7SFiItDPCFlG08ZGGAC60L/lUhuG9pFq3DKrqzIp24w+ZrYnofocNBF9NazDPOW3imhpZh
-                  dfZNFMviRRuyClkiJonD7hibt5BFKIAniZy0QON6CS20DPWCufPcRO2UEBcht6gUn7WURciayqhW
-                  e2YlEbQmwtVhsH0tNFXIsPSeSlg2L9i8DVcNxc7RZTZn64PX+b643mBBRHWJEpOi7XGyQZMqd5Mi
-                  79q4agPeUNlL+cuX/N4lNq50u8g0FYfuyH08HrgVnK3JKK52Cen34ev7MWmELMPNSecOUM95vNf8
-                  CVppajL78rXFtlbIsPwmZ8aeWZggZ4ofL9ADw3LCUEicnJyUC85sOZhy1SqnHA4ETMULVEDHayor
-                  JO75lBlbV85I0hR1ZiLZtIXPaiho3KYcr8vhmnuYoz1qIcbCmjwpCi1tZNbmDNtgm4yZNGIm4q+p
-                  nPelwha8fKFFFvMuS5IuosyIWCDu0IPQnqB04m184HCQjI7T1ctUdbZxgOIOWYauj5lyFKyrlmdA
-                  A0xppTg63GnEDOrk3mmv/+R08OS0Pz4djHrDUf/5R9gU+fRzm7On414fBqPBM7LJC73YpXEmp71R
-                  b0AmOMp8ROIv9LufNZy+aqa2FeZaLzbm322MR1tdujeOE4TWTrwf4r/bvSMeA0DMQqY8xw3s23Wo
-                  dypsu+zeC0LSLNYwOTt/9ny4dd3Gssjg4PNeN1gyg0IOd11jrLqkwf5+ZRYyoxmZjlw6BiOjCrw+
-                  0Eiu5A2PjW6ObRK/YbgUt2ILSOXDFkrouECNiva17m9cs+KFQWsqlJL+mSJDRtcnHl4c/JPIVGg2
-                  SfhmQOY888KrJeJFJBExzzR8U1JLg3XiasUi/bvL5etx5423gN/y6b17usE4jL7YdXliHXrC+tnn
-                  8mU8HL9Kbj7+Mlh/HF+sA/SQSG+5jGiVSO3KGUJHhqd50nzoWfIJxNP9H1EVL2ezSPFPhcDjQb1y
-                  I3MRw3e/BdREPqmaSAjOqz3Uffwy/N4Utpc0hQh+7wZ3QouJSIQhP+TFBEvAR9fxjeD1hgeDEXxX
-                  RYyLnymfsSIxkavmyZMMbTImpZ612s8y8N2zixwyMWTmA4SStfobhZyNa2dJ57b7G+4it0Qus4y8
-                  5fTghYmcE/WngiFB7VVYgd0XO+S9t/1FcbqC92EYSslqvAosnHl4BXDLjFDP+an8ZzeXO5lqX/hv
-                  qLojry9XkREmwWuCjrzn6g1sLqHa7ZRr7dL8h3eXCL/o8uLDh+9fXXzAwvfZW3L4xVu/u47eX0fj
-                  1+M3FwA0PQH5FfNjFhXX5cX1q4tqYpqXx4VCtEQswzmNZ4mVFoi7kj4ojgiNWZbZgMaQbTogqM5L
-                  7OOOXUTbTyeJwUmC/H8EB2DGzRLJUuUxYrNZrFfnxMP/yO9Nb30VAAA=
+              string:
+                  "{\"id\":635626551,\"node_id\":\"R_kgDOJeLkNw\",\"name\":\"browsr\",\"full_name\":\"juftin/browsr\",\"private\":false,\"owner\":{\"login\":\"juftin\",\"id\":49741340,\"node_id\":\"MDQ6VXNlcjQ5NzQxMzQw\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/49741340?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/juftin\",\"html_url\":\"https://github.com/juftin\",\"followers_url\":\"https://api.github.com/users/juftin/followers\",\"following_url\":\"https://api.github.com/users/juftin/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/juftin/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/juftin/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/juftin/subscriptions\",\"organizations_url\":\"https://api.github.com/users/juftin/orgs\",\"repos_url\":\"https://api.github.com/users/juftin/repos\",\"events_url\":\"https://api.github.com/users/juftin/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/juftin/received_events\",\"type\":\"User\",\"site_admin\":false},\"html_url\":\"https://github.com/juftin/browsr\",\"description\":\"\U0001F5C2\uFE0F
+                  a pleasant file explorer in your terminal supporting remote and local filesystems\",\"fork\":false,\"url\":\"https://api.github.com/repos/juftin/browsr\",\"forks_url\":\"https://api.github.com/repos/juftin/browsr/forks\",\"keys_url\":\"https://api.github.com/repos/juftin/browsr/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/juftin/browsr/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/juftin/browsr/teams\",\"hooks_url\":\"https://api.github.com/repos/juftin/browsr/hooks\",\"issue_events_url\":\"https://api.github.com/repos/juftin/browsr/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/juftin/browsr/events\",\"assignees_url\":\"https://api.github.com/repos/juftin/browsr/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/juftin/browsr/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/juftin/browsr/tags\",\"blobs_url\":\"https://api.github.com/repos/juftin/browsr/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/juftin/browsr/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/juftin/browsr/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/juftin/browsr/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/juftin/browsr/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/juftin/browsr/languages\",\"stargazers_url\":\"https://api.github.com/repos/juftin/browsr/stargazers\",\"contributors_url\":\"https://api.github.com/repos/juftin/browsr/contributors\",\"subscribers_url\":\"https://api.github.com/repos/juftin/browsr/subscribers\",\"subscription_url\":\"https://api.github.com/repos/juftin/browsr/subscription\",\"commits_url\":\"https://api.github.com/repos/juftin/browsr/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/juftin/browsr/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/juftin/browsr/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/juftin/browsr/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/juftin/browsr/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/juftin/browsr/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/juftin/browsr/merges\",\"archive_url\":\"https://api.github.com/repos/juftin/browsr/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/juftin/browsr/downloads\",\"issues_url\":\"https://api.github.com/repos/juftin/browsr/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/juftin/browsr/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/juftin/browsr/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/juftin/browsr/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/juftin/browsr/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/juftin/browsr/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/juftin/browsr/deployments\",\"created_at\":\"2023-05-03T05:26:39Z\",\"updated_at\":\"2023-12-10T01:37:27Z\",\"pushed_at\":\"2023-11-16T19:38:09Z\",\"git_url\":\"git://github.com/juftin/browsr.git\",\"ssh_url\":\"git@github.com:juftin/browsr.git\",\"clone_url\":\"https://github.com/juftin/browsr.git\",\"svn_url\":\"https://github.com/juftin/browsr\",\"homepage\":\"http://juftin.com/browsr/\",\"size\":15231,\"stargazers_count\":118,\"watchers_count\":118,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":true,\"has_discussions\":false,\"forks_count\":7,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":5,\"license\":{\"key\":\"mit\",\"name\":\"MIT
+                  License\",\"spdx_id\":\"MIT\",\"url\":\"https://api.github.com/licenses/mit\",\"node_id\":\"MDc6TGljZW5zZTEz\"},\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"topics\":[\"file-explorer\",\"python\",\"s3\",\"textual\",\"tui\"],\"visibility\":\"public\",\"forks\":7,\"open_issues\":5,\"watchers\":118,\"default_branch\":\"main\",\"temp_clone_token\":null,\"network_count\":7,\"subscribers_count\":4}"
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -164,7 +108,7 @@ interactions:
                     X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
-                  - private, max-age=60, s-maxage=60
+                  - public, max-age=60, s-maxage=60
               Content-Encoding:
                   - gzip
               Content-Security-Policy:
@@ -172,11 +116,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 18 May 2023 01:11:52 GMT
+                  - Fri, 22 Dec 2023 02:07:03 GMT
               ETag:
-                  - W/"2c616d7658dd3e9d038de5acd0d7b638534992a3fb94898406872681f50b3561"
+                  - W/"5f419a39a5d15c54ae8cb52bdce7f33bf7b526027633c10b0d5df086f73e22d5"
               Last-Modified:
-                  - Wed, 17 May 2023 23:39:58 GMT
+                  - Sun, 10 Dec 2023 01:37:27 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -186,10 +130,8 @@ interactions:
               Transfer-Encoding:
                   - chunked
               Vary:
-                  - Accept, Authorization, Cookie, X-GitHub-OTP
+                  - Accept
                   - Accept-Encoding, Accept, X-Requested-With
-              X-Accepted-OAuth-Scopes:
-                  - repo
               X-Content-Type-Options:
                   - nosniff
               X-Frame-Options:
@@ -197,21 +139,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - CACD:574C:21312B3:444FBC9:64657B58
-              X-OAuth-Scopes:
-                  - admin:gpg_key, admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
-                    admin:ssh_signing_key, audit_log, codespace, delete:packages, gist, notifications,
-                    project, read:enterprise, repo, user, workflow, write:discussion, write:packages
+                  - FECF:12D8:302E5E0:63DCF04:6584EF47
               X-RateLimit-Limit:
-                  - "5000"
+                  - "60"
               X-RateLimit-Remaining:
-                  - "4977"
+                  - "58"
               X-RateLimit-Reset:
-                  - "1684373394"
+                  - "1703214423"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "23"
+                  - "2"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -229,42 +167,17 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - python-requests/2.28.2
+                  - python-requests/2.31.0
               authorization:
                   - XXXXXXXXXX
           method: GET
           uri: https://api.github.com/repos/juftin/browsr
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA51Y3W7bNhR+FUO3c6PEjt3WwNANa1B0aNom9X7QYRBombaZSKJKUnFsITd7gV3u
-                  cq+xt9oeYd8hKVl2nbrWTRtT5/v48fAc8hyWgZgGo2F/MOwNB4OzbpDJKY9oLLiObucv3/3I39y+
-                  XQb4wFKO0YmSS63we1YkSeQHb4qZEVlYf8uVuGMG5jOWaN4N5DLjKhiVQSLnIgOLA4CFZjp//vT8
-                  rH9+2pz88uXV8Odf3ybxzdXg7frq/nJ9RSIYaJmKCpWAZGFMrkdh6Ab1yVyYRTEpNFexzAzPzEks
-                  07AIK/4Xd9+eg2OuPItdJQZ22HLhmRwcdDqs9S5MmuxM76a1xrXZTCaJXAK5K/Vx8rDGkHMtXmTz
-                  o/HAlKE0Cw4vQfoDLVhoc4wQa1+G9B8igRg0nK749AgxHgEptPUPZah4Li1VMdGxErkRMjtG1BYO
-                  PFLNWSbW7Fge4DTgJOeY6a09cPwOcXUM0AHK0KZEvCIXKB5zcQd3Hk22gwSXWeWUlT9hq8m5wvCI
-                  TVPKMZt6D11kyeGI3WTulNe7Uyd757+///rj33/+7LBOnnCmWWY6M5HwDr/PE6m46oiss5KF6hiu
-                  MDdLIGUm1W2d/1/MMOtanzobIYQ/4Oc9QCQRYJj+lq9aoAlVhvjXx32MNGQTqZiRh1J5n5gteBk2
-                  f1IcGM7SFiItDPCFlG08ZGGAC60L/lUhuG9pFq3DKrqzIp24w+ZrYnofocNBF9NazDPOW3imhpZh
-                  dfZNFMviRRuyClkiJonD7hibt5BFKIAniZy0QON6CS20DPWCufPcRO2UEBcht6gUn7WURciayqhW
-                  e2YlEbQmwtVhsH0tNFXIsPSeSlg2L9i8DVcNxc7RZTZn64PX+b643mBBRHWJEpOi7XGyQZMqd5Mi
-                  79q4agPeUNlL+cuX/N4lNq50u8g0FYfuyH08HrgVnK3JKK52Cen34ev7MWmELMPNSecOUM95vNf8
-                  CVppajL78rXFtlbIsPwmZ8aeWZggZ4ofL9ADw3LCUEicnJyUC85sOZhy1SqnHA4ETMULVEDHayor
-                  JO75lBlbV85I0hR1ZiLZtIXPaiho3KYcr8vhmnuYoz1qIcbCmjwpCi1tZNbmDNtgm4yZNGIm4q+p
-                  nPelwha8fKFFFvMuS5IuosyIWCDu0IPQnqB04m184HCQjI7T1ctUdbZxgOIOWYauj5lyFKyrlmdA
-                  A0xppTg63GnEDOrk3mmv/+R08OS0Pz4djHrDUf/5R9gU+fRzm7On414fBqPBM7LJC73YpXEmp71R
-                  b0AmOMp8ROIv9LufNZy+aqa2FeZaLzbm322MR1tdujeOE4TWTrwf4r/bvSMeA0DMQqY8xw3s23Wo
-                  dypsu+zeC0LSLNYwOTt/9ny4dd3Gssjg4PNeN1gyg0IOd11jrLqkwf5+ZRYyoxmZjlw6BiOjCrw+
-                  0Eiu5A2PjW6ObRK/YbgUt2ILSOXDFkrouECNiva17m9cs+KFQWsqlJL+mSJDRtcnHl4c/JPIVGg2
-                  SfhmQOY888KrJeJFJBExzzR8U1JLg3XiasUi/bvL5etx5423gN/y6b17usE4jL7YdXliHXrC+tnn
-                  8mU8HL9Kbj7+Mlh/HF+sA/SQSG+5jGiVSO3KGUJHhqd50nzoWfIJxNP9H1EVL2ezSPFPhcDjQb1y
-                  I3MRw3e/BdREPqmaSAjOqz3Uffwy/N4Utpc0hQh+7wZ3QouJSIQhP+TFBEvAR9fxjeD1hgeDEXxX
-                  RYyLnymfsSIxkavmyZMMbTImpZ612s8y8N2zixwyMWTmA4SStfobhZyNa2dJ57b7G+4it0Qus4y8
-                  5fTghYmcE/WngiFB7VVYgd0XO+S9t/1FcbqC92EYSslqvAosnHl4BXDLjFDP+an8ZzeXO5lqX/hv
-                  qLojry9XkREmwWuCjrzn6g1sLqHa7ZRr7dL8h3eXCL/o8uLDh+9fXXzAwvfZW3L4xVu/u47eX0fj
-                  1+M3FwA0PQH5FfNjFhXX5cX1q4tqYpqXx4VCtEQswzmNZ4mVFoi7kj4ojgiNWZbZgMaQbTogqM5L
-                  7OOOXUTbTyeJwUmC/H8EB2DGzRLJUuUxYrNZrFfnxMP/yO9Nb30VAAA=
+              string:
+                  "{\"id\":635626551,\"node_id\":\"R_kgDOJeLkNw\",\"name\":\"browsr\",\"full_name\":\"juftin/browsr\",\"private\":false,\"owner\":{\"login\":\"juftin\",\"id\":49741340,\"node_id\":\"MDQ6VXNlcjQ5NzQxMzQw\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/49741340?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/juftin\",\"html_url\":\"https://github.com/juftin\",\"followers_url\":\"https://api.github.com/users/juftin/followers\",\"following_url\":\"https://api.github.com/users/juftin/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/juftin/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/juftin/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/juftin/subscriptions\",\"organizations_url\":\"https://api.github.com/users/juftin/orgs\",\"repos_url\":\"https://api.github.com/users/juftin/repos\",\"events_url\":\"https://api.github.com/users/juftin/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/juftin/received_events\",\"type\":\"User\",\"site_admin\":false},\"html_url\":\"https://github.com/juftin/browsr\",\"description\":\"\U0001F5C2\uFE0F
+                  a pleasant file explorer in your terminal supporting remote and local filesystems\",\"fork\":false,\"url\":\"https://api.github.com/repos/juftin/browsr\",\"forks_url\":\"https://api.github.com/repos/juftin/browsr/forks\",\"keys_url\":\"https://api.github.com/repos/juftin/browsr/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/juftin/browsr/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/juftin/browsr/teams\",\"hooks_url\":\"https://api.github.com/repos/juftin/browsr/hooks\",\"issue_events_url\":\"https://api.github.com/repos/juftin/browsr/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/juftin/browsr/events\",\"assignees_url\":\"https://api.github.com/repos/juftin/browsr/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/juftin/browsr/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/juftin/browsr/tags\",\"blobs_url\":\"https://api.github.com/repos/juftin/browsr/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/juftin/browsr/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/juftin/browsr/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/juftin/browsr/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/juftin/browsr/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/juftin/browsr/languages\",\"stargazers_url\":\"https://api.github.com/repos/juftin/browsr/stargazers\",\"contributors_url\":\"https://api.github.com/repos/juftin/browsr/contributors\",\"subscribers_url\":\"https://api.github.com/repos/juftin/browsr/subscribers\",\"subscription_url\":\"https://api.github.com/repos/juftin/browsr/subscription\",\"commits_url\":\"https://api.github.com/repos/juftin/browsr/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/juftin/browsr/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/juftin/browsr/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/juftin/browsr/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/juftin/browsr/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/juftin/browsr/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/juftin/browsr/merges\",\"archive_url\":\"https://api.github.com/repos/juftin/browsr/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/juftin/browsr/downloads\",\"issues_url\":\"https://api.github.com/repos/juftin/browsr/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/juftin/browsr/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/juftin/browsr/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/juftin/browsr/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/juftin/browsr/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/juftin/browsr/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/juftin/browsr/deployments\",\"created_at\":\"2023-05-03T05:26:39Z\",\"updated_at\":\"2023-12-10T01:37:27Z\",\"pushed_at\":\"2023-11-16T19:38:09Z\",\"git_url\":\"git://github.com/juftin/browsr.git\",\"ssh_url\":\"git@github.com:juftin/browsr.git\",\"clone_url\":\"https://github.com/juftin/browsr.git\",\"svn_url\":\"https://github.com/juftin/browsr\",\"homepage\":\"http://juftin.com/browsr/\",\"size\":15231,\"stargazers_count\":118,\"watchers_count\":118,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":true,\"has_discussions\":false,\"forks_count\":7,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":5,\"license\":{\"key\":\"mit\",\"name\":\"MIT
+                  License\",\"spdx_id\":\"MIT\",\"url\":\"https://api.github.com/licenses/mit\",\"node_id\":\"MDc6TGljZW5zZTEz\"},\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"topics\":[\"file-explorer\",\"python\",\"s3\",\"textual\",\"tui\"],\"visibility\":\"public\",\"forks\":7,\"open_issues\":5,\"watchers\":118,\"default_branch\":\"main\",\"temp_clone_token\":null,\"network_count\":7,\"subscribers_count\":4}"
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -274,7 +187,7 @@ interactions:
                     X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
-                  - private, max-age=60, s-maxage=60
+                  - public, max-age=60, s-maxage=60
               Content-Encoding:
                   - gzip
               Content-Security-Policy:
@@ -282,11 +195,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 18 May 2023 01:11:52 GMT
+                  - Fri, 22 Dec 2023 02:07:03 GMT
               ETag:
-                  - W/"2c616d7658dd3e9d038de5acd0d7b638534992a3fb94898406872681f50b3561"
+                  - W/"5f419a39a5d15c54ae8cb52bdce7f33bf7b526027633c10b0d5df086f73e22d5"
               Last-Modified:
-                  - Wed, 17 May 2023 23:39:58 GMT
+                  - Sun, 10 Dec 2023 01:37:27 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -296,10 +209,8 @@ interactions:
               Transfer-Encoding:
                   - chunked
               Vary:
-                  - Accept, Authorization, Cookie, X-GitHub-OTP
+                  - Accept
                   - Accept-Encoding, Accept, X-Requested-With
-              X-Accepted-OAuth-Scopes:
-                  - repo
               X-Content-Type-Options:
                   - nosniff
               X-Frame-Options:
@@ -307,21 +218,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - CACE:076C:20C289C:4376FAF:64657B58
-              X-OAuth-Scopes:
-                  - admin:gpg_key, admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
-                    admin:ssh_signing_key, audit_log, codespace, delete:packages, gist, notifications,
-                    project, read:enterprise, repo, user, workflow, write:discussion, write:packages
+                  - FED0:12F4:5660286:B23CE05:6584EF47
               X-RateLimit-Limit:
-                  - "5000"
+                  - "60"
               X-RateLimit-Remaining:
-                  - "4976"
+                  - "57"
               X-RateLimit-Reset:
-                  - "1684373394"
+                  - "1703214423"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "24"
+                  - "3"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -339,42 +246,17 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - python-requests/2.28.2
+                  - python-requests/2.31.0
               authorization:
                   - XXXXXXXXXX
           method: GET
           uri: https://api.github.com/repos/juftin/browsr
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA51Y3W7bNhR+FUO3c6PEjt3WwNANa1B0aNom9X7QYRBombaZSKJKUnFsITd7gV3u
-                  cq+xt9oeYd8hKVl2nbrWTRtT5/v48fAc8hyWgZgGo2F/MOwNB4OzbpDJKY9oLLiObucv3/3I39y+
-                  XQb4wFKO0YmSS63we1YkSeQHb4qZEVlYf8uVuGMG5jOWaN4N5DLjKhiVQSLnIgOLA4CFZjp//vT8
-                  rH9+2pz88uXV8Odf3ybxzdXg7frq/nJ9RSIYaJmKCpWAZGFMrkdh6Ab1yVyYRTEpNFexzAzPzEks
-                  07AIK/4Xd9+eg2OuPItdJQZ22HLhmRwcdDqs9S5MmuxM76a1xrXZTCaJXAK5K/Vx8rDGkHMtXmTz
-                  o/HAlKE0Cw4vQfoDLVhoc4wQa1+G9B8igRg0nK749AgxHgEptPUPZah4Li1VMdGxErkRMjtG1BYO
-                  PFLNWSbW7Fge4DTgJOeY6a09cPwOcXUM0AHK0KZEvCIXKB5zcQd3Hk22gwSXWeWUlT9hq8m5wvCI
-                  TVPKMZt6D11kyeGI3WTulNe7Uyd757+///rj33/+7LBOnnCmWWY6M5HwDr/PE6m46oiss5KF6hiu
-                  MDdLIGUm1W2d/1/MMOtanzobIYQ/4Oc9QCQRYJj+lq9aoAlVhvjXx32MNGQTqZiRh1J5n5gteBk2
-                  f1IcGM7SFiItDPCFlG08ZGGAC60L/lUhuG9pFq3DKrqzIp24w+ZrYnofocNBF9NazDPOW3imhpZh
-                  dfZNFMviRRuyClkiJonD7hibt5BFKIAniZy0QON6CS20DPWCufPcRO2UEBcht6gUn7WURciayqhW
-                  e2YlEbQmwtVhsH0tNFXIsPSeSlg2L9i8DVcNxc7RZTZn64PX+b643mBBRHWJEpOi7XGyQZMqd5Mi
-                  79q4agPeUNlL+cuX/N4lNq50u8g0FYfuyH08HrgVnK3JKK52Cen34ev7MWmELMPNSecOUM95vNf8
-                  CVppajL78rXFtlbIsPwmZ8aeWZggZ4ofL9ADw3LCUEicnJyUC85sOZhy1SqnHA4ETMULVEDHayor
-                  JO75lBlbV85I0hR1ZiLZtIXPaiho3KYcr8vhmnuYoz1qIcbCmjwpCi1tZNbmDNtgm4yZNGIm4q+p
-                  nPelwha8fKFFFvMuS5IuosyIWCDu0IPQnqB04m184HCQjI7T1ctUdbZxgOIOWYauj5lyFKyrlmdA
-                  A0xppTg63GnEDOrk3mmv/+R08OS0Pz4djHrDUf/5R9gU+fRzm7On414fBqPBM7LJC73YpXEmp71R
-                  b0AmOMp8ROIv9LufNZy+aqa2FeZaLzbm322MR1tdujeOE4TWTrwf4r/bvSMeA0DMQqY8xw3s23Wo
-                  dypsu+zeC0LSLNYwOTt/9ny4dd3Gssjg4PNeN1gyg0IOd11jrLqkwf5+ZRYyoxmZjlw6BiOjCrw+
-                  0Eiu5A2PjW6ObRK/YbgUt2ILSOXDFkrouECNiva17m9cs+KFQWsqlJL+mSJDRtcnHl4c/JPIVGg2
-                  SfhmQOY888KrJeJFJBExzzR8U1JLg3XiasUi/bvL5etx5423gN/y6b17usE4jL7YdXliHXrC+tnn
-                  8mU8HL9Kbj7+Mlh/HF+sA/SQSG+5jGiVSO3KGUJHhqd50nzoWfIJxNP9H1EVL2ezSPFPhcDjQb1y
-                  I3MRw3e/BdREPqmaSAjOqz3Uffwy/N4Utpc0hQh+7wZ3QouJSIQhP+TFBEvAR9fxjeD1hgeDEXxX
-                  RYyLnymfsSIxkavmyZMMbTImpZ612s8y8N2zixwyMWTmA4SStfobhZyNa2dJ57b7G+4it0Qus4y8
-                  5fTghYmcE/WngiFB7VVYgd0XO+S9t/1FcbqC92EYSslqvAosnHl4BXDLjFDP+an8ZzeXO5lqX/hv
-                  qLojry9XkREmwWuCjrzn6g1sLqHa7ZRr7dL8h3eXCL/o8uLDh+9fXXzAwvfZW3L4xVu/u47eX0fj
-                  1+M3FwA0PQH5FfNjFhXX5cX1q4tqYpqXx4VCtEQswzmNZ4mVFoi7kj4ojgiNWZbZgMaQbTogqM5L
-                  7OOOXUTbTyeJwUmC/H8EB2DGzRLJUuUxYrNZrFfnxMP/yO9Nb30VAAA=
+              string:
+                  "{\"id\":635626551,\"node_id\":\"R_kgDOJeLkNw\",\"name\":\"browsr\",\"full_name\":\"juftin/browsr\",\"private\":false,\"owner\":{\"login\":\"juftin\",\"id\":49741340,\"node_id\":\"MDQ6VXNlcjQ5NzQxMzQw\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/49741340?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/juftin\",\"html_url\":\"https://github.com/juftin\",\"followers_url\":\"https://api.github.com/users/juftin/followers\",\"following_url\":\"https://api.github.com/users/juftin/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/juftin/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/juftin/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/juftin/subscriptions\",\"organizations_url\":\"https://api.github.com/users/juftin/orgs\",\"repos_url\":\"https://api.github.com/users/juftin/repos\",\"events_url\":\"https://api.github.com/users/juftin/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/juftin/received_events\",\"type\":\"User\",\"site_admin\":false},\"html_url\":\"https://github.com/juftin/browsr\",\"description\":\"\U0001F5C2\uFE0F
+                  a pleasant file explorer in your terminal supporting remote and local filesystems\",\"fork\":false,\"url\":\"https://api.github.com/repos/juftin/browsr\",\"forks_url\":\"https://api.github.com/repos/juftin/browsr/forks\",\"keys_url\":\"https://api.github.com/repos/juftin/browsr/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/juftin/browsr/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/juftin/browsr/teams\",\"hooks_url\":\"https://api.github.com/repos/juftin/browsr/hooks\",\"issue_events_url\":\"https://api.github.com/repos/juftin/browsr/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/juftin/browsr/events\",\"assignees_url\":\"https://api.github.com/repos/juftin/browsr/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/juftin/browsr/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/juftin/browsr/tags\",\"blobs_url\":\"https://api.github.com/repos/juftin/browsr/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/juftin/browsr/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/juftin/browsr/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/juftin/browsr/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/juftin/browsr/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/juftin/browsr/languages\",\"stargazers_url\":\"https://api.github.com/repos/juftin/browsr/stargazers\",\"contributors_url\":\"https://api.github.com/repos/juftin/browsr/contributors\",\"subscribers_url\":\"https://api.github.com/repos/juftin/browsr/subscribers\",\"subscription_url\":\"https://api.github.com/repos/juftin/browsr/subscription\",\"commits_url\":\"https://api.github.com/repos/juftin/browsr/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/juftin/browsr/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/juftin/browsr/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/juftin/browsr/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/juftin/browsr/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/juftin/browsr/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/juftin/browsr/merges\",\"archive_url\":\"https://api.github.com/repos/juftin/browsr/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/juftin/browsr/downloads\",\"issues_url\":\"https://api.github.com/repos/juftin/browsr/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/juftin/browsr/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/juftin/browsr/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/juftin/browsr/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/juftin/browsr/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/juftin/browsr/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/juftin/browsr/deployments\",\"created_at\":\"2023-05-03T05:26:39Z\",\"updated_at\":\"2023-12-10T01:37:27Z\",\"pushed_at\":\"2023-11-16T19:38:09Z\",\"git_url\":\"git://github.com/juftin/browsr.git\",\"ssh_url\":\"git@github.com:juftin/browsr.git\",\"clone_url\":\"https://github.com/juftin/browsr.git\",\"svn_url\":\"https://github.com/juftin/browsr\",\"homepage\":\"http://juftin.com/browsr/\",\"size\":15231,\"stargazers_count\":118,\"watchers_count\":118,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":true,\"has_discussions\":false,\"forks_count\":7,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":5,\"license\":{\"key\":\"mit\",\"name\":\"MIT
+                  License\",\"spdx_id\":\"MIT\",\"url\":\"https://api.github.com/licenses/mit\",\"node_id\":\"MDc6TGljZW5zZTEz\"},\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"topics\":[\"file-explorer\",\"python\",\"s3\",\"textual\",\"tui\"],\"visibility\":\"public\",\"forks\":7,\"open_issues\":5,\"watchers\":118,\"default_branch\":\"main\",\"temp_clone_token\":null,\"network_count\":7,\"subscribers_count\":4}"
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -384,7 +266,7 @@ interactions:
                     X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
-                  - private, max-age=60, s-maxage=60
+                  - public, max-age=60, s-maxage=60
               Content-Encoding:
                   - gzip
               Content-Security-Policy:
@@ -392,11 +274,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 18 May 2023 01:11:53 GMT
+                  - Fri, 22 Dec 2023 02:07:03 GMT
               ETag:
-                  - W/"2c616d7658dd3e9d038de5acd0d7b638534992a3fb94898406872681f50b3561"
+                  - W/"5f419a39a5d15c54ae8cb52bdce7f33bf7b526027633c10b0d5df086f73e22d5"
               Last-Modified:
-                  - Wed, 17 May 2023 23:39:58 GMT
+                  - Sun, 10 Dec 2023 01:37:27 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -406,10 +288,8 @@ interactions:
               Transfer-Encoding:
                   - chunked
               Vary:
-                  - Accept, Authorization, Cookie, X-GitHub-OTP
+                  - Accept
                   - Accept-Encoding, Accept, X-Requested-With
-              X-Accepted-OAuth-Scopes:
-                  - repo
               X-Content-Type-Options:
                   - nosniff
               X-Frame-Options:
@@ -417,21 +297,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - CACF:496F:206F889:42C52E3:64657B58
-              X-OAuth-Scopes:
-                  - admin:gpg_key, admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
-                    admin:ssh_signing_key, audit_log, codespace, delete:packages, gist, notifications,
-                    project, read:enterprise, repo, user, workflow, write:discussion, write:packages
+                  - FED1:12C8:21EED69:467BB98:6584EF47
               X-RateLimit-Limit:
-                  - "5000"
+                  - "60"
               X-RateLimit-Remaining:
-                  - "4975"
+                  - "56"
               X-RateLimit-Reset:
-                  - "1684373394"
+                  - "1703214423"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "25"
+                  - "4"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -449,42 +325,17 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - python-requests/2.28.2
+                  - python-requests/2.31.0
               authorization:
                   - XXXXXXXXXX
           method: GET
           uri: https://api.github.com/repos/juftin/browsr
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA51Y3W7bNhR+FUO3c6PEjt3WwNANa1B0aNom9X7QYRBombaZSKJKUnFsITd7gV3u
-                  cq+xt9oeYd8hKVl2nbrWTRtT5/v48fAc8hyWgZgGo2F/MOwNB4OzbpDJKY9oLLiObucv3/3I39y+
-                  XQb4wFKO0YmSS63we1YkSeQHb4qZEVlYf8uVuGMG5jOWaN4N5DLjKhiVQSLnIgOLA4CFZjp//vT8
-                  rH9+2pz88uXV8Odf3ybxzdXg7frq/nJ9RSIYaJmKCpWAZGFMrkdh6Ab1yVyYRTEpNFexzAzPzEks
-                  07AIK/4Xd9+eg2OuPItdJQZ22HLhmRwcdDqs9S5MmuxM76a1xrXZTCaJXAK5K/Vx8rDGkHMtXmTz
-                  o/HAlKE0Cw4vQfoDLVhoc4wQa1+G9B8igRg0nK749AgxHgEptPUPZah4Li1VMdGxErkRMjtG1BYO
-                  PFLNWSbW7Fge4DTgJOeY6a09cPwOcXUM0AHK0KZEvCIXKB5zcQd3Hk22gwSXWeWUlT9hq8m5wvCI
-                  TVPKMZt6D11kyeGI3WTulNe7Uyd757+///rj33/+7LBOnnCmWWY6M5HwDr/PE6m46oiss5KF6hiu
-                  MDdLIGUm1W2d/1/MMOtanzobIYQ/4Oc9QCQRYJj+lq9aoAlVhvjXx32MNGQTqZiRh1J5n5gteBk2
-                  f1IcGM7SFiItDPCFlG08ZGGAC60L/lUhuG9pFq3DKrqzIp24w+ZrYnofocNBF9NazDPOW3imhpZh
-                  dfZNFMviRRuyClkiJonD7hibt5BFKIAniZy0QON6CS20DPWCufPcRO2UEBcht6gUn7WURciayqhW
-                  e2YlEbQmwtVhsH0tNFXIsPSeSlg2L9i8DVcNxc7RZTZn64PX+b643mBBRHWJEpOi7XGyQZMqd5Mi
-                  79q4agPeUNlL+cuX/N4lNq50u8g0FYfuyH08HrgVnK3JKK52Cen34ev7MWmELMPNSecOUM95vNf8
-                  CVppajL78rXFtlbIsPwmZ8aeWZggZ4ofL9ADw3LCUEicnJyUC85sOZhy1SqnHA4ETMULVEDHayor
-                  JO75lBlbV85I0hR1ZiLZtIXPaiho3KYcr8vhmnuYoz1qIcbCmjwpCi1tZNbmDNtgm4yZNGIm4q+p
-                  nPelwha8fKFFFvMuS5IuosyIWCDu0IPQnqB04m184HCQjI7T1ctUdbZxgOIOWYauj5lyFKyrlmdA
-                  A0xppTg63GnEDOrk3mmv/+R08OS0Pz4djHrDUf/5R9gU+fRzm7On414fBqPBM7LJC73YpXEmp71R
-                  b0AmOMp8ROIv9LufNZy+aqa2FeZaLzbm322MR1tdujeOE4TWTrwf4r/bvSMeA0DMQqY8xw3s23Wo
-                  dypsu+zeC0LSLNYwOTt/9ny4dd3Gssjg4PNeN1gyg0IOd11jrLqkwf5+ZRYyoxmZjlw6BiOjCrw+
-                  0Eiu5A2PjW6ObRK/YbgUt2ILSOXDFkrouECNiva17m9cs+KFQWsqlJL+mSJDRtcnHl4c/JPIVGg2
-                  SfhmQOY888KrJeJFJBExzzR8U1JLg3XiasUi/bvL5etx5423gN/y6b17usE4jL7YdXliHXrC+tnn
-                  8mU8HL9Kbj7+Mlh/HF+sA/SQSG+5jGiVSO3KGUJHhqd50nzoWfIJxNP9H1EVL2ezSPFPhcDjQb1y
-                  I3MRw3e/BdREPqmaSAjOqz3Uffwy/N4Utpc0hQh+7wZ3QouJSIQhP+TFBEvAR9fxjeD1hgeDEXxX
-                  RYyLnymfsSIxkavmyZMMbTImpZ612s8y8N2zixwyMWTmA4SStfobhZyNa2dJ57b7G+4it0Qus4y8
-                  5fTghYmcE/WngiFB7VVYgd0XO+S9t/1FcbqC92EYSslqvAosnHl4BXDLjFDP+an8ZzeXO5lqX/hv
-                  qLojry9XkREmwWuCjrzn6g1sLqHa7ZRr7dL8h3eXCL/o8uLDh+9fXXzAwvfZW3L4xVu/u47eX0fj
-                  1+M3FwA0PQH5FfNjFhXX5cX1q4tqYpqXx4VCtEQswzmNZ4mVFoi7kj4ojgiNWZbZgMaQbTogqM5L
-                  7OOOXUTbTyeJwUmC/H8EB2DGzRLJUuUxYrNZrFfnxMP/yO9Nb30VAAA=
+              string:
+                  "{\"id\":635626551,\"node_id\":\"R_kgDOJeLkNw\",\"name\":\"browsr\",\"full_name\":\"juftin/browsr\",\"private\":false,\"owner\":{\"login\":\"juftin\",\"id\":49741340,\"node_id\":\"MDQ6VXNlcjQ5NzQxMzQw\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/49741340?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/juftin\",\"html_url\":\"https://github.com/juftin\",\"followers_url\":\"https://api.github.com/users/juftin/followers\",\"following_url\":\"https://api.github.com/users/juftin/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/juftin/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/juftin/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/juftin/subscriptions\",\"organizations_url\":\"https://api.github.com/users/juftin/orgs\",\"repos_url\":\"https://api.github.com/users/juftin/repos\",\"events_url\":\"https://api.github.com/users/juftin/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/juftin/received_events\",\"type\":\"User\",\"site_admin\":false},\"html_url\":\"https://github.com/juftin/browsr\",\"description\":\"\U0001F5C2\uFE0F
+                  a pleasant file explorer in your terminal supporting remote and local filesystems\",\"fork\":false,\"url\":\"https://api.github.com/repos/juftin/browsr\",\"forks_url\":\"https://api.github.com/repos/juftin/browsr/forks\",\"keys_url\":\"https://api.github.com/repos/juftin/browsr/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/juftin/browsr/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/juftin/browsr/teams\",\"hooks_url\":\"https://api.github.com/repos/juftin/browsr/hooks\",\"issue_events_url\":\"https://api.github.com/repos/juftin/browsr/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/juftin/browsr/events\",\"assignees_url\":\"https://api.github.com/repos/juftin/browsr/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/juftin/browsr/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/juftin/browsr/tags\",\"blobs_url\":\"https://api.github.com/repos/juftin/browsr/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/juftin/browsr/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/juftin/browsr/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/juftin/browsr/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/juftin/browsr/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/juftin/browsr/languages\",\"stargazers_url\":\"https://api.github.com/repos/juftin/browsr/stargazers\",\"contributors_url\":\"https://api.github.com/repos/juftin/browsr/contributors\",\"subscribers_url\":\"https://api.github.com/repos/juftin/browsr/subscribers\",\"subscription_url\":\"https://api.github.com/repos/juftin/browsr/subscription\",\"commits_url\":\"https://api.github.com/repos/juftin/browsr/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/juftin/browsr/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/juftin/browsr/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/juftin/browsr/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/juftin/browsr/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/juftin/browsr/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/juftin/browsr/merges\",\"archive_url\":\"https://api.github.com/repos/juftin/browsr/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/juftin/browsr/downloads\",\"issues_url\":\"https://api.github.com/repos/juftin/browsr/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/juftin/browsr/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/juftin/browsr/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/juftin/browsr/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/juftin/browsr/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/juftin/browsr/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/juftin/browsr/deployments\",\"created_at\":\"2023-05-03T05:26:39Z\",\"updated_at\":\"2023-12-10T01:37:27Z\",\"pushed_at\":\"2023-11-16T19:38:09Z\",\"git_url\":\"git://github.com/juftin/browsr.git\",\"ssh_url\":\"git@github.com:juftin/browsr.git\",\"clone_url\":\"https://github.com/juftin/browsr.git\",\"svn_url\":\"https://github.com/juftin/browsr\",\"homepage\":\"http://juftin.com/browsr/\",\"size\":15231,\"stargazers_count\":118,\"watchers_count\":118,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":true,\"has_discussions\":false,\"forks_count\":7,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":5,\"license\":{\"key\":\"mit\",\"name\":\"MIT
+                  License\",\"spdx_id\":\"MIT\",\"url\":\"https://api.github.com/licenses/mit\",\"node_id\":\"MDc6TGljZW5zZTEz\"},\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"topics\":[\"file-explorer\",\"python\",\"s3\",\"textual\",\"tui\"],\"visibility\":\"public\",\"forks\":7,\"open_issues\":5,\"watchers\":118,\"default_branch\":\"main\",\"temp_clone_token\":null,\"network_count\":7,\"subscribers_count\":4}"
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -494,7 +345,7 @@ interactions:
                     X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
-                  - private, max-age=60, s-maxage=60
+                  - public, max-age=60, s-maxage=60
               Content-Encoding:
                   - gzip
               Content-Security-Policy:
@@ -502,11 +353,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 18 May 2023 01:11:53 GMT
+                  - Fri, 22 Dec 2023 02:07:04 GMT
               ETag:
-                  - W/"2c616d7658dd3e9d038de5acd0d7b638534992a3fb94898406872681f50b3561"
+                  - W/"5f419a39a5d15c54ae8cb52bdce7f33bf7b526027633c10b0d5df086f73e22d5"
               Last-Modified:
-                  - Wed, 17 May 2023 23:39:58 GMT
+                  - Sun, 10 Dec 2023 01:37:27 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -516,10 +367,8 @@ interactions:
               Transfer-Encoding:
                   - chunked
               Vary:
-                  - Accept, Authorization, Cookie, X-GitHub-OTP
+                  - Accept
                   - Accept-Encoding, Accept, X-Requested-With
-              X-Accepted-OAuth-Scopes:
-                  - repo
               X-Content-Type-Options:
                   - nosniff
               X-Frame-Options:
@@ -527,21 +376,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - CAD2:2829:205E18A:42A6F2B:64657B59
-              X-OAuth-Scopes:
-                  - admin:gpg_key, admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
-                    admin:ssh_signing_key, audit_log, codespace, delete:packages, gist, notifications,
-                    project, read:enterprise, repo, user, workflow, write:discussion, write:packages
+                  - FED2:12F4:5660337:B23CF84:6584EF48
               X-RateLimit-Limit:
-                  - "5000"
+                  - "60"
               X-RateLimit-Remaining:
-                  - "4974"
+                  - "55"
               X-RateLimit-Reset:
-                  - "1684373394"
+                  - "1703214423"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "26"
+                  - "5"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -559,42 +404,17 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - python-requests/2.28.2
+                  - python-requests/2.31.0
               authorization:
                   - XXXXXXXXXX
           method: GET
           uri: https://api.github.com/repos/juftin/browsr
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA51Y3W7bNhR+FUO3c6PEjt3WwNANa1B0aNom9X7QYRBombaZSKJKUnFsITd7gV3u
-                  cq+xt9oeYd8hKVl2nbrWTRtT5/v48fAc8hyWgZgGo2F/MOwNB4OzbpDJKY9oLLiObucv3/3I39y+
-                  XQb4wFKO0YmSS63we1YkSeQHb4qZEVlYf8uVuGMG5jOWaN4N5DLjKhiVQSLnIgOLA4CFZjp//vT8
-                  rH9+2pz88uXV8Odf3ybxzdXg7frq/nJ9RSIYaJmKCpWAZGFMrkdh6Ab1yVyYRTEpNFexzAzPzEks
-                  07AIK/4Xd9+eg2OuPItdJQZ22HLhmRwcdDqs9S5MmuxM76a1xrXZTCaJXAK5K/Vx8rDGkHMtXmTz
-                  o/HAlKE0Cw4vQfoDLVhoc4wQa1+G9B8igRg0nK749AgxHgEptPUPZah4Li1VMdGxErkRMjtG1BYO
-                  PFLNWSbW7Fge4DTgJOeY6a09cPwOcXUM0AHK0KZEvCIXKB5zcQd3Hk22gwSXWeWUlT9hq8m5wvCI
-                  TVPKMZt6D11kyeGI3WTulNe7Uyd757+///rj33/+7LBOnnCmWWY6M5HwDr/PE6m46oiss5KF6hiu
-                  MDdLIGUm1W2d/1/MMOtanzobIYQ/4Oc9QCQRYJj+lq9aoAlVhvjXx32MNGQTqZiRh1J5n5gteBk2
-                  f1IcGM7SFiItDPCFlG08ZGGAC60L/lUhuG9pFq3DKrqzIp24w+ZrYnofocNBF9NazDPOW3imhpZh
-                  dfZNFMviRRuyClkiJonD7hibt5BFKIAniZy0QON6CS20DPWCufPcRO2UEBcht6gUn7WURciayqhW
-                  e2YlEbQmwtVhsH0tNFXIsPSeSlg2L9i8DVcNxc7RZTZn64PX+b643mBBRHWJEpOi7XGyQZMqd5Mi
-                  79q4agPeUNlL+cuX/N4lNq50u8g0FYfuyH08HrgVnK3JKK52Cen34ev7MWmELMPNSecOUM95vNf8
-                  CVppajL78rXFtlbIsPwmZ8aeWZggZ4ofL9ADw3LCUEicnJyUC85sOZhy1SqnHA4ETMULVEDHayor
-                  JO75lBlbV85I0hR1ZiLZtIXPaiho3KYcr8vhmnuYoz1qIcbCmjwpCi1tZNbmDNtgm4yZNGIm4q+p
-                  nPelwha8fKFFFvMuS5IuosyIWCDu0IPQnqB04m184HCQjI7T1ctUdbZxgOIOWYauj5lyFKyrlmdA
-                  A0xppTg63GnEDOrk3mmv/+R08OS0Pz4djHrDUf/5R9gU+fRzm7On414fBqPBM7LJC73YpXEmp71R
-                  b0AmOMp8ROIv9LufNZy+aqa2FeZaLzbm322MR1tdujeOE4TWTrwf4r/bvSMeA0DMQqY8xw3s23Wo
-                  dypsu+zeC0LSLNYwOTt/9ny4dd3Gssjg4PNeN1gyg0IOd11jrLqkwf5+ZRYyoxmZjlw6BiOjCrw+
-                  0Eiu5A2PjW6ObRK/YbgUt2ILSOXDFkrouECNiva17m9cs+KFQWsqlJL+mSJDRtcnHl4c/JPIVGg2
-                  SfhmQOY888KrJeJFJBExzzR8U1JLg3XiasUi/bvL5etx5423gN/y6b17usE4jL7YdXliHXrC+tnn
-                  8mU8HL9Kbj7+Mlh/HF+sA/SQSG+5jGiVSO3KGUJHhqd50nzoWfIJxNP9H1EVL2ezSPFPhcDjQb1y
-                  I3MRw3e/BdREPqmaSAjOqz3Uffwy/N4Utpc0hQh+7wZ3QouJSIQhP+TFBEvAR9fxjeD1hgeDEXxX
-                  RYyLnymfsSIxkavmyZMMbTImpZ612s8y8N2zixwyMWTmA4SStfobhZyNa2dJ57b7G+4it0Qus4y8
-                  5fTghYmcE/WngiFB7VVYgd0XO+S9t/1FcbqC92EYSslqvAosnHl4BXDLjFDP+an8ZzeXO5lqX/hv
-                  qLojry9XkREmwWuCjrzn6g1sLqHa7ZRr7dL8h3eXCL/o8uLDh+9fXXzAwvfZW3L4xVu/u47eX0fj
-                  1+M3FwA0PQH5FfNjFhXX5cX1q4tqYpqXx4VCtEQswzmNZ4mVFoi7kj4ojgiNWZbZgMaQbTogqM5L
-                  7OOOXUTbTyeJwUmC/H8EB2DGzRLJUuUxYrNZrFfnxMP/yO9Nb30VAAA=
+              string:
+                  "{\"id\":635626551,\"node_id\":\"R_kgDOJeLkNw\",\"name\":\"browsr\",\"full_name\":\"juftin/browsr\",\"private\":false,\"owner\":{\"login\":\"juftin\",\"id\":49741340,\"node_id\":\"MDQ6VXNlcjQ5NzQxMzQw\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/49741340?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/juftin\",\"html_url\":\"https://github.com/juftin\",\"followers_url\":\"https://api.github.com/users/juftin/followers\",\"following_url\":\"https://api.github.com/users/juftin/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/juftin/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/juftin/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/juftin/subscriptions\",\"organizations_url\":\"https://api.github.com/users/juftin/orgs\",\"repos_url\":\"https://api.github.com/users/juftin/repos\",\"events_url\":\"https://api.github.com/users/juftin/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/juftin/received_events\",\"type\":\"User\",\"site_admin\":false},\"html_url\":\"https://github.com/juftin/browsr\",\"description\":\"\U0001F5C2\uFE0F
+                  a pleasant file explorer in your terminal supporting remote and local filesystems\",\"fork\":false,\"url\":\"https://api.github.com/repos/juftin/browsr\",\"forks_url\":\"https://api.github.com/repos/juftin/browsr/forks\",\"keys_url\":\"https://api.github.com/repos/juftin/browsr/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/juftin/browsr/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/juftin/browsr/teams\",\"hooks_url\":\"https://api.github.com/repos/juftin/browsr/hooks\",\"issue_events_url\":\"https://api.github.com/repos/juftin/browsr/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/juftin/browsr/events\",\"assignees_url\":\"https://api.github.com/repos/juftin/browsr/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/juftin/browsr/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/juftin/browsr/tags\",\"blobs_url\":\"https://api.github.com/repos/juftin/browsr/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/juftin/browsr/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/juftin/browsr/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/juftin/browsr/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/juftin/browsr/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/juftin/browsr/languages\",\"stargazers_url\":\"https://api.github.com/repos/juftin/browsr/stargazers\",\"contributors_url\":\"https://api.github.com/repos/juftin/browsr/contributors\",\"subscribers_url\":\"https://api.github.com/repos/juftin/browsr/subscribers\",\"subscription_url\":\"https://api.github.com/repos/juftin/browsr/subscription\",\"commits_url\":\"https://api.github.com/repos/juftin/browsr/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/juftin/browsr/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/juftin/browsr/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/juftin/browsr/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/juftin/browsr/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/juftin/browsr/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/juftin/browsr/merges\",\"archive_url\":\"https://api.github.com/repos/juftin/browsr/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/juftin/browsr/downloads\",\"issues_url\":\"https://api.github.com/repos/juftin/browsr/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/juftin/browsr/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/juftin/browsr/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/juftin/browsr/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/juftin/browsr/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/juftin/browsr/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/juftin/browsr/deployments\",\"created_at\":\"2023-05-03T05:26:39Z\",\"updated_at\":\"2023-12-10T01:37:27Z\",\"pushed_at\":\"2023-11-16T19:38:09Z\",\"git_url\":\"git://github.com/juftin/browsr.git\",\"ssh_url\":\"git@github.com:juftin/browsr.git\",\"clone_url\":\"https://github.com/juftin/browsr.git\",\"svn_url\":\"https://github.com/juftin/browsr\",\"homepage\":\"http://juftin.com/browsr/\",\"size\":15231,\"stargazers_count\":118,\"watchers_count\":118,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":true,\"has_discussions\":false,\"forks_count\":7,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":5,\"license\":{\"key\":\"mit\",\"name\":\"MIT
+                  License\",\"spdx_id\":\"MIT\",\"url\":\"https://api.github.com/licenses/mit\",\"node_id\":\"MDc6TGljZW5zZTEz\"},\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"topics\":[\"file-explorer\",\"python\",\"s3\",\"textual\",\"tui\"],\"visibility\":\"public\",\"forks\":7,\"open_issues\":5,\"watchers\":118,\"default_branch\":\"main\",\"temp_clone_token\":null,\"network_count\":7,\"subscribers_count\":4}"
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -604,7 +424,7 @@ interactions:
                     X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
-                  - private, max-age=60, s-maxage=60
+                  - public, max-age=60, s-maxage=60
               Content-Encoding:
                   - gzip
               Content-Security-Policy:
@@ -612,11 +432,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 18 May 2023 01:11:53 GMT
+                  - Fri, 22 Dec 2023 02:07:04 GMT
               ETag:
-                  - W/"2c616d7658dd3e9d038de5acd0d7b638534992a3fb94898406872681f50b3561"
+                  - W/"5f419a39a5d15c54ae8cb52bdce7f33bf7b526027633c10b0d5df086f73e22d5"
               Last-Modified:
-                  - Wed, 17 May 2023 23:39:58 GMT
+                  - Sun, 10 Dec 2023 01:37:27 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -626,10 +446,8 @@ interactions:
               Transfer-Encoding:
                   - chunked
               Vary:
-                  - Accept, Authorization, Cookie, X-GitHub-OTP
+                  - Accept
                   - Accept-Encoding, Accept, X-Requested-With
-              X-Accepted-OAuth-Scopes:
-                  - repo
               X-Content-Type-Options:
                   - nosniff
               X-Frame-Options:
@@ -637,21 +455,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - CAD3:4EAA:23BBC18:4956F06:64657B59
-              X-OAuth-Scopes:
-                  - admin:gpg_key, admin:org, admin:org_hook, admin:public_key, admin:repo_hook,
-                    admin:ssh_signing_key, audit_log, codespace, delete:packages, gist, notifications,
-                    project, read:enterprise, repo, user, workflow, write:discussion, write:packages
+                  - FED3:59CE:77BEC5F:F765005:6584EF48
               X-RateLimit-Limit:
-                  - "5000"
+                  - "60"
               X-RateLimit-Remaining:
-                  - "4973"
+                  - "54"
               X-RateLimit-Reset:
-                  - "1684373394"
+                  - "1703214423"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "27"
+                  - "6"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
