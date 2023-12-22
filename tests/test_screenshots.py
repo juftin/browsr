@@ -4,7 +4,7 @@ Screenshot Testing Using Cassettes!
 
 import pathlib
 from textwrap import dedent
-from typing import Callable
+from typing import Callable, Tuple
 
 import pytest
 from textual_universal_directorytree import GitHubPath
@@ -26,7 +26,7 @@ def app_file() -> str:
 
 
 @pytest.fixture
-def terminal_size() -> tuple[int, int]:
+def terminal_size() -> Tuple[int, int]:
     return 160, 48
 
 
@@ -36,7 +36,7 @@ def test_github_screenshot(
     tmp_path: pathlib.Path,
     app_file: str,
     github_release_path: GitHubPath,
-    terminal_size: tuple[int, int],
+    terminal_size: Tuple[int, int],
 ) -> None:
     """
     Snapshot a release of this repo
@@ -52,7 +52,7 @@ def test_github_screenshot_license(
     tmp_path: pathlib.Path,
     app_file: str,
     github_release_path: GitHubPath,
-    terminal_size: tuple[int, int],
+    terminal_size: Tuple[int, int],
 ) -> None:
     """
     Snapshot the LICENSE file
@@ -68,7 +68,7 @@ def test_mkdocs_screenshot(
     snap_compare: Callable[..., bool],
     tmp_path: pathlib.Path,
     app_file: str,
-    terminal_size: tuple[int, int],
+    terminal_size: Tuple[int, int],
     github_release_path: GitHubPath,
 ) -> None:
     """
