@@ -56,7 +56,7 @@ pipx install browsr
 ### Extra Installation
 
 If you're looking to use **`browsr`** on remote file systems, like GitHub or AWS S3, you'll need to install the `remote` extra.
-If you'd like to browse parquet files, you'll need to install the `parquet` extra. Or, even simpler,
+If you'd like to browse parquet / feather files, you'll need to install the `data` extra. Or, even simpler,
 you can install the `all` extra to get all the extras.
 
 ```shell

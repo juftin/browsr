@@ -160,6 +160,9 @@ class Browsr(BrowsrTextualApp):
         elif document.suffix == ".parquet":
             df = pd.read_parquet(document)[:1000]
             return self.df_to_table(pandas_dataframe=df, table=self.table_view)
+        elif document.suffix.lower() in [".feather", ".fea"]:
+            df = pd.read_feather(document)[:1000]
+            return self.df_to_table(pandas_dataframe=df, table=self.table_view)
         elif document.suffix.lower() in image_file_extensions:
             screen_width = self.app.size.width / 4
             content = open_image(document=document, screen_width=screen_width)
