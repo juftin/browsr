@@ -21,7 +21,7 @@ in **GitHub**, over **SSH**, in **AWS S3**, **Google Cloud Storage**, or **Azure
 with syntax highlighting, format JSON files, render images, convert data files to navigable
 datatables, and more.
 
-![](https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png)
+![](https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.svg)
 
 <details>
 <summary>Screenshots</summary>
