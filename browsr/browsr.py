@@ -64,10 +64,10 @@ class Browsr(BrowsrTextualApp):
     CSS_PATH = "browsr.css"
     BINDINGS: ClassVar[List[BindingType]] = [
         Binding(key="q", action="quit", description="Quit"),
-        Binding(key="f", action="toggle_files", description="Toggle Files"),
-        Binding(key="t", action="theme", description="Toggle Theme"),
-        Binding(key="n", action="linenos", description="Toggle Line Numbers"),
-        Binding(key="d", action="toggle_dark", description="Toggle Dark Mode"),
+        Binding(key="f", action="toggle_files", description="Files"),
+        Binding(key="t", action="theme", description="Theme"),
+        Binding(key="n", action="linenos", description="Line Numbers"),
+        Binding(key="d", action="toggle_dark", description="Dark Mode"),
         Binding(key=".", action="parent_dir", description="Parent Directory"),
         Binding(key="s", action="switch_path", description="Switch Path"),
     ]
@@ -92,9 +92,12 @@ class Browsr(BrowsrTextualApp):
         """
         file_path = self.config_object.path
         if self._copy_supported():
-            self.bind("c", "copy_path", description="Copy Path", show=True)
+            self.bind(keys="c", action="copy_path", description="Copy Path", show=True)
         if is_remote_path(file_path):
-            self.bind("x", "download_file", description="Download File", show=True)
+            self.bind(
+                keys="x", action="download_file", description="Download File", show=True
+            )
+        self.bind(keys="r", action="reload", description="Reload")
         if file_path.is_file():
             self.selected_file_path = file_path
             file_path = file_path.parent
@@ -461,6 +464,17 @@ class Browsr(BrowsrTextualApp):
                     message=str(new_path),
                     severity="information",
                 )
+
+    def action_reload(self) -> None:
+        """
+        Refresh the directory.
+        """
+        self.directory_tree.reload()
+        self.notify(
+            title="Directory Reloaded",
+            message=str(self.directory_tree.path),
+            severity="information",
+        )
 
 
 app = Browsr(

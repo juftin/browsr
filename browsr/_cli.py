@@ -174,6 +174,9 @@ def browsr(
     - **`T`** - Toggle the rich theme for code formatting
     - **`N`** - Toggle line numbers for code formatting
     - **`D`** - Toggle dark mode for the application
+    - **`.`** - Navigate to the parent directory
+    - **`S`** - Open the file in your default editor
+    - **`C`** - Copy the file path to the clipboard
     - **`X`** - Download the file from cloud storage
     """
     extra_kwargs = {}
