@@ -9,6 +9,8 @@ import pytest
 from click.testing import CliRunner
 from textual_universal_directorytree import GitHubPath
 
+from browsr.browsr import Browsr
+
 
 @pytest.fixture
 def runner() -> CliRunner:
@@ -42,6 +44,14 @@ def github_release_path() -> GitHubPath:
     release = "v1.6.0"
     uri = f"github://juftin:browsr@{release}"
     return GitHubPath(uri)
+
+
+@pytest.fixture(autouse=True)
+def copy_supported(monkeypatch: pytest.MonkeyPatch) -> None:
+    """
+    Override _copy_supported
+    """
+    monkeypatch.setattr(Browsr, "_copy_supported", lambda _: True)
 
 
 @pytest.fixture(scope="module")

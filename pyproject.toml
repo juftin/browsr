@@ -27,7 +27,8 @@ dependencies = [
   "textual==0.39.0",
   "textual-universal-directorytree~=1.0.2",
   "Pillow>=9.1.0",
-  "PyMuPDF~=1.22.3"
+  "PyMuPDF~=1.22.3",
+  "pyperclip~=1.8.2"
 ]
 description = "TUI File Browser App"
 dynamic = ["version"]

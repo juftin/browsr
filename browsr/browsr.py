@@ -5,6 +5,7 @@ This module contains the code browser app for the browsr package.
 This app was inspired by the CodeBrowser example from textual
 """
 
+import inspect
 import json
 import os
 import pathlib
@@ -14,6 +15,7 @@ from textwrap import dedent
 from typing import TYPE_CHECKING, Any, ClassVar, Iterable, List, Optional, Union
 
 import pandas as pd
+import pyperclip
 import upath
 from art import text2art
 from rich.markdown import Markdown
@@ -67,6 +69,7 @@ class Browsr(BrowsrTextualApp):
         Binding(key="n", action="linenos", description="Toggle Line Numbers"),
         Binding(key="d", action="toggle_dark", description="Toggle Dark Mode"),
         Binding(key=".", action="parent_dir", description="Parent Directory"),
+        Binding(key="s", action="switch_path", description="Switch Path"),
     ]
 
     show_tree = var(True)
@@ -88,6 +91,8 @@ class Browsr(BrowsrTextualApp):
         Compose our UI.
         """
         file_path = self.config_object.path
+        if self._copy_supported():
+            self.bind("c", "copy_path", description="Copy Path", show=True)
         if is_remote_path(file_path):
             self.bind("x", "download_file", description="Download File", show=True)
         if file_path.is_file():
@@ -368,6 +373,11 @@ class Browsr(BrowsrTextualApp):
             with self.selected_file_path.open("rb") as file_handle:
                 with handled_download_path.open("wb") as download_handle:
                     shutil.copyfileobj(file_handle, download_handle)
+                    self.notify(
+                        message=str(handled_download_path),
+                        title="Download Complete",
+                        severity="information",
+                    )
 
     def action_download_file(self) -> None:
         """
@@ -404,6 +414,53 @@ class Browsr(BrowsrTextualApp):
         if new_path != self.config_object.path:
             self.config_object.file_path = str(new_path)
             self.directory_tree.path = new_path
+            self.notify(
+                title="Directory Changed",
+                message=str(new_path),
+                severity="information",
+            )
+
+    @classmethod
+    def _copy_supported(cls) -> bool:
+        """
+        Check if copy/paste is supported.
+        """
+        copy, _ = pyperclip.determine_clipboard()
+        return inspect.isfunction(copy)
+
+    def action_copy_path(self) -> None:
+        """
+        Copy the file path to the clipboard.
+        """
+        if self.selected_file_path:
+            try:
+                pyperclip.copy(str(self.selected_file_path))
+                self.notify(
+                    message=f"{self.selected_file_path}",
+                    title="Copied to Clipboard",
+                    severity="information",
+                )
+            except pyperclip.PyperclipException:
+                self.notify(
+                    message="copy/pase not supported on this platform",
+                    title="Error Copying to Clipboard",
+                    severity="warning",
+                )
+
+    def action_switch_path(self) -> None:
+        """
+        Switch the path.
+        """
+        if self.selected_file_path:
+            new_path = self.selected_file_path.parent
+            if new_path != self.directory_tree.path:
+                self.config_object.file_path = str(new_path)
+                self.directory_tree.path = new_path
+                self.notify(
+                    title="Directory Changed",
+                    message=str(new_path),
+                    severity="information",
+                )
 
 
 app = Browsr(

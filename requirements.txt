@@ -6,6 +6,7 @@
 # - pandas~=1.5.2
 # - pillow>=9.1.0
 # - pymupdf~=1.22.3
+# - pyperclip~=1.8.2
 # - rich-click~=1.5.2
 # - rich-pixels~=2.1.1
 # - rich~=13.5.2
@@ -15,11 +16,11 @@
 # - textual-universal-directorytree[remote]~=1.0.2
 #
 
-adlfs==2023.10.0
+adlfs==2024.2.0
     # via textual-universal-directorytree
-aiobotocore==2.9.0
+aiobotocore==2.11.2
     # via s3fs
-aiohttp==3.9.1
+aiohttp==3.9.3
     # via
     #   adlfs
     #   aiobotocore
@@ -30,13 +31,11 @@ aioitertools==0.11.0
     # via aiobotocore
 aiosignal==1.3.1
     # via aiohttp
-anyio==4.2.0
-    # via azure-core
 art==5.9
     # via hatch.envs.default
-attrs==23.1.0
+attrs==23.2.0
     # via aiohttp
-azure-core==1.29.6
+azure-core==1.30.0
     # via
     #   adlfs
     #   azure-identity
@@ -49,11 +48,11 @@ azure-storage-blob==12.19.0
     # via adlfs
 bcrypt==4.1.2
     # via paramiko
-botocore==1.33.13
+botocore==1.34.34
     # via aiobotocore
 cachetools==5.3.2
     # via google-auth
-certifi==2023.11.17
+certifi==2024.2.2
     # via requests
 cffi==1.16.0
     # via
@@ -66,7 +65,7 @@ click==8.1.7
     # via
     #   hatch.envs.default
     #   rich-click
-cryptography==41.0.7
+cryptography==42.0.2
     # via
     #   azure-identity
     #   azure-storage-blob
@@ -79,19 +78,19 @@ frozenlist==1.4.1
     # via
     #   aiohttp
     #   aiosignal
-fsspec==2023.12.2
+fsspec==2024.2.0
     # via
     #   adlfs
     #   gcsfs
     #   s3fs
     #   universal-pathlib
-gcsfs==2023.12.2.post1
+gcsfs==2024.2.0
     # via textual-universal-directorytree
-google-api-core==2.15.0
+google-api-core==2.16.2
     # via
     #   google-cloud-core
     #   google-cloud-storage
-google-auth==2.25.2
+google-auth==2.27.0
     # via
     #   gcsfs
     #   google-api-core
@@ -114,16 +113,15 @@ googleapis-common-protos==1.62.0
     # via google-api-core
 idna==3.6
     # via
-    #   anyio
     #   requests
     #   yarl
-importlib-metadata==7.0.0
+importlib-metadata==7.0.1
     # via textual
 isodate==0.6.1
     # via azure-storage-blob
 jmespath==1.0.1
     # via botocore
-linkify-it-py==2.0.2
+linkify-it-py==2.0.3
     # via markdown-it-py
 markdown-it-py==3.0.0
     # via
@@ -142,11 +140,11 @@ msal==1.26.0
     #   msal-extensions
 msal-extensions==1.1.0
     # via azure-identity
-multidict==6.0.4
+multidict==6.0.5
     # via
     #   aiohttp
     #   yarl
-numpy==1.26.2
+numpy==1.26.4
     # via
     #   pandas
     #   pyarrow
@@ -164,7 +162,7 @@ pillow==9.5.0
     #   rich-pixels
 portalocker==2.8.2
     # via msal-extensions
-protobuf==4.25.1
+protobuf==4.25.2
     # via
     #   google-api-core
     #   googleapis-common-protos
@@ -188,11 +186,13 @@ pymupdf==1.22.5
     # via hatch.envs.default
 pynacl==1.5.0
     # via paramiko
+pyperclip==1.8.2
+    # via hatch.envs.default
 python-dateutil==2.8.2
     # via
     #   botocore
     #   pandas
-pytz==2023.3.post1
+pytz==2024.1
     # via pandas
 requests==2.31.0
     # via
@@ -218,15 +218,13 @@ rich-pixels==2.1.1
     # via hatch.envs.default
 rsa==4.9
     # via google-auth
-s3fs==2023.12.2
+s3fs==2024.2.0
     # via textual-universal-directorytree
 six==1.16.0
     # via
     #   azure-core
     #   isodate
     #   python-dateutil
-sniffio==1.3.0
-    # via anyio
 textual==0.39.0
     # via
     #   hatch.envs.default
