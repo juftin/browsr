@@ -35,7 +35,7 @@ class ConfirmationPopUp(Container):
             self.display = display
             super().__init__()
 
-    class TableViewDisplayToggle(Message):
+    class DisplayToggle(Message):
         """
         TableView Display
         """
@@ -57,7 +57,7 @@ class ConfirmationPopUp(Container):
         self.post_message(self.ConfirmationWindowDisplay(display=False))
         if message.button.variant == "success":
             self.post_message(self.ConfirmationWindowDownload())
-        self.post_message(self.TableViewDisplayToggle())
+        self.post_message(self.DisplayToggle())
 
 
 class ConfirmationWindow(Container):

@@ -39,7 +39,7 @@ module.exports = {
         [
             "@semantic-release/git",
             {
-                assets: ["pyproject.toml", "*/_version.py"],
+                assets: ["pyproject.toml", "*/__about__.py"],
                 message:
                     "🔖 browsr ${nextRelease.version}\n\n${nextRelease.notes}\n[skip ci]",
             },

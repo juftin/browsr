@@ -2,18 +2,20 @@
 The App Screen
 """
 
+from __future__ import annotations
+
 import pathlib
-from typing import Iterable
+from typing import ClassVar, Iterable, cast
 
 from rich import traceback
 from textual import on
+from textual.binding import Binding, BindingType
 from textual.containers import Horizontal
 from textual.events import Mount
 from textual.screen import Screen
 from textual.widget import Widget
 from textual.widgets import Footer, Header
 
-from browsr.__about__ import __application__
 from browsr.base import TextualAppContext
 from browsr.utils import get_file_info
 from browsr.widgets.code_browser import CodeBrowser
@@ -24,6 +26,14 @@ class CodeBrowserScreen(Screen):
     """
     Code Browser Screen
     """
+
+    BINDINGS: ClassVar[list[BindingType]] = [
+        Binding(key="f", action="toggle_files", description="Files"),
+        Binding(key="t", action="theme", description="Theme"),
+        Binding(key="n", action="linenos", description="Line Numbers"),
+        Binding(key="r", action="reload", description="Reload"),
+        Binding(key=".", action="parent_dir", description="Parent Directory"),
+    ]
 
     def __init__(
         self,
@@ -70,24 +80,21 @@ class CodeBrowserScreen(Screen):
         """
         if self.code_browser.selected_file_path is not None:
             self.code_browser.show_tree = self.code_browser.force_show_tree
-            self.code_browser.render_code_page(
+            self.code_browser.window_switcher.render_file(
                 file_path=self.code_browser.selected_file_path
             )
             if (
                 self.code_browser.show_tree is False
-                and self.code_browser.code_view.display is True
+                and self.code_browser.static_window.display is True
             ):
-                self.code_browser.code_view.focus()
+                self.code_browser.window_switcher.focus()
             elif (
                 self.code_browser.show_tree is False
-                and self.code_browser.table_view.display is True
+                and self.code_browser.datatable_window.display is True
             ):
-                self.code_browser.table_view.focus()
+                self.code_browser.datatable_window.focus()
         else:
             self.code_browser.show_tree = True
-            self.code_browser.render_code_page(
-                file_path=pathlib.Path.cwd(), content=__application__.upper()
-            )
 
     @on(CurrentFileInfoBar.FileInfoUpdate)
     def update_file_info(self, message: CurrentFileInfoBar.FileInfoUpdate) -> None:
@@ -95,3 +102,74 @@ class CodeBrowserScreen(Screen):
         Update the file_info property
         """
         self.file_information.file_info = message.new_file
+
+    def action_toggle_files(self) -> None:
+        """
+        Called in response to key binding.
+        """
+        self.code_browser.show_tree = not self.code_browser.show_tree
+
+    def action_parent_dir(self) -> None:
+        """
+        Go to the parent directory
+        """
+        directory_tree_open = self.code_browser.has_class("-show-tree")
+        if not directory_tree_open:
+            return
+        new_path = self.config_object.path.parent.resolve()
+        if new_path != self.config_object.path:
+            self.config_object.file_path = str(new_path)
+            self.code_browser.directory_tree.path = new_path
+            self.notify(
+                title="Directory Changed",
+                message=str(new_path),
+                severity="information",
+                timeout=1,
+            )
+
+    def action_theme(self) -> None:
+        """
+        An action to toggle rich theme.
+        """
+        self.code_browser.window_switcher.next_theme()
+
+    def action_linenos(self) -> None:
+        """
+        An action to toggle line numbers.
+        """
+        if self.code_browser.selected_file_path is None:
+            return
+        self.code_browser.static_window.linenos = (
+            not self.code_browser.static_window.linenos
+        )
+
+    def action_reload(self) -> None:
+        """
+        Refresh the directory and file
+        """
+        reload_file = self.code_browser.selected_file_path is not None
+        reload_directory = self.code_browser.has_class("-show-tree")
+        message_lines = []
+        if reload_directory:
+            self.code_browser.directory_tree.reload()
+            message_lines.append(
+                "[bold]Directory:[/bold] "
+                f"[italic]{self.config_object.path.name}[/italic]"
+            )
+        if reload_file:
+            selected_file_path = cast(
+                pathlib.Path, self.code_browser.selected_file_path
+            )
+            file_name = selected_file_path.name
+            self.code_browser.window_switcher.render_file(
+                file_path=selected_file_path,
+                scroll_home=False,
+            )
+            message_lines.append("[bold]File:[/bold] " f"[italic]{file_name}[/italic]")
+        if message_lines:
+            self.notify(
+                title="Reloaded",
+                message="\n".join(message_lines),
+                severity="information",
+                timeout=1,
+            )
