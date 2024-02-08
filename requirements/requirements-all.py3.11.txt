@@ -4,27 +4,28 @@
 # - pytest
 # - pytest-cov
 # - pytest-vcr~=1.0.2
-# - textual-dev~=1.0.1
+# - textual-dev~=1.4.0
 # - pytest-textual-snapshot
-# - art~=5.7
-# - click~=8.1.3
-# - pandas~=1.5.2
+# - art~=6.1
+# - click~=8.1.7
+# - pandas<3,>2
 # - pillow>=9.1.0
-# - pymupdf~=1.22.3
-# - rich-click~=1.5.2
-# - rich-pixels~=2.1.1
-# - rich~=13.5.2
+# - pymupdf~=1.23.21
+# - pyperclip~=1.8.2
+# - rich-click~=1.7.3
+# - rich-pixels~=2.2.0
+# - rich~=13.7.0
 # - textual-universal-directorytree~=1.0.2
-# - textual==0.39.0
-# - pyarrow~=10.0.0
+# - textual==0.48.2
+# - pyarrow~=15.0.0
 # - textual-universal-directorytree[remote]~=1.0.2
 #
 
-adlfs==2023.10.0
+adlfs==2024.2.0
     # via textual-universal-directorytree
-aiobotocore==2.9.0
+aiobotocore==2.11.2
     # via s3fs
-aiohttp==3.9.1
+aiohttp==3.9.3
     # via
     #   adlfs
     #   aiobotocore
@@ -36,13 +37,11 @@ aioitertools==0.11.0
     # via aiobotocore
 aiosignal==1.3.1
     # via aiohttp
-anyio==4.2.0
-    # via azure-core
-art==5.9
+art==6.1
     # via hatch.envs.all.py3.11
-attrs==23.1.0
+attrs==23.2.0
     # via aiohttp
-azure-core==1.29.6
+azure-core==1.30.0
     # via
     #   adlfs
     #   azure-identity
@@ -55,11 +54,11 @@ azure-storage-blob==12.19.0
     # via adlfs
 bcrypt==4.1.2
     # via paramiko
-botocore==1.33.13
+botocore==1.34.34
     # via aiobotocore
 cachetools==5.3.2
     # via google-auth
-certifi==2023.11.17
+certifi==2024.2.2
     # via requests
 cffi==1.16.0
     # via
@@ -73,11 +72,11 @@ click==8.1.7
     #   hatch.envs.all.py3.11
     #   rich-click
     #   textual-dev
-coverage==7.3.4
+coverage==7.4.1
     # via
     #   coverage
     #   pytest-cov
-cryptography==41.0.7
+cryptography==42.0.2
     # via
     #   azure-identity
     #   azure-storage-blob
@@ -90,19 +89,19 @@ frozenlist==1.4.1
     # via
     #   aiohttp
     #   aiosignal
-fsspec==2023.12.2
+fsspec==2024.2.0
     # via
     #   adlfs
     #   gcsfs
     #   s3fs
     #   universal-pathlib
-gcsfs==2023.12.2.post1
+gcsfs==2024.2.0
     # via textual-universal-directorytree
-google-api-core==2.15.0
+google-api-core==2.16.2
     # via
     #   google-cloud-core
     #   google-cloud-storage
-google-auth==2.25.2
+google-auth==2.27.0
     # via
     #   gcsfs
     #   google-api-core
@@ -125,20 +124,17 @@ googleapis-common-protos==1.62.0
     # via google-api-core
 idna==3.6
     # via
-    #   anyio
     #   requests
     #   yarl
-importlib-metadata==7.0.0
-    # via textual
 iniconfig==2.0.0
     # via pytest
 isodate==0.6.1
     # via azure-storage-blob
-jinja2==3.1.2
+jinja2==3.1.3
     # via pytest-textual-snapshot
 jmespath==1.0.1
     # via botocore
-linkify-it-py==2.0.2
+linkify-it-py==2.0.3
     # via markdown-it-py
 markdown-it-py==3.0.0
     # via
@@ -146,7 +142,7 @@ markdown-it-py==3.0.0
     #   mdit-py-plugins
     #   rich
     #   textual
-markupsafe==2.1.3
+markupsafe==2.1.5
     # via jinja2
 mdit-py-plugins==0.4.0
     # via markdown-it-py
@@ -161,11 +157,11 @@ msal-extensions==1.1.0
     # via azure-identity
 msgpack==1.0.7
     # via textual-dev
-multidict==6.0.4
+multidict==6.0.5
     # via
     #   aiohttp
     #   yarl
-numpy==1.26.2
+numpy==1.26.4
     # via
     #   pandas
     #   pyarrow
@@ -175,23 +171,23 @@ packaging==23.2
     # via
     #   msal-extensions
     #   pytest
-pandas==1.5.3
+pandas==2.2.0
     # via hatch.envs.all.py3.11
 paramiko==3.4.0
     # via textual-universal-directorytree
-pillow==9.5.0
+pillow==10.2.0
     # via
     #   hatch.envs.all.py3.11
     #   rich-pixels
-pluggy==1.3.0
+pluggy==1.4.0
     # via pytest
 portalocker==2.8.2
     # via msal-extensions
-protobuf==4.25.1
+protobuf==4.25.2
     # via
     #   google-api-core
     #   googleapis-common-protos
-pyarrow==10.0.1
+pyarrow==15.0.0
     # via hatch.envs.all.py3.11
 pyasn1==0.5.1
     # via
@@ -207,11 +203,15 @@ pyjwt==2.8.0
     # via
     #   msal
     #   pyjwt
-pymupdf==1.22.5
+pymupdf==1.23.21
     # via hatch.envs.all.py3.11
+pymupdfb==1.23.9
+    # via pymupdf
 pynacl==1.5.0
     # via paramiko
-pytest==7.4.3
+pyperclip==1.8.2
+    # via hatch.envs.all.py3.11
+pytest==7.4.4
     # via
     #   hatch.envs.all.py3.11
     #   pytest-cov
@@ -228,7 +228,7 @@ python-dateutil==2.8.2
     # via
     #   botocore
     #   pandas
-pytz==2023.3.post1
+pytz==2024.1
     # via pandas
 pyyaml==6.0.1
     # via vcrpy
@@ -244,37 +244,35 @@ requests==2.31.0
     #   textual-universal-directorytree
 requests-oauthlib==1.3.1
     # via google-auth-oauthlib
-rich==13.5.3
+rich==13.7.0
     # via
     #   hatch.envs.all.py3.11
     #   pytest-textual-snapshot
     #   rich-click
     #   rich-pixels
     #   textual
-rich-click==1.5.2
+rich-click==1.7.3
     # via hatch.envs.all.py3.11
-rich-pixels==2.1.1
+rich-pixels==2.2.0
     # via hatch.envs.all.py3.11
 rsa==4.9
     # via google-auth
-s3fs==2023.12.2
+s3fs==2024.2.0
     # via textual-universal-directorytree
 six==1.16.0
     # via
     #   azure-core
     #   isodate
     #   python-dateutil
-sniffio==1.3.0
-    # via anyio
 syrupy==4.6.0
     # via pytest-textual-snapshot
-textual==0.39.0
+textual==0.48.2
     # via
     #   hatch.envs.all.py3.11
     #   pytest-textual-snapshot
     #   textual-dev
     #   textual-universal-directorytree
-textual-dev==1.0.1
+textual-dev==1.4.0
     # via hatch.envs.all.py3.11
 textual-universal-directorytree==1.0.2
     # via hatch.envs.all.py3.11
@@ -282,8 +280,11 @@ typing-extensions==4.9.0
     # via
     #   azure-core
     #   azure-storage-blob
+    #   rich-click
     #   textual
     #   textual-dev
+tzdata==2023.4
+    # via pandas
 uc-micro-py==1.0.2
     # via linkify-it-py
 universal-pathlib==0.0.24
@@ -292,7 +293,7 @@ urllib3==2.0.7
     # via
     #   botocore
     #   requests
-vcrpy==5.1.0
+vcrpy==6.0.1
     # via pytest-vcr
 wrapt==1.16.0
     # via
@@ -302,5 +303,3 @@ yarl==1.9.4
     # via
     #   aiohttp
     #   vcrpy
-zipp==3.17.0
-    # via importlib-metadata
