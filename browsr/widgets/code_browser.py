@@ -2,12 +2,14 @@
 The Primary Content Container
 """
 
+from __future__ import annotations
+
 import inspect
 import json
 import pathlib
 import shutil
 from textwrap import dedent
-from typing import Any, ClassVar, Optional, Union
+from typing import Any, ClassVar
 
 import numpy as np
 import pandas as pd
@@ -69,7 +71,7 @@ class CodeBrowser(Container):
     show_tree = var(True)
     force_show_tree = var(False)
     hidden_table_view = var(False)
-    selected_file_path: Union[upath.UPath, pathlib.Path, None, var[None]] = var(None)
+    selected_file_path: upath.UPath | pathlib.Path | None | var[None] = var(None)
 
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding(key="f", action="toggle_files", description="Files"),
@@ -325,7 +327,7 @@ class CodeBrowser(Container):
         self,
         file_path: pathlib.Path,
         scroll_home: bool = True,
-        content: Optional[Any] = None,
+        content: Any | None = None,
     ) -> None:
         """
         Render the Code Page with Rich Syntax
@@ -357,7 +359,7 @@ class CodeBrowser(Container):
     def render_document(
         self,
         file_info: FileInfo,
-    ) -> Union[Syntax, Markdown, DataTable[str], Pixels]:
+    ) -> Syntax | Markdown | DataTable[str] | Pixels:
         """
         Render a Code Doc Given Its Extension
 
@@ -453,7 +455,7 @@ class CodeBrowser(Container):
 
     def _render_file(
         self, file_path: pathlib.Path, code_view: Static, font: str
-    ) -> Union[Syntax, Markdown, DataTable[str], Pixels, None]:
+    ) -> Syntax | Markdown | DataTable[str] | Pixels | None:
         """
         Render a File
         """

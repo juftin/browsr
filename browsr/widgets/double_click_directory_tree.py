@@ -2,6 +2,8 @@
 Directory Tree that copeis the path to the clipboard on double click
 """
 
+from __future__ import annotations
+
 import inspect
 import os
 import pathlib

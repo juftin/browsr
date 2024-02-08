@@ -2,6 +2,8 @@
 The App Screen
 """
 
+from __future__ import annotations
+
 import pathlib
 from typing import Iterable
 

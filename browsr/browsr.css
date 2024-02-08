@@ -11,7 +11,7 @@ Screen {
     dock: left;
 }
 
-Browsr.-show-tree #tree-view {
+CodeBrowser.-show-tree #tree-view {
     display: block;
     max-width: 50%;
 }

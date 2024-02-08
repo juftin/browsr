@@ -8,10 +8,10 @@ from typing import Optional, Tuple
 import click
 import rich_click
 
-from browsr._base import (
+from browsr.__about__ import __application__, __version__
+from browsr.base import (
     TextualAppContext,
 )
-from browsr._version import __application__, __version__
 from browsr.browsr import Browsr
 
 rich_click.rich_click.MAX_WIDTH = 100
