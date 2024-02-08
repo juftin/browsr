@@ -15,8 +15,8 @@ from tests.conftest import cassette
 @pytest.fixture
 def app_file() -> str:
     file_content = """
-    from browsr import Browsr
-    from browsr._base import TextualAppContext
+    from browsr.browsr import Browsr
+    from browsr.base import TextualAppContext
 
     file_path = "{file_path}"
     context = TextualAppContext(file_path=file_path)

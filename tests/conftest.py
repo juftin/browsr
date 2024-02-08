@@ -5,6 +5,7 @@ Pytest Fixtures Shared Across all Unit Tests
 import pathlib
 from typing import Any, Dict, List
 
+import pyperclip
 import pytest
 from click.testing import CliRunner
 from textual_universal_directorytree import GitHubPath
@@ -42,6 +43,16 @@ def github_release_path() -> GitHubPath:
     release = "v1.6.0"
     uri = f"github://juftin:browsr@{release}"
     return GitHubPath(uri)
+
+
+@pytest.fixture(autouse=True)
+def copy_supported(monkeypatch: pytest.MonkeyPatch) -> None:
+    """
+    Override _copy_supported
+    """
+    monkeypatch.setattr(
+        pyperclip, "determine_clipboard", lambda: (lambda: True, lambda: True)
+    )
 
 
 @pytest.fixture(scope="module")
