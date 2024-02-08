@@ -2,6 +2,8 @@
 A universal directory tree widget for Textual.
 """
 
+from __future__ import annotations
+
 from typing import ClassVar, Iterable
 
 from textual.binding import BindingType

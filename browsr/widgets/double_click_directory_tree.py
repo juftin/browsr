@@ -2,17 +2,16 @@
 Directory Tree that copeis the path to the clipboard on double click
 """
 
-import inspect
+from __future__ import annotations
+
 import os
 import pathlib
 import uuid
 from typing import Any
 
-import pyperclip
 from textual import on
 from textual.message import Message
 from textual.widgets import DirectoryTree
-from textual_universal_directorytree import UniversalDirectoryTree
 
 
 class DoubleClickDirectoryTree(DirectoryTree):
@@ -25,8 +24,6 @@ class DoubleClickDirectoryTree(DirectoryTree):
         Initialize the DirectoryTree
         """
         super().__init__(*args, **kwargs)
-        self._copy_function = pyperclip.determine_clipboard()[0]
-        self._copy_supported = inspect.isfunction(self._copy_function)
         self._last_clicked_path: os.PathLike[Any] = pathlib.Path(uuid.uuid4().hex)
 
     class DoubleClicked(Message):
@@ -51,21 +48,20 @@ class DoubleClickDirectoryTree(DirectoryTree):
         A message that is emitted when the file is double clicked
         """
 
-    @on(UniversalDirectoryTree.DirectorySelected)
-    def handle_double_click_dir(
-        self, message: UniversalDirectoryTree.DirectorySelected
-    ) -> None:
+    @on(DirectoryTree.DirectorySelected)
+    def handle_double_click_dir(self, message: DirectoryTree.DirectorySelected) -> None:
         """
         Handle double clicking on a directory
         """
-        if self.is_double_click(path=message.path):
+        if (
+            self.is_double_click(path=message.path)
+            and message.path != self.root.data.path
+        ):
             message.stop()
             self.post_message(self.DirectoryDoubleClicked(path=message.path))
 
-    @on(UniversalDirectoryTree.FileSelected)
-    def handle_double_click_file(
-        self, message: UniversalDirectoryTree.FileSelected
-    ) -> None:
+    @on(DirectoryTree.FileSelected)
+    def handle_double_click_file(self, message: DirectoryTree.FileSelected) -> None:
         """
         Handle double clicking on a file
         """

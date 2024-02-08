@@ -1,9 +1,11 @@
+from __future__ import annotations
+
 import math
 
 from rich.console import RenderableType
 from rich.text import Text
 from textual.message import Message
-from textual.reactive import reactive, var
+from textual.reactive import reactive
 from textual.widget import Widget
 
 from browsr.utils import FileInfo
@@ -16,7 +18,7 @@ class CurrentFileInfoBar(Widget):
     Thanks, Kupo. https://github.com/darrenburns/kupo
     """
 
-    file_info: FileInfo | var[None] = reactive(None)
+    file_info: FileInfo | None = reactive(None)
 
     class FileInfoUpdate(Message):
         """
