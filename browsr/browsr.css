@@ -16,17 +16,14 @@ CodeBrowser.-show-tree #tree-view {
     max-width: 50%;
 }
 
-#code-view {
+WindowSwitcher {
     overflow: auto scroll;
-    min-width: 100%;
-}
-#code {
-    width: auto;
-}
-#table-view {
     overflow: auto scroll;
     min-width: 100%;
     height: 100%;
+}
+#code {
+    width: auto;
 }
 
 #file-info-bar {

@@ -44,7 +44,8 @@ class Browsr(SortedBindingsApp):
         "r": 995,
         ".": 996,
         "c": 997,
-        "x": 998,
+        "shift+c": 998,
+        "x": 999,
     }
 
     def __init__(
