@@ -13,7 +13,6 @@ import numpy as np
 import pandas as pd
 from art import text2art
 from rich.markdown import Markdown
-from rich.syntax import Syntax
 from rich_pixels import Pixels
 from textual.app import ComposeResult
 from textual.binding import Binding, BindingType
@@ -25,7 +24,6 @@ from textual.reactive import var
 from textual.widget import Widget
 from textual.widgets import DataTable, Static, TextArea
 from textual.widgets._text_area import Edit
-from textual_universal_directorytree import is_local_path
 
 from browsr.config import image_file_extensions
 from browsr.exceptions import FileSizeError
@@ -95,35 +93,14 @@ class BaseCodeWindow(Widget):
         except JSONDecodeError:
             return code_str
 
-    def string_to_syntax(self, file_path: pathlib.Path, content: str) -> Syntax:
-        """
-        Load a string into a Syntax
-        """
-        code_lines = content.splitlines()
-        code = "\n".join(code_lines[:1000])
-        lexer = Syntax.guess_lexer(str(file_path), code=code)
-        return Syntax(
-            code=code,
-            lexer=lexer,
-            # line_numbers=self.linenos,
-            word_wrap=False,
-            indent_guides=False,
-            # theme=self.rich_themes[self.theme_index],
-        )
-
-    def handle_file_size(self, file_info: FileInfo) -> None:
+    @classmethod
+    def handle_file_size(cls, file_info: FileInfo, max_file_size: int = 5) -> None:
         """
         Handle a File Size
         """
-        _ = self.app  # todo: remove this line
         file_size_mb = file_info.size / 1000 / 1000
-        too_large = file_size_mb >= 5  # todo: self.config_object.max_file_size
-        exception = (
-            True
-            if is_local_path(file_info.file) and ".csv" in file_info.file.suffixes
-            else False
-        )
-        if too_large is True and exception is not True:
+        too_large = file_size_mb >= max_file_size
+        if too_large:
             raise FileSizeError("File too large")
 
     @classmethod
@@ -181,23 +158,88 @@ class StaticWindow(Static, BaseCodeWindow):
 
 class TextAreaWindow(TextArea, BaseCodeWindow):
     """
-    A ea widget for displaying code.
+    A widget for displaying code.
     """
 
     editable: bool = var(False)
     language_mapping: ClassVar[dict[str, str]] = {
+        ".sh": "bash",
+        ".bash": "bash",
+        ".c": "c",
+        ".cs": "c-sharp",
+        ".lisp": "commonlisp",
+        ".cpp": "cpp",
+        ".cc": "cpp",
+        ".cxx": "cpp",
+        ".hpp": "cpp",
+        ".h": "cpp",  # Note: .h could be C or C++ header, context needed
+        ".css": "css",
+        ".Dockerfile": "dockerfile",
+        ".dot": "dot",
+        ".el": "elisp",
+        ".ex": "elixir",
+        ".exs": "elixir",
+        ".elm": "elm",
+        ".erl": "erlang",
+        ".hrl": "erlang",
+        ".f": "fixed-form-fortran",
+        ".for": "fixed-form-fortran",
+        ".f90": "fortran",
+        ".f95": "fortran",
+        ".go": "go",
+        ".mod": "go-mod",
+        ".hack": "hack",
+        ".hs": "haskell",
+        ".lhs": "haskell",
+        ".hcl": "hcl",
+        ".html": "html",
+        ".htm": "html",
+        ".java": "java",
+        ".js": "javascript",
+        ".mjs": "javascript",
+        ".jsdoc": "jsdoc",
+        ".json": "json",
+        ".jl": "julia",
+        ".kt": "kotlin",
+        ".kts": "kotlin",
+        ".lua": "lua",
+        ".mak": "make",
+        ".mk": "make",
+        ".md": "markdown",
+        ".markdown": "markdown",
+        ".m": "objc",
+        ".mm": "objc",  # Objective-C++
+        ".ml": "ocaml",
+        ".mli": "ocaml",
+        ".pl": "perl",
+        ".pm": "perl",
+        ".php": "php",
+        ".phtml": "php",
+        ".php3": "php",
+        ".php4": "php",
+        ".php5": "php",
+        ".php7": "php",
+        ".phps": "php",
+        ".py": "python",
+        ".rpy": "python",
+        ".ql": "ql",
+        ".r": "r",
+        ".regex": "regex",
+        ".rst": "rst",
+        ".rb": "ruby",
+        ".rs": "rust",
+        ".scala": "scala",
+        ".sc": "scala",
+        ".sql": "sql",
+        ".sqlite3": "sqlite",
+        ".toml": "toml",
+        ".tsq": "tsq",
+        ".ts": "typescript",
+        ".tsx": "tsx",
         ".yaml": "yaml",
         ".yml": "yaml",
-        ".sql": "sql",
-        ".css": "css",
-        ".tcss": "css",
-        ".html": "html",
-        ".json": "json",
-        ".py": "python",
-        ".toml": "toml",
-        #  regex?
-        #  markdown?
     }
+
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding(
             key="shift+c",
@@ -224,6 +266,16 @@ class TextAreaWindow(TextArea, BaseCodeWindow):
             event.stop()
             event.prevent_default()
             await self.app.check_bindings(key=event.key)
+
+    def render_file_size_error(self) -> None:
+        """
+        Render a file size error
+        """
+        font = "univers"
+        error_message = (
+            text2art("FILE TOO", font=font) + "\n\n" + text2art("LARGE", font=font)
+        )
+        self.text = error_message
 
 
 class DataTableWindow(DataTable, BaseCodeWindow):

@@ -11,7 +11,7 @@
 # - rich-pixels~=2.2.0
 # - rich~=13.7.0
 # - textual-universal-directorytree~=1.0.2
-# - textual==0.48.2
+# - textual[syntax]==0.50.1
 # - pyarrow~=15.0.0
 # - textual-universal-directorytree[remote]~=1.0.2
 #
@@ -225,12 +225,19 @@ six==1.16.0
     #   azure-core
     #   isodate
     #   python-dateutil
-textual==0.48.2
+textual==0.50.1
     # via
     #   hatch.envs.default
+    #   textual
     #   textual-universal-directorytree
 textual-universal-directorytree==1.0.2
     # via hatch.envs.default
+tree-sitter==0.20.4
+    # via
+    #   textual
+    #   tree-sitter-languages
+tree-sitter-languages==1.10.2
+    # via textual
 typing-extensions==4.9.0
     # via
     #   azure-core

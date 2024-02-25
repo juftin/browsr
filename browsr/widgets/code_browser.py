@@ -26,6 +26,7 @@ from browsr.base import (
     TextualAppContext,
 )
 from browsr.config import favorite_themes
+from browsr.exceptions import FileSizeError
 from browsr.utils import (
     get_file_info,
     handle_duplicate_filenames,
@@ -122,22 +123,14 @@ class CodeBrowser(Container):
         """
         Copy the file path to the clipboard.
         """
-        if self.selected_file_path:
-            try:
-                pyperclip.copy(str(self.selected_file_path))
-                self.notify(
-                    message=f"{self.selected_file_path}",
-                    title="Copied to Clipboard",
-                    severity="information",
-                    timeout=1,
-                )
-            except pyperclip.PyperclipException:
-                self.notify(
-                    message="copy/pase not supported on this platform",
-                    title="Error Copying to Clipboard",
-                    severity="warning",
-                    timeout=1,
-                )
+        if self.selected_file_path and self._copy_supported:
+            self._copy_function(str(self.selected_file_path))
+            self.notify(
+                message=f"{self.selected_file_path}",
+                title="Copied to Clipboard",
+                severity="information",
+                timeout=1,
+            )
 
     @on(ConfirmationPopUp.ConfirmationWindowDownload)
     def handle_download_confirmation(
@@ -164,7 +157,14 @@ class CodeBrowser(Container):
         """
         self.selected_file_path = upath.UPath(message.path)
         file_info = get_file_info(file_path=self.selected_file_path)
-        self.window_switcher.render_file(file_path=self.selected_file_path)
+        try:
+            self.window_switcher.text_area.handle_file_size(
+                file_info=file_info, max_file_size=self.config_object.max_file_size
+            )
+            self.window_switcher.render_file(file_path=self.selected_file_path)
+        except FileSizeError:
+            self.window_switcher.text_area.render_file_size_error()
+            self.window_switcher.switch_window(self.window_switcher.text_area)
         self.post_message(CurrentFileInfoBar.FileInfoUpdate(new_file=file_info))
 
     @on(DoubleClickDirectoryTree.DirectoryDoubleClicked)

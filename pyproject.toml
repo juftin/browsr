@@ -24,7 +24,7 @@ dependencies = [
   "rich~=13.7.0",
   "rich-click~=1.7.3",
   "rich-pixels~=2.2.0",
-  "textual==0.48.2",
+  "textual[syntax]==0.50.1",
   "textual-universal-directorytree~=1.0.2",
   "Pillow>=9.1.0",
   "PyMuPDF~=1.23.21",
