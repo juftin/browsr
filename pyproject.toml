@@ -94,6 +94,8 @@ python = ["3.8", "3.9", "3.10", "3.11"]
 [tool.hatch.envs.default]
 features = ["all"]
 pip-compile-constraint = "default"
+pip-compile-installer = "uv"
+pip-compile-resolver = "uv"
 post-install-commands = [
   "- pre-commit install"
 ]
@@ -109,6 +111,8 @@ test = "hatch run test:test"
 [tool.hatch.envs.docs]
 detached = false
 pip-compile-constraint = "default"
+pip-compile-installer = "uv"
+pip-compile-resolver = "uv"
 template = "docs"
 type = "pip-compile"
 
@@ -154,7 +158,8 @@ dependencies = [
   "pytest-cov",
   "pytest-vcr~=1.0.2",
   "textual-dev~=1.4.0",
-  "pytest-textual-snapshot"
+  "pytest-textual-snapshot",
+  "pytest-asyncio"
 ]
 
 [tool.hatch.envs.test.scripts]
