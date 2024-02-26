@@ -53,7 +53,10 @@ class DoubleClickDirectoryTree(DirectoryTree):
         """
         Handle double clicking on a directory
         """
-        if self.is_double_click(path=message.path):
+        if (
+            self.is_double_click(path=message.path)
+            and message.path != self.root.data.path
+        ):
             message.stop()
             self.post_message(self.DirectoryDoubleClicked(path=message.path))
 

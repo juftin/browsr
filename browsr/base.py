@@ -43,6 +43,7 @@ class TextualAppContext:
     config: dict[str, Any] | None = None
     debug: bool = False
     max_file_size: int = 20
+    max_lines: int = 1000
     kwargs: dict[str, Any] | None = None
 
     @property

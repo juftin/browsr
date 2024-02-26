@@ -85,14 +85,14 @@ class CodeBrowserScreen(Screen):
             )
             if (
                 self.code_browser.show_tree is False
-                and self.code_browser.window_switcher.text_area.display is True
+                and self.code_browser.static_window.display is True
             ):
                 self.code_browser.window_switcher.focus()
             elif (
                 self.code_browser.show_tree is False
-                and self.code_browser.window_switcher.datatable_window.display is True
+                and self.code_browser.datatable_window.display is True
             ):
-                self.code_browser.window_switcher.datatable_window.focus()
+                self.code_browser.datatable_window.focus()
         else:
             self.code_browser.show_tree = True
             self.code_browser.window_switcher.render_file(file_path=pathlib.Path.cwd())
@@ -114,6 +114,9 @@ class CodeBrowserScreen(Screen):
         """
         Go to the parent directory
         """
+        directory_tree_open = self.code_browser.has_class("-show-tree")
+        if not directory_tree_open:
+            return
         new_path = self.config_object.path.parent.resolve()
         if new_path != self.config_object.path:
             self.config_object.file_path = str(new_path)
@@ -129,14 +132,7 @@ class CodeBrowserScreen(Screen):
         """
         An action to toggle rich theme.
         """
-        themes = list(self.code_browser.window_switcher.text_area.available_themes)
-        current_index = themes.index(self.code_browser.window_switcher.text_area.theme)
-        try:
-            self.code_browser.window_switcher.text_area.theme = themes[
-                current_index + 1
-            ]
-        except IndexError:
-            self.code_browser.window_switcher.text_area.theme = themes[0]
+        self.code_browser.window_switcher.next_theme()
 
     def action_linenos(self) -> None:
         """
@@ -144,8 +140,8 @@ class CodeBrowserScreen(Screen):
         """
         if self.code_browser.selected_file_path is None:
             return
-        self.code_browser.window_switcher.text_area.show_line_numbers = (
-            not self.code_browser.window_switcher.text_area.show_line_numbers
+        self.code_browser.static_window.linenos = (
+            not self.code_browser.static_window.linenos
         )
 
     def action_reload(self) -> None:
@@ -159,12 +155,3 @@ class CodeBrowserScreen(Screen):
             severity="information",
             timeout=1,
         )
-
-    def action_copy_selected_text(self) -> None:
-        """
-        Copy the selected text
-        """
-        if self.code_browser._copy_supported:
-            self.code_browser._copy_function(
-                self.code_browser.window_switcher.text_area.selected_text
-            )

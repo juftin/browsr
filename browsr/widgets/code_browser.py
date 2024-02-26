@@ -11,7 +11,6 @@ from textwrap import dedent
 from typing import Any
 
 import pyperclip
-import textual
 import upath
 from rich.markdown import Markdown
 from textual import on, work
@@ -35,7 +34,7 @@ from browsr.widgets.confirmation import ConfirmationPopUp, ConfirmationWindow
 from browsr.widgets.double_click_directory_tree import DoubleClickDirectoryTree
 from browsr.widgets.files import CurrentFileInfoBar
 from browsr.widgets.universal_directory_tree import BrowsrDirectoryTree
-from browsr.widgets.windows import WindowSwitcher
+from browsr.widgets.windows import DataTableWindow, StaticWindow, WindowSwitcher
 
 
 class CodeBrowser(Container):
@@ -56,13 +55,16 @@ class CodeBrowser(Container):
     rich_themes = favorite_themes
     show_tree = var(True)
     force_show_tree = var(False)
-    hidden_table_view = var(False)
     selected_file_path: upath.UPath | pathlib.Path | None | var[None] = var(None)
+
+    hidden_table_view = var(False)
+    table_view_status = var(False)
+    static_window_status = var(False)
 
     def __init__(
         self,
-        *args: Any,
         config_object: TextualAppContext,
+        *args: Any,
         **kwargs: Any,
     ) -> None:
         """
@@ -72,16 +74,18 @@ class CodeBrowser(Container):
         self.config_object = config_object
         # Path Handling
         file_path = self.config_object.path
-        if file_path.is_file():
+        if not file_path.exists():
+            msg = f"Unknown File Path: {file_path}"
+            raise FileNotFoundError(msg)
+        elif file_path.is_file():
             self.selected_file_path = file_path
             file_path = file_path.parent
         elif file_path.is_dir() and file_path.joinpath("README.md").exists():
             self.selected_file_path = file_path.joinpath("README.md")
             self.force_show_tree = True
         self.initial_file_path = file_path
-        # Widget Initialization
         self.directory_tree = BrowsrDirectoryTree(str(file_path), id="tree-view")
-        self.window_switcher = WindowSwitcher()
+        self.window_switcher = WindowSwitcher(config_object=self.config_object)
         self.confirmation = ConfirmationPopUp()
         self.confirmation_window = ConfirmationWindow(
             self.confirmation, id="confirmation-container"
@@ -90,6 +94,20 @@ class CodeBrowser(Container):
         # Copy Pasting
         self._copy_function = pyperclip.determine_clipboard()[0]
         self._copy_supported = inspect.isfunction(self._copy_function)
+
+    @property
+    def datatable_window(self) -> DataTableWindow:
+        """
+        Get the datatable window
+        """
+        return self.window_switcher.datatable_window
+
+    @property
+    def static_window(self) -> StaticWindow:
+        """
+        Get the static window
+        """
+        return self.window_switcher.static_window
 
     def compose(self) -> ComposeResult:
         """
@@ -141,14 +159,15 @@ class CodeBrowser(Container):
         """
         self.download_selected_file()
 
-    @on(ConfirmationPopUp.TableViewDisplayToggle)
+    @on(ConfirmationPopUp.DisplayToggle)
     def handle_table_view_display_toggle(
-        self, _: ConfirmationPopUp.TableViewDisplayToggle
+        self, _: ConfirmationPopUp.DisplayToggle
     ) -> None:
         """
         Handle the table view display toggle.
         """
-        self.table_view.display = self.hidden_table_view
+        self.datatable_window.display = self.table_view_status
+        self.window_switcher.vim_scroll.display = self.static_window_status
 
     @on(DirectoryTree.FileSelected)
     def handle_file_selected(self, message: DirectoryTree.FileSelected) -> None:
@@ -158,13 +177,17 @@ class CodeBrowser(Container):
         self.selected_file_path = upath.UPath(message.path)
         file_info = get_file_info(file_path=self.selected_file_path)
         try:
-            self.window_switcher.text_area.handle_file_size(
+            self.static_window.handle_file_size(
                 file_info=file_info, max_file_size=self.config_object.max_file_size
             )
             self.window_switcher.render_file(file_path=self.selected_file_path)
-        except FileSizeError:
-            self.window_switcher.text_area.render_file_size_error()
-            self.window_switcher.switch_window(self.window_switcher.text_area)
+        except FileSizeError as e:
+            error_message = self.static_window.handle_exception(exception=e)
+            error_syntax = self.static_window.text_to_syntax(
+                text=error_message, file_path=self.selected_file_path
+            )
+            self.static_window.update(error_syntax)
+            self.window_switcher.switch_window(self.static_window)
         self.post_message(CurrentFileInfoBar.FileInfoUpdate(new_file=file_info))
 
     @on(DoubleClickDirectoryTree.DirectoryDoubleClicked)
@@ -176,6 +199,12 @@ class CodeBrowser(Container):
         """
         self.directory_tree.path = message.path
         self.config_object.file_path = str(message.path)
+        self.notify(
+            title="Directory Changed",
+            message=str(message.path),
+            severity="information",
+            timeout=1,
+        )
 
     @on(DoubleClickDirectoryTree.FileDoubleClicked)
     def handle_file_double_click(
@@ -216,8 +245,10 @@ class CodeBrowser(Container):
             )
             self.confirmation.download_message.update(Markdown(prompt_message))
             self.confirmation.refresh()
-            self.hidden_table_view = self.table_view.display
-            self.table_view.display = False
+            self.table_view_status = self.datatable_window.display
+            self.static_window_status = self.window_switcher.vim_scroll.display
+            self.datatable_window.display = False
+            self.window_switcher.vim_scroll.display = False
             self.confirmation_window.display = True
 
     @work(thread=True)
@@ -252,10 +283,3 @@ class CodeBrowser(Container):
         download_path = download_dir / self.selected_file_path.name  # type: ignore[union-attr]
         handled_download_path = handle_duplicate_filenames(file_path=download_path)
         return handled_download_path
-
-    @on(textual.events.Key)
-    async def handle_key_press(self, event: textual.events.Key) -> None:
-        """
-        Handle Key Presses
-        """
-        textual.log(event)

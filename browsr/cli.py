@@ -31,11 +31,24 @@ rich_click.rich_click.STYLE_COMMANDS_TABLE_BOX = "SIMPLE_HEAVY"
 @click.command(name="browsr", cls=rich_click.rich_command.RichCommand)
 @click.argument("path", default=None, required=False, metavar="PATH")
 @click.option(
+    "-l",
+    "--max-lines",
+    default=1000,
+    show_default=True,
+    type=int,
+    help="Maximum number of lines to display in the code browser",
+    envvar="BROWSR_MAX_LINES",
+    show_envvar=True,
+)
+@click.option(
     "-m",
     "--max-file-size",
     default=20,
+    show_default=True,
     type=int,
     help="Maximum file size in MB for the application to open",
+    envvar="BROWSR_MAX_FILE_SIZE",
+    show_envvar=True,
 )
 @click.version_option(version=__version__, prog_name=__application__)
 @click.option(
@@ -43,13 +56,21 @@ rich_click.rich_click.STYLE_COMMANDS_TABLE_BOX = "SIMPLE_HEAVY"
     default=False,
     help="Enable extra debugging output",
     type=click.BOOL,
+    envvar="BROWSR_DEBUG",
+    show_envvar=True,
 )
 @click.option(
-    "-k", "--kwargs", multiple=True, help="Key=Value pairs to pass to the filesystem"
+    "-k",
+    "--kwargs",
+    multiple=True,
+    help="Key=Value pairs to pass to the filesystem",
+    envvar="BROWSR_KWARGS",
+    show_envvar=True,
 )
 def browsr(
     path: Optional[str],
     debug: bool,
+    max_lines: int,
     max_file_size: int,
     kwargs: Tuple[str, ...],
 ) -> None:
@@ -174,6 +195,9 @@ def browsr(
     - **`T`** - Toggle the rich theme for code formatting
     - **`N`** - Toggle line numbers for code formatting
     - **`D`** - Toggle dark mode for the application
+    - **`.`** - Parent Directory - go up one directory
+    - **`R`** - Reload the current directory
+    - **`C`** - Copy the current file or directory path to the clipboard
     - **`X`** - Download the file from cloud storage
     """
     extra_kwargs = {}
@@ -195,6 +219,7 @@ def browsr(
         file_path=file_path,
         debug=debug,
         max_file_size=max_file_size,
+        max_lines=max_lines,
         kwargs=extra_kwargs,
     )
     app = Browsr(config_object=config)
