@@ -141,10 +141,11 @@ class CodeBrowser(Container):
         """
         Copy the file path to the clipboard.
         """
-        if self.selected_file_path and self._copy_supported:
-            self._copy_function(str(self.selected_file_path))
+        if self._copy_supported:
+            copy_path = str(self.selected_file_path or self.directory_tree.path)
+            self._copy_function(copy_path)
             self.notify(
-                message=f"{self.selected_file_path}",
+                message=copy_path,
                 title="Copied to Clipboard",
                 severity="information",
                 timeout=1,
@@ -174,6 +175,8 @@ class CodeBrowser(Container):
         """
         Called when the user click a file in the directory tree.
         """
+        if str(message.path) == str(self.selected_file_path):
+            return
         self.selected_file_path = upath.UPath(message.path)
         file_info = get_file_info(file_path=self.selected_file_path)
         try:
@@ -197,14 +200,20 @@ class CodeBrowser(Container):
         """
         Called when the user double clicks a directory in the directory tree.
         """
-        self.directory_tree.path = message.path
-        self.config_object.file_path = str(message.path)
-        self.notify(
-            title="Directory Changed",
-            message=str(message.path),
-            severity="information",
-            timeout=1,
-        )
+        if str(message.path) == str(self.directory_tree.path):
+            chdir = self.directory_tree.path.parent
+        else:
+            chdir = message.path
+        chdir_str = str(chdir)
+        if chdir_str != str(self.directory_tree.path):
+            self.directory_tree.path = chdir
+            self.config_object.file_path = chdir_str
+            self.notify(
+                title="Directory Changed",
+                message=chdir_str,
+                severity="information",
+                timeout=1,
+            )
 
     @on(DoubleClickDirectoryTree.FileDoubleClicked)
     def handle_file_double_click(

@@ -4,6 +4,7 @@ Directory Tree that copeis the path to the clipboard on double click
 
 from __future__ import annotations
 
+import datetime
 import os
 import pathlib
 import uuid
@@ -24,7 +25,15 @@ class DoubleClickDirectoryTree(DirectoryTree):
         Initialize the DirectoryTree
         """
         super().__init__(*args, **kwargs)
+        current_timestamp = datetime.datetime.now(tz=datetime.timezone.utc)
+        self._current_path: os.PathLike[Any] = pathlib.Path(uuid.uuid4().hex)
+        self._current_path_time: datetime.datetime = (
+            current_timestamp - datetime.timedelta(seconds=5)
+        )
         self._last_clicked_path: os.PathLike[Any] = pathlib.Path(uuid.uuid4().hex)
+        self._last_clicked_path_time: datetime.datetime = (
+            current_timestamp - datetime.timedelta(seconds=10)
+        )
 
     class DoubleClicked(Message):
         """
@@ -53,10 +62,8 @@ class DoubleClickDirectoryTree(DirectoryTree):
         """
         Handle double clicking on a directory
         """
-        if (
-            self.is_double_click(path=message.path)
-            and message.path != self.root.data.path
-        ):
+        self.handle_click(path=message.path)
+        if self.is_double_click():
             message.stop()
             self.post_message(self.DirectoryDoubleClicked(path=message.path))
 
@@ -65,16 +72,29 @@ class DoubleClickDirectoryTree(DirectoryTree):
         """
         Handle double clicking on a file
         """
-        if self.is_double_click(path=message.path):
+        self.handle_click(path=message.path)
+        if self.is_double_click():
             message.stop()
             self.post_message(self.FileDoubleClicked(path=message.path))
 
-    def is_double_click(self, path: os.PathLike[Any]) -> bool:
+    def handle_click(self, path: os.PathLike[Any]) -> None:
+        """
+        Handle clicking on a directory
+        """
+        now = datetime.datetime.now(tz=datetime.timezone.utc)
+        self._last_clicked_path = self._current_path
+        self._last_clicked_path_time = self._current_path_time
+        self._current_path = path
+        self._current_path_time = now
+
+    def is_double_click(self) -> bool:
         """
         Check if the path is double clicked
         """
-        if str(self._last_clicked_path) != str(path):
-            self._last_clicked_path = path
-            return False
-        else:
-            return True
+        return all(
+            (
+                str(self._last_clicked_path) == str(self._current_path),
+                self._last_clicked_path_time
+                >= self._current_path_time - datetime.timedelta(seconds=0.5),
+            )
+        )
