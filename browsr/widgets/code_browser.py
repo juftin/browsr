@@ -5,6 +5,7 @@ The Primary Content Container
 from __future__ import annotations
 
 import inspect
+import os
 import pathlib
 import shutil
 from textwrap import dedent
@@ -19,6 +20,7 @@ from textual.containers import Container
 from textual.events import Mount
 from textual.reactive import var
 from textual.widgets import DirectoryTree
+from textual_terminal import Terminal
 from textual_universal_directorytree import is_remote_path
 
 from browsr.base import (
@@ -86,6 +88,10 @@ class CodeBrowser(Container):
         self.initial_file_path = file_path
         self.directory_tree = BrowsrDirectoryTree(str(file_path), id="tree-view")
         self.window_switcher = WindowSwitcher(config_object=self.config_object)
+        self.terminal = Terminal(
+            id="terminal", command=os.getenv("SHELL", "bash"), default_colors="textual"
+        )
+        self.terminal.display = False
         self.confirmation = ConfirmationPopUp()
         self.confirmation_window = ConfirmationWindow(
             self.confirmation, id="confirmation-container"
@@ -113,9 +119,12 @@ class CodeBrowser(Container):
         """
         Compose the content of the container
         """
-        yield self.directory_tree
-        yield self.window_switcher
-        yield self.confirmation_window
+        yield Container(
+            self.directory_tree,
+            self.window_switcher,
+            self.confirmation_window,
+        )
+        yield self.terminal
 
     @on(Mount)
     def bind_keys(self) -> None:
@@ -130,6 +139,12 @@ class CodeBrowser(Container):
             self.app.bind(
                 keys="x", action="download_file", description="Download File", show=True
             )
+        self.app.bind(
+            keys="G",
+            action="terminal",
+            description="Terminal",
+            show=True,
+        )
 
     def watch_show_tree(self, show_tree: bool) -> None:
         """

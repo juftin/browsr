@@ -16,6 +16,12 @@ CodeBrowser.-show-tree #tree-view {
     max-width: 50%;
 }
 
+Terminal {
+    max-height: 50%;
+    dock: bottom;
+    overflow: auto;
+}
+
 #tree-view {
     display: none;
     scrollbar-gutter: stable;

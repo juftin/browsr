@@ -33,6 +33,7 @@ class CodeBrowserScreen(Screen):
         Binding(key="n", action="linenos", description="Line Numbers"),
         Binding(key="r", action="reload", description="Reload"),
         Binding(key=".", action="parent_dir", description="Parent Directory"),
+        Binding(key="e", action="editor", description="$EDITOR"),
     ]
 
     def __init__(
@@ -173,3 +174,15 @@ class CodeBrowserScreen(Screen):
                 severity="information",
                 timeout=1,
             )
+
+    def action_editor(self) -> None:
+        """
+        An action to open the terminal.
+        """
+        self.code_browser.terminal.display = not self.code_browser.terminal.display
+        if self.code_browser.terminal.display:
+            self.code_browser.terminal.focus()
+            if not self.code_browser.terminal.emulator:
+                self.code_browser.terminal.start()
+        else:
+            self.code_browser.terminal.stop()

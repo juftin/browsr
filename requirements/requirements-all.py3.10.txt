@@ -16,6 +16,7 @@
 # - rich-click~=1.7.3
 # - rich-pixels~=2.2.0
 # - rich~=13.7.0
+# - textual-terminal~=0.3.0
 # - textual-universal-directorytree~=1.0.2
 # - textual==0.48.2
 # - pyarrow~=15.0.0
@@ -203,6 +204,8 @@ pymupdfb==1.23.9
 pynacl==1.5.0
     # via paramiko
 pyperclip==1.8.2
+pyte==0.8.2
+    # via textual-terminal
 pytest==7.4.4
     # via
     #   pytest-asyncio
@@ -257,8 +260,10 @@ textual==0.48.2
     # via
     #   pytest-textual-snapshot
     #   textual-dev
+    #   textual-terminal
     #   textual-universal-directorytree
 textual-dev==1.4.0
+textual-terminal==0.3.0
 textual-universal-directorytree==1.0.2
 tomli==2.0.1
     # via
@@ -283,6 +288,8 @@ urllib3==2.0.7
     #   requests
 vcrpy==6.0.1
     # via pytest-vcr
+wcwidth==0.2.13
+    # via pyte
 wrapt==1.16.0
     # via
     #   aiobotocore
