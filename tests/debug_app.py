@@ -13,9 +13,7 @@ async def test_debug_app() -> None:
     """
     Test the actual browsr app
     """
-    config = TextualAppContext(
-        file_path="github://juftin:textual-universal-directorytree@main", debug=True
-    )
+    config = TextualAppContext(file_path=".", debug=True)
     app = Browsr(config_object=config)
     async with app.run_test() as pilot:
         _ = pilot.app

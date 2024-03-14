@@ -200,7 +200,6 @@ class CodeBrowser(Container):
         Called when the user double clicks a directory in the directory tree.
         """
         self.directory_tree.path = message.path
-        self.config_object.file_path = str(message.path)
         self.notify(
             title="Directory Changed",
             message=str(message.path),
