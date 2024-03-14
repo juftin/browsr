@@ -7,7 +7,7 @@ from textwrap import dedent
 from typing import Callable, Tuple
 
 import pytest
-from textual_universal_directorytree import GitHubPath
+from textual_universal_directorytree import GitHubTextualPath
 
 from tests.conftest import cassette
 
@@ -35,7 +35,7 @@ def test_github_screenshot(
     snap_compare: Callable[..., bool],
     tmp_path: pathlib.Path,
     app_file: str,
-    github_release_path: GitHubPath,
+    github_release_path: GitHubTextualPath,
     terminal_size: Tuple[int, int],
 ) -> None:
     """
@@ -51,7 +51,7 @@ def test_github_screenshot_license(
     snap_compare: Callable[..., bool],
     tmp_path: pathlib.Path,
     app_file: str,
-    github_release_path: GitHubPath,
+    github_release_path: GitHubTextualPath,
     terminal_size: Tuple[int, int],
 ) -> None:
     """
@@ -69,7 +69,7 @@ def test_mkdocs_screenshot(
     tmp_path: pathlib.Path,
     app_file: str,
     terminal_size: Tuple[int, int],
-    github_release_path: GitHubPath,
+    github_release_path: GitHubTextualPath,
 ) -> None:
     """
     Snapshot the pyproject.toml file

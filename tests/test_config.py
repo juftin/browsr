@@ -4,7 +4,7 @@ Config / Context Tests
 import pathlib
 from dataclasses import is_dataclass
 
-from textual_universal_directorytree import GitHubPath
+from textual_universal_directorytree import GitHubTextualPath
 
 from browsr.base import TextualAppContext
 from browsr.config import favorite_themes
@@ -54,5 +54,5 @@ def test_textual_app_context_path_github() -> None:
         context = TextualAppContext(file_path=_github_string)
         handled_github_url = context.path
         expected_file_path = "github://juftin:browsr@main/"
-        assert handled_github_url == GitHubPath(expected_file_path)
+        assert handled_github_url == GitHubTextualPath(expected_file_path)
         assert str(handled_github_url) == expected_file_path

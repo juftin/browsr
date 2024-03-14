@@ -59,15 +59,18 @@ class CurrentFileInfoBar(Widget):
         if self.file_info is None or not self.file_info.is_file:
             return Text("")
         status_string = "🗄️️️  " + self._convert_size(self.file_info.size)
-        if self.file_info.last_modified is not None:
+        if (
+            self.file_info.last_modified is not None
+            and self.file_info.last_modified.timestamp() != 0
+        ):
             modify_time = self.file_info.last_modified.strftime("%b %d, %Y %I:%M %p")
             status_string += "  📅  " + modify_time
-        status_string += (
-            "  💾  "
-            + self.file_info.file.name
-            + "  📂  "
-            + self.file_info.file.parent.name
-        )
+        parent_name = self.file_info.file.parent.name
+        if not parent_name:
+            parent_name = str(self.file_info.file.parent)
+            parent_name = parent_name.lstrip(f"{self.file_info.file.protocol}://")
+            parent_name = parent_name.rstrip("/")
+        status_string += "  💾  " + self.file_info.file.name + "  📂  " + parent_name
         if self.file_info.owner not in ["", None]:
             status_string += "  👤  " + self.file_info.owner
         if self.file_info.group.strip() not in ["", None]:
