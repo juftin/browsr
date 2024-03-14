@@ -8,7 +8,7 @@ from typing import Any, Dict, List
 import pyperclip
 import pytest
 from click.testing import CliRunner
-from textual_universal_directorytree import GitHubPath
+from textual_universal_directorytree import GitHubTextualPath
 
 
 @pytest.fixture
@@ -36,13 +36,13 @@ def screenshot_dir(repo_dir: pathlib.Path) -> pathlib.Path:
 
 
 @pytest.fixture
-def github_release_path() -> GitHubPath:
+def github_release_path() -> GitHubTextualPath:
     """
     Return the path to the Github Release
     """
     release = "v1.6.0"
     uri = f"github://juftin:browsr@{release}"
-    return GitHubPath(uri)
+    return GitHubTextualPath(uri)
 
 
 @pytest.fixture(autouse=True)
