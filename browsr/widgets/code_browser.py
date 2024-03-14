@@ -19,7 +19,7 @@ from textual.containers import Container
 from textual.events import Mount
 from textual.reactive import var
 from textual.widgets import DirectoryTree
-from textual_universal_directorytree import is_remote_path
+from textual_universal_directorytree import UniversalDirectoryTree, is_remote_path
 
 from browsr.base import (
     TextualAppContext,
@@ -84,7 +84,7 @@ class CodeBrowser(Container):
             self.selected_file_path = file_path.joinpath("README.md")
             self.force_show_tree = True
         self.initial_file_path = file_path
-        self.directory_tree = BrowsrDirectoryTree(str(file_path), id="tree-view")
+        self.directory_tree = BrowsrDirectoryTree(file_path, id="tree-view")
         self.window_switcher = WindowSwitcher(config_object=self.config_object)
         self.confirmation = ConfirmationPopUp()
         self.confirmation_window = ConfirmationWindow(
@@ -169,12 +169,12 @@ class CodeBrowser(Container):
         self.datatable_window.display = self.table_view_status
         self.window_switcher.vim_scroll.display = self.static_window_status
 
-    @on(DirectoryTree.FileSelected)
+    @on(UniversalDirectoryTree.FileSelected)
     def handle_file_selected(self, message: DirectoryTree.FileSelected) -> None:
         """
         Called when the user click a file in the directory tree.
         """
-        self.selected_file_path = upath.UPath(message.path)
+        self.selected_file_path = message.path
         file_info = get_file_info(file_path=self.selected_file_path)
         try:
             self.static_window.handle_file_size(

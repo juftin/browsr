@@ -6,31 +6,15 @@ from __future__ import annotations
 
 import os
 import pathlib
-from copy import copy
 from dataclasses import dataclass, field
-from os import PathLike
 from typing import Any, ClassVar
 
 from textual.app import App
 from textual.binding import Binding
 from textual.dom import DOMNode
-from upath import UPath
+from textual_universal_directorytree import UPath
 
 from browsr.utils import handle_github_url
-
-
-class BrowsrPath(UPath):
-    """
-    A UPath object that can be extended with persisted kwargs
-    """
-
-    __path_kwargs__: ClassVar[dict[str, Any]] = {}
-
-    def __new__(cls, *args: str | PathLike[Any], **kwargs: Any) -> BrowsrPath:
-        """
-        Create a new BrowsrPath object
-        """
-        return super().__new__(cls, *args, **kwargs, **cls.__path_kwargs__)
 
 
 @dataclass
@@ -51,7 +35,6 @@ class TextualAppContext:
         """
         Resolve `file_path` to a upath.UPath object
         """
-
         if "github" in str(self.file_path).lower():
             file_path = str(self.file_path)
             file_path = file_path.lstrip("https://")  # noqa: B005
@@ -63,14 +46,12 @@ class TextualAppContext:
             self.file_path = file_path
         if str(self.file_path).endswith("/") and len(str(self.file_path)) > 1:
             self.file_path = str(self.file_path)[:-1]
-        kwargs = self.kwargs or {}
-        PathClass = copy(BrowsrPath)  # noqa: N806
-        PathClass.__path_kwargs__ = kwargs
-        return (
-            PathClass(self.file_path).resolve()
-            if self.file_path
-            else pathlib.Path.cwd().resolve()
-        )
+        storage_options = self.kwargs or {}
+        if not self.file_path:
+            return pathlib.Path.cwd().resolve()
+        else:
+            path = UPath(self.file_path, **storage_options)
+            return path.resolve()
 
 
 class SortedBindingsApp(App[str]):

@@ -5,13 +5,13 @@ Directory Tree that copeis the path to the clipboard on double click
 from __future__ import annotations
 
 import os
-import pathlib
 import uuid
 from typing import Any
 
 from textual import on
 from textual.message import Message
 from textual.widgets import DirectoryTree
+from textual_universal_directorytree import UPath
 
 
 class DoubleClickDirectoryTree(DirectoryTree):
@@ -24,7 +24,7 @@ class DoubleClickDirectoryTree(DirectoryTree):
         Initialize the DirectoryTree
         """
         super().__init__(*args, **kwargs)
-        self._last_clicked_path: os.PathLike[Any] = pathlib.Path(uuid.uuid4().hex)
+        self._last_clicked_path: os.PathLike[UPath] = UPath(uuid.uuid4().hex)
 
     class DoubleClicked(Message):
         """
@@ -73,7 +73,7 @@ class DoubleClickDirectoryTree(DirectoryTree):
         """
         Check if the path is double clicked
         """
-        if str(self._last_clicked_path) != str(path):
+        if self._last_clicked_path != path:
             self._last_clicked_path = path
             return False
         else:

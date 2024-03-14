@@ -12,7 +12,6 @@ from textual.widgets._tree import TreeNode
 from textual_universal_directorytree import UniversalDirectoryTree
 from upath import UPath as Path
 
-from browsr.base import BrowsrPath
 from browsr.widgets.double_click_directory_tree import DoubleClickDirectoryTree
 from browsr.widgets.vim import vim_cursor_bindings
 
@@ -21,8 +20,6 @@ class BrowsrDirectoryTree(UniversalDirectoryTree, DoubleClickDirectoryTree):
     """
     A DirectoryTree that can handle any filesystem.
     """
-
-    PATH: type[BrowsrPath] = BrowsrPath
 
     BINDINGS: ClassVar[list[BindingType]] = [
         *UniversalDirectoryTree.BINDINGS,

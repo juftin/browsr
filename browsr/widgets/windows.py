@@ -143,6 +143,10 @@ class BaseCodeWindow(Widget):
             error_message = (
                 text2art("ENCODING", font=font) + "\n\n" + text2art("ERROR", font=font)
             )
+        elif isinstance(exception, FileNotFoundError):
+            error_message = (
+                text2art("FILE NOT", font=font) + "\n\n" + text2art("FOUND", font=font)
+            )
         else:
             raise exception from exception
         return error_message

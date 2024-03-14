@@ -78,6 +78,9 @@ def get_file_info(file_path: pathlib.Path) -> FileInfo:
     except PermissionError:
         stat = {"size": 0}
         is_file = True
+    except FileNotFoundError:
+        stat = {"size": 0}
+        is_file = True
     is_cloudpath = is_remote_path(file_path)
     if isinstance(stat, dict):
         lower_dict = {key.lower(): value for key, value in stat.items()}
