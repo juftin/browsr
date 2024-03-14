@@ -19,7 +19,6 @@ from textual.events import Mount
 from textual.reactive import var
 from textual.widgets import DirectoryTree
 from textual_universal_directorytree import (
-    UniversalDirectoryTree,
     UPath,
     is_remote_path,
 )
@@ -172,7 +171,7 @@ class CodeBrowser(Container):
         self.datatable_window.display = self.table_view_status
         self.window_switcher.vim_scroll.display = self.static_window_status
 
-    @on(UniversalDirectoryTree.FileSelected)
+    @on(DirectoryTree.FileSelected)
     def handle_file_selected(self, message: DirectoryTree.FileSelected) -> None:
         """
         Called when the user click a file in the directory tree.
