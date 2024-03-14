@@ -5,7 +5,6 @@ Content Windows
 from __future__ import annotations
 
 import json
-import pathlib
 from json import JSONDecodeError
 from typing import Any, ClassVar
 
@@ -21,6 +20,7 @@ from textual.message import Message
 from textual.reactive import Reactive, reactive
 from textual.widget import Widget
 from textual.widgets import Static
+from textual_universal_directorytree import UPath
 
 from browsr.base import TextualAppContext
 from browsr.config import favorite_themes, image_file_extensions
@@ -50,9 +50,7 @@ class BaseCodeWindow(Widget):
             self.scroll_home: bool = scroll_home
             super().__init__()
 
-    def file_to_string(
-        self, file_path: pathlib.Path, max_lines: int | None = None
-    ) -> str:
+    def file_to_string(self, file_path: UPath, max_lines: int | None = None) -> str:
         """
         Load a file into a string
         """
@@ -67,7 +65,7 @@ class BaseCodeWindow(Widget):
             text = "\n".join(text.split("\n")[:max_lines])
         return text
 
-    def file_to_image(self, file_path: pathlib.Path) -> Pixels:
+    def file_to_image(self, file_path: UPath) -> Pixels:
         """
         Load a file into an image
         """
@@ -75,9 +73,7 @@ class BaseCodeWindow(Widget):
         content = open_image(document=file_path, screen_width=screen_width)
         return content
 
-    def file_to_json(
-        self, file_path: pathlib.Path, max_lines: int | None = None
-    ) -> str:
+    def file_to_json(self, file_path: UPath, max_lines: int | None = None) -> str:
         """
         Load a file into a JSON object
         """
@@ -169,7 +165,7 @@ class StaticWindow(Static, BaseCodeWindow):
         self.config_object = config_object
 
     def file_to_markdown(
-        self, file_path: pathlib.Path, max_lines: int | None = None
+        self, file_path: UPath, max_lines: int | None = None
     ) -> Markdown:
         """
         Load a file into a Markdown
@@ -180,7 +176,7 @@ class StaticWindow(Static, BaseCodeWindow):
             hyperlinks=True,
         )
 
-    def text_to_syntax(self, text: str, file_path: str | pathlib.Path) -> Syntax:
+    def text_to_syntax(self, text: str, file_path: str | UPath) -> Syntax:
         """
         Convert text to syntax
         """
@@ -235,9 +231,7 @@ class DataTableWindow(VimDataTable, BaseCodeWindow):
     A DataTable widget for displaying code.
     """
 
-    def refresh_from_file(
-        self, file_path: pathlib.Path, max_lines: int | None = None
-    ) -> None:
+    def refresh_from_file(self, file_path: UPath, max_lines: int | None = None) -> None:
         """
         Load a file into a DataTable
         """
@@ -312,7 +306,7 @@ class WindowSwitcher(Container):
         )
         self.datatable_window.display = False
         self.vim_scroll = VimScroll(self.static_window)
-        self.rendered_file: pathlib.Path | None = None
+        self.rendered_file: UPath | None = None
 
     def compose(self) -> ComposeResult:
         """
@@ -344,7 +338,7 @@ class WindowSwitcher(Container):
             else:
                 screens[window_screen].display = False
 
-    def render_file(self, file_path: pathlib.Path, scroll_home: bool = True) -> None:
+    def render_file(self, file_path: UPath, scroll_home: bool = True) -> None:
         """
         Render a file
         """

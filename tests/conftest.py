@@ -2,13 +2,12 @@
 Pytest Fixtures Shared Across all Unit Tests
 """
 
-import pathlib
 from typing import Any, Dict, List
 
 import pyperclip
 import pytest
 from click.testing import CliRunner
-from textual_universal_directorytree import GitHubTextualPath
+from textual_universal_directorytree import GitHubTextualPath, UPath
 
 
 @pytest.fixture
@@ -20,15 +19,15 @@ def runner() -> CliRunner:
 
 
 @pytest.fixture
-def repo_dir() -> pathlib.Path:
+def repo_dir() -> UPath:
     """
     Return the path to the repository root
     """
-    return pathlib.Path(__file__).parent.parent.resolve()
+    return UPath(__file__).parent.parent.resolve()
 
 
 @pytest.fixture
-def screenshot_dir(repo_dir: pathlib.Path) -> pathlib.Path:
+def screenshot_dir(repo_dir: UPath) -> UPath:
     """
     Return the path to the screenshot directory
     """

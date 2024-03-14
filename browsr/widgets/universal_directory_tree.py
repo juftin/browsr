@@ -9,8 +9,7 @@ from typing import ClassVar, Iterable
 from textual.binding import BindingType
 from textual.widgets._directory_tree import DirEntry
 from textual.widgets._tree import TreeNode
-from textual_universal_directorytree import UniversalDirectoryTree
-from upath import UPath as Path
+from textual_universal_directorytree import UniversalDirectoryTree, UPath
 
 from browsr.widgets.double_click_directory_tree import DoubleClickDirectoryTree
 from browsr.widgets.vim import vim_cursor_bindings
@@ -27,7 +26,7 @@ class BrowsrDirectoryTree(UniversalDirectoryTree, DoubleClickDirectoryTree):
     ]
 
     @classmethod
-    def _handle_top_level_bucket(cls, dir_path: Path) -> Iterable[Path] | None:
+    def _handle_top_level_bucket(cls, dir_path: UPath) -> Iterable[UPath] | None:
         """
         Handle scenarios when someone wants to browse all of s3
 
@@ -36,12 +35,14 @@ class BrowsrDirectoryTree(UniversalDirectoryTree, DoubleClickDirectoryTree):
         """
         if str(dir_path) == "s3:/":
             sub_buckets = sorted(
-                Path(f"s3://{bucket.name}") for bucket in dir_path.iterdir()
+                UPath(f"s3://{bucket.name}") for bucket in dir_path.iterdir()
             )
             return sub_buckets
         return None
 
-    def _populate_node(self, node: TreeNode[DirEntry], content: Iterable[Path]) -> None:
+    def _populate_node(
+        self, node: TreeNode[DirEntry], content: Iterable[UPath]
+    ) -> None:
         """
         Populate the given tree node with the given directory content.
 

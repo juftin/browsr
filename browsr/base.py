@@ -31,9 +31,9 @@ class TextualAppContext:
     kwargs: dict[str, Any] | None = None
 
     @property
-    def path(self) -> pathlib.Path:
+    def path(self) -> UPath:
         """
-        Resolve `file_path` to a upath.UPath object
+        Resolve `file_path` to a UPath object
         """
         if "github" in str(self.file_path).lower():
             file_path = str(self.file_path)
