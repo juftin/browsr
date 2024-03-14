@@ -4,7 +4,6 @@ Code Browsr Utility Functions
 
 import datetime
 import os
-import pathlib
 from dataclasses import dataclass
 from typing import Any, BinaryIO, Dict, Optional, Union
 
@@ -13,7 +12,7 @@ import rich_pixels
 from fitz import Pixmap
 from PIL import Image
 from rich_pixels import Pixels
-from textual_universal_directorytree import is_remote_path
+from textual_universal_directorytree import UPath, is_remote_path
 
 
 def _open_pdf_as_image(buf: BinaryIO) -> Image.Image:
@@ -33,7 +32,7 @@ def _open_pdf_as_image(buf: BinaryIO) -> Image.Image:
     return Image.frombytes(size=(pix.width, pix.height), data=pix.samples, mode=mode)
 
 
-def open_image(document: pathlib.Path, screen_width: float) -> Pixels:
+def open_image(document: UPath, screen_width: float) -> Pixels:
     """
     Open an image file and return a rich_pixels.Pixels object
     """
@@ -57,7 +56,7 @@ class FileInfo:
     File Information Object
     """
 
-    file: pathlib.Path
+    file: UPath
     size: int
     last_modified: Optional[datetime.datetime]
     stat: Union[Dict[str, Any], os.stat_result]
@@ -68,7 +67,7 @@ class FileInfo:
     is_cloudpath: bool
 
 
-def get_file_info(file_path: pathlib.Path) -> FileInfo:
+def get_file_info(file_path: UPath) -> FileInfo:
     """
     Get File Information, Regardless of the FileSystem
     """
@@ -127,7 +126,7 @@ def get_file_info(file_path: pathlib.Path) -> FileInfo:
         )
 
 
-def handle_duplicate_filenames(file_path: pathlib.Path) -> pathlib.Path:
+def handle_duplicate_filenames(file_path: UPath) -> UPath:
     """
     Handle Duplicate Filenames
 

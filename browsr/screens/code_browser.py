@@ -4,7 +4,6 @@ The App Screen
 
 from __future__ import annotations
 
-import pathlib
 from typing import ClassVar, Iterable, cast
 
 from rich import traceback
@@ -15,6 +14,7 @@ from textual.events import Mount
 from textual.screen import Screen
 from textual.widget import Widget
 from textual.widgets import Footer, Header
+from textual_universal_directorytree import UPath
 
 from browsr.base import TextualAppContext
 from browsr.utils import get_file_info
@@ -157,9 +157,7 @@ class CodeBrowserScreen(Screen):
                 f"[italic]{self.config_object.path.name}[/italic]"
             )
         if reload_file:
-            selected_file_path = cast(
-                pathlib.Path, self.code_browser.selected_file_path
-            )
+            selected_file_path = cast(UPath, self.code_browser.selected_file_path)
             file_name = selected_file_path.name
             self.code_browser.window_switcher.render_file(
                 file_path=selected_file_path,

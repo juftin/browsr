@@ -4,7 +4,7 @@ Config / Context Tests
 import pathlib
 from dataclasses import is_dataclass
 
-from textual_universal_directorytree import GitHubTextualPath
+from textual_universal_directorytree import GitHubTextualPath, UPath
 
 from browsr.base import TextualAppContext
 from browsr.config import favorite_themes
@@ -32,7 +32,7 @@ def test_textual_app_context_path() -> None:
     Test that default TextualAppContext.path is CWD
     """
     context = TextualAppContext()
-    assert isinstance(context.path, pathlib.Path)
+    assert isinstance(context.path, UPath)
     assert context.path == pathlib.Path.cwd().resolve()
 
 

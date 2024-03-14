@@ -11,7 +11,6 @@ from textwrap import dedent
 from typing import Any
 
 import pyperclip
-import upath
 from rich.markdown import Markdown
 from textual import on, work
 from textual.app import ComposeResult
@@ -19,7 +18,11 @@ from textual.containers import Container
 from textual.events import Mount
 from textual.reactive import var
 from textual.widgets import DirectoryTree
-from textual_universal_directorytree import UniversalDirectoryTree, is_remote_path
+from textual_universal_directorytree import (
+    UniversalDirectoryTree,
+    UPath,
+    is_remote_path,
+)
 
 from browsr.base import (
     TextualAppContext,
@@ -55,7 +58,7 @@ class CodeBrowser(Container):
     rich_themes = favorite_themes
     show_tree = var(True)
     force_show_tree = var(False)
-    selected_file_path: upath.UPath | pathlib.Path | None | var[None] = var(None)
+    selected_file_path: UPath | None | var[None] = var(None)
 
     hidden_table_view = var(False)
     table_view_status = var(False)
@@ -272,7 +275,7 @@ class CodeBrowser(Container):
                 timeout=2,
             )
 
-    def _get_download_file_name(self) -> pathlib.Path:
+    def _get_download_file_name(self) -> UPath:
         """
         Get the download file name.
         """

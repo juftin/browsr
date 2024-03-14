@@ -2,12 +2,11 @@
 Screenshot Testing Using Cassettes!
 """
 
-import pathlib
 from textwrap import dedent
 from typing import Callable, Tuple
 
 import pytest
-from textual_universal_directorytree import GitHubTextualPath
+from textual_universal_directorytree import GitHubTextualPath, UPath
 
 from tests.conftest import cassette
 
@@ -33,7 +32,7 @@ def terminal_size() -> Tuple[int, int]:
 @cassette
 def test_github_screenshot(
     snap_compare: Callable[..., bool],
-    tmp_path: pathlib.Path,
+    tmp_path: UPath,
     app_file: str,
     github_release_path: GitHubTextualPath,
     terminal_size: Tuple[int, int],
@@ -49,7 +48,7 @@ def test_github_screenshot(
 @cassette
 def test_github_screenshot_license(
     snap_compare: Callable[..., bool],
-    tmp_path: pathlib.Path,
+    tmp_path: UPath,
     app_file: str,
     github_release_path: GitHubTextualPath,
     terminal_size: Tuple[int, int],
@@ -66,7 +65,7 @@ def test_github_screenshot_license(
 @cassette
 def test_mkdocs_screenshot(
     snap_compare: Callable[..., bool],
-    tmp_path: pathlib.Path,
+    tmp_path: UPath,
     app_file: str,
     terminal_size: Tuple[int, int],
     github_release_path: GitHubTextualPath,
