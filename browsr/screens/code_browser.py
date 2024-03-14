@@ -116,13 +116,16 @@ class CodeBrowserScreen(Screen):
         directory_tree_open = self.code_browser.has_class("-show-tree")
         if not directory_tree_open:
             return
-        new_path = self.config_object.path.parent.resolve()
-        if new_path != self.config_object.path:
-            self.config_object.file_path = str(new_path)
-            self.code_browser.directory_tree.path = new_path
+        if (
+            self.code_browser.directory_tree.path
+            != self.code_browser.directory_tree.path.parent
+        ):
+            self.code_browser.directory_tree.path = (
+                self.code_browser.directory_tree.path.parent
+            )
             self.notify(
                 title="Directory Changed",
-                message=str(new_path),
+                message=str(self.code_browser.directory_tree.path),
                 severity="information",
                 timeout=1,
             )
@@ -152,9 +155,9 @@ class CodeBrowserScreen(Screen):
         message_lines = []
         if reload_directory:
             self.code_browser.directory_tree.reload()
+            directory_name = self.code_browser.directory_tree.path.name or "/"
             message_lines.append(
-                "[bold]Directory:[/bold] "
-                f"[italic]{self.config_object.path.name}[/italic]"
+                "[bold]Directory:[/bold] " f"[italic]{directory_name}[/italic]"
             )
         if reload_file:
             selected_file_path = cast(UPath, self.code_browser.selected_file_path)
