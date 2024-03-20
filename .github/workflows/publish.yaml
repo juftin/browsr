@@ -4,11 +4,12 @@ on:
     release:
         types:
             - published
+    workflow_dispatch:
 
 jobs:
     pypi-publish:
         name: PyPI
-        if: github.repository_owner == 'juftin'
+        if: github.repository_owner == 'juftin' && (github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.actor == 'juftin'))
         runs-on: ubuntu-latest
         steps:
             - name: Check out the repository
@@ -29,7 +30,7 @@ jobs:
               run: |
                   hatch build
             - name: Publish package on PyPI
-              uses: pypa/gh-action-pypi-publish@v1.6.4
+              uses: pypa/gh-action-pypi-publish@release/v1
               with:
                   user: __token__
                   password: ${{ secrets.PYPI_TOKEN }}
