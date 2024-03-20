@@ -15,7 +15,7 @@ from browsr.widgets.double_click_directory_tree import DoubleClickDirectoryTree
 from browsr.widgets.vim import vim_cursor_bindings
 
 
-class BrowsrDirectoryTree(UniversalDirectoryTree, DoubleClickDirectoryTree):
+class BrowsrDirectoryTree(DoubleClickDirectoryTree, UniversalDirectoryTree):
     """
     A DirectoryTree that can handle any filesystem.
     """

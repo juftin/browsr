@@ -4,9 +4,8 @@ Directory Tree that copeis the path to the clipboard on double click
 
 from __future__ import annotations
 
-import os
-import uuid
-from typing import Any
+import datetime
+from typing import Any, ClassVar
 
 from textual import on
 from textual.message import Message
@@ -19,19 +18,28 @@ class DoubleClickDirectoryTree(DirectoryTree):
     A DirectoryTree that can handle any filesystem.
     """
 
+    _double_click_time: ClassVar[datetime.timedelta] = datetime.timedelta(
+        seconds=0.333333
+    )
+
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         """
         Initialize the DirectoryTree
         """
         super().__init__(*args, **kwargs)
-        self._last_clicked_path: os.PathLike[UPath] = UPath(uuid.uuid4().hex)
+        self._last_clicked_path: UPath = UPath(
+            "13041530b3174c569e1895fdfc2676fc57af1e02606059e0d2472d04c1bb360f"
+        )
+        self._last_clicked_time = datetime.datetime(
+            1970, 1, 1, tzinfo=datetime.timezone.utc
+        )
 
     class DoubleClicked(Message):
         """
         A message that is emitted when the directory is changed
         """
 
-        def __init__(self, path: os.PathLike[Any]) -> None:
+        def __init__(self, path: UPath) -> None:
             """
             Initialize the message
             """
@@ -69,12 +77,17 @@ class DoubleClickDirectoryTree(DirectoryTree):
             message.stop()
             self.post_message(self.FileDoubleClicked(path=message.path))
 
-    def is_double_click(self, path: os.PathLike[Any]) -> bool:
+    def is_double_click(self, path: UPath) -> bool:
         """
         Check if the path is double clicked
         """
-        if self._last_clicked_path != path:
-            self._last_clicked_path = path
+        click_time = datetime.datetime.now(datetime.timezone.utc)
+        click_delta = click_time - self._last_clicked_time
+        self._last_clicked_time = click_time
+        if self._last_clicked_path == path and click_delta <= self._double_click_time:
+            return True
+        elif self._last_clicked_path == path and click_delta > self._double_click_time:
             return False
         else:
-            return True
+            self._last_clicked_path = path
+            return False
