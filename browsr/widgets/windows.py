@@ -290,7 +290,13 @@ class WindowSwitcher(Container):
 
     show_tree: Reactive[bool] = reactive(True)
 
-    datatable_extensions: ClassVar[list[str]] = [".csv", ".parquet", ".feather", ".fea"]
+    datatable_extensions: ClassVar[list[str]] = [
+        ".csv",
+        ".parquet",
+        ".feather",
+        ".fea",
+        ".csv.gz",
+    ]
     image_extensions: ClassVar[list[str]] = image_file_extensions.copy()
     markdown_extensions: ClassVar[list[str]] = [".md"]
     json_extensions: ClassVar[list[str]] = [".json"]
@@ -343,7 +349,8 @@ class WindowSwitcher(Container):
         Render a file
         """
         switch_window = self.static_window
-        if file_path.suffix.lower() in self.datatable_extensions:
+        joined_suffixes = "".join(file_path.suffixes).lower()
+        if joined_suffixes in self.datatable_extensions:
             self.datatable_window.refresh_from_file(
                 file_path=file_path, max_lines=self.config_object.max_lines
             )

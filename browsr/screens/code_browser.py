@@ -62,6 +62,8 @@ class CodeBrowserScreen(Screen):
             self.file_information.file_info = get_file_info(
                 file_path=self.code_browser.selected_file_path
             )
+        else:
+            self.file_information.file_info = get_file_info(self.config_object.path)
         self.footer = Footer()
 
     def compose(self) -> Iterable[Widget]:
