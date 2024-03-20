@@ -1,16 +1,25 @@
-# browsr
-
-<div align="center" href="https://github.com/juftin/browsr">
-    <a href="https://github.com/juftin/browsr">
-      <img src=https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr.png
-        width="400" alt="browsr">
-    </a>
+<div align="center">
+  <a href="https://github.com/juftin/browsr">
+    <img src="https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr.png" width=400 alt="browsr" />
+  </a>
 </div>
 
-[![browsr Version](https://img.shields.io/pypi/v/browsr?color=blue&label=browsr)](https://github.com/juftin/browsr)
-[![PyPI](https://img.shields.io/pypi/pyversions/browsr)](https://pypi.python.org/pypi/browsr/)
-[![Testing Status](https://github.com/juftin/browsr/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/juftin/browsr/actions/workflows/tests.yaml?query=branch%3Amain)
-[![GitHub License](https://img.shields.io/github/license/juftin/browsr?color=blue&label=License)](https://github.com/juftin/browsr/blob/main/LICENSE)
+<p align="center">
+a pleasant <strong>file explorer</strong> in your terminal
+</p>
+
+<p align="center">
+  <a href="https://github.com/juftin/browsr"><img src="https://img.shields.io/pypi/v/browsr?color=blue&label=%F0%9F%97%82%EF%B8%8F%20browsr" alt="PyPI"></a>
+  <a href="https://pypi.python.org/pypi/browsr/"><img src="https://img.shields.io/pypi/pyversions/browsr" alt="PyPI - Python Version"></a>
+  <a href="https://github.com/juftin/browsr/blob/main/LICENSE"><img src="https://img.shields.io/github/license/juftin/browsr?color=blue&label=License" alt="GitHub License"></a>
+  <a href="https://juftin.github.io/browsr/"><img src="https://img.shields.io/static/v1?message=docs&color=526CFE&logo=Material+for+MkDocs&logoColor=FFFFFF&label=" alt="docs"></a>
+  <a href="https://github.com/juftin/browsr/actions/workflows/tests.yaml?query=branch%3Amain"><img src="https://github.com/juftin/browsr/actions/workflows/tests.yaml/badge.svg?branch=main" alt="Testing Status"></a>
+  <a href="https://github.com/pypa/hatch"><img src="https://img.shields.io/badge/%F0%9F%A5%9A-Hatch-4051b5.svg" alt="Hatch project"></a>
+  <a href="https://github.com/astral-sh/ruff"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Ruff"></a>
+  <a href="https://github.com/pre-commit/pre-commit"><img src="https://img.shields.io/badge/pre--commit-enabled-lightgreen?logo=pre-commit" alt="pre-commit"></a>
+  <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release"></a>
+  <a href="https://gitmoji.dev"><img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg" alt="Gitmoji"></a>
+</p>
 
 **`browsr`** 🗂️ is a pleasant **file explorer** in your terminal. It's a command line **TUI**
 (text-based user interface) application that empowers you to browse the contents of local
