@@ -2,7 +2,7 @@
 
 site_name: browsr
 nav:
-    - index.md
+    - browsr 🗂️: index.md
     - Command Line Interface ⌨️: cli.md
     - Contributing 🤝: contributing.md
     - API Documentation 🤖: reference/

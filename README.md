@@ -5,7 +5,7 @@
 </div>
 
 <p align="center">
-a pleasant <strong>file explorer</strong> in your terminal
+a pleasant <strong>file explorer</strong> in your terminal supporting <strong>all filesystems</strong>
 </p>
 
 <p align="center">
