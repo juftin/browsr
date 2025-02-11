@@ -30,7 +30,7 @@ from browsr.utils import (
     FileInfo,
     open_image,
 )
-from browsr.widgets.vim import VimDataTable, VimScroll
+from browsr.widgets.keys import KeyBindDataTable, KeyBindScroll
 
 
 class BaseCodeWindow(Widget):
@@ -226,7 +226,7 @@ class StaticWindow(Static, BaseCodeWindow):
         return next_theme
 
 
-class DataTableWindow(VimDataTable, BaseCodeWindow):
+class DataTableWindow(KeyBindDataTable, BaseCodeWindow):
     """
     A DataTable widget for displaying code.
     """
@@ -311,22 +311,22 @@ class WindowSwitcher(Container):
             zebra_stripes=True, show_header=True, show_cursor=True, id="table-view"
         )
         self.datatable_window.display = False
-        self.vim_scroll = VimScroll(self.static_window)
+        self.keybind_scroll = KeyBindScroll(self.static_window)
         self.rendered_file: UPath | None = None
 
     def compose(self) -> ComposeResult:
         """
         Compose the widget
         """
-        yield self.vim_scroll
+        yield self.keybind_scroll
         yield self.datatable_window
 
     def get_active_widget(self) -> Widget:
         """
         Get the active widget
         """
-        if self.vim_scroll.display:
-            return self.vim_scroll
+        if self.keybind_scroll.display:
+            return self.keybind_scroll
         elif self.datatable_window.display:
             return self.datatable_window
 
@@ -335,7 +335,7 @@ class WindowSwitcher(Container):
         Switch to the window
         """
         screens: dict[Widget, Widget] = {
-            self.static_window: self.vim_scroll,
+            self.static_window: self.keybind_scroll,
             self.datatable_window: self.datatable_window,
         }
         for window_screen in screens:
@@ -382,11 +382,11 @@ class WindowSwitcher(Container):
         self.switch_window(switch_window)
         active_widget = self.get_active_widget()
         if scroll_home:
-            if active_widget is self.vim_scroll:
-                self.vim_scroll.scroll_home(animate=False)
+            if active_widget is self.keybind_scroll:
+                self.keybind_scroll.scroll_home(animate=False)
             else:
                 switch_window.scroll_home(animate=False)
-        if active_widget is self.vim_scroll:
+        if active_widget is self.keybind_scroll:
             self.app.sub_title = str(file_path) + f" [{self.static_window.theme}]"
         else:
             self.app.sub_title = str(file_path)
@@ -396,7 +396,7 @@ class WindowSwitcher(Container):
         """
         Switch to the next theme
         """
-        if self.get_active_widget() is not self.vim_scroll:
+        if self.get_active_widget() is not self.keybind_scroll:
             return None
         current_index = favorite_themes.index(self.static_window.theme)
         next_theme = favorite_themes[(current_index + 1) % len(favorite_themes)]

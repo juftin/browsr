@@ -6,13 +6,13 @@ from __future__ import annotations
 
 from typing import ClassVar, Iterable
 
-from textual.binding import BindingType
+from textual.binding import Binding, BindingType
 from textual.widgets._directory_tree import DirEntry
 from textual.widgets._tree import TreeNode
 from textual_universal_directorytree import UniversalDirectoryTree, UPath
 
 from browsr.widgets.double_click_directory_tree import DoubleClickDirectoryTree
-from browsr.widgets.vim import vim_cursor_bindings
+from browsr.widgets.keys import vim_cursor_bindings, keypad_cursor_bindings
 
 
 class BrowsrDirectoryTree(DoubleClickDirectoryTree, UniversalDirectoryTree):
@@ -23,6 +23,9 @@ class BrowsrDirectoryTree(DoubleClickDirectoryTree, UniversalDirectoryTree):
     BINDINGS: ClassVar[list[BindingType]] = [
         *UniversalDirectoryTree.BINDINGS,
         *vim_cursor_bindings,
+        *keypad_cursor_bindings,
+        Binding(key="h,left,kp_left", action="collapse_parent", description="Collapse (Parent) Directory", show=False),
+        Binding(key="l,right,kp_right", action="expand_or_select", description="Expand Directory or Select File", show=False),
     ]
 
     @classmethod
@@ -64,3 +67,27 @@ class BrowsrDirectoryTree(DoubleClickDirectoryTree, UniversalDirectoryTree):
                 allow_expand=self._safe_is_dir(path),
             )
         node.expand()
+
+    def action_collapse_parent(self) -> None:
+        cursor_node = self.cursor_node
+        cursor_path = cursor_node.data.path
+        collapse_parent = False
+        if self._safe_is_dir(cursor_path):
+            if cursor_node.is_expanded:
+                cursor_node.collapse()
+            elif not cursor_node.is_root:
+                collapse_parent = True
+        else:
+            collapse_parent = True
+        if collapse_parent:
+            self.action_cursor_parent()
+            cursor_node.parent.collapse()
+
+    def action_expand_or_select(self) -> None:
+        cursor_node = self.cursor_node
+        cursor_path = cursor_node.data.path
+        if self._safe_is_dir(cursor_path):
+            if not cursor_node.is_expanded:
+                cursor_node.expand()
+        else:
+            self.action_select_cursor()
