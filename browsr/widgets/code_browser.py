@@ -132,6 +132,12 @@ class CodeBrowser(Container):
             self.app.bind(
                 keys="x", action="download_file", description="Download File", show=True
             )
+        self.app.bind(
+            keys="kp_up", action="cursor_up", description="Cursor Up", show=False
+        )
+        self.app.bind(
+            keys="kp_down", action="cursor_down", description="Cursor Down", show=False
+        )
 
     def watch_show_tree(self, show_tree: bool) -> None:
         """
@@ -169,7 +175,7 @@ class CodeBrowser(Container):
         Handle the table view display toggle.
         """
         self.datatable_window.display = self.table_view_status
-        self.window_switcher.vim_scroll.display = self.static_window_status
+        self.window_switcher.keybind_scroll.display = self.static_window_status
 
     @on(DirectoryTree.FileSelected)
     def handle_file_selected(self, message: DirectoryTree.FileSelected) -> None:
@@ -247,9 +253,9 @@ class CodeBrowser(Container):
             self.confirmation.download_message.update(Markdown(prompt_message))
             self.confirmation.refresh()
             self.table_view_status = self.datatable_window.display
-            self.static_window_status = self.window_switcher.vim_scroll.display
+            self.static_window_status = self.window_switcher.keybind_scroll.display
             self.datatable_window.display = False
-            self.window_switcher.vim_scroll.display = False
+            self.window_switcher.keybind_scroll.display = False
             self.confirmation_window.display = True
 
     @work(thread=True)
