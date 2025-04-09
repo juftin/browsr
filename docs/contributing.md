@@ -4,7 +4,7 @@
 
 > TIP: **pipx**
 >
-> This documentaion uses [pipx] to
+> This documentation uses [pipx] to
 > install and manage non-project command line tools like `hatch` and
 > `pre-commit`. If you don't already have `pipx` installed, make sure to
 > see their [documentation](https://pypa.github.io/pipx/installation/).
