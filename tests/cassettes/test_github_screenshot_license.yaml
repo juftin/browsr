@@ -13,85 +13,64 @@ interactions:
               authorization:
                   - XXXXXXXXXX
           method: GET
-          uri: https://raw.githubusercontent.com/juftin/browsr/v1.6.0/LICENSE
+          uri: https://api.github.com/repos/juftin/browsr/contents/LICENSE?ref=v1.6.0
       response:
           body:
-              string: 'MIT License
-
-
-                  Copyright (c) 2023-present Justin Flannery <justin.flannery@juftin.com>
-
-
-                  Permission is hereby granted, free of charge, to any person obtaining a copy
-                  of this software and associated documentation files (the "Software"), to deal
-                  in the Software without restriction, including without limitation the rights
-                  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-                  copies of the Software, and to permit persons to whom the Software is furnished
-                  to do so, subject to the following conditions:
-
-
-                  The above copyright notice and this permission notice shall be included in
-                  all copies or substantial portions of the Software.
-
-
-                  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-                  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-                  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
-                  OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-                  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
-                  OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-                  '
+              string: '{"name":"LICENSE","path":"LICENSE","sha":"3f1116db9ccaba831afbd47542a8dbef1ceb2189","size":1109,"url":"https://api.github.com/repos/juftin/browsr/contents/LICENSE?ref=v1.6.0","html_url":"https://github.com/juftin/browsr/blob/v1.6.0/LICENSE","git_url":"https://api.github.com/repos/juftin/browsr/git/blobs/3f1116db9ccaba831afbd47542a8dbef1ceb2189","download_url":"https://raw.githubusercontent.com/juftin/browsr/v1.6.0/LICENSE","type":"file","content":"TUlUIExpY2Vuc2UKCkNvcHlyaWdodCAoYykgMjAyMy1wcmVzZW50IEp1c3Rp\nbiBGbGFubmVyeSA8anVzdGluLmZsYW5uZXJ5QGp1ZnRpbi5jb20+CgpQZXJt\naXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8g\nYW55IHBlcnNvbiBvYnRhaW5pbmcgYSBjb3B5IG9mIHRoaXMgc29mdHdhcmUg\nYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAodGhlICJTb2Z0\nd2FyZSIpLCB0byBkZWFsIGluIHRoZSBTb2Z0d2FyZSB3aXRob3V0IHJlc3Ry\naWN0aW9uLCBpbmNsdWRpbmcgd2l0aG91dCBsaW1pdGF0aW9uIHRoZSByaWdo\ndHMgdG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0\ncmlidXRlLCBzdWJsaWNlbnNlLCBhbmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhl\nIFNvZnR3YXJlLCBhbmQgdG8gcGVybWl0IHBlcnNvbnMgdG8gd2hvbSB0aGUg\nU29mdHdhcmUgaXMgZnVybmlzaGVkIHRvIGRvIHNvLCBzdWJqZWN0IHRvIHRo\nZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKClRoZSBhYm92ZSBjb3B5cmlnaHQg\nbm90aWNlIGFuZCB0aGlzIHBlcm1pc3Npb24gbm90aWNlIHNoYWxsIGJlIGlu\nY2x1ZGVkIGluIGFsbCBjb3BpZXMgb3Igc3Vic3RhbnRpYWwgcG9ydGlvbnMg\nb2YgdGhlIFNvZnR3YXJlLgoKVEhFIFNPRlRXQVJFIElTIFBST1ZJREVEICJB\nUyBJUyIsIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJTkQsIEVYUFJFU1Mg\nT1IgSU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1QgTElNSVRFRCBUTyBUSEUg\nV0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFksIEZJVE5FU1MgRk9SIEEg\nUEFSVElDVUxBUiBQVVJQT1NFIEFORCBOT05JTkZSSU5HRU1FTlQuIElOIE5P\nIEVWRU5UIFNIQUxMIFRIRSBBVVRIT1JTIE9SIENPUFlSSUdIVCBIT0xERVJT\nIEJFIExJQUJMRSBGT1IgQU5ZIENMQUlNLCBEQU1BR0VTIE9SIE9USEVSIExJ\nQUJJTElUWSwgV0hFVEhFUiBJTiBBTiBBQ1RJT04gT0YgQ09OVFJBQ1QsIFRP\nUlQgT1IgT1RIRVJXSVNFLCBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJTiBD\nT05ORUNUSU9OIFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IgT1RI\nRVIgREVBTElOR1MgSU4gVEhFIFNPRlRXQVJFLgo=\n","encoding":"base64","_links":{"self":"https://api.github.com/repos/juftin/browsr/contents/LICENSE?ref=v1.6.0","git":"https://api.github.com/repos/juftin/browsr/git/blobs/3f1116db9ccaba831afbd47542a8dbef1ceb2189","html":"https://github.com/juftin/browsr/blob/v1.6.0/LICENSE"}}'
           headers:
-              Accept-Ranges:
-                  - bytes
               Access-Control-Allow-Origin:
                   - "*"
+              Access-Control-Expose-Headers:
+                  - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+                    X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+                    X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+                    X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
-                  - max-age=300
-              Connection:
-                  - keep-alive
-
-              Content-Length:
-                  - "664"
+                  - public, max-age=60, s-maxage=60
+              Content-Encoding:
+                  - gzip
               Content-Security-Policy:
-                  - default-src 'none'; style-src 'unsafe-inline'; sandbox
+                  - default-src 'none'
               Content-Type:
-                  - text/plain; charset=utf-8
-              Cross-Origin-Resource-Policy:
-                  - cross-origin
+                  - application/json; charset=utf-8
               Date:
-                  - Fri, 22 Dec 2023 02:35:37 GMT
+                  - Wed, 20 Aug 2025 02:18:45 GMT
               ETag:
-                  - W/"7317880eca0696f93222e0968307748f383c87a2a37112679931db91bdd5f000"
-              Expires:
-                  - Fri, 22 Dec 2023 02:40:37 GMT
-              Source-Age:
-                  - "0"
+                  - W/"3f1116db9ccaba831afbd47542a8dbef1ceb2189"
+              Last-Modified:
+                  - Tue, 16 May 2023 03:59:55 GMT
+              Referrer-Policy:
+                  - origin-when-cross-origin, strict-origin-when-cross-origin
+              Server:
+                  - github.com
               Strict-Transport-Security:
-                  - max-age=31536000
+                  - max-age=31536000; includeSubdomains; preload
+              Transfer-Encoding:
+                  - chunked
               Vary:
-                  - Authorization,Accept-Encoding,Origin
-              Via:
-                  - 1.1 varnish
-              X-Cache:
-                  - HIT
-              X-Cache-Hits:
-                  - "1"
+                  - Accept,Accept-Encoding, Accept, X-Requested-With
               X-Content-Type-Options:
                   - nosniff
-              X-Fastly-Request-ID:
-                  - 610728dd0ab1b2a88737c8cc0d1fb651715a5424
               X-Frame-Options:
                   - deny
+              X-GitHub-Media-Type:
+                  - github.v3; format=json
               X-GitHub-Request-Id:
-                  - F05E:573D:112B22D:1495B2F:6584F370
-              X-Served-By:
-                  - cache-den8245-DEN
-              X-Timer:
-                  - S1703212537.491474,VS0,VE154
+                  - E994:325270:12FF7EF:455803D:68A53085
+              X-RateLimit-Limit:
+                  - "60"
+              X-RateLimit-Remaining:
+                  - "30"
+              X-RateLimit-Reset:
+                  - "1755659251"
+              X-RateLimit-Resource:
+                  - core
+              X-RateLimit-Used:
+                  - "30"
               X-XSS-Protection:
-                  - 1; mode=block
+                  - "0"
+              x-github-api-version-selected:
+                  - "2022-11-28"
           status:
               code: 200
               message: OK

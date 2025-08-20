@@ -11,18 +11,17 @@ from textual import on
 from textual.binding import Binding, BindingType
 from textual.containers import Horizontal
 from textual.events import Mount
-from textual.screen import Screen
 from textual.widget import Widget
 from textual.widgets import Footer, Header
 from textual_universal_directorytree import UPath
 
-from browsr.base import TextualAppContext
+from browsr.base import SortedBindingsScreen, TextualAppContext
 from browsr.utils import get_file_info
 from browsr.widgets.code_browser import CodeBrowser
 from browsr.widgets.files import CurrentFileInfoBar
 
 
-class CodeBrowserScreen(Screen):
+class CodeBrowserScreen(SortedBindingsScreen):
     """
     Code Browser Screen
     """
@@ -34,6 +33,19 @@ class CodeBrowserScreen(Screen):
         Binding(key="r", action="reload", description="Reload"),
         Binding(key=".", action="parent_dir", description="Parent Directory"),
     ]
+
+    BINDING_WEIGHTS: ClassVar[dict[str, int]] = {
+        "ctrl+c": 1,
+        "q": 2,
+        "f": 3,
+        "t": 4,
+        "n": 5,
+        "d": 6,
+        "r": 995,
+        ".": 996,
+        "c": 997,
+        "x": 998,
+    }
 
     def __init__(
         self,

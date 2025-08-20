@@ -9,9 +9,8 @@ import pathlib
 from dataclasses import dataclass, field
 from typing import Any, ClassVar
 
-from textual.app import App
-from textual.binding import Binding
-from textual.dom import DOMNode
+from textual.binding import ActiveBinding
+from textual.screen import Screen
 from textual_universal_directorytree import UPath
 
 from browsr.utils import handle_github_url
@@ -54,7 +53,7 @@ class TextualAppContext:
             return path.resolve()
 
 
-class SortedBindingsApp(App[str]):
+class SortedBindingsScreen(Screen):
     """
     Textual App with Sorted Bindings
     """
@@ -62,7 +61,7 @@ class SortedBindingsApp(App[str]):
     BINDING_WEIGHTS: ClassVar[dict[str, int]] = {}
 
     @property
-    def namespace_bindings(self) -> dict[str, tuple[DOMNode, Binding]]:
+    def active_bindings(self) -> dict[str, ActiveBinding]:
         """
         Return the namespace bindings, optionally sorted by weight
 
@@ -87,7 +86,7 @@ class SortedBindingsApp(App[str]):
         dict[str, tuple[DOMNode, Binding]]
             A dictionary of bindings
         """
-        existing_bindings = super().namespace_bindings
+        existing_bindings = super().active_bindings
         if not self.BINDING_WEIGHTS:
             return existing_bindings
         builtin_index = 500

@@ -12,18 +12,18 @@ from os import getenv
 from typing import Any, ClassVar
 
 from textual import on
+from textual.app import App
 from textual.binding import Binding, BindingType
 from textual.events import Mount
 
 from browsr.__about__ import __application__
 from browsr.base import (
-    SortedBindingsApp,
     TextualAppContext,
 )
 from browsr.screens import CodeBrowserScreen
 
 
-class Browsr(SortedBindingsApp):
+class Browsr(App[str]):
     """
     Textual code browser app.
     """
@@ -34,18 +34,6 @@ class Browsr(SortedBindingsApp):
         Binding(key="q", action="quit", description="Quit"),
         Binding(key="d", action="toggle_dark", description="Dark Mode"),
     ]
-    BINDING_WEIGHTS: ClassVar[dict[str, int]] = {
-        "ctrl+c": 1,
-        "q": 2,
-        "f": 3,
-        "t": 4,
-        "n": 5,
-        "d": 6,
-        "r": 995,
-        ".": 996,
-        "c": 997,
-        "x": 998,
-    }
 
     def __init__(
         self,
