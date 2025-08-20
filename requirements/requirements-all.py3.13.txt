@@ -233,7 +233,7 @@ pytest-asyncio==1.1.0
     # via hatch.envs.all.py3.13
 pytest-cov==6.2.1
     # via hatch.envs.all.py3.13
-pytest-textual-snapshot==1.1.0
+pytest-textual-snapshot==0.4.0
     # via hatch.envs.all.py3.13
 pytest-vcr==1.0.2
     # via hatch.envs.all.py3.13
