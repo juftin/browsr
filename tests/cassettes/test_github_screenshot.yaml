@@ -26,31 +26,29 @@ interactions:
                     X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
-                  - private, max-age=60, s-maxage=60
-
+                  - public, max-age=60, s-maxage=60
+              Content-Encoding:
+                  - gzip
               Content-Security-Policy:
                   - default-src 'none'
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Fri, 22 Dec 2023 02:40:00 GMT
+                  - Wed, 20 Aug 2025 02:18:44 GMT
               ETag:
-                  - W/"bbfd14c82ededc5d6619f1ca1d1aa8852c6efbee36a352a067516ea4c77807ca"
+                  - W/"91ee3d202828b3c28fcd9be69924424a4f792f5f17ff608d6d4ac2b1e19e5fcd"
               Last-Modified:
-                  - Sun, 10 Dec 2023 01:37:27 GMT
+                  - Wed, 13 Aug 2025 19:04:42 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
-                  - GitHub.com
+                  - github.com
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; preload
               Transfer-Encoding:
                   - chunked
               Vary:
-                  - Accept, Authorization, Cookie, X-GitHub-OTP
-                  - Accept-Encoding, Accept, X-Requested-With
-              X-Accepted-OAuth-Scopes:
-                  - ""
+                  - Accept,Accept-Encoding, Accept, X-Requested-With
               X-Content-Type-Options:
                   - nosniff
               X-Frame-Options:
@@ -58,20 +56,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - C116:12DF:59944FF:B9320C7:6584F700
-              X-OAuth-Scopes:
-                  - admin:gpg_key, admin:org, admin:public_key, admin:repo_hook, delete:packages,
-                    delete_repo, gist, notifications, project, repo, user, workflow, write:packages
+                  - E991:380342:13781FB:46E2211:68A53084
               X-RateLimit-Limit:
-                  - "5000"
+                  - "60"
               X-RateLimit-Remaining:
-                  - "4986"
+                  - "33"
               X-RateLimit-Reset:
-                  - "1703215491"
+                  - "1755659251"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "14"
+                  - "27"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -106,31 +101,29 @@ interactions:
                     X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
                     X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
-                  - private, max-age=60, s-maxage=60
-
+                  - public, max-age=60, s-maxage=60
+              Content-Encoding:
+                  - gzip
               Content-Security-Policy:
                   - default-src 'none'
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Fri, 22 Dec 2023 02:40:00 GMT
+                  - Wed, 20 Aug 2025 02:18:44 GMT
               ETag:
-                  - W/"bbfd14c82ededc5d6619f1ca1d1aa8852c6efbee36a352a067516ea4c77807ca"
+                  - W/"91ee3d202828b3c28fcd9be69924424a4f792f5f17ff608d6d4ac2b1e19e5fcd"
               Last-Modified:
-                  - Sun, 10 Dec 2023 01:37:27 GMT
+                  - Wed, 13 Aug 2025 19:04:42 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
-                  - GitHub.com
+                  - github.com
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; preload
               Transfer-Encoding:
                   - chunked
               Vary:
-                  - Accept, Authorization, Cookie, X-GitHub-OTP
-                  - Accept-Encoding, Accept, X-Requested-With
-              X-Accepted-OAuth-Scopes:
-                  - ""
+                  - Accept,Accept-Encoding, Accept, X-Requested-With
               X-Content-Type-Options:
                   - nosniff
               X-Frame-Options:
@@ -138,20 +131,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - C117:585F:8073BEC:108E07BE:6584F700
-              X-OAuth-Scopes:
-                  - admin:gpg_key, admin:org, admin:public_key, admin:repo_hook, delete:packages,
-                    delete_repo, gist, notifications, project, repo, user, workflow, write:packages
+                  - E992:64FE3:148B05D:4B86A62:68A53084
               X-RateLimit-Limit:
-                  - "5000"
+                  - "60"
               X-RateLimit-Remaining:
-                  - "4985"
+                  - "32"
               X-RateLimit-Reset:
-                  - "1703215491"
+                  - "1755659251"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "15"
+                  - "28"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -169,88 +159,68 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - python-requests/2.28.2
+                  - python-requests/2.31.0
+              authorization:
+                  - XXXXXXXXXX
           method: GET
-          uri: https://raw.githubusercontent.com/juftin/browsr/v1.6.0/README.md
+          uri: https://api.github.com/repos/juftin/browsr/contents/README.md?ref=v1.6.0
       response:
           body:
-              string:
-                  "# browsr\n\n<div align=\"center\" href=\"https://github.com/juftin/browsr\">\n
-                  \   <a href=\"https://github.com/juftin/browsr\">\n      <img src=https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr.png\n
-                  \       width=\"400\" alt=\"browsr\">\n    </a>\n</div>\n\n[![browsr Version](https://img.shields.io/pypi/v/browsr?color=blue&label=browsr)](https://github.com/juftin/browsr)\n[![PyPI](https://img.shields.io/pypi/pyversions/browsr)](https://pypi.python.org/pypi/browsr/)\n[![Testing
-                  Status](https://github.com/juftin/browsr/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/juftin/browsr/actions/workflows/tests.yaml?query=branch%3Amain)\n[![GitHub
-                  License](https://img.shields.io/github/license/juftin/browsr?color=blue&label=License)](https://github.com/juftin/browsr/blob/main/LICENSE)\n\n**`browsr`**
-                  is a TUI (text-based user interface) file browser for your terminal.\nIt's
-                  a simple way to browse your files and take a peek at their contents. Plus
-                  it\nworks on local and remote file systems.\n\n<details open></summary></summary>\n\n<body>\n<div
-                  style=\"display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 10px;\">\n
-                  \   <img src=\"https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png\"
-                  alt=\"Image 1\">\n    <img src=\"https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_datatable.png\"
-                  alt=\"Image 2\">\n    <img src=\"https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_mona_lisa.png\"
-                  alt=\"Image 3\">\n    <img src=\"https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_markdown.png\"
-                  alt=\"Image 4\">\n</div>\n</body>\n\n</details>\n\n## Installation\n\nThe
-                  below command recommends [pipx](https://pypa.github.io/pipx/) instead of pip.
-                  `pipx` installs the package in\nan isolated environment and makes it easy
-                  to uninstall. If you'd like to use `pip` instead, just replace `pipx`\nwith
-                  `pip` in the below command.\n\n```shell\npipx install browsr\n```\n\n## Extra
-                  Installation\n\nIf you're looking to use **`browsr`** on remote file systems,
-                  like AWS S3, you'll need to install the `remote` extra.\nIf you'd like to
-                  browse parquet files, you'll need to install the `parquet` extra. Or, even
-                  simpler,\nyou can install the `all` extra to get all the extras.\n\n```shell\npipx
-                  install \"browsr[all]\"\n```\n\n## Usage\n\n```shell\nbrowsr ~/Downloads/\n```\n\nSimply
-                  give **`browsr`** a path to a file/directory and it will open a browser window\nwith
-                  a file browser. You can also give it a URL to a remote file system, like AWS
-                  S3.\n\n```shell\nbrowsr s3://my-bucket/my-file.parquet\n```\n\n### [Check
-                  out the Documentation](https://juftin.com/browsr/) for more\n\n## License\n\n**`browsr`**
-                  is distributed under the terms of the [MIT license](LICENSE).\n"
+              string: '{"name":"README.md","path":"README.md","sha":"1b7227281e1ac90b906c05a82ce968b6d5e3114c","size":2728,"url":"https://api.github.com/repos/juftin/browsr/contents/README.md?ref=v1.6.0","html_url":"https://github.com/juftin/browsr/blob/v1.6.0/README.md","git_url":"https://api.github.com/repos/juftin/browsr/git/blobs/1b7227281e1ac90b906c05a82ce968b6d5e3114c","download_url":"https://raw.githubusercontent.com/juftin/browsr/v1.6.0/README.md","type":"file","content":"IyBicm93c3IKCjxkaXYgYWxpZ249ImNlbnRlciIgaHJlZj0iaHR0cHM6Ly9n\naXRodWIuY29tL2p1ZnRpbi9icm93c3IiPgogICAgPGEgaHJlZj0iaHR0cHM6\nLy9naXRodWIuY29tL2p1ZnRpbi9icm93c3IiPgogICAgICA8aW1nIHNyYz1o\ndHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vanVmdGluL2Jyb3dz\nci9tYWluL2RvY3MvX3N0YXRpYy9icm93c3IucG5nCiAgICAgICAgd2lkdGg9\nIjQwMCIgYWx0PSJicm93c3IiPgogICAgPC9hPgo8L2Rpdj4KClshW2Jyb3dz\nciBWZXJzaW9uXShodHRwczovL2ltZy5zaGllbGRzLmlvL3B5cGkvdi9icm93\nc3I/Y29sb3I9Ymx1ZSZsYWJlbD1icm93c3IpXShodHRwczovL2dpdGh1Yi5j\nb20vanVmdGluL2Jyb3dzcikKWyFbUHlQSV0oaHR0cHM6Ly9pbWcuc2hpZWxk\ncy5pby9weXBpL3B5dmVyc2lvbnMvYnJvd3NyKV0oaHR0cHM6Ly9weXBpLnB5\ndGhvbi5vcmcvcHlwaS9icm93c3IvKQpbIVtUZXN0aW5nIFN0YXR1c10oaHR0\ncHM6Ly9naXRodWIuY29tL2p1ZnRpbi9icm93c3IvYWN0aW9ucy93b3JrZmxv\nd3MvdGVzdHMueWFtbC9iYWRnZS5zdmc/YnJhbmNoPW1haW4pXShodHRwczov\nL2dpdGh1Yi5jb20vanVmdGluL2Jyb3dzci9hY3Rpb25zL3dvcmtmbG93cy90\nZXN0cy55YW1sP3F1ZXJ5PWJyYW5jaCUzQW1haW4pClshW0dpdEh1YiBMaWNl\nbnNlXShodHRwczovL2ltZy5zaGllbGRzLmlvL2dpdGh1Yi9saWNlbnNlL2p1\nZnRpbi9icm93c3I/Y29sb3I9Ymx1ZSZsYWJlbD1MaWNlbnNlKV0oaHR0cHM6\nLy9naXRodWIuY29tL2p1ZnRpbi9icm93c3IvYmxvYi9tYWluL0xJQ0VOU0Up\nCgoqKmBicm93c3JgKiogaXMgYSBUVUkgKHRleHQtYmFzZWQgdXNlciBpbnRl\ncmZhY2UpIGZpbGUgYnJvd3NlciBmb3IgeW91ciB0ZXJtaW5hbC4KSXQncyBh\nIHNpbXBsZSB3YXkgdG8gYnJvd3NlIHlvdXIgZmlsZXMgYW5kIHRha2UgYSBw\nZWVrIGF0IHRoZWlyIGNvbnRlbnRzLiBQbHVzIGl0CndvcmtzIG9uIGxvY2Fs\nIGFuZCByZW1vdGUgZmlsZSBzeXN0ZW1zLgoKPGRldGFpbHMgb3Blbj48L3N1\nbW1hcnk+PC9zdW1tYXJ5PgoKPGJvZHk+CjxkaXYgc3R5bGU9ImRpc3BsYXk6\nIGdyaWQ7IGdyaWQtdGVtcGxhdGUtY29sdW1uczogcmVwZWF0KDIsIDFmcik7\nIGdyaWQtZ2FwOiAxMHB4OyI+CiAgICA8aW1nIHNyYz0iaHR0cHM6Ly9yYXcu\nZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p1ZnRpbi9icm93c3IvbWFpbi9kb2Nz\nL19zdGF0aWMvc2NyZWVuc2hvdF91dGlscy5wbmciIGFsdD0iSW1hZ2UgMSI+\nCiAgICA8aW1nIHNyYz0iaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQu\nY29tL2p1ZnRpbi9icm93c3IvbWFpbi9kb2NzL19zdGF0aWMvc2NyZWVuc2hv\ndF9kYXRhdGFibGUucG5nIiBhbHQ9IkltYWdlIDIiPgogICAgPGltZyBzcmM9\nImh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9qdWZ0aW4vYnJv\nd3NyL21haW4vZG9jcy9fc3RhdGljL3NjcmVlbnNob3RfbW9uYV9saXNhLnBu\nZyIgYWx0PSJJbWFnZSAzIj4KICAgIDxpbWcgc3JjPSJodHRwczovL3Jhdy5n\naXRodWJ1c2VyY29udGVudC5jb20vanVmdGluL2Jyb3dzci9tYWluL2RvY3Mv\nX3N0YXRpYy9zY3JlZW5zaG90X21hcmtkb3duLnBuZyIgYWx0PSJJbWFnZSA0\nIj4KPC9kaXY+CjwvYm9keT4KCjwvZGV0YWlscz4KCiMjIEluc3RhbGxhdGlv\nbgoKVGhlIGJlbG93IGNvbW1hbmQgcmVjb21tZW5kcyBbcGlweF0oaHR0cHM6\nLy9weXBhLmdpdGh1Yi5pby9waXB4LykgaW5zdGVhZCBvZiBwaXAuIGBwaXB4\nYCBpbnN0YWxscyB0aGUgcGFja2FnZSBpbgphbiBpc29sYXRlZCBlbnZpcm9u\nbWVudCBhbmQgbWFrZXMgaXQgZWFzeSB0byB1bmluc3RhbGwuIElmIHlvdSdk\nIGxpa2UgdG8gdXNlIGBwaXBgIGluc3RlYWQsIGp1c3QgcmVwbGFjZSBgcGlw\neGAKd2l0aCBgcGlwYCBpbiB0aGUgYmVsb3cgY29tbWFuZC4KCmBgYHNoZWxs\nCnBpcHggaW5zdGFsbCBicm93c3IKYGBgCgojIyBFeHRyYSBJbnN0YWxsYXRp\nb24KCklmIHlvdSdyZSBsb29raW5nIHRvIHVzZSAqKmBicm93c3JgKiogb24g\ncmVtb3RlIGZpbGUgc3lzdGVtcywgbGlrZSBBV1MgUzMsIHlvdSdsbCBuZWVk\nIHRvIGluc3RhbGwgdGhlIGByZW1vdGVgIGV4dHJhLgpJZiB5b3UnZCBsaWtl\nIHRvIGJyb3dzZSBwYXJxdWV0IGZpbGVzLCB5b3UnbGwgbmVlZCB0byBpbnN0\nYWxsIHRoZSBgcGFycXVldGAgZXh0cmEuIE9yLCBldmVuIHNpbXBsZXIsCnlv\ndSBjYW4gaW5zdGFsbCB0aGUgYGFsbGAgZXh0cmEgdG8gZ2V0IGFsbCB0aGUg\nZXh0cmFzLgoKYGBgc2hlbGwKcGlweCBpbnN0YWxsICJicm93c3JbYWxsXSIK\nYGBgCgojIyBVc2FnZQoKYGBgc2hlbGwKYnJvd3NyIH4vRG93bmxvYWRzLwpg\nYGAKClNpbXBseSBnaXZlICoqYGJyb3dzcmAqKiBhIHBhdGggdG8gYSBmaWxl\nL2RpcmVjdG9yeSBhbmQgaXQgd2lsbCBvcGVuIGEgYnJvd3NlciB3aW5kb3cK\nd2l0aCBhIGZpbGUgYnJvd3Nlci4gWW91IGNhbiBhbHNvIGdpdmUgaXQgYSBV\nUkwgdG8gYSByZW1vdGUgZmlsZSBzeXN0ZW0sIGxpa2UgQVdTIFMzLgoKYGBg\nc2hlbGwKYnJvd3NyIHMzOi8vbXktYnVja2V0L215LWZpbGUucGFycXVldApg\nYGAKCiMjIyBbQ2hlY2sgb3V0IHRoZSBEb2N1bWVudGF0aW9uXShodHRwczov\nL2p1ZnRpbi5jb20vYnJvd3NyLykgZm9yIG1vcmUKCiMjIExpY2Vuc2UKCioq\nYGJyb3dzcmAqKiBpcyBkaXN0cmlidXRlZCB1bmRlciB0aGUgdGVybXMgb2Yg\ndGhlIFtNSVQgbGljZW5zZV0oTElDRU5TRSkuCg==\n","encoding":"base64","_links":{"self":"https://api.github.com/repos/juftin/browsr/contents/README.md?ref=v1.6.0","git":"https://api.github.com/repos/juftin/browsr/git/blobs/1b7227281e1ac90b906c05a82ce968b6d5e3114c","html":"https://github.com/juftin/browsr/blob/v1.6.0/README.md"}}'
           headers:
-              Accept-Ranges:
-                  - bytes
               Access-Control-Allow-Origin:
                   - "*"
+              Access-Control-Expose-Headers:
+                  - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+                    X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+                    X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+                    X-GitHub-Request-Id, Deprecation, Sunset
               Cache-Control:
-                  - max-age=300
-              Connection:
-                  - keep-alive
-
-              Content-Length:
-                  - "1101"
+                  - public, max-age=60, s-maxage=60
+              Content-Encoding:
+                  - gzip
               Content-Security-Policy:
-                  - default-src 'none'; style-src 'unsafe-inline'; sandbox
+                  - default-src 'none'
               Content-Type:
-                  - text/plain; charset=utf-8
+                  - application/json; charset=utf-8
               Date:
-                  - Thu, 18 May 2023 01:01:44 GMT
+                  - Wed, 20 Aug 2025 02:18:44 GMT
               ETag:
-                  - W/"e3f73ab855fd90588244244759492697dae0221aaa9e819693338d2cd1ad119e"
-              Expires:
-                  - Thu, 18 May 2023 01:06:44 GMT
-              Source-Age:
-                  - "0"
+                  - W/"1b7227281e1ac90b906c05a82ce968b6d5e3114c"
+              Last-Modified:
+                  - Tue, 16 May 2023 03:59:55 GMT
+              Referrer-Policy:
+                  - origin-when-cross-origin, strict-origin-when-cross-origin
+              Server:
+                  - github.com
               Strict-Transport-Security:
-                  - max-age=31536000
+                  - max-age=31536000; includeSubdomains; preload
+              Transfer-Encoding:
+                  - chunked
               Vary:
-                  - Authorization,Accept-Encoding,Origin
-              Via:
-                  - 1.1 varnish
-              X-Cache:
-                  - MISS
-              X-Cache-Hits:
-                  - "0"
+                  - Accept,Accept-Encoding, Accept, X-Requested-With
               X-Content-Type-Options:
                   - nosniff
-              X-Fastly-Request-ID:
-                  - 7459b3f705b11601e933e9db121561cfa0dae324
               X-Frame-Options:
                   - deny
+              X-GitHub-Media-Type:
+                  - github.v3; format=json
               X-GitHub-Request-Id:
-                  - F40E:6E4E:3A21014:443B1B9:646578F8
-              X-Served-By:
-                  - cache-den8272-DEN
-              X-Timer:
-                  - S1684371705.820747,VS0,VE131
+                  - E993:2388:140B7F4:497058F:68A53084
+              X-RateLimit-Limit:
+                  - "60"
+              X-RateLimit-Remaining:
+                  - "31"
+              X-RateLimit-Reset:
+                  - "1755659251"
+              X-RateLimit-Resource:
+                  - core
+              X-RateLimit-Used:
+                  - "29"
               X-XSS-Protection:
-                  - 1; mode=block
+                  - "0"
+              x-github-api-version-selected:
+                  - "2022-11-28"
           status:
               code: 200
               message: OK

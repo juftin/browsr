@@ -69,7 +69,7 @@ class BaseCodeWindow(Widget):
         """
         Load a file into an image
         """
-        screen_width = self.app.size.width / 4
+        screen_width = self.app.size.width / 2
         content = open_image(document=file_path, screen_width=screen_width)
         return content
 
