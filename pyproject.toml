@@ -33,12 +33,12 @@ dependencies = [
   "pyperclip~=1.9.0"
 ]
 description = "TUI File Browser App"
-dynamic = ["version"]
 keywords = []
 license = "MIT"
 name = "browsr"
 readme = "README.md"
 requires-python = ">=3.9,<4.0"
+version = "1.22.0"
 
 [project.optional-dependencies]
 all = [
@@ -63,6 +63,34 @@ Documentation = "https://github.com/juftin/browsr#readme"
 Issues = "https://github.com/juftin/browsr/issues"
 Source = "https://github.com/juftin/browsr"
 
+[dependency-groups]
+dev = [
+  # Testing
+  "pytest",
+  "pytest-cov",
+  "pytest-vcr~=1.0.2",
+  "textual-dev~=1.4.0",
+  "pytest-textual-snapshot",
+  "pytest-asyncio",
+  # Linting
+  "mypy>=1.9.0",
+  "ruff~=0.1.7"
+]
+docs = [
+  "markdown-callouts",
+  "markdown-exec",
+  "mkdocs",
+  "mkdocs-autorefs",
+  "mkdocs-click",
+  "mkdocs-gen-files",
+  "mkdocs-literate-nav",
+  "mkdocs-material",
+  "mkdocs-section-index",
+  "mkdocstrings",
+  "mkdocstrings-python",
+  "pymdown-extensions"
+]
+
 [tool.coverage.paths]
 browsr = ["browsr", "*/browsr/browsr"]
 tests = ["tests", "*/browsr/tests"]
@@ -80,97 +108,6 @@ omit = ["browsr/__about__.py"]
 parallel = true
 source_pkgs = ["browsr", "tests"]
 
-[tool.hatch.env]
-requires = ["hatch-pip-compile", "hatch-mkdocs"]
-
-[tool.hatch.env.collectors.mkdocs.docs]
-path = "mkdocs.yaml"
-
-[tool.hatch.envs.all]
-pip-compile-constraint = ""
-template = "test"
-
-[[tool.hatch.envs.all.matrix]]
-python = ["3.9", "3.10", "3.11", "3.12", "3.13"]
-
-[tool.hatch.envs.default]
-features = ["all"]
-pip-compile-constraint = "default"
-pip-compile-installer = "uv"
-pip-compile-resolver = "uv"
-post-install-commands = [
-  "- pre-commit install"
-]
-type = "pip-compile"
-
-[tool.hatch.envs.default.env-vars]
-GITHUB_TOKEN = "{env:GITHUB_TOKEN:placeholder}"
-
-[tool.hatch.envs.default.scripts]
-cov = "hatch run test:cov"
-test = "hatch run test:test"
-
-[tool.hatch.envs.docs]
-detached = false
-pip-compile-constraint = "default"
-pip-compile-installer = "uv"
-pip-compile-resolver = "uv"
-template = "docs"
-type = "pip-compile"
-
-[tool.hatch.envs.gen]
-detached = true
-
-[tool.hatch.envs.gen.scripts]
-release = [
-  "npm install --prefix .github/semantic_release/",
-  "npx --prefix .github/semantic_release/ semantic-release {args:}"
-]
-
-[tool.hatch.envs.lint]
-dependencies = [
-  "mypy>=1.9.0",
-  "ruff~=0.1.7"
-]
-detached = true
-type = "pip-compile"
-
-[tool.hatch.envs.lint.scripts]
-all = [
-  "style",
-  "typing"
-]
-fmt = [
-  "ruff format {args:.}",
-  "ruff --fix {args:.}",
-  "style"
-]
-precommit = [
-  "pre-commit run --all-files"
-]
-style = [
-  "ruff {args:.}",
-  "ruff format --check --diff {args:.}"
-]
-typing = "mypy --install-types --non-interactive {args:browsr tests}"
-
-[tool.hatch.envs.test]
-dependencies = [
-  "pytest",
-  "pytest-cov",
-  "pytest-vcr~=1.0.2",
-  "textual-dev~=1.4.0",
-  "pytest-textual-snapshot",
-  "pytest-asyncio"
-]
-
-[tool.hatch.envs.test.scripts]
-cov = "pytest --cov --cov-config=pyproject.toml {args:tests}"
-test = "pytest {args:tests}"
-
-[tool.hatch.version]
-path = "browsr/__about__.py"
-
 [tool.mypy]
 check_untyped_defs = true
 disallow_any_generics = true
@@ -181,6 +118,15 @@ no_implicit_reexport = true
 strict_optional = true
 warn_redundant_casts = true
 warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+addopts = [
+  "-v",
+  "--cov=browsr",
+  "--cov-report=term-missing",
+  "--cov-report=xml:coverage.xml",
+  "--junitxml=pytest.xml"
+]
 
 [tool.ruff]
 ignore = [

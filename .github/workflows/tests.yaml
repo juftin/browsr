@@ -27,22 +27,21 @@ jobs:
                     - { name: Python 3.12, python: "3.12" }
                     - { name: Python 3.11, python: "3.11" }
                     - { name: Python 3.10, python: "3.10" }
+                    - { name: Python 3.9, python: "3.9" }
+        permissions:
+            contents: read
+            id-token: write
+            pull-requests: write
         steps:
-            - name: Set up Github Workspace
-              uses: actions/checkout@v4
+            - name: test
+              uses: juftin/actions/taskfile@v1
               with:
-                  fetch-depth: 0
-            - name: Set up Python Environment ${{ matrix.python }}
-              uses: actions/setup-python@v5
-              with:
-                  python-version: ${{ matrix.python }}
-            - name: Install Hatch
-              run: |
-                  python -m pip install --upgrade pip
-                  python -m pip install -q hatch
-                  hatch --version
-            - name: Test Suite
-              run: |
-                  echo "::add-matcher::.github/workflows/matchers/python.json"
-                  hatch run +py="${{ matrix.python }}" all:cov
-                  echo "::remove-matcher owner=python::"
+                  checkout: true
+                  setup-uv: true
+                  task: test
+                  install: true
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  annotations-pytest: ${{ matrix.python == '3.12' && true || false }}
+                  pytest-coverage: ${{ matrix.python == '3.12' && true || false }}
+              env:
+                  UV_PYTHON: ${{ matrix.python }}

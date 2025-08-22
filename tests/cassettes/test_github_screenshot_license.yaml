@@ -16,7 +16,30 @@ interactions:
           uri: https://api.github.com/repos/juftin/browsr/contents/LICENSE?ref=v1.6.0
       response:
           body:
-              string: '{"name":"LICENSE","path":"LICENSE","sha":"3f1116db9ccaba831afbd47542a8dbef1ceb2189","size":1109,"url":"https://api.github.com/repos/juftin/browsr/contents/LICENSE?ref=v1.6.0","html_url":"https://github.com/juftin/browsr/blob/v1.6.0/LICENSE","git_url":"https://api.github.com/repos/juftin/browsr/git/blobs/3f1116db9ccaba831afbd47542a8dbef1ceb2189","download_url":"https://raw.githubusercontent.com/juftin/browsr/v1.6.0/LICENSE","type":"file","content":"TUlUIExpY2Vuc2UKCkNvcHlyaWdodCAoYykgMjAyMy1wcmVzZW50IEp1c3Rp\nbiBGbGFubmVyeSA8anVzdGluLmZsYW5uZXJ5QGp1ZnRpbi5jb20+CgpQZXJt\naXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8g\nYW55IHBlcnNvbiBvYnRhaW5pbmcgYSBjb3B5IG9mIHRoaXMgc29mdHdhcmUg\nYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAodGhlICJTb2Z0\nd2FyZSIpLCB0byBkZWFsIGluIHRoZSBTb2Z0d2FyZSB3aXRob3V0IHJlc3Ry\naWN0aW9uLCBpbmNsdWRpbmcgd2l0aG91dCBsaW1pdGF0aW9uIHRoZSByaWdo\ndHMgdG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0\ncmlidXRlLCBzdWJsaWNlbnNlLCBhbmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhl\nIFNvZnR3YXJlLCBhbmQgdG8gcGVybWl0IHBlcnNvbnMgdG8gd2hvbSB0aGUg\nU29mdHdhcmUgaXMgZnVybmlzaGVkIHRvIGRvIHNvLCBzdWJqZWN0IHRvIHRo\nZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKClRoZSBhYm92ZSBjb3B5cmlnaHQg\nbm90aWNlIGFuZCB0aGlzIHBlcm1pc3Npb24gbm90aWNlIHNoYWxsIGJlIGlu\nY2x1ZGVkIGluIGFsbCBjb3BpZXMgb3Igc3Vic3RhbnRpYWwgcG9ydGlvbnMg\nb2YgdGhlIFNvZnR3YXJlLgoKVEhFIFNPRlRXQVJFIElTIFBST1ZJREVEICJB\nUyBJUyIsIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJTkQsIEVYUFJFU1Mg\nT1IgSU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1QgTElNSVRFRCBUTyBUSEUg\nV0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFksIEZJVE5FU1MgRk9SIEEg\nUEFSVElDVUxBUiBQVVJQT1NFIEFORCBOT05JTkZSSU5HRU1FTlQuIElOIE5P\nIEVWRU5UIFNIQUxMIFRIRSBBVVRIT1JTIE9SIENPUFlSSUdIVCBIT0xERVJT\nIEJFIExJQUJMRSBGT1IgQU5ZIENMQUlNLCBEQU1BR0VTIE9SIE9USEVSIExJ\nQUJJTElUWSwgV0hFVEhFUiBJTiBBTiBBQ1RJT04gT0YgQ09OVFJBQ1QsIFRP\nUlQgT1IgT1RIRVJXSVNFLCBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJTiBD\nT05ORUNUSU9OIFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IgT1RI\nRVIgREVBTElOR1MgSU4gVEhFIFNPRlRXQVJFLgo=\n","encoding":"base64","_links":{"self":"https://api.github.com/repos/juftin/browsr/contents/LICENSE?ref=v1.6.0","git":"https://api.github.com/repos/juftin/browsr/git/blobs/3f1116db9ccaba831afbd47542a8dbef1ceb2189","html":"https://github.com/juftin/browsr/blob/v1.6.0/LICENSE"}}'
+              string: !!binary |
+                  H4sIAAAAAAAAA62VW4+bSBCF/4tfNxoDHmeHSNFq8ABuMoOHSzc2shTR4AHGzWWNsY2j/Pc9YCfK
+                  JC+b1T5Y2EXXqVNfldxfRmVUbEYfRo9kptuePno3qqN99ibQZBF+T15kWX6fcDWOIx7dTeTohSe3
+                  f05vlegu4ZsXOd5wRb5TodDkZ0jKsqS+G7U7geRsv6+bD+NxVOc3ab7PWn4TV8V4t6mrZvzavuzz
+                  csx31bHZjeOq3G/KfTO+Ovprt3n5eJBv3t9IkM72hfj8VvMHvbdKXFR8fMn8JgYFHP9J4F+YQtK4
+                  l2vGv4EhqY6lqKLkp3K76Hhl0Dab3bXdAcdb+78433d1P6mXXGzQxzURAZ8KSvRTvVJYGyv002xr
+                  H+K56KIgqZLZfbXqtunT63331MnHuGDnMJhKRK/leOLW65LnmslNo+UF6zbe/V1UsnNiivaxCJtV
+                  MG3DpTV1zFoOS7fm+fSVK9Ifs7R2EN+vy2hpn6NAbYkpzsTMBPTzjaeVcWG0icm2jzOtQEwQUy2I
+                  aVerpVWG3jFNzLt0XUJ/SuaaiEv7AB+HVelmUTCteRGnK0975RNtOmTO3SpaPqWxohbJPMnigl6y
+                  t8Q0zoi+RoEhhYGThqb6mgSy4FBCF71qEQUnEXf3VQJ/ZGb5XAmldZkoRhd6pIZDiXfaNgyMBl20
+                  fa3Q04ZTlzPaJFq6FZ8wicwtAWod+g5sqe8b2XBrN0kAOnCdKEKKTFVOZloTBXKdmMZw7qo6zAS1
+                  508DgWRpCygMfeK554pbh+UWPmSQTPp3xySwGlCu8H2LJ5zHhciTpdu/PQ9vAxv9DkoZL5wDnxCQ
+                  Yg2/KNchyHFlhYqZWJfEsA+Y5QST+JYxeIlN1vFAoMfrPMqrRyU7cE9DVz1z+sME+omEJbIKcY4w
+                  a/R4ICY+c/tw9fZ3CE5DHFTXmLxWcOXU8ElymbGitqEJYiAUn6tPMzGwz1aFquA5cEG3ZTR3UJsX
+                  Kk7a2CWjDTG1qN+53m0h1/HErrlym34/M8euBSeQtHBetNg15SSHvct+xqbxlk5PbMJyzDbD5tSr
+                  4AgeajdsEDig9pXfG3pp9YnpmYHYsyvcpcMsg+jCJ4bm+XJouTrTsW8aqHWaRTvSECOxkPHMmJMy
+                  yfDo1lgwY5v60ip16DQk+t7yt05DdLaihmVQua/tyyT1qOz4ujDc2RHfpw++wXQ850S3GJtpC192
+                  Ury3PebijEb9TqOe3k/sex1kw8ezm2u2y6wHT0dt3Zh59GTBA2qG8DYdarpb1SO63s9bNzymiwdG
+                  TxrNNYcxy/FlG30aC9RZ+NIUjkOv9+JS2fCF04LBgujTZ+yazgKXTikIEYeenojhEtfTNMZc4suW
+                  T/S+jv1MDQGFhKAT4ksnHf78PrvnebIcaj0hy+w5XCjZTw4VNnZMd6isuRK7KqnomUHxZK1LZFkg
+                  QgP82zApA6/MQAeWn2ta/3Fk1/Kl2wt7ScUcLMTA3nDhnArwRD1fhmNmLT1mG6in0a3wL9xDz5ck
+                  UFN7/j3V56v6AyYmTRcutalH1cVl5mn666ag9wsPRiX6vdq6dBlJsTsa3C9cTMOjt79kP6bVx3WJ
+                  a2BTxlWSlynuAR41m/e3iH0WOf5ERh++jJqNePk/r1/cg78n958uzv6S/6HMb13wX7/+A4H1HU3T
+                  CAAA
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -34,7 +57,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 20 Aug 2025 02:18:45 GMT
+                  - Thu, 21 Aug 2025 02:09:38 GMT
               ETag:
                   - W/"3f1116db9ccaba831afbd47542a8dbef1ceb2189"
               Last-Modified:
@@ -56,17 +79,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - E994:325270:12FF7EF:455803D:68A53085
+                  - F7F8:87025:3C2580:D8AB4B:68A67FE2
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "30"
+                  - "50"
               X-RateLimit-Reset:
-                  - "1755659251"
+                  - "1755745775"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "30"
+                  - "10"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:

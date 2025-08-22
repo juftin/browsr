@@ -1,7 +1,10 @@
 const path = require("path");
 const fs = require("fs");
 
-const semantic_release_dir = path.resolve(__dirname, ".github/semantic_release");
+const semantic_release_dir = path.resolve(
+    __dirname,
+    ".github/semantic_release",
+);
 const release_note_path = path.join(semantic_release_dir, "release_notes.hbs");
 const release_note_template = fs.readFileSync(release_note_path, "utf-8");
 
@@ -33,13 +36,13 @@ module.exports = {
         [
             "@semantic-release/exec",
             {
-                prepareCmd: "hatch version ${nextRelease.version} && hatch build",
+                prepareCmd: "uv version ${nextRelease.version} && uv build",
             },
         ],
         [
             "@semantic-release/git",
             {
-                assets: ["pyproject.toml", "*/__about__.py"],
+                assets: ["pyproject.toml", "uv.lock"],
                 message:
                     "🔖 browsr ${nextRelease.version}\n\n${nextRelease.notes}\n[skip ci]",
             },

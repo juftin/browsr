@@ -16,10 +16,32 @@ interactions:
           uri: https://api.github.com/repos/juftin/browsr
       response:
           body:
-              string:
-                  "{\"id\":635626551,\"node_id\":\"R_kgDOJeLkNw\",\"name\":\"browsr\",\"full_name\":\"juftin/browsr\",\"private\":false,\"owner\":{\"login\":\"juftin\",\"id\":49741340,\"node_id\":\"MDQ6VXNlcjQ5NzQxMzQw\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/49741340?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/juftin\",\"html_url\":\"https://github.com/juftin\",\"followers_url\":\"https://api.github.com/users/juftin/followers\",\"following_url\":\"https://api.github.com/users/juftin/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/juftin/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/juftin/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/juftin/subscriptions\",\"organizations_url\":\"https://api.github.com/users/juftin/orgs\",\"repos_url\":\"https://api.github.com/users/juftin/repos\",\"events_url\":\"https://api.github.com/users/juftin/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/juftin/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"html_url\":\"https://github.com/juftin/browsr\",\"description\":\"\U0001F5C2\uFE0F
-                  a pleasant file explorer in your terminal supporting all filesystems\",\"fork\":false,\"url\":\"https://api.github.com/repos/juftin/browsr\",\"forks_url\":\"https://api.github.com/repos/juftin/browsr/forks\",\"keys_url\":\"https://api.github.com/repos/juftin/browsr/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/juftin/browsr/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/juftin/browsr/teams\",\"hooks_url\":\"https://api.github.com/repos/juftin/browsr/hooks\",\"issue_events_url\":\"https://api.github.com/repos/juftin/browsr/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/juftin/browsr/events\",\"assignees_url\":\"https://api.github.com/repos/juftin/browsr/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/juftin/browsr/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/juftin/browsr/tags\",\"blobs_url\":\"https://api.github.com/repos/juftin/browsr/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/juftin/browsr/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/juftin/browsr/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/juftin/browsr/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/juftin/browsr/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/juftin/browsr/languages\",\"stargazers_url\":\"https://api.github.com/repos/juftin/browsr/stargazers\",\"contributors_url\":\"https://api.github.com/repos/juftin/browsr/contributors\",\"subscribers_url\":\"https://api.github.com/repos/juftin/browsr/subscribers\",\"subscription_url\":\"https://api.github.com/repos/juftin/browsr/subscription\",\"commits_url\":\"https://api.github.com/repos/juftin/browsr/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/juftin/browsr/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/juftin/browsr/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/juftin/browsr/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/juftin/browsr/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/juftin/browsr/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/juftin/browsr/merges\",\"archive_url\":\"https://api.github.com/repos/juftin/browsr/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/juftin/browsr/downloads\",\"issues_url\":\"https://api.github.com/repos/juftin/browsr/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/juftin/browsr/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/juftin/browsr/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/juftin/browsr/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/juftin/browsr/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/juftin/browsr/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/juftin/browsr/deployments\",\"created_at\":\"2023-05-03T05:26:39Z\",\"updated_at\":\"2025-08-13T19:04:42Z\",\"pushed_at\":\"2024-04-11T01:43:34Z\",\"git_url\":\"git://github.com/juftin/browsr.git\",\"ssh_url\":\"git@github.com:juftin/browsr.git\",\"clone_url\":\"https://github.com/juftin/browsr.git\",\"svn_url\":\"https://github.com/juftin/browsr\",\"homepage\":\"http://juftin.com/browsr/\",\"size\":14384,\"stargazers_count\":354,\"watchers_count\":354,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":true,\"has_discussions\":false,\"forks_count\":19,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":13,\"license\":{\"key\":\"mit\",\"name\":\"MIT
-                  License\",\"spdx_id\":\"MIT\",\"url\":\"https://api.github.com/licenses/mit\",\"node_id\":\"MDc6TGljZW5zZTEz\"},\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"topics\":[\"file-explorer\",\"python\",\"s3\",\"textual\",\"tui\"],\"visibility\":\"public\",\"forks\":19,\"open_issues\":13,\"watchers\":354,\"default_branch\":\"main\",\"temp_clone_token\":null,\"network_count\":19,\"subscribers_count\":7}"
+              string: !!binary |
+                  H4sIAAAAAAAAA51Y227jNhD9FUOvdSLHl2zXQLF9SFG02GybRXrBFoVASbTFhBJVkrJjC3npD/Sx
+                  j/2N/lX7CT0jUbLsOuu1XpKImXN4OMMhZ1h6Ivbm15PZ9fh6NrsaepmKeUBj3vvgcXnz3bf87eO7
+                  tYd/sJRjNNRqbTS+F4WUgRt8KBZWZH77v1yLFbMwXzBp+NBT64xrb156Ui1FBpYaABaaafr61fRq
+                  Mh11J7+9ubv+8ed3Mnq4m73b3j3dbu9IBAMt00GhJUgSa3Mz9/160FwuhU2KsDBcRyqzPLOXkUr9
+                  wm/436y+mIJjqR1LtUoMHLDlwjHVcNAZv9Wb2FQeTF9PWxm3ZgslpVoDeSj1ZXK/xZBzK7zIlmfj
+                  gSl9ZRMOL0H6My1YGHuOkMq+9OkXdgIxGDhd8/gMMQ4BKRT659LXPFcVVRGaSIvcCpWdI2oPBx6l
+                  lywTW3YuD3AGcJJzzvSVPXB8hX11DrAGlH6VEtGGXKB5xMUK7jyb7AAJLrvJKSt/QKjxRREPVoKv
+                  AzeeF6EUEbldWB6wOKXsq5LyeYj8Ob2Xdzkd8zZumPDfv/78/Z+//xiwQS45Myyzg4WQfMCfcqk0
+                  1wORDTaq0APLNSZlcmCKPFcax8RywKSsrM3GWJ6SWxdKP7anxUfzsQqES7SdOMKfiMoRIFIOMEz/
+                  yDc90IQqffx0WRIhaVmoNLPqVOIfE7MHL/3uJ+0ay1naQ2QFAzxRqo+HKhjgwpiCf9KGPba0Cm38
+                  JheyIg3ro+lTMuAYYY2DLmaMWGac9/BMCy395qQMNcuipA9ZgyyxJ4mjihhb9pBFKIBDqcIeaFxG
+                  fgUtfZOw+vS3QT8lxEXIPSrNFz1lEbKlsrpXzCpJBG2JcNFYhK+Hpgbpl85TkmXLgi37cLVQRI6u
+                  viXbnrz8j+3rHRZEVMVoERZ9j5MdmlTV9y7yro+rduAdVXWFf7wkOLrETgFQLTJNxakb9RiPA+5t
+                  zt5ktK8OCen79GX/kjRClv7upKsPUMd5vtfcCdpo6jK7YrdHWBukX36WM1udWZggZ5qfL9AB/TJk
+                  KC4uLy/LhLOqeEy57pVTNQ4ETEcJ6qXzNZUNEvd8ymxVhS5IUoyqVCoW9/BZCwVNHZTzddW4bgxz
+                  NFM9xFSwLk9KVZVVWZ8zbIftMmbKioWIPqXOPpYKe/DyjRFZxIeo/4bYZVZEAvsOFSHFBKUT7+OD
+                  GgfJ6E/r6poK0j4O0LxGln7d9cQcteym5xnQAVNaaY5+OA6YRe08Ho0nF6PZxWhyP5rNx9fzyesP
+                  sCnyeM8GBp9fjEf3V9P5DDZTsskLk3RoGpPRZD4Zz6eVCY4ytyPxF7rj/7WnrmqmJhfmxiQ78y93
+                  xvO9nt4ZRxJb62C/n+JfHd4RLwEgJlEpz3EDu+Ye6msVVXNdvy74pFlsYXI1nV693rtuI1VkcPBk
+                  Nhl6a2ZRyeGy6w421zT4v9/YRGU0JzNBnZDe3OoCrxU0kmv1wCNrumO71O8YrsWj2ANSAbGHEiYq
+                  UKWi3W07nLpdccpoEanQWrl3jQxJ3R56eKJwbyixMCyUfDegcp455c0ir8bIIxHxzMA/JbU1WCmu
+                  VyzTvdTcfnM/eOss4Ls8fqofezAOo492Xo7Y+I6wfSi6vYmu77+WDx9+mm0/3H+19dBbIsXVOqB1
+                  Ir0bdwgToN/LZfdpaM1DqKcaIKBKXi0Wgea/FQLPDe3SrcpFBO/94lHXeNH0mBCcN1E0E3xZ/mQL
+                  JumvQni/Dr2VMCIUUljyQ9sL113fnPze8SE2FLzXbBu3i2K+YIW0QV3UkzMZOmiaKc2DOhuseuRo
+                  quuoZdyuseY2HrQ/O4WXi/ir5/8Aso7GbHcTAAA=
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -37,11 +59,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 20 Aug 2025 02:27:27 GMT
+                  - Thu, 21 Aug 2025 02:09:35 GMT
               ETag:
-                  - W/"8816a35b2fcfc41a4b4a8be7315fcb460ece8f26e9af01ce52b9dd09402276fc"
+                  - W/"d69a595d9e72f8d4b8e1eb1f33ba61818c8f0e26f976248f498c53abe452995a"
               Last-Modified:
-                  - Wed, 13 Aug 2025 19:04:42 GMT
+                  - Wed, 20 Aug 2025 14:56:34 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -59,17 +81,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - EA05:EEB2:B8027F:2A22CB8:68A5328F
+                  - F7ED:1AED12:428525:EF3736:68A67FDF
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "28"
+                  - "59"
               X-RateLimit-Reset:
-                  - "1755659251"
+                  - "1755745775"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "32"
+                  - "1"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -94,10 +116,32 @@ interactions:
           uri: https://api.github.com/repos/juftin/browsr
       response:
           body:
-              string:
-                  "{\"id\":635626551,\"node_id\":\"R_kgDOJeLkNw\",\"name\":\"browsr\",\"full_name\":\"juftin/browsr\",\"private\":false,\"owner\":{\"login\":\"juftin\",\"id\":49741340,\"node_id\":\"MDQ6VXNlcjQ5NzQxMzQw\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/49741340?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/juftin\",\"html_url\":\"https://github.com/juftin\",\"followers_url\":\"https://api.github.com/users/juftin/followers\",\"following_url\":\"https://api.github.com/users/juftin/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/juftin/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/juftin/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/juftin/subscriptions\",\"organizations_url\":\"https://api.github.com/users/juftin/orgs\",\"repos_url\":\"https://api.github.com/users/juftin/repos\",\"events_url\":\"https://api.github.com/users/juftin/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/juftin/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"html_url\":\"https://github.com/juftin/browsr\",\"description\":\"\U0001F5C2\uFE0F
-                  a pleasant file explorer in your terminal supporting all filesystems\",\"fork\":false,\"url\":\"https://api.github.com/repos/juftin/browsr\",\"forks_url\":\"https://api.github.com/repos/juftin/browsr/forks\",\"keys_url\":\"https://api.github.com/repos/juftin/browsr/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/juftin/browsr/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/juftin/browsr/teams\",\"hooks_url\":\"https://api.github.com/repos/juftin/browsr/hooks\",\"issue_events_url\":\"https://api.github.com/repos/juftin/browsr/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/juftin/browsr/events\",\"assignees_url\":\"https://api.github.com/repos/juftin/browsr/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/juftin/browsr/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/juftin/browsr/tags\",\"blobs_url\":\"https://api.github.com/repos/juftin/browsr/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/juftin/browsr/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/juftin/browsr/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/juftin/browsr/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/juftin/browsr/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/juftin/browsr/languages\",\"stargazers_url\":\"https://api.github.com/repos/juftin/browsr/stargazers\",\"contributors_url\":\"https://api.github.com/repos/juftin/browsr/contributors\",\"subscribers_url\":\"https://api.github.com/repos/juftin/browsr/subscribers\",\"subscription_url\":\"https://api.github.com/repos/juftin/browsr/subscription\",\"commits_url\":\"https://api.github.com/repos/juftin/browsr/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/juftin/browsr/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/juftin/browsr/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/juftin/browsr/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/juftin/browsr/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/juftin/browsr/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/juftin/browsr/merges\",\"archive_url\":\"https://api.github.com/repos/juftin/browsr/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/juftin/browsr/downloads\",\"issues_url\":\"https://api.github.com/repos/juftin/browsr/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/juftin/browsr/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/juftin/browsr/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/juftin/browsr/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/juftin/browsr/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/juftin/browsr/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/juftin/browsr/deployments\",\"created_at\":\"2023-05-03T05:26:39Z\",\"updated_at\":\"2025-08-13T19:04:42Z\",\"pushed_at\":\"2024-04-11T01:43:34Z\",\"git_url\":\"git://github.com/juftin/browsr.git\",\"ssh_url\":\"git@github.com:juftin/browsr.git\",\"clone_url\":\"https://github.com/juftin/browsr.git\",\"svn_url\":\"https://github.com/juftin/browsr\",\"homepage\":\"http://juftin.com/browsr/\",\"size\":14384,\"stargazers_count\":354,\"watchers_count\":354,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":true,\"has_discussions\":false,\"forks_count\":19,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":13,\"license\":{\"key\":\"mit\",\"name\":\"MIT
-                  License\",\"spdx_id\":\"MIT\",\"url\":\"https://api.github.com/licenses/mit\",\"node_id\":\"MDc6TGljZW5zZTEz\"},\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"topics\":[\"file-explorer\",\"python\",\"s3\",\"textual\",\"tui\"],\"visibility\":\"public\",\"forks\":19,\"open_issues\":13,\"watchers\":354,\"default_branch\":\"main\",\"temp_clone_token\":null,\"network_count\":19,\"subscribers_count\":7}"
+              string: !!binary |
+                  H4sIAAAAAAAAA51Y227jNhD9FUOvdSLHl2zXQLF9SFG02GybRXrBFoVASbTFhBJVkrJjC3npD/Sx
+                  j/2N/lX7CT0jUbLsOuu1XpKImXN4OMMhZ1h6Ivbm15PZ9fh6NrsaepmKeUBj3vvgcXnz3bf87eO7
+                  tYd/sJRjNNRqbTS+F4WUgRt8KBZWZH77v1yLFbMwXzBp+NBT64xrb156Ui1FBpYaABaaafr61fRq
+                  Mh11J7+9ubv+8ed3Mnq4m73b3j3dbu9IBAMt00GhJUgSa3Mz9/160FwuhU2KsDBcRyqzPLOXkUr9
+                  wm/436y+mIJjqR1LtUoMHLDlwjHVcNAZv9Wb2FQeTF9PWxm3ZgslpVoDeSj1ZXK/xZBzK7zIlmfj
+                  gSl9ZRMOL0H6My1YGHuOkMq+9OkXdgIxGDhd8/gMMQ4BKRT659LXPFcVVRGaSIvcCpWdI2oPBx6l
+                  lywTW3YuD3AGcJJzzvSVPXB8hX11DrAGlH6VEtGGXKB5xMUK7jyb7AAJLrvJKSt/QKjxRREPVoKv
+                  AzeeF6EUEbldWB6wOKXsq5LyeYj8Ob2Xdzkd8zZumPDfv/78/Z+//xiwQS45Myyzg4WQfMCfcqk0
+                  1wORDTaq0APLNSZlcmCKPFcax8RywKSsrM3GWJ6SWxdKP7anxUfzsQqES7SdOMKfiMoRIFIOMEz/
+                  yDc90IQqffx0WRIhaVmoNLPqVOIfE7MHL/3uJ+0ay1naQ2QFAzxRqo+HKhjgwpiCf9KGPba0Cm38
+                  JheyIg3ro+lTMuAYYY2DLmaMWGac9/BMCy395qQMNcuipA9ZgyyxJ4mjihhb9pBFKIBDqcIeaFxG
+                  fgUtfZOw+vS3QT8lxEXIPSrNFz1lEbKlsrpXzCpJBG2JcNFYhK+Hpgbpl85TkmXLgi37cLVQRI6u
+                  viXbnrz8j+3rHRZEVMVoERZ9j5MdmlTV9y7yro+rduAdVXWFf7wkOLrETgFQLTJNxakb9RiPA+5t
+                  zt5ktK8OCen79GX/kjRClv7upKsPUMd5vtfcCdpo6jK7YrdHWBukX36WM1udWZggZ5qfL9AB/TJk
+                  KC4uLy/LhLOqeEy57pVTNQ4ETEcJ6qXzNZUNEvd8ymxVhS5IUoyqVCoW9/BZCwVNHZTzddW4bgxz
+                  NFM9xFSwLk9KVZVVWZ8zbIftMmbKioWIPqXOPpYKe/DyjRFZxIeo/4bYZVZEAvsOFSHFBKUT7+OD
+                  GgfJ6E/r6poK0j4O0LxGln7d9cQcteym5xnQAVNaaY5+OA6YRe08Ho0nF6PZxWhyP5rNx9fzyesP
+                  sCnyeM8GBp9fjEf3V9P5DDZTsskLk3RoGpPRZD4Zz6eVCY4ytyPxF7rj/7WnrmqmJhfmxiQ78y93
+                  xvO9nt4ZRxJb62C/n+JfHd4RLwEgJlEpz3EDu+Ye6msVVXNdvy74pFlsYXI1nV693rtuI1VkcPBk
+                  Nhl6a2ZRyeGy6w421zT4v9/YRGU0JzNBnZDe3OoCrxU0kmv1wCNrumO71O8YrsWj2ANSAbGHEiYq
+                  UKWi3W07nLpdccpoEanQWrl3jQxJ3R56eKJwbyixMCyUfDegcp455c0ir8bIIxHxzMA/JbU1WCmu
+                  VyzTvdTcfnM/eOss4Ls8fqofezAOo492Xo7Y+I6wfSi6vYmu77+WDx9+mm0/3H+19dBbIsXVOqB1
+                  Ir0bdwgToN/LZfdpaM1DqKcaIKBKXi0Wgea/FQLPDe3SrcpFBO/94lHXeNH0mBCcN1E0E3xZ/mQL
+                  JumvQni/Dr2VMCIUUljyQ9sL113fnPze8SE2FLzXbBu3i2K+YIW0QV3UkzMZOmiaKc2DOhuseuRo
+                  quuoZdyuseY2HrQ/O4WXi/ir5/8Aso7GbHcTAAA=
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -115,11 +159,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 20 Aug 2025 02:27:27 GMT
+                  - Thu, 21 Aug 2025 02:09:36 GMT
               ETag:
-                  - W/"8816a35b2fcfc41a4b4a8be7315fcb460ece8f26e9af01ce52b9dd09402276fc"
+                  - W/"d69a595d9e72f8d4b8e1eb1f33ba61818c8f0e26f976248f498c53abe452995a"
               Last-Modified:
-                  - Wed, 13 Aug 2025 19:04:42 GMT
+                  - Wed, 20 Aug 2025 14:56:34 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -137,17 +181,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - EA06:CF615:C197CE:2C4BA7E:68A5328F
+                  - F7EE:87025:3C1C69:D8896D:68A67FDF
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "27"
+                  - "58"
               X-RateLimit-Reset:
-                  - "1755659251"
+                  - "1755745775"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "33"
+                  - "2"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -172,10 +216,32 @@ interactions:
           uri: https://api.github.com/repos/juftin/browsr
       response:
           body:
-              string:
-                  "{\"id\":635626551,\"node_id\":\"R_kgDOJeLkNw\",\"name\":\"browsr\",\"full_name\":\"juftin/browsr\",\"private\":false,\"owner\":{\"login\":\"juftin\",\"id\":49741340,\"node_id\":\"MDQ6VXNlcjQ5NzQxMzQw\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/49741340?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/juftin\",\"html_url\":\"https://github.com/juftin\",\"followers_url\":\"https://api.github.com/users/juftin/followers\",\"following_url\":\"https://api.github.com/users/juftin/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/juftin/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/juftin/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/juftin/subscriptions\",\"organizations_url\":\"https://api.github.com/users/juftin/orgs\",\"repos_url\":\"https://api.github.com/users/juftin/repos\",\"events_url\":\"https://api.github.com/users/juftin/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/juftin/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"html_url\":\"https://github.com/juftin/browsr\",\"description\":\"\U0001F5C2\uFE0F
-                  a pleasant file explorer in your terminal supporting all filesystems\",\"fork\":false,\"url\":\"https://api.github.com/repos/juftin/browsr\",\"forks_url\":\"https://api.github.com/repos/juftin/browsr/forks\",\"keys_url\":\"https://api.github.com/repos/juftin/browsr/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/juftin/browsr/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/juftin/browsr/teams\",\"hooks_url\":\"https://api.github.com/repos/juftin/browsr/hooks\",\"issue_events_url\":\"https://api.github.com/repos/juftin/browsr/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/juftin/browsr/events\",\"assignees_url\":\"https://api.github.com/repos/juftin/browsr/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/juftin/browsr/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/juftin/browsr/tags\",\"blobs_url\":\"https://api.github.com/repos/juftin/browsr/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/juftin/browsr/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/juftin/browsr/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/juftin/browsr/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/juftin/browsr/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/juftin/browsr/languages\",\"stargazers_url\":\"https://api.github.com/repos/juftin/browsr/stargazers\",\"contributors_url\":\"https://api.github.com/repos/juftin/browsr/contributors\",\"subscribers_url\":\"https://api.github.com/repos/juftin/browsr/subscribers\",\"subscription_url\":\"https://api.github.com/repos/juftin/browsr/subscription\",\"commits_url\":\"https://api.github.com/repos/juftin/browsr/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/juftin/browsr/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/juftin/browsr/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/juftin/browsr/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/juftin/browsr/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/juftin/browsr/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/juftin/browsr/merges\",\"archive_url\":\"https://api.github.com/repos/juftin/browsr/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/juftin/browsr/downloads\",\"issues_url\":\"https://api.github.com/repos/juftin/browsr/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/juftin/browsr/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/juftin/browsr/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/juftin/browsr/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/juftin/browsr/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/juftin/browsr/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/juftin/browsr/deployments\",\"created_at\":\"2023-05-03T05:26:39Z\",\"updated_at\":\"2025-08-13T19:04:42Z\",\"pushed_at\":\"2024-04-11T01:43:34Z\",\"git_url\":\"git://github.com/juftin/browsr.git\",\"ssh_url\":\"git@github.com:juftin/browsr.git\",\"clone_url\":\"https://github.com/juftin/browsr.git\",\"svn_url\":\"https://github.com/juftin/browsr\",\"homepage\":\"http://juftin.com/browsr/\",\"size\":14384,\"stargazers_count\":354,\"watchers_count\":354,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":true,\"has_discussions\":false,\"forks_count\":19,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":13,\"license\":{\"key\":\"mit\",\"name\":\"MIT
-                  License\",\"spdx_id\":\"MIT\",\"url\":\"https://api.github.com/licenses/mit\",\"node_id\":\"MDc6TGljZW5zZTEz\"},\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"topics\":[\"file-explorer\",\"python\",\"s3\",\"textual\",\"tui\"],\"visibility\":\"public\",\"forks\":19,\"open_issues\":13,\"watchers\":354,\"default_branch\":\"main\",\"temp_clone_token\":null,\"network_count\":19,\"subscribers_count\":7}"
+              string: !!binary |
+                  H4sIAAAAAAAAA51Y227jNhD9FUOvdSLHl2zXQLF9SFG02GybRXrBFoVASbTFhBJVkrJjC3npD/Sx
+                  j/2N/lX7CT0jUbLsOuu1XpKImXN4OMMhZ1h6Ivbm15PZ9fh6NrsaepmKeUBj3vvgcXnz3bf87eO7
+                  tYd/sJRjNNRqbTS+F4WUgRt8KBZWZH77v1yLFbMwXzBp+NBT64xrb156Ui1FBpYaABaaafr61fRq
+                  Mh11J7+9ubv+8ed3Mnq4m73b3j3dbu9IBAMt00GhJUgSa3Mz9/160FwuhU2KsDBcRyqzPLOXkUr9
+                  wm/436y+mIJjqR1LtUoMHLDlwjHVcNAZv9Wb2FQeTF9PWxm3ZgslpVoDeSj1ZXK/xZBzK7zIlmfj
+                  gSl9ZRMOL0H6My1YGHuOkMq+9OkXdgIxGDhd8/gMMQ4BKRT659LXPFcVVRGaSIvcCpWdI2oPBx6l
+                  lywTW3YuD3AGcJJzzvSVPXB8hX11DrAGlH6VEtGGXKB5xMUK7jyb7AAJLrvJKSt/QKjxRREPVoKv
+                  AzeeF6EUEbldWB6wOKXsq5LyeYj8Ob2Xdzkd8zZumPDfv/78/Z+//xiwQS45Myyzg4WQfMCfcqk0
+                  1wORDTaq0APLNSZlcmCKPFcax8RywKSsrM3GWJ6SWxdKP7anxUfzsQqES7SdOMKfiMoRIFIOMEz/
+                  yDc90IQqffx0WRIhaVmoNLPqVOIfE7MHL/3uJ+0ay1naQ2QFAzxRqo+HKhjgwpiCf9KGPba0Cm38
+                  JheyIg3ro+lTMuAYYY2DLmaMWGac9/BMCy395qQMNcuipA9ZgyyxJ4mjihhb9pBFKIBDqcIeaFxG
+                  fgUtfZOw+vS3QT8lxEXIPSrNFz1lEbKlsrpXzCpJBG2JcNFYhK+Hpgbpl85TkmXLgi37cLVQRI6u
+                  viXbnrz8j+3rHRZEVMVoERZ9j5MdmlTV9y7yro+rduAdVXWFf7wkOLrETgFQLTJNxakb9RiPA+5t
+                  zt5ktK8OCen79GX/kjRClv7upKsPUMd5vtfcCdpo6jK7YrdHWBukX36WM1udWZggZ5qfL9AB/TJk
+                  KC4uLy/LhLOqeEy57pVTNQ4ETEcJ6qXzNZUNEvd8ymxVhS5IUoyqVCoW9/BZCwVNHZTzddW4bgxz
+                  NFM9xFSwLk9KVZVVWZ8zbIftMmbKioWIPqXOPpYKe/DyjRFZxIeo/4bYZVZEAvsOFSHFBKUT7+OD
+                  GgfJ6E/r6poK0j4O0LxGln7d9cQcteym5xnQAVNaaY5+OA6YRe08Ho0nF6PZxWhyP5rNx9fzyesP
+                  sCnyeM8GBp9fjEf3V9P5DDZTsskLk3RoGpPRZD4Zz6eVCY4ytyPxF7rj/7WnrmqmJhfmxiQ78y93
+                  xvO9nt4ZRxJb62C/n+JfHd4RLwEgJlEpz3EDu+Ye6msVVXNdvy74pFlsYXI1nV693rtuI1VkcPBk
+                  Nhl6a2ZRyeGy6w421zT4v9/YRGU0JzNBnZDe3OoCrxU0kmv1wCNrumO71O8YrsWj2ANSAbGHEiYq
+                  UKWi3W07nLpdccpoEanQWrl3jQxJ3R56eKJwbyixMCyUfDegcp455c0ir8bIIxHxzMA/JbU1WCmu
+                  VyzTvdTcfnM/eOss4Ls8fqofezAOo492Xo7Y+I6wfSi6vYmu77+WDx9+mm0/3H+19dBbIsXVOqB1
+                  Ir0bdwgToN/LZfdpaM1DqKcaIKBKXi0Wgea/FQLPDe3SrcpFBO/94lHXeNH0mBCcN1E0E3xZ/mQL
+                  JumvQni/Dr2VMCIUUljyQ9sL113fnPze8SE2FLzXbBu3i2K+YIW0QV3UkzMZOmiaKc2DOhuseuRo
+                  quuoZdyuseY2HrQ/O4WXi/ir5/8Aso7GbHcTAAA=
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -193,11 +259,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 20 Aug 2025 02:27:27 GMT
+                  - Thu, 21 Aug 2025 02:09:36 GMT
               ETag:
-                  - W/"8816a35b2fcfc41a4b4a8be7315fcb460ece8f26e9af01ce52b9dd09402276fc"
+                  - W/"d69a595d9e72f8d4b8e1eb1f33ba61818c8f0e26f976248f498c53abe452995a"
               Last-Modified:
-                  - Wed, 13 Aug 2025 19:04:42 GMT
+                  - Wed, 20 Aug 2025 14:56:34 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -215,17 +281,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - EA07:37BE8E:BBC61C:2B01176:68A5328F
+                  - F7EF:1A9776:43390F:F1337E:68A67FE0
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "26"
+                  - "57"
               X-RateLimit-Reset:
-                  - "1755659251"
+                  - "1755745775"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "34"
+                  - "3"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -250,10 +316,32 @@ interactions:
           uri: https://api.github.com/repos/juftin/browsr
       response:
           body:
-              string:
-                  "{\"id\":635626551,\"node_id\":\"R_kgDOJeLkNw\",\"name\":\"browsr\",\"full_name\":\"juftin/browsr\",\"private\":false,\"owner\":{\"login\":\"juftin\",\"id\":49741340,\"node_id\":\"MDQ6VXNlcjQ5NzQxMzQw\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/49741340?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/juftin\",\"html_url\":\"https://github.com/juftin\",\"followers_url\":\"https://api.github.com/users/juftin/followers\",\"following_url\":\"https://api.github.com/users/juftin/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/juftin/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/juftin/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/juftin/subscriptions\",\"organizations_url\":\"https://api.github.com/users/juftin/orgs\",\"repos_url\":\"https://api.github.com/users/juftin/repos\",\"events_url\":\"https://api.github.com/users/juftin/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/juftin/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"html_url\":\"https://github.com/juftin/browsr\",\"description\":\"\U0001F5C2\uFE0F
-                  a pleasant file explorer in your terminal supporting all filesystems\",\"fork\":false,\"url\":\"https://api.github.com/repos/juftin/browsr\",\"forks_url\":\"https://api.github.com/repos/juftin/browsr/forks\",\"keys_url\":\"https://api.github.com/repos/juftin/browsr/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/juftin/browsr/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/juftin/browsr/teams\",\"hooks_url\":\"https://api.github.com/repos/juftin/browsr/hooks\",\"issue_events_url\":\"https://api.github.com/repos/juftin/browsr/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/juftin/browsr/events\",\"assignees_url\":\"https://api.github.com/repos/juftin/browsr/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/juftin/browsr/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/juftin/browsr/tags\",\"blobs_url\":\"https://api.github.com/repos/juftin/browsr/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/juftin/browsr/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/juftin/browsr/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/juftin/browsr/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/juftin/browsr/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/juftin/browsr/languages\",\"stargazers_url\":\"https://api.github.com/repos/juftin/browsr/stargazers\",\"contributors_url\":\"https://api.github.com/repos/juftin/browsr/contributors\",\"subscribers_url\":\"https://api.github.com/repos/juftin/browsr/subscribers\",\"subscription_url\":\"https://api.github.com/repos/juftin/browsr/subscription\",\"commits_url\":\"https://api.github.com/repos/juftin/browsr/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/juftin/browsr/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/juftin/browsr/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/juftin/browsr/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/juftin/browsr/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/juftin/browsr/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/juftin/browsr/merges\",\"archive_url\":\"https://api.github.com/repos/juftin/browsr/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/juftin/browsr/downloads\",\"issues_url\":\"https://api.github.com/repos/juftin/browsr/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/juftin/browsr/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/juftin/browsr/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/juftin/browsr/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/juftin/browsr/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/juftin/browsr/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/juftin/browsr/deployments\",\"created_at\":\"2023-05-03T05:26:39Z\",\"updated_at\":\"2025-08-13T19:04:42Z\",\"pushed_at\":\"2024-04-11T01:43:34Z\",\"git_url\":\"git://github.com/juftin/browsr.git\",\"ssh_url\":\"git@github.com:juftin/browsr.git\",\"clone_url\":\"https://github.com/juftin/browsr.git\",\"svn_url\":\"https://github.com/juftin/browsr\",\"homepage\":\"http://juftin.com/browsr/\",\"size\":14384,\"stargazers_count\":354,\"watchers_count\":354,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":true,\"has_discussions\":false,\"forks_count\":19,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":13,\"license\":{\"key\":\"mit\",\"name\":\"MIT
-                  License\",\"spdx_id\":\"MIT\",\"url\":\"https://api.github.com/licenses/mit\",\"node_id\":\"MDc6TGljZW5zZTEz\"},\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"topics\":[\"file-explorer\",\"python\",\"s3\",\"textual\",\"tui\"],\"visibility\":\"public\",\"forks\":19,\"open_issues\":13,\"watchers\":354,\"default_branch\":\"main\",\"temp_clone_token\":null,\"network_count\":19,\"subscribers_count\":7}"
+              string: !!binary |
+                  H4sIAAAAAAAAA51Y227jNhD9FUOvdSLHl2zXQLF9SFG02GybRXrBFoVASbTFhBJVkrJjC3npD/Sx
+                  j/2N/lX7CT0jUbLsOuu1XpKImXN4OMMhZ1h6Ivbm15PZ9fh6NrsaepmKeUBj3vvgcXnz3bf87eO7
+                  tYd/sJRjNNRqbTS+F4WUgRt8KBZWZH77v1yLFbMwXzBp+NBT64xrb156Ui1FBpYaABaaafr61fRq
+                  Mh11J7+9ubv+8ed3Mnq4m73b3j3dbu9IBAMt00GhJUgSa3Mz9/160FwuhU2KsDBcRyqzPLOXkUr9
+                  wm/436y+mIJjqR1LtUoMHLDlwjHVcNAZv9Wb2FQeTF9PWxm3ZgslpVoDeSj1ZXK/xZBzK7zIlmfj
+                  gSl9ZRMOL0H6My1YGHuOkMq+9OkXdgIxGDhd8/gMMQ4BKRT659LXPFcVVRGaSIvcCpWdI2oPBx6l
+                  lywTW3YuD3AGcJJzzvSVPXB8hX11DrAGlH6VEtGGXKB5xMUK7jyb7AAJLrvJKSt/QKjxRREPVoKv
+                  AzeeF6EUEbldWB6wOKXsq5LyeYj8Ob2Xdzkd8zZumPDfv/78/Z+//xiwQS45Myyzg4WQfMCfcqk0
+                  1wORDTaq0APLNSZlcmCKPFcax8RywKSsrM3GWJ6SWxdKP7anxUfzsQqES7SdOMKfiMoRIFIOMEz/
+                  yDc90IQqffx0WRIhaVmoNLPqVOIfE7MHL/3uJ+0ay1naQ2QFAzxRqo+HKhjgwpiCf9KGPba0Cm38
+                  JheyIg3ro+lTMuAYYY2DLmaMWGac9/BMCy395qQMNcuipA9ZgyyxJ4mjihhb9pBFKIBDqcIeaFxG
+                  fgUtfZOw+vS3QT8lxEXIPSrNFz1lEbKlsrpXzCpJBG2JcNFYhK+Hpgbpl85TkmXLgi37cLVQRI6u
+                  viXbnrz8j+3rHRZEVMVoERZ9j5MdmlTV9y7yro+rduAdVXWFf7wkOLrETgFQLTJNxakb9RiPA+5t
+                  zt5ktK8OCen79GX/kjRClv7upKsPUMd5vtfcCdpo6jK7YrdHWBukX36WM1udWZggZ5qfL9AB/TJk
+                  KC4uLy/LhLOqeEy57pVTNQ4ETEcJ6qXzNZUNEvd8ymxVhS5IUoyqVCoW9/BZCwVNHZTzddW4bgxz
+                  NFM9xFSwLk9KVZVVWZ8zbIftMmbKioWIPqXOPpYKe/DyjRFZxIeo/4bYZVZEAvsOFSHFBKUT7+OD
+                  GgfJ6E/r6poK0j4O0LxGln7d9cQcteym5xnQAVNaaY5+OA6YRe08Ho0nF6PZxWhyP5rNx9fzyesP
+                  sCnyeM8GBp9fjEf3V9P5DDZTsskLk3RoGpPRZD4Zz6eVCY4ytyPxF7rj/7WnrmqmJhfmxiQ78y93
+                  xvO9nt4ZRxJb62C/n+JfHd4RLwEgJlEpz3EDu+Ye6msVVXNdvy74pFlsYXI1nV693rtuI1VkcPBk
+                  Nhl6a2ZRyeGy6w421zT4v9/YRGU0JzNBnZDe3OoCrxU0kmv1wCNrumO71O8YrsWj2ANSAbGHEiYq
+                  UKWi3W07nLpdccpoEanQWrl3jQxJ3R56eKJwbyixMCyUfDegcp455c0ir8bIIxHxzMA/JbU1WCmu
+                  VyzTvdTcfnM/eOss4Ls8fqofezAOo492Xo7Y+I6wfSi6vYmu77+WDx9+mm0/3H+19dBbIsXVOqB1
+                  Ir0bdwgToN/LZfdpaM1DqKcaIKBKXi0Wgea/FQLPDe3SrcpFBO/94lHXeNH0mBCcN1E0E3xZ/mQL
+                  JumvQni/Dr2VMCIUUljyQ9sL113fnPze8SE2FLzXbBu3i2K+YIW0QV3UkzMZOmiaKc2DOhuseuRo
+                  quuoZdyuseY2HrQ/O4WXi/ir5/8Aso7GbHcTAAA=
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -271,11 +359,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 20 Aug 2025 02:27:27 GMT
+                  - Thu, 21 Aug 2025 02:09:36 GMT
               ETag:
-                  - W/"8816a35b2fcfc41a4b4a8be7315fcb460ece8f26e9af01ce52b9dd09402276fc"
+                  - W/"d69a595d9e72f8d4b8e1eb1f33ba61818c8f0e26f976248f498c53abe452995a"
               Last-Modified:
-                  - Wed, 13 Aug 2025 19:04:42 GMT
+                  - Wed, 20 Aug 2025 14:56:34 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -293,17 +381,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - EA08:E4526:B87416:2A1D725:68A5328F
+                  - F7F0:87025:3C1E5F:D89030:68A67FE0
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "25"
+                  - "56"
               X-RateLimit-Reset:
-                  - "1755659251"
+                  - "1755745775"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "35"
+                  - "4"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -328,10 +416,32 @@ interactions:
           uri: https://api.github.com/repos/juftin/browsr
       response:
           body:
-              string:
-                  "{\"id\":635626551,\"node_id\":\"R_kgDOJeLkNw\",\"name\":\"browsr\",\"full_name\":\"juftin/browsr\",\"private\":false,\"owner\":{\"login\":\"juftin\",\"id\":49741340,\"node_id\":\"MDQ6VXNlcjQ5NzQxMzQw\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/49741340?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/juftin\",\"html_url\":\"https://github.com/juftin\",\"followers_url\":\"https://api.github.com/users/juftin/followers\",\"following_url\":\"https://api.github.com/users/juftin/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/juftin/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/juftin/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/juftin/subscriptions\",\"organizations_url\":\"https://api.github.com/users/juftin/orgs\",\"repos_url\":\"https://api.github.com/users/juftin/repos\",\"events_url\":\"https://api.github.com/users/juftin/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/juftin/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"html_url\":\"https://github.com/juftin/browsr\",\"description\":\"\U0001F5C2\uFE0F
-                  a pleasant file explorer in your terminal supporting all filesystems\",\"fork\":false,\"url\":\"https://api.github.com/repos/juftin/browsr\",\"forks_url\":\"https://api.github.com/repos/juftin/browsr/forks\",\"keys_url\":\"https://api.github.com/repos/juftin/browsr/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/juftin/browsr/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/juftin/browsr/teams\",\"hooks_url\":\"https://api.github.com/repos/juftin/browsr/hooks\",\"issue_events_url\":\"https://api.github.com/repos/juftin/browsr/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/juftin/browsr/events\",\"assignees_url\":\"https://api.github.com/repos/juftin/browsr/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/juftin/browsr/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/juftin/browsr/tags\",\"blobs_url\":\"https://api.github.com/repos/juftin/browsr/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/juftin/browsr/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/juftin/browsr/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/juftin/browsr/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/juftin/browsr/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/juftin/browsr/languages\",\"stargazers_url\":\"https://api.github.com/repos/juftin/browsr/stargazers\",\"contributors_url\":\"https://api.github.com/repos/juftin/browsr/contributors\",\"subscribers_url\":\"https://api.github.com/repos/juftin/browsr/subscribers\",\"subscription_url\":\"https://api.github.com/repos/juftin/browsr/subscription\",\"commits_url\":\"https://api.github.com/repos/juftin/browsr/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/juftin/browsr/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/juftin/browsr/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/juftin/browsr/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/juftin/browsr/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/juftin/browsr/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/juftin/browsr/merges\",\"archive_url\":\"https://api.github.com/repos/juftin/browsr/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/juftin/browsr/downloads\",\"issues_url\":\"https://api.github.com/repos/juftin/browsr/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/juftin/browsr/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/juftin/browsr/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/juftin/browsr/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/juftin/browsr/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/juftin/browsr/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/juftin/browsr/deployments\",\"created_at\":\"2023-05-03T05:26:39Z\",\"updated_at\":\"2025-08-13T19:04:42Z\",\"pushed_at\":\"2024-04-11T01:43:34Z\",\"git_url\":\"git://github.com/juftin/browsr.git\",\"ssh_url\":\"git@github.com:juftin/browsr.git\",\"clone_url\":\"https://github.com/juftin/browsr.git\",\"svn_url\":\"https://github.com/juftin/browsr\",\"homepage\":\"http://juftin.com/browsr/\",\"size\":14384,\"stargazers_count\":354,\"watchers_count\":354,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":true,\"has_discussions\":false,\"forks_count\":19,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":13,\"license\":{\"key\":\"mit\",\"name\":\"MIT
-                  License\",\"spdx_id\":\"MIT\",\"url\":\"https://api.github.com/licenses/mit\",\"node_id\":\"MDc6TGljZW5zZTEz\"},\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"topics\":[\"file-explorer\",\"python\",\"s3\",\"textual\",\"tui\"],\"visibility\":\"public\",\"forks\":19,\"open_issues\":13,\"watchers\":354,\"default_branch\":\"main\",\"temp_clone_token\":null,\"network_count\":19,\"subscribers_count\":7}"
+              string: !!binary |
+                  H4sIAAAAAAAAA51Y227jNhD9FUOvdSLHl2zXQLF9SFG02GybRXrBFoVASbTFhBJVkrJjC3npD/Sx
+                  j/2N/lX7CT0jUbLsOuu1XpKImXN4OMMhZ1h6Ivbm15PZ9fh6NrsaepmKeUBj3vvgcXnz3bf87eO7
+                  tYd/sJRjNNRqbTS+F4WUgRt8KBZWZH77v1yLFbMwXzBp+NBT64xrb156Ui1FBpYaABaaafr61fRq
+                  Mh11J7+9ubv+8ed3Mnq4m73b3j3dbu9IBAMt00GhJUgSa3Mz9/160FwuhU2KsDBcRyqzPLOXkUr9
+                  wm/436y+mIJjqR1LtUoMHLDlwjHVcNAZv9Wb2FQeTF9PWxm3ZgslpVoDeSj1ZXK/xZBzK7zIlmfj
+                  gSl9ZRMOL0H6My1YGHuOkMq+9OkXdgIxGDhd8/gMMQ4BKRT659LXPFcVVRGaSIvcCpWdI2oPBx6l
+                  lywTW3YuD3AGcJJzzvSVPXB8hX11DrAGlH6VEtGGXKB5xMUK7jyb7AAJLrvJKSt/QKjxRREPVoKv
+                  AzeeF6EUEbldWB6wOKXsq5LyeYj8Ob2Xdzkd8zZumPDfv/78/Z+//xiwQS45Myyzg4WQfMCfcqk0
+                  1wORDTaq0APLNSZlcmCKPFcax8RywKSsrM3GWJ6SWxdKP7anxUfzsQqES7SdOMKfiMoRIFIOMEz/
+                  yDc90IQqffx0WRIhaVmoNLPqVOIfE7MHL/3uJ+0ay1naQ2QFAzxRqo+HKhjgwpiCf9KGPba0Cm38
+                  JheyIg3ro+lTMuAYYY2DLmaMWGac9/BMCy395qQMNcuipA9ZgyyxJ4mjihhb9pBFKIBDqcIeaFxG
+                  fgUtfZOw+vS3QT8lxEXIPSrNFz1lEbKlsrpXzCpJBG2JcNFYhK+Hpgbpl85TkmXLgi37cLVQRI6u
+                  viXbnrz8j+3rHRZEVMVoERZ9j5MdmlTV9y7yro+rduAdVXWFf7wkOLrETgFQLTJNxakb9RiPA+5t
+                  zt5ktK8OCen79GX/kjRClv7upKsPUMd5vtfcCdpo6jK7YrdHWBukX36WM1udWZggZ5qfL9AB/TJk
+                  KC4uLy/LhLOqeEy57pVTNQ4ETEcJ6qXzNZUNEvd8ymxVhS5IUoyqVCoW9/BZCwVNHZTzddW4bgxz
+                  NFM9xFSwLk9KVZVVWZ8zbIftMmbKioWIPqXOPpYKe/DyjRFZxIeo/4bYZVZEAvsOFSHFBKUT7+OD
+                  GgfJ6E/r6poK0j4O0LxGln7d9cQcteym5xnQAVNaaY5+OA6YRe08Ho0nF6PZxWhyP5rNx9fzyesP
+                  sCnyeM8GBp9fjEf3V9P5DDZTsskLk3RoGpPRZD4Zz6eVCY4ytyPxF7rj/7WnrmqmJhfmxiQ78y93
+                  xvO9nt4ZRxJb62C/n+JfHd4RLwEgJlEpz3EDu+Ye6msVVXNdvy74pFlsYXI1nV693rtuI1VkcPBk
+                  Nhl6a2ZRyeGy6w421zT4v9/YRGU0JzNBnZDe3OoCrxU0kmv1wCNrumO71O8YrsWj2ANSAbGHEiYq
+                  UKWi3W07nLpdccpoEanQWrl3jQxJ3R56eKJwbyixMCyUfDegcp455c0ir8bIIxHxzMA/JbU1WCmu
+                  VyzTvdTcfnM/eOss4Ls8fqofezAOo492Xo7Y+I6wfSi6vYmu77+WDx9+mm0/3H+19dBbIsXVOqB1
+                  Ir0bdwgToN/LZfdpaM1DqKcaIKBKXi0Wgea/FQLPDe3SrcpFBO/94lHXeNH0mBCcN1E0E3xZ/mQL
+                  JumvQni/Dr2VMCIUUljyQ9sL113fnPze8SE2FLzXbBu3i2K+YIW0QV3UkzMZOmiaKc2DOhuseuRo
+                  quuoZdyuseY2HrQ/O4WXi/ir5/8Aso7GbHcTAAA=
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -349,11 +459,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 20 Aug 2025 02:27:28 GMT
+                  - Thu, 21 Aug 2025 02:09:36 GMT
               ETag:
-                  - W/"8816a35b2fcfc41a4b4a8be7315fcb460ece8f26e9af01ce52b9dd09402276fc"
+                  - W/"d69a595d9e72f8d4b8e1eb1f33ba61818c8f0e26f976248f498c53abe452995a"
               Last-Modified:
-                  - Wed, 13 Aug 2025 19:04:42 GMT
+                  - Wed, 20 Aug 2025 14:56:34 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -371,17 +481,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - EA09:3AEF0B:C2C147:2C6F4DD:68A53290
+                  - F7F2:1DEB3:435A5E:F35088:68A67FE0
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "24"
+                  - "55"
               X-RateLimit-Reset:
-                  - "1755659251"
+                  - "1755745775"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "36"
+                  - "5"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -406,10 +516,32 @@ interactions:
           uri: https://api.github.com/repos/juftin/browsr
       response:
           body:
-              string:
-                  "{\"id\":635626551,\"node_id\":\"R_kgDOJeLkNw\",\"name\":\"browsr\",\"full_name\":\"juftin/browsr\",\"private\":false,\"owner\":{\"login\":\"juftin\",\"id\":49741340,\"node_id\":\"MDQ6VXNlcjQ5NzQxMzQw\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/49741340?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/juftin\",\"html_url\":\"https://github.com/juftin\",\"followers_url\":\"https://api.github.com/users/juftin/followers\",\"following_url\":\"https://api.github.com/users/juftin/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/juftin/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/juftin/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/juftin/subscriptions\",\"organizations_url\":\"https://api.github.com/users/juftin/orgs\",\"repos_url\":\"https://api.github.com/users/juftin/repos\",\"events_url\":\"https://api.github.com/users/juftin/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/juftin/received_events\",\"type\":\"User\",\"user_view_type\":\"public\",\"site_admin\":false},\"html_url\":\"https://github.com/juftin/browsr\",\"description\":\"\U0001F5C2\uFE0F
-                  a pleasant file explorer in your terminal supporting all filesystems\",\"fork\":false,\"url\":\"https://api.github.com/repos/juftin/browsr\",\"forks_url\":\"https://api.github.com/repos/juftin/browsr/forks\",\"keys_url\":\"https://api.github.com/repos/juftin/browsr/keys{/key_id}\",\"collaborators_url\":\"https://api.github.com/repos/juftin/browsr/collaborators{/collaborator}\",\"teams_url\":\"https://api.github.com/repos/juftin/browsr/teams\",\"hooks_url\":\"https://api.github.com/repos/juftin/browsr/hooks\",\"issue_events_url\":\"https://api.github.com/repos/juftin/browsr/issues/events{/number}\",\"events_url\":\"https://api.github.com/repos/juftin/browsr/events\",\"assignees_url\":\"https://api.github.com/repos/juftin/browsr/assignees{/user}\",\"branches_url\":\"https://api.github.com/repos/juftin/browsr/branches{/branch}\",\"tags_url\":\"https://api.github.com/repos/juftin/browsr/tags\",\"blobs_url\":\"https://api.github.com/repos/juftin/browsr/git/blobs{/sha}\",\"git_tags_url\":\"https://api.github.com/repos/juftin/browsr/git/tags{/sha}\",\"git_refs_url\":\"https://api.github.com/repos/juftin/browsr/git/refs{/sha}\",\"trees_url\":\"https://api.github.com/repos/juftin/browsr/git/trees{/sha}\",\"statuses_url\":\"https://api.github.com/repos/juftin/browsr/statuses/{sha}\",\"languages_url\":\"https://api.github.com/repos/juftin/browsr/languages\",\"stargazers_url\":\"https://api.github.com/repos/juftin/browsr/stargazers\",\"contributors_url\":\"https://api.github.com/repos/juftin/browsr/contributors\",\"subscribers_url\":\"https://api.github.com/repos/juftin/browsr/subscribers\",\"subscription_url\":\"https://api.github.com/repos/juftin/browsr/subscription\",\"commits_url\":\"https://api.github.com/repos/juftin/browsr/commits{/sha}\",\"git_commits_url\":\"https://api.github.com/repos/juftin/browsr/git/commits{/sha}\",\"comments_url\":\"https://api.github.com/repos/juftin/browsr/comments{/number}\",\"issue_comment_url\":\"https://api.github.com/repos/juftin/browsr/issues/comments{/number}\",\"contents_url\":\"https://api.github.com/repos/juftin/browsr/contents/{+path}\",\"compare_url\":\"https://api.github.com/repos/juftin/browsr/compare/{base}...{head}\",\"merges_url\":\"https://api.github.com/repos/juftin/browsr/merges\",\"archive_url\":\"https://api.github.com/repos/juftin/browsr/{archive_format}{/ref}\",\"downloads_url\":\"https://api.github.com/repos/juftin/browsr/downloads\",\"issues_url\":\"https://api.github.com/repos/juftin/browsr/issues{/number}\",\"pulls_url\":\"https://api.github.com/repos/juftin/browsr/pulls{/number}\",\"milestones_url\":\"https://api.github.com/repos/juftin/browsr/milestones{/number}\",\"notifications_url\":\"https://api.github.com/repos/juftin/browsr/notifications{?since,all,participating}\",\"labels_url\":\"https://api.github.com/repos/juftin/browsr/labels{/name}\",\"releases_url\":\"https://api.github.com/repos/juftin/browsr/releases{/id}\",\"deployments_url\":\"https://api.github.com/repos/juftin/browsr/deployments\",\"created_at\":\"2023-05-03T05:26:39Z\",\"updated_at\":\"2025-08-13T19:04:42Z\",\"pushed_at\":\"2024-04-11T01:43:34Z\",\"git_url\":\"git://github.com/juftin/browsr.git\",\"ssh_url\":\"git@github.com:juftin/browsr.git\",\"clone_url\":\"https://github.com/juftin/browsr.git\",\"svn_url\":\"https://github.com/juftin/browsr\",\"homepage\":\"http://juftin.com/browsr/\",\"size\":14384,\"stargazers_count\":354,\"watchers_count\":354,\"language\":\"Python\",\"has_issues\":true,\"has_projects\":true,\"has_downloads\":true,\"has_wiki\":true,\"has_pages\":true,\"has_discussions\":false,\"forks_count\":19,\"mirror_url\":null,\"archived\":false,\"disabled\":false,\"open_issues_count\":13,\"license\":{\"key\":\"mit\",\"name\":\"MIT
-                  License\",\"spdx_id\":\"MIT\",\"url\":\"https://api.github.com/licenses/mit\",\"node_id\":\"MDc6TGljZW5zZTEz\"},\"allow_forking\":true,\"is_template\":false,\"web_commit_signoff_required\":false,\"topics\":[\"file-explorer\",\"python\",\"s3\",\"textual\",\"tui\"],\"visibility\":\"public\",\"forks\":19,\"open_issues\":13,\"watchers\":354,\"default_branch\":\"main\",\"temp_clone_token\":null,\"network_count\":19,\"subscribers_count\":7}"
+              string: !!binary |
+                  H4sIAAAAAAAAA51Y227jNhD9FUOvdSLHl2zXQLF9SFG02GybRXrBFoVASbTFhBJVkrJjC3npD/Sx
+                  j/2N/lX7CT0jUbLsOuu1XpKImXN4OMMhZ1h6Ivbm15PZ9fh6NrsaepmKeUBj3vvgcXnz3bf87eO7
+                  tYd/sJRjNNRqbTS+F4WUgRt8KBZWZH77v1yLFbMwXzBp+NBT64xrb156Ui1FBpYaABaaafr61fRq
+                  Mh11J7+9ubv+8ed3Mnq4m73b3j3dbu9IBAMt00GhJUgSa3Mz9/160FwuhU2KsDBcRyqzPLOXkUr9
+                  wm/436y+mIJjqR1LtUoMHLDlwjHVcNAZv9Wb2FQeTF9PWxm3ZgslpVoDeSj1ZXK/xZBzK7zIlmfj
+                  gSl9ZRMOL0H6My1YGHuOkMq+9OkXdgIxGDhd8/gMMQ4BKRT659LXPFcVVRGaSIvcCpWdI2oPBx6l
+                  lywTW3YuD3AGcJJzzvSVPXB8hX11DrAGlH6VEtGGXKB5xMUK7jyb7AAJLrvJKSt/QKjxRREPVoKv
+                  AzeeF6EUEbldWB6wOKXsq5LyeYj8Ob2Xdzkd8zZumPDfv/78/Z+//xiwQS45Myyzg4WQfMCfcqk0
+                  1wORDTaq0APLNSZlcmCKPFcax8RywKSsrM3GWJ6SWxdKP7anxUfzsQqES7SdOMKfiMoRIFIOMEz/
+                  yDc90IQqffx0WRIhaVmoNLPqVOIfE7MHL/3uJ+0ay1naQ2QFAzxRqo+HKhjgwpiCf9KGPba0Cm38
+                  JheyIg3ro+lTMuAYYY2DLmaMWGac9/BMCy395qQMNcuipA9ZgyyxJ4mjihhb9pBFKIBDqcIeaFxG
+                  fgUtfZOw+vS3QT8lxEXIPSrNFz1lEbKlsrpXzCpJBG2JcNFYhK+Hpgbpl85TkmXLgi37cLVQRI6u
+                  viXbnrz8j+3rHRZEVMVoERZ9j5MdmlTV9y7yro+rduAdVXWFf7wkOLrETgFQLTJNxakb9RiPA+5t
+                  zt5ktK8OCen79GX/kjRClv7upKsPUMd5vtfcCdpo6jK7YrdHWBukX36WM1udWZggZ5qfL9AB/TJk
+                  KC4uLy/LhLOqeEy57pVTNQ4ETEcJ6qXzNZUNEvd8ymxVhS5IUoyqVCoW9/BZCwVNHZTzddW4bgxz
+                  NFM9xFSwLk9KVZVVWZ8zbIftMmbKioWIPqXOPpYKe/DyjRFZxIeo/4bYZVZEAvsOFSHFBKUT7+OD
+                  GgfJ6E/r6poK0j4O0LxGln7d9cQcteym5xnQAVNaaY5+OA6YRe08Ho0nF6PZxWhyP5rNx9fzyesP
+                  sCnyeM8GBp9fjEf3V9P5DDZTsskLk3RoGpPRZD4Zz6eVCY4ytyPxF7rj/7WnrmqmJhfmxiQ78y93
+                  xvO9nt4ZRxJb62C/n+JfHd4RLwEgJlEpz3EDu+Ye6msVVXNdvy74pFlsYXI1nV693rtuI1VkcPBk
+                  Nhl6a2ZRyeGy6w421zT4v9/YRGU0JzNBnZDe3OoCrxU0kmv1wCNrumO71O8YrsWj2ANSAbGHEiYq
+                  UKWi3W07nLpdccpoEanQWrl3jQxJ3R56eKJwbyixMCyUfDegcp455c0ir8bIIxHxzMA/JbU1WCmu
+                  VyzTvdTcfnM/eOss4Ls8fqofezAOo492Xo7Y+I6wfSi6vYmu77+WDx9+mm0/3H+19dBbIsXVOqB1
+                  Ir0bdwgToN/LZfdpaM1DqKcaIKBKXi0Wgea/FQLPDe3SrcpFBO/94lHXeNH0mBCcN1E0E3xZ/mQL
+                  JumvQni/Dr2VMCIUUljyQ9sL113fnPze8SE2FLzXbBu3i2K+YIW0QV3UkzMZOmiaKc2DOhuseuRo
+                  quuoZdyuseY2HrQ/O4WXi/ir5/8Aso7GbHcTAAA=
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -427,11 +559,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 20 Aug 2025 02:27:28 GMT
+                  - Thu, 21 Aug 2025 02:09:37 GMT
               ETag:
-                  - W/"8816a35b2fcfc41a4b4a8be7315fcb460ece8f26e9af01ce52b9dd09402276fc"
+                  - W/"d69a595d9e72f8d4b8e1eb1f33ba61818c8f0e26f976248f498c53abe452995a"
               Last-Modified:
-                  - Wed, 13 Aug 2025 19:04:42 GMT
+                  - Wed, 20 Aug 2025 14:56:34 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -449,17 +581,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - EA0A:2351:BEB55C:2BA1ACE:68A53290
+                  - F7F3:1A9E5:437D00:F39881:68A67FE0
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "23"
+                  - "54"
               X-RateLimit-Reset:
-                  - "1755659251"
+                  - "1755745775"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "37"
+                  - "6"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:

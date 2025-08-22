@@ -51,6 +51,7 @@ coverage.xml
 .pytest_cache/
 cover/
 snapshot_report.html
+pytest.xml
 
 # Translations
 *.mo
