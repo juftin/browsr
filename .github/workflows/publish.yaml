@@ -10,26 +10,18 @@ jobs:
         name: PyPI
         if: github.repository_owner == 'juftin'
         runs-on: ubuntu-latest
+        environment:
+            name: pypi
+            url: https://pypi.org/p/browsr
+        permissions:
+            id-token: write
         steps:
-            - name: Check out the repository
-              uses: actions/checkout@v4
+            - name: build
+              uses: juftin/actions/taskfile@v1
               with:
-                  fetch-depth: 2
-            - name: Set up Python
-              uses: actions/setup-python@v5
-              with:
-                  python-version: "3.11"
-            - name: Install Hatch
-              run: |
-                  python -m pip install --upgrade pip
-                  python -m pip install -q hatch
-                  hatch env create
-                  hatch --version
-            - name: Build package
-              run: |
-                  hatch build
+                  checkout: true
+                  setup-uv: true
+                  task: build
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
             - name: Publish package on PyPI
               uses: pypa/gh-action-pypi-publish@release/v1
-              with:
-                  user: __token__
-                  password: ${{ secrets.PYPI_TOKEN }}

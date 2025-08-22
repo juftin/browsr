@@ -16,7 +16,38 @@ interactions:
           uri: https://api.github.com/repos/juftin/browsr/contents/mkdocs.yaml?ref=v1.6.0
       response:
           body:
-              string: '{"name":"mkdocs.yaml","path":"mkdocs.yaml","sha":"d5151fff1451011cdac254c3745e15e78af77064","size":2183,"url":"https://api.github.com/repos/juftin/browsr/contents/mkdocs.yaml?ref=v1.6.0","html_url":"https://github.com/juftin/browsr/blob/v1.6.0/mkdocs.yaml","git_url":"https://api.github.com/repos/juftin/browsr/git/blobs/d5151fff1451011cdac254c3745e15e78af77064","download_url":"https://raw.githubusercontent.com/juftin/browsr/v1.6.0/mkdocs.yaml","type":"file","content":"IyBzY2hlbWE6IGh0dHBzOi8vc3F1aWRmdW5rLmdpdGh1Yi5pby9ta2RvY3Mt\nbWF0ZXJpYWwvc2NoZW1hLmpzb24KCnNpdGVfbmFtZTogYnJvd3NyCm5hdjoK\nICAgIC0gaW5kZXgubWQKICAgIC0gQ29tbWFuZCBMaW5lIEludGVyZmFjZSDi\njKjvuI86IGNsaS5tZAogICAgLSBDb250cmlidXRpbmcg8J+knTogY29udHJp\nYnV0aW5nLm1kCiAgICAtIEFQSSBEb2N1bWVudGF0aW9uIPCfpJY6IHJlZmVy\nZW5jZS8KdGhlbWU6CiAgICBmYXZpY29uOiBodHRwczovL3Jhdy5naXRodWJ1\nc2VyY29udGVudC5jb20vanVmdGluL2Jyb3dzci9tYWluL2RvY3MvX3N0YXRp\nYy9icm93c3Jfbm9fbGFiZWwucG5nCiAgICBsb2dvOiBodHRwczovL3Jhdy5n\naXRodWJ1c2VyY29udGVudC5jb20vanVmdGluL2Jyb3dzci9tYWluL2RvY3Mv\nX3N0YXRpYy9icm93c3Jfbm9fbGFiZWwucG5nCiAgICBuYW1lOiBtYXRlcmlh\nbAogICAgZmVhdHVyZXM6CiAgICAgICAgLSBuYXZpZ2F0aW9uLnRyYWNraW5n\nCiAgICAgICAgLSBjb250ZW50LmNvZGUuYW5ub3RhdGUKICAgICAgICAtIGNv\nbnRlbnQuY29kZS5jb3B5CiAgICBwYWxldHRlOgogICAgICAgIC0gbWVkaWE6\nICIocHJlZmVycy1jb2xvci1zY2hlbWU6IGxpZ2h0KSIKICAgICAgICAgIHNj\naGVtZTogZGVmYXVsdAogICAgICAgICAgYWNjZW50OiBwdXJwbGUKICAgICAg\nICAgIHRvZ2dsZToKICAgICAgICAgICAgICBpY29uOiBtYXRlcmlhbC93ZWF0\naGVyLXN1bm55CiAgICAgICAgICAgICAgbmFtZTogU3dpdGNoIHRvIGRhcmsg\nbW9kZQogICAgICAgIC0gbWVkaWE6ICIocHJlZmVycy1jb2xvci1zY2hlbWU6\nIGRhcmspIgogICAgICAgICAgc2NoZW1lOiBzbGF0ZQogICAgICAgICAgcHJp\nbWFyeTogYmxhY2sKICAgICAgICAgIHRvZ2dsZToKICAgICAgICAgICAgICBp\nY29uOiBtYXRlcmlhbC93ZWF0aGVyLW5pZ2h0CiAgICAgICAgICAgICAgbmFt\nZTogU3dpdGNoIHRvIGxpZ2h0IG1vZGUKcmVwb191cmw6IGh0dHBzOi8vZ2l0\naHViLmNvbS9qdWZ0aW4vYnJvd3NyCnJlcG9fbmFtZTogYnJvd3NyCmVkaXRf\ndXJpOiBibG9iL21haW4vZG9jcy8Kc2l0ZV9hdXRob3I6IEp1c3RpbiBGbGFu\nbmVyeQpyZW1vdGVfYnJhbmNoOiBnaC1wYWdlcwpjb3B5cmlnaHQ6IENvcHly\naWdodCDCqSAyMDIzIEp1c3RpbiBGbGFubmVyeQpleHRyYToKICAgIGdlbmVy\nYXRvcjogZmFsc2UKbWFya2Rvd25fZXh0ZW5zaW9uczoKICAgIC0gdG9jOgog\nICAgICAgICAgcGVybWFsaW5rOiAiIyIKICAgIC0gcHltZG93bnguc25pcHBl\ndHMKICAgIC0gcHltZG93bngubWFnaWNsaW5rCiAgICAtIGF0dHJfbGlzdAog\nICAgLSBtZF9pbl9odG1sCiAgICAtIHB5bWRvd254LmhpZ2hsaWdodDoKICAg\nICAgICAgIGFuY2hvcl9saW5lbnVtczogdHJ1ZQogICAgLSBweW1kb3dueC5p\nbmxpbmVoaWxpdGUKICAgIC0gcHltZG93bnguc3VwZXJmZW5jZXMKICAgIC0g\nbWFya2Rvd24uZXh0ZW5zaW9ucy5hdHRyX2xpc3QKICAgIC0gcHltZG93bngu\na2V5cwogICAgLSBweW1kb3dueC50YXNrbGlzdDoKICAgICAgICAgIGN1c3Rv\nbV9jaGVja2JveDogdHJ1ZQogICAgLSBweW1kb3dueC50aWxkZQogICAgLSBh\nZG1vbml0aW9uCiAgICAtIHB5bWRvd254LmRldGFpbHMKICAgIC0gbWtkb2Nz\nLWNsaWNrCnBsdWdpbnM6CiAgICAtIHNlYXJjaAogICAgLSBnZW4tZmlsZXM6\nCiAgICAgICAgICBzY3JpcHRzOgogICAgICAgICAgICAgIC0gZG9jcy9nZW5f\ncmVmX3BhZ2VzLnB5CiAgICAtIGxpdGVyYXRlLW5hdjoKICAgICAgICAgIG5h\ndl9maWxlOiBTVU1NQVJZLm1kCiAgICAtIHNlY3Rpb24taW5kZXg6CiAgICAt\nIG1rZG9jc3RyaW5nczoKICAgICAgICAgIGhhbmRsZXJzOgogICAgICAgICAg\nICAgIHB5dGhvbjoKICAgICAgICAgICAgICAgICAgaW1wb3J0OgogICAgICAg\nICAgICAgICAgICAgICAgLSBodHRwczovL2RvY3MucHl0aG9uLm9yZy8zL29i\namVjdHMuaW52CiAgICAgICAgICAgICAgICAgICAgICAtIGh0dHBzOi8vbnVt\ncHkub3JnL2RvYy9zdGFibGUvb2JqZWN0cy5pbnYKICAgICAgICAgICAgICAg\nICAgICAgIC0gaHR0cHM6Ly9wYW5kYXMucHlkYXRhLm9yZy9kb2NzL29iamVj\ndHMuaW52CiAgICAgICAgICAgICAgICAgIG9wdGlvbnM6CiAgICAgICAgICAg\nICAgICAgICAgICBkb2NzdHJpbmdfc3R5bGU6IG51bXB5CiAgICAgICAgICAg\nICAgICAgICAgICBmaWx0ZXJzOiBbXQo=\n","encoding":"base64","_links":{"self":"https://api.github.com/repos/juftin/browsr/contents/mkdocs.yaml?ref=v1.6.0","git":"https://api.github.com/repos/juftin/browsr/git/blobs/d5151fff1451011cdac254c3745e15e78af77064","html":"https://github.com/juftin/browsr/blob/v1.6.0/mkdocs.yaml"}}'
+              string: !!binary |
+                  H4sIAAAAAAAAA61Xa3Oi2Bb9L/l6pyIPSYeu6ppSExFi6FEngJRVU5xzVFA40PIwODX/fdZBNJrO
+                  7Ts9dT91NZH9WHuttTd/3vAgWd58vkm2LKX5bR0k8c0vN1lQhN89zMMAz5gma/JqtZK7mizJMmUB
+                  VbQuVT91taWsLT/dB6tPn6S7LqLk0QGhFfle/eWm3MV4OSyKLP/c6QRZdLuOirAktzRNOrtlluad
+                  TbkqIt4hu3Sf7zo05cWSF3nnorJfd8vVl0q+vbuVED4skviP67gXMa+jkTglneOblwERBa+8C/IP
+                  isNLHREy7/wEHCzd8zgN2Lt0u2DfYlHmy13bdgPLdQsfVl/UmZjeKoqX6KV9GQ/Mun+YK2FM3Mc7
+                  0wglNuofvkb3FVWHcuBOE+Zqu3HCMmaE8jzSMlLrRaBMq7n6XCw4cYeS71nZ3N1XVLFT35XDcZId
+                  iNJ9GnAbbzkrkgwL//d0PedWxVS7HiRayDbp04Kbg97aHEjrwNW2vrcuiTt5Oj2bKHqB6KU/6D/j
+                  77H5GJeIVvvJcOPPHqIF3zxtqtK8R9V2Hsy0wu+liNZbj2f9B6JoEk3iiHnTjCR0fW/9Z8tFDYpe
+                  spGVLficOxLi8nEibweRqKNXmI/DyWzWfySKLRPXQb4hfqOX5m+DVWbN78yRFfuJUy+472qo4v4J
+                  qAC5l7tjhH4y9/xM5Pga9VM2mu7pIa3GqhWyWuOBN02Za8kLThWnbioxkGOgbYgiVQF3EmbE5Vix
+                  aqKyA430Yu6K/zdYV55qS3N0g8prPaKJrlLVArb6ihjDyHf3JTU03taRE4VVH9WwOFfxb2pY8FMV
+                  /6CGcu7KMWooUHWMWYRgSzshYBiyEWbpPbfINfiLyZUCQV854j7m03ru2jsxp0Xb2/mXQE2TMAdp
+                  nNiVb7wgn1YSdRoy46VlUTtVw66Qm09jwiclcN/6M2Cu9rUWrf3cfY0xrfjr+sigEwfBgW0AXQim
+                  miltp09rGblfKxrJrXJewMFXVB1KTzPzMvfaHNkbYG44jQJ8wwFDnJy1OBzz9NbocSM6AVp75ll7
+                  ctFBq5LRtPIVliPKdfxGQf0T585Yk4Gu+tBmk7see+BzorX9HhE85T6p80UVGrdTE5lMYxrSJF8L
+                  fQOtyceo/C9MUPkxTmZe4dpbt04h2HEAe6XrDPh7o1Cov14KzSav4VzJ3+H6YzygkqMKv0OkwcPV
+                  mmm1um+4d4kH9I2814gc52sasuDaE02cPZF1mSb7K9f0lVhgPnIiwUoy078x14eHdKuz+3ErpgZU
+                  +50rgmvedLXgYEAGZCJi6NFYkUPxtm/oG1rfP1HE9x09hK+lRDXvzMdMpio8LuobQLIEavCn5SSr
+                  4cSVcF/kDUlip4jIg4EMrrOY7rOG/1Alap0gil3RUQxfC1yWssHD4NusVz8/mIf38dvo8XIEZZ64
+                  aLBYPAfm3rSiG/A8GeZUeXkSExS7ginayvdCodaD8FO44tnnGToTujttg+MkKKaEt3Mof/c16kVm
+                  fdKVBHbEBfBQCV+XuCgyOurHQG30fI55+QtEQVfYEIh09nlwDlsAzhkfhBaPueE+hT/UMxLrKTPk
+                  /PzrUV8jbtNFd5yEgjmIBpwejl1cVI4JYJdWNNZFPviNU6DXNXLJJ44jy37pylt4fLkcaILnySt2
+                  lJMG7isUePKud32qzh57Nmn2jvfW6VElR4y75RXGNbYspuQprxlV3/bqJTaYt+JodH/em5eVYdvY
+                  uwahts+zSgxbcE54qqNvoKdNoFjV8uGHfUIDr2cnAQbYBj60RJK42bAfYz2NsYEzcjFZ4hZbbOfD
+                  go+bmdq7Ae/nzGUZ4eddUsB147lnbYK3iwAbu1v4SZyLnXO9S+Cfh7lqgUfTw/UGOLmCBOcW+tPF
+                  3odCof7EU/uhrziHMT/tEdwP2ALiRhEbDx7TXDmX3mIaGvpmsZ4ADeF+vzsvsj1xLP/qChHVC00r
+                  3aK9jE5bEhcXHGjXVKNOa7EX37TUVmuE0PsUfVrfdXPaJX0Nd0tF3ld34YKBK++JakmXeFwr9NQX
+                  Zvl26RxvlRIckwJDL8eJXvv1/WGs6LjXgsTZQKUlqlY+ct4LpIDk2yUqVATMR1tsd4s391CtH8AM
+                  OORLRRTrm+/aEq1xm/L5B9uxd+UtuDZHU4mOnu/GtQ431LZz71lUjH+nuF1FxXrDMVG1qLnxlh9X
+                  beh73G7VBQfP++Q9av0mtrhBScJWmKKGLrBDNJl4Zyb997cFc8TFjRu9T7xJ+mXBcc4vOU1ZxNe4
+                  50mQL5tvqj/iiG/zm89/3uTLePX//qTCd83PhfxXH0Liw+0izU9/tP3119/j5lkctw4AAA==
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -34,7 +65,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 20 Aug 2025 02:18:47 GMT
+                  - Thu, 21 Aug 2025 02:09:39 GMT
               ETag:
                   - W/"d5151fff1451011cdac254c3745e15e78af77064"
               Last-Modified:
@@ -56,17 +87,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - E995:1063DC:1446DA0:4A09339:68A53087
+                  - F7F9:978F4:4231B3:ED2A5B:68A67FE2
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "29"
+                  - "49"
               X-RateLimit-Reset:
-                  - "1755659251"
+                  - "1755745775"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "31"
+                  - "11"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:

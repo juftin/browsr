@@ -16,7 +16,20 @@ interactions:
           uri: https://api.github.com/repos/juftin/browsr/git/trees/v1.6.0
       response:
           body:
-              string: '{"sha":"b80ea1937572041e2ed884f3d17919a7324b080b","url":"https://api.github.com/repos/juftin/browsr/git/trees/b80ea1937572041e2ed884f3d17919a7324b080b","tree":[{"path":".github","mode":"040000","type":"tree","sha":"a901aed96b47ecefdef6bf3530856065a76ff9f8","url":"https://api.github.com/repos/juftin/browsr/git/trees/a901aed96b47ecefdef6bf3530856065a76ff9f8"},{"path":".gitignore","mode":"100644","type":"blob","sha":"7e0d4d450a35a973ed5d4d1eeb749861ffb68ecf","size":2804,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/7e0d4d450a35a973ed5d4d1eeb749861ffb68ecf"},{"path":".pre-commit-config.yaml","mode":"100644","type":"blob","sha":"a9d8704a8c8511e6a430032ec2615c3dfeb7fb84","size":1379,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/a9d8704a8c8511e6a430032ec2615c3dfeb7fb84"},{"path":".releaserc.js","mode":"100644","type":"blob","sha":"71ebbd3ec251758bf9e3ac6b1c246808af9d289a","size":1574,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/71ebbd3ec251758bf9e3ac6b1c246808af9d289a"},{"path":"LICENSE","mode":"100644","type":"blob","sha":"3f1116db9ccaba831afbd47542a8dbef1ceb2189","size":1109,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/3f1116db9ccaba831afbd47542a8dbef1ceb2189"},{"path":"README.md","mode":"100644","type":"blob","sha":"1b7227281e1ac90b906c05a82ce968b6d5e3114c","size":2728,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/1b7227281e1ac90b906c05a82ce968b6d5e3114c"},{"path":"browsr","mode":"040000","type":"tree","sha":"dd4f0ba68388bc8382120b638a14497bafd3945b","url":"https://api.github.com/repos/juftin/browsr/git/trees/dd4f0ba68388bc8382120b638a14497bafd3945b"},{"path":"docs","mode":"040000","type":"tree","sha":"de31dc85a413f8f2cdd79130276faac5e93efcc9","url":"https://api.github.com/repos/juftin/browsr/git/trees/de31dc85a413f8f2cdd79130276faac5e93efcc9"},{"path":"mkdocs.yaml","mode":"100644","type":"blob","sha":"d5151fff1451011cdac254c3745e15e78af77064","size":2183,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/d5151fff1451011cdac254c3745e15e78af77064"},{"path":"pyproject.toml","mode":"100644","type":"blob","sha":"98be6018858bf4ccf1dafa7509d388ea08537ed7","size":4448,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/98be6018858bf4ccf1dafa7509d388ea08537ed7"},{"path":"requirements","mode":"040000","type":"tree","sha":"3b044dfacdcb0bd4b3d9b032363d135c5894e410","url":"https://api.github.com/repos/juftin/browsr/git/trees/3b044dfacdcb0bd4b3d9b032363d135c5894e410"},{"path":"tests","mode":"040000","type":"tree","sha":"c25588f3e19c20ee684b21551db7635b155b3cf9","url":"https://api.github.com/repos/juftin/browsr/git/trees/c25588f3e19c20ee684b21551db7635b155b3cf9"}],"truncated":false}'
+              string: !!binary |
+                  H4sIAAAAAAAAA6WWTW/bOBCG/4vOqcXh5zC3YjeHBdoetsdiDzPkMHHWtlxJxiIt8t9LbYJavRRs
+                  5YNtQiYeP+TwHX7tpgfqbjtGJQTRBBe0siBaMqItJkOIECkYbVmh4u6mu4yHOuFhns/Tbd/Teb+7
+                  388PF96l4diPch6m/vFS5v2p53H4bxr7+rifR5Gp/wXKMqG7/fS1O9P8UHmvkMo/Drk+6ZRV9VXH
+                  89N5Gf8/4eZVh6ICkhw92yBJSpbiuRhnFDqvvKPgS4kFt+k0U55vfvDY35+GcfmzryqglLf2qsKH
+                  YVnol50JorLN1ikyjmIwkl0dgwgHG9FDKexRUlkm7L/UldCo7G/u0gKe+mbiWus8yptaAMf9XD9O
+                  ZX+/e6LjodGRYsagLGFCByCerFHKaEnag0smlypbGJclenEEE+Imx2bi2nGUg9AkY9o9To1mAYQ5
+                  m2riIDjkEsVQ8gxJW48KqcSsMdLVzIWNu9dKXJm9++uPuw8f7xqdTAEAnzmmRExogApnG5zVhJml
+                  QBLWgPHqBGrbbjUTV05/37398/3d7pgbrYCD1kEjCFCKiqPySTlCnSR6ZJ+dGACbrues/nhTDTYT
+                  V1YvkXpV+mkK5myLYvJoEDnVdw1asTdIYG0MTCWbaN3GUG+mrDTykFYn6OcSddlzzQWyYAoWnXKu
+                  LckoXSOcKDmJRkpKS7Vt6Ey5lbKSOP67aPxKzmUHrgZ2AetAAaRMNRdsMsE6ASehxkEItRdcawzQ
+                  /KbXS5Y3E1de56fzODxKmnfz0BzhEVm8AsQl5GxKBTIVCk7FXKtPqDZeEySH72rW2m3Hp5m4Uhvl
+                  82U/ylFOc2v9GVbW5kIpJ1Y159jkyLU5GV8vR8Ylh9GKheUmsqH+mikrmVmmZotaZw6xGIGYtBLx
+                  aGtGOweZgzeO61c2qWw8Rc2U53/qvW28nBLNkrvbQodJnr8BMK8OzowKAAA=
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -34,11 +47,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 20 Aug 2025 02:18:44 GMT
+                  - Thu, 21 Aug 2025 02:09:37 GMT
               ETag:
                   - W/"91ee3d202828b3c28fcd9be69924424a4f792f5f17ff608d6d4ac2b1e19e5fcd"
               Last-Modified:
-                  - Wed, 13 Aug 2025 19:04:42 GMT
+                  - Wed, 20 Aug 2025 14:56:34 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -56,17 +69,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - E991:380342:13781FB:46E2211:68A53084
+                  - F7F4:46F6A:4291B4:EF0BE2:68A67FE1
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "33"
+                  - "53"
               X-RateLimit-Reset:
-                  - "1755659251"
+                  - "1755745775"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "27"
+                  - "7"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -91,7 +104,20 @@ interactions:
           uri: https://api.github.com/repos/juftin/browsr/git/trees/v1.6.0
       response:
           body:
-              string: '{"sha":"b80ea1937572041e2ed884f3d17919a7324b080b","url":"https://api.github.com/repos/juftin/browsr/git/trees/b80ea1937572041e2ed884f3d17919a7324b080b","tree":[{"path":".github","mode":"040000","type":"tree","sha":"a901aed96b47ecefdef6bf3530856065a76ff9f8","url":"https://api.github.com/repos/juftin/browsr/git/trees/a901aed96b47ecefdef6bf3530856065a76ff9f8"},{"path":".gitignore","mode":"100644","type":"blob","sha":"7e0d4d450a35a973ed5d4d1eeb749861ffb68ecf","size":2804,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/7e0d4d450a35a973ed5d4d1eeb749861ffb68ecf"},{"path":".pre-commit-config.yaml","mode":"100644","type":"blob","sha":"a9d8704a8c8511e6a430032ec2615c3dfeb7fb84","size":1379,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/a9d8704a8c8511e6a430032ec2615c3dfeb7fb84"},{"path":".releaserc.js","mode":"100644","type":"blob","sha":"71ebbd3ec251758bf9e3ac6b1c246808af9d289a","size":1574,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/71ebbd3ec251758bf9e3ac6b1c246808af9d289a"},{"path":"LICENSE","mode":"100644","type":"blob","sha":"3f1116db9ccaba831afbd47542a8dbef1ceb2189","size":1109,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/3f1116db9ccaba831afbd47542a8dbef1ceb2189"},{"path":"README.md","mode":"100644","type":"blob","sha":"1b7227281e1ac90b906c05a82ce968b6d5e3114c","size":2728,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/1b7227281e1ac90b906c05a82ce968b6d5e3114c"},{"path":"browsr","mode":"040000","type":"tree","sha":"dd4f0ba68388bc8382120b638a14497bafd3945b","url":"https://api.github.com/repos/juftin/browsr/git/trees/dd4f0ba68388bc8382120b638a14497bafd3945b"},{"path":"docs","mode":"040000","type":"tree","sha":"de31dc85a413f8f2cdd79130276faac5e93efcc9","url":"https://api.github.com/repos/juftin/browsr/git/trees/de31dc85a413f8f2cdd79130276faac5e93efcc9"},{"path":"mkdocs.yaml","mode":"100644","type":"blob","sha":"d5151fff1451011cdac254c3745e15e78af77064","size":2183,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/d5151fff1451011cdac254c3745e15e78af77064"},{"path":"pyproject.toml","mode":"100644","type":"blob","sha":"98be6018858bf4ccf1dafa7509d388ea08537ed7","size":4448,"url":"https://api.github.com/repos/juftin/browsr/git/blobs/98be6018858bf4ccf1dafa7509d388ea08537ed7"},{"path":"requirements","mode":"040000","type":"tree","sha":"3b044dfacdcb0bd4b3d9b032363d135c5894e410","url":"https://api.github.com/repos/juftin/browsr/git/trees/3b044dfacdcb0bd4b3d9b032363d135c5894e410"},{"path":"tests","mode":"040000","type":"tree","sha":"c25588f3e19c20ee684b21551db7635b155b3cf9","url":"https://api.github.com/repos/juftin/browsr/git/trees/c25588f3e19c20ee684b21551db7635b155b3cf9"}],"truncated":false}'
+              string: !!binary |
+                  H4sIAAAAAAAAA6WWTW/bOBCG/4vOqcXh5zC3YjeHBdoetsdiDzPkMHHWtlxJxiIt8t9LbYJavRRs
+                  5YNtQiYeP+TwHX7tpgfqbjtGJQTRBBe0siBaMqItJkOIECkYbVmh4u6mu4yHOuFhns/Tbd/Teb+7
+                  388PF96l4diPch6m/vFS5v2p53H4bxr7+rifR5Gp/wXKMqG7/fS1O9P8UHmvkMo/Drk+6ZRV9VXH
+                  89N5Gf8/4eZVh6ICkhw92yBJSpbiuRhnFDqvvKPgS4kFt+k0U55vfvDY35+GcfmzryqglLf2qsKH
+                  YVnol50JorLN1ikyjmIwkl0dgwgHG9FDKexRUlkm7L/UldCo7G/u0gKe+mbiWus8yptaAMf9XD9O
+                  ZX+/e6LjodGRYsagLGFCByCerFHKaEnag0smlypbGJclenEEE+Imx2bi2nGUg9AkY9o9To1mAYQ5
+                  m2riIDjkEsVQ8gxJW48KqcSsMdLVzIWNu9dKXJm9++uPuw8f7xqdTAEAnzmmRExogApnG5zVhJml
+                  QBLWgPHqBGrbbjUTV05/37398/3d7pgbrYCD1kEjCFCKiqPySTlCnSR6ZJ+dGACbrues/nhTDTYT
+                  V1YvkXpV+mkK5myLYvJoEDnVdw1asTdIYG0MTCWbaN3GUG+mrDTykFYn6OcSddlzzQWyYAoWnXKu
+                  LckoXSOcKDmJRkpKS7Vt6Ey5lbKSOP67aPxKzmUHrgZ2AetAAaRMNRdsMsE6ASehxkEItRdcawzQ
+                  /KbXS5Y3E1de56fzODxKmnfz0BzhEVm8AsQl5GxKBTIVCk7FXKtPqDZeEySH72rW2m3Hp5m4Uhvl
+                  82U/ylFOc2v9GVbW5kIpJ1Y159jkyLU5GV8vR8Ylh9GKheUmsqH+mikrmVmmZotaZw6xGIGYtBLx
+                  aGtGOweZgzeO61c2qWw8Rc2U53/qvW28nBLNkrvbQodJnr8BMK8OzowKAAA=
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -109,11 +135,11 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 20 Aug 2025 02:18:44 GMT
+                  - Thu, 21 Aug 2025 02:09:37 GMT
               ETag:
                   - W/"91ee3d202828b3c28fcd9be69924424a4f792f5f17ff608d6d4ac2b1e19e5fcd"
               Last-Modified:
-                  - Wed, 13 Aug 2025 19:04:42 GMT
+                  - Wed, 20 Aug 2025 14:56:34 GMT
               Referrer-Policy:
                   - origin-when-cross-origin, strict-origin-when-cross-origin
               Server:
@@ -131,17 +157,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - E992:64FE3:148B05D:4B86A62:68A53084
+                  - F7F6:1A67FA:3CF957:DB1DB4:68A67FE1
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "32"
+                  - "52"
               X-RateLimit-Reset:
-                  - "1755659251"
+                  - "1755745775"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "28"
+                  - "8"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -166,7 +192,48 @@ interactions:
           uri: https://api.github.com/repos/juftin/browsr/contents/README.md?ref=v1.6.0
       response:
           body:
-              string: '{"name":"README.md","path":"README.md","sha":"1b7227281e1ac90b906c05a82ce968b6d5e3114c","size":2728,"url":"https://api.github.com/repos/juftin/browsr/contents/README.md?ref=v1.6.0","html_url":"https://github.com/juftin/browsr/blob/v1.6.0/README.md","git_url":"https://api.github.com/repos/juftin/browsr/git/blobs/1b7227281e1ac90b906c05a82ce968b6d5e3114c","download_url":"https://raw.githubusercontent.com/juftin/browsr/v1.6.0/README.md","type":"file","content":"IyBicm93c3IKCjxkaXYgYWxpZ249ImNlbnRlciIgaHJlZj0iaHR0cHM6Ly9n\naXRodWIuY29tL2p1ZnRpbi9icm93c3IiPgogICAgPGEgaHJlZj0iaHR0cHM6\nLy9naXRodWIuY29tL2p1ZnRpbi9icm93c3IiPgogICAgICA8aW1nIHNyYz1o\ndHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vanVmdGluL2Jyb3dz\nci9tYWluL2RvY3MvX3N0YXRpYy9icm93c3IucG5nCiAgICAgICAgd2lkdGg9\nIjQwMCIgYWx0PSJicm93c3IiPgogICAgPC9hPgo8L2Rpdj4KClshW2Jyb3dz\nciBWZXJzaW9uXShodHRwczovL2ltZy5zaGllbGRzLmlvL3B5cGkvdi9icm93\nc3I/Y29sb3I9Ymx1ZSZsYWJlbD1icm93c3IpXShodHRwczovL2dpdGh1Yi5j\nb20vanVmdGluL2Jyb3dzcikKWyFbUHlQSV0oaHR0cHM6Ly9pbWcuc2hpZWxk\ncy5pby9weXBpL3B5dmVyc2lvbnMvYnJvd3NyKV0oaHR0cHM6Ly9weXBpLnB5\ndGhvbi5vcmcvcHlwaS9icm93c3IvKQpbIVtUZXN0aW5nIFN0YXR1c10oaHR0\ncHM6Ly9naXRodWIuY29tL2p1ZnRpbi9icm93c3IvYWN0aW9ucy93b3JrZmxv\nd3MvdGVzdHMueWFtbC9iYWRnZS5zdmc/YnJhbmNoPW1haW4pXShodHRwczov\nL2dpdGh1Yi5jb20vanVmdGluL2Jyb3dzci9hY3Rpb25zL3dvcmtmbG93cy90\nZXN0cy55YW1sP3F1ZXJ5PWJyYW5jaCUzQW1haW4pClshW0dpdEh1YiBMaWNl\nbnNlXShodHRwczovL2ltZy5zaGllbGRzLmlvL2dpdGh1Yi9saWNlbnNlL2p1\nZnRpbi9icm93c3I/Y29sb3I9Ymx1ZSZsYWJlbD1MaWNlbnNlKV0oaHR0cHM6\nLy9naXRodWIuY29tL2p1ZnRpbi9icm93c3IvYmxvYi9tYWluL0xJQ0VOU0Up\nCgoqKmBicm93c3JgKiogaXMgYSBUVUkgKHRleHQtYmFzZWQgdXNlciBpbnRl\ncmZhY2UpIGZpbGUgYnJvd3NlciBmb3IgeW91ciB0ZXJtaW5hbC4KSXQncyBh\nIHNpbXBsZSB3YXkgdG8gYnJvd3NlIHlvdXIgZmlsZXMgYW5kIHRha2UgYSBw\nZWVrIGF0IHRoZWlyIGNvbnRlbnRzLiBQbHVzIGl0CndvcmtzIG9uIGxvY2Fs\nIGFuZCByZW1vdGUgZmlsZSBzeXN0ZW1zLgoKPGRldGFpbHMgb3Blbj48L3N1\nbW1hcnk+PC9zdW1tYXJ5PgoKPGJvZHk+CjxkaXYgc3R5bGU9ImRpc3BsYXk6\nIGdyaWQ7IGdyaWQtdGVtcGxhdGUtY29sdW1uczogcmVwZWF0KDIsIDFmcik7\nIGdyaWQtZ2FwOiAxMHB4OyI+CiAgICA8aW1nIHNyYz0iaHR0cHM6Ly9yYXcu\nZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p1ZnRpbi9icm93c3IvbWFpbi9kb2Nz\nL19zdGF0aWMvc2NyZWVuc2hvdF91dGlscy5wbmciIGFsdD0iSW1hZ2UgMSI+\nCiAgICA8aW1nIHNyYz0iaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQu\nY29tL2p1ZnRpbi9icm93c3IvbWFpbi9kb2NzL19zdGF0aWMvc2NyZWVuc2hv\ndF9kYXRhdGFibGUucG5nIiBhbHQ9IkltYWdlIDIiPgogICAgPGltZyBzcmM9\nImh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9qdWZ0aW4vYnJv\nd3NyL21haW4vZG9jcy9fc3RhdGljL3NjcmVlbnNob3RfbW9uYV9saXNhLnBu\nZyIgYWx0PSJJbWFnZSAzIj4KICAgIDxpbWcgc3JjPSJodHRwczovL3Jhdy5n\naXRodWJ1c2VyY29udGVudC5jb20vanVmdGluL2Jyb3dzci9tYWluL2RvY3Mv\nX3N0YXRpYy9zY3JlZW5zaG90X21hcmtkb3duLnBuZyIgYWx0PSJJbWFnZSA0\nIj4KPC9kaXY+CjwvYm9keT4KCjwvZGV0YWlscz4KCiMjIEluc3RhbGxhdGlv\nbgoKVGhlIGJlbG93IGNvbW1hbmQgcmVjb21tZW5kcyBbcGlweF0oaHR0cHM6\nLy9weXBhLmdpdGh1Yi5pby9waXB4LykgaW5zdGVhZCBvZiBwaXAuIGBwaXB4\nYCBpbnN0YWxscyB0aGUgcGFja2FnZSBpbgphbiBpc29sYXRlZCBlbnZpcm9u\nbWVudCBhbmQgbWFrZXMgaXQgZWFzeSB0byB1bmluc3RhbGwuIElmIHlvdSdk\nIGxpa2UgdG8gdXNlIGBwaXBgIGluc3RlYWQsIGp1c3QgcmVwbGFjZSBgcGlw\neGAKd2l0aCBgcGlwYCBpbiB0aGUgYmVsb3cgY29tbWFuZC4KCmBgYHNoZWxs\nCnBpcHggaW5zdGFsbCBicm93c3IKYGBgCgojIyBFeHRyYSBJbnN0YWxsYXRp\nb24KCklmIHlvdSdyZSBsb29raW5nIHRvIHVzZSAqKmBicm93c3JgKiogb24g\ncmVtb3RlIGZpbGUgc3lzdGVtcywgbGlrZSBBV1MgUzMsIHlvdSdsbCBuZWVk\nIHRvIGluc3RhbGwgdGhlIGByZW1vdGVgIGV4dHJhLgpJZiB5b3UnZCBsaWtl\nIHRvIGJyb3dzZSBwYXJxdWV0IGZpbGVzLCB5b3UnbGwgbmVlZCB0byBpbnN0\nYWxsIHRoZSBgcGFycXVldGAgZXh0cmEuIE9yLCBldmVuIHNpbXBsZXIsCnlv\ndSBjYW4gaW5zdGFsbCB0aGUgYGFsbGAgZXh0cmEgdG8gZ2V0IGFsbCB0aGUg\nZXh0cmFzLgoKYGBgc2hlbGwKcGlweCBpbnN0YWxsICJicm93c3JbYWxsXSIK\nYGBgCgojIyBVc2FnZQoKYGBgc2hlbGwKYnJvd3NyIH4vRG93bmxvYWRzLwpg\nYGAKClNpbXBseSBnaXZlICoqYGJyb3dzcmAqKiBhIHBhdGggdG8gYSBmaWxl\nL2RpcmVjdG9yeSBhbmQgaXQgd2lsbCBvcGVuIGEgYnJvd3NlciB3aW5kb3cK\nd2l0aCBhIGZpbGUgYnJvd3Nlci4gWW91IGNhbiBhbHNvIGdpdmUgaXQgYSBV\nUkwgdG8gYSByZW1vdGUgZmlsZSBzeXN0ZW0sIGxpa2UgQVdTIFMzLgoKYGBg\nc2hlbGwKYnJvd3NyIHMzOi8vbXktYnVja2V0L215LWZpbGUucGFycXVldApg\nYGAKCiMjIyBbQ2hlY2sgb3V0IHRoZSBEb2N1bWVudGF0aW9uXShodHRwczov\nL2p1ZnRpbi5jb20vYnJvd3NyLykgZm9yIG1vcmUKCiMjIExpY2Vuc2UKCioq\nYGJyb3dzcmAqKiBpcyBkaXN0cmlidXRlZCB1bmRlciB0aGUgdGVybXMgb2Yg\ndGhlIFtNSVQgbGljZW5zZV0oTElDRU5TRSkuCg==\n","encoding":"base64","_links":{"self":"https://api.github.com/repos/juftin/browsr/contents/README.md?ref=v1.6.0","git":"https://api.github.com/repos/juftin/browsr/git/blobs/1b7227281e1ac90b906c05a82ce968b6d5e3114c","html":"https://github.com/juftin/browsr/blob/v1.6.0/README.md"}}'
+              string: !!binary |
+                  H4sIAAAAAAAAA61Ya3ObyBL9L/6arZiHcEyqUrcMNg+9YkkRr1LVFjMogDQgIhASbO1/3zPoYSuJ
+                  7ya37oeUbaLp6T59+pxGf93kYba8+XgzfXp4HD29z6KbP26KsEq+e1QmIZ6I5IMkfZDuxaUYUlUg
+                  qnBHBSW8l+hSvbsnd5GylEWxRxGjTFuE5R/+42a3ZTicVFVRfry9DYv0fZxWyY68p5vsdrssNuXt
+                  ave1SvNbst3sy+0t3eTVMq/K20tW/9kuv36qxfd37wUET6qM/Xkd9VXE61iEbcjt8eRLOMTAge9C
+                  /EJiOHTLA5a3vwFFtNnnbBNG3123DfcnHHblcnsquYPkuoCf5F41Be/Z15QtUcnpKB7YjZbSTJWp
+                  bA/01WEden7su4cikHqqnY0ZyaeMpnYcWn0WrIQ0tKYCtUZ3w0bNF3noTTeRa+98Sa2GUiEG+bQg
+                  qXqOmD7Hm9jWH+Jn8+mHCIucx/jVCIhyH7piblvjxm/FzSKPrOmetpt6KPeTqFFOkfoilZwG+ewi
+                  09lFurIiklCHuZNFJtsNpX5D5Khd5DRVK9/lT6a1L49qTx4Lvjct/OaS/Y6aSq6nD10F/F8ksXVk
+                  xuoit1eT/Ui3OVLC86z/Y726mqD2e0QvolVvoLMycV/drbmB129DV915s2RzqURiVdAobWgyRsxp
+                  O8wYqtMUaq7r6IQqMpftW9RXEtlW/ewgBrOg9N0+I4/iOY/iOmpURGYi+qmyWuQ/Q4Om64HbGGRu
+                  scnMETavelwQl+6olBSBe1jj7kYpSKPul55W8MyizGmoxGqSj2o/79eRPG4G1xGOn801BR0zk5qk
+                  Sk0zWlOL7cPZBet6MCmI7VTzwBsLoavkttH1Q6TiMR/cfWLdvzCm9l0eQd3RRpWJ3N8G2aHG3egx
+                  GNFG1mi3dI2K6Grqu9M8mCltlNFbZJ+QbLx5dsUkdHtXCIKp0guGP0dQTXwZ3JeUdihHqLDKiImp
+                  alRhkfOagJziu2L5LBsieq88u/3Gd5VVqM/byenOjiUCbnri3dJGoTtm6Fg+Zv/Kkkt+aslP8TN8
+                  HnH39US+xZzuLn7qdfd+aUJrcLD2z9MkHPoTwfk8F+bFItfjzbdBdtaXfjxIN3HojWJ/ps2d+Toe
+                  WFO2tCaVnxlt4E7iyBtDa7SCaw76nQWJL80L2wwKYs7jE7/4JzJwP166qojfBaBZgTEJ0XuDmTcB
+                  R7UEE2qNC+JpZTDTZN9bx5F5f4lgW6yOPDsOMlYGPB9XWdvWNAkl3DLT9kDNdba2aQh4uglc1tjm
+                  GByfcjVsh6k2IZbT2iYT9LzrNX5Xd7YJHCSjxN2msQt0rQlcEZybH++Zae0SPMCzdhhvBs/mlEWm
+                  URBrFBNZY2TVux/KY3SMgA00X7971tU2csXK52zpTvTrwFq/O6s0lacKcIFKTwsqayWqvON3R03o
+                  Tj6cflbgfEXNQ4I8Kq4aiLiDasY0c/aBawiDR7u0H40MGvDhcroKJGP/OX04jCyt97mx351U8JUC
+                  XzlB43t0B9QkJoSWk3Z9zM6ITd5yh5q4qD9V10QaQ5GHIuoF5qE7qqk0BnoOV546MlQR2l1igvYE
+                  eQLdMnoU0hlwCtCx0cx+B64ddfq/ZvhWfov8Df+6yvCt/KAthrqGVgFjI0VHOt+wUy0h1kS11ww+
+                  EzH70X7lhlzntZZmI+4lWSJEltZ+Tu/BJUMeZietyZ0W3IZ/KWCNIgw5ojP1W+QGwKjX6S3XtXEz
+                  lDrNqgNTXUFxvoIZyIWtwKcV+sznekPk6VcCVfQdKIQ3Toa5xjvWXDysj25ADR9aG37VOd7jgat/
+                  TOX+Ch734lInvz27/6857vd+u8hfOW7ry9guXO58quChGszUGj6941n+JEdoKs8SE8L3FUzEHiqk
+                  rpdf4LT4PTAdAd5e0hZ/p6OV/cR2HBPSzQEDagTz5JgJs034JnS6m2/wiWQTPhnAXKyQzxpaQqjJ
+                  9kvjxRU7VeSullw6lR5dMfS03rBZx1AjMNlJoAF1kGr70HuAOvCfWg9c07nCwd3cAzitCSEUgprG
+                  KpQ4/vi/uEgIVJBiWsEqhijoYFBgS0PHCKYi0sEtZIqObbl+hd4kxiy3y5kmkEYTSXaud79D7Vmn
+                  d7MI/g2NKrjKcTXkU3rKKoaWcYSY705K2yxEKnc47AnyQk7Ij0EVl+bDADuQEOrHJ10lUGBegZ85
+                  2EhozCcJeUH/gH2mxb41hoIeoIp6jpqs+ISOURL9ZfP0TS2GW6ywjRpLa9pAhftnjPhWxvcWxFtf
+                  ammQVUkkddvtCta0tqHIYO8PfoNzMfcSp8IEoN6jl1CZ8Q5VtNnHxGRbRNMccRTP21F5Qovnt4MG
+                  cdR4/CNC4NAe6HHmnPXdAXpOL7L6yTAu+ui3QuR5jq7BiSv42PH0ce/EPXvo+SFyHeGYi9MO9eMJ
+                  HplgWnGSd7HjCNgC7DoX6rpgNNRz4BsPceAlAs2e0F+1QQSGTWx38TzPLvWc8zyaaSvf7b3G/Ngt
+                  aCh5idLxIZB4Tl1fus/wvYXfYXR+xTsENca07AfdRLxisa2fN+A+4fl6M3uAzF966lDO7cl1lPO+
+                  aFu9eooZJHyPcOGv+wJ3++Cazo4eDl5juw+YrW+++eYRSZqh19BY29Iw0/HR32daFroHYM73bj7H
+                  kak2ON1NC58SsJfXV1O8G9h4J3m1U8hgEjSHIvMTx5MfN49e7GLrgFrwCYW+j8ELqHU276KDtc4i
+                  n685Q7BtzN7aAATM2HEOJ070xTZGF4TB1BPGL+iMOmcg3rrycwcq4QjQe2XodkyG15w48XBBjSse
+                  dGuCSL5UYrtAX48MeoLTip2CdD57/fbBUTu/wR3fms45cE0LMhVbkAiHmp809VD4Endo/vfmG+/Y
+                  VWcKaBvUGZtvxrARdDoGZeJvk0d+Yf4aAvUiko9+dzNlVOOZA12Dd3E3CPAm8eWJPU7nypfpbL3T
+                  40+fFjleX5c53URpHuP9lYTl8q6HZ3+yNF+XNx//uimX7Ov/98sDvMP/XsD/6aWff0Xx6prf/Hri
+                  77//AWjqrWWZEQAA
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -184,7 +251,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 20 Aug 2025 02:18:44 GMT
+                  - Thu, 21 Aug 2025 02:09:37 GMT
               ETag:
                   - W/"1b7227281e1ac90b906c05a82ce968b6d5e3114c"
               Last-Modified:
@@ -206,17 +273,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - E993:2388:140B7F4:497058F:68A53084
+                  - F7F7:13BFB:3FB4EF:E4C510:68A67FE1
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "31"
+                  - "51"
               X-RateLimit-Reset:
-                  - "1755659251"
+                  - "1755745775"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "29"
+                  - "9"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
