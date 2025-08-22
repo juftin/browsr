@@ -24,7 +24,7 @@ jobs:
             - name: Semantic Release
               uses: juftin/actions/semantic-release@v1
               with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
     docs:
         name: docs
