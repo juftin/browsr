@@ -2,7 +2,9 @@
 `browsr` version file.
 """
 
-__author__ = "Justin Flannery"
-__email__ = "justin.flannery@juftin.com"
-__application__ = "browsr"
-__version__ = "1.22.0"
+from importlib.metadata import version
+
+__author__: str = "Justin Flannery"
+__email__: str = "justin.flannery@juftin.com"
+__application__: str = "browsr"
+__version__: str = version(__application__)

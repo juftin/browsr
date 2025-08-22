@@ -30,7 +30,7 @@ class TextualAppContext:
     kwargs: dict[str, Any] | None = None
 
     @property
-    def path(self) -> UPath:
+    def path(self) -> UPath | pathlib.Path:
         """
         Resolve `file_path` to a UPath object
         """
@@ -53,7 +53,7 @@ class TextualAppContext:
             return path.resolve()
 
 
-class SortedBindingsScreen(Screen):
+class SortedBindingsScreen(Screen[str]):
     """
     Textual App with Sorted Bindings
     """

@@ -132,10 +132,10 @@ class CodeBrowserScreen(SortedBindingsScreen):
             return
         if (
             self.code_browser.directory_tree.path
-            != self.code_browser.directory_tree.path.parent
+            != self.code_browser.directory_tree.path.parent  # type: ignore[union-attr]
         ):
             self.code_browser.directory_tree.path = (
-                self.code_browser.directory_tree.path.parent
+                self.code_browser.directory_tree.path.parent  # type: ignore[union-attr]
             )
             self.notify(
                 title="Directory Changed",
@@ -169,7 +169,7 @@ class CodeBrowserScreen(SortedBindingsScreen):
         message_lines = []
         if reload_directory:
             self.code_browser.directory_tree.reload()
-            directory_name = self.code_browser.directory_tree.path.name or "/"
+            directory_name = self.code_browser.directory_tree.path.name or "/"  # type: ignore[union-attr]
             message_lines.append(
                 "[bold]Directory:[/bold] " f"[italic]{directory_name}[/italic]"
             )

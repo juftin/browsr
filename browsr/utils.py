@@ -2,10 +2,13 @@
 Code Browsr Utility Functions
 """
 
+from __future__ import annotations
+
 import datetime
 import os
 from dataclasses import dataclass
-from typing import Any, BinaryIO, Dict, Optional, Union
+from pathlib import Path
+from typing import Any, BinaryIO
 
 import fitz
 import rich_pixels
@@ -58,8 +61,8 @@ class FileInfo:
 
     file: UPath
     size: int
-    last_modified: Optional[datetime.datetime]
-    stat: Union[Dict[str, Any], os.stat_result]
+    last_modified: datetime.datetime | None
+    stat: dict[str, Any] | os.stat_result
     is_local: bool
     is_file: bool
     owner: str
@@ -67,12 +70,12 @@ class FileInfo:
     is_cloudpath: bool
 
 
-def get_file_info(file_path: UPath) -> FileInfo:
+def get_file_info(file_path: UPath | Path) -> FileInfo:
     """
     Get File Information, Regardless of the FileSystem
     """
     try:
-        stat: Union[Dict[str, Any], os.stat_result] = file_path.stat()
+        stat: dict[str, Any] | os.stat_result = file_path.stat()  # type: ignore[assignment]
         is_file = file_path.is_file()
     except PermissionError:
         stat = {"size": 0}
@@ -80,7 +83,7 @@ def get_file_info(file_path: UPath) -> FileInfo:
     except FileNotFoundError:
         stat = {"size": 0}
         is_file = True
-    is_cloudpath = is_remote_path(file_path)
+    is_cloudpath = is_remote_path(file_path)  # type: ignore[arg-type]
     if isinstance(stat, dict):
         lower_dict = {key.lower(): value for key, value in stat.items()}
         file_size = lower_dict["size"]
@@ -93,7 +96,7 @@ def get_file_info(file_path: UPath) -> FileInfo:
         if isinstance(last_modified, str):
             last_modified = datetime.datetime.fromisoformat(last_modified[:-1])
         return FileInfo(
-            file=file_path,
+            file=file_path,  # type: ignore[arg-type]
             size=file_size,
             last_modified=last_modified,
             stat=stat,
@@ -114,7 +117,7 @@ def get_file_info(file_path: UPath) -> FileInfo:
             owner = ""
             group = ""
         return FileInfo(
-            file=file_path,
+            file=file_path,  # type: ignore[arg-type]
             size=stat.st_size,
             last_modified=last_modified,
             stat=stat,
@@ -126,7 +129,7 @@ def get_file_info(file_path: UPath) -> FileInfo:
         )
 
 
-def handle_duplicate_filenames(file_path: UPath) -> UPath:
+def handle_duplicate_filenames(file_path: UPath | Path) -> UPath | Path:
     """
     Handle Duplicate Filenames
 
@@ -152,7 +155,7 @@ def handle_github_url(url: str) -> str:
     GitHub URLs are handled by converting them to the raw URL.
     """
     try:
-        import requests
+        import requests  # type: ignore[import-untyped]
     except ImportError as e:
         raise ImportError(
             "The requests library is required to browse GitHub files. "
@@ -177,7 +180,7 @@ def handle_github_url(url: str) -> str:
         f"https://api.github.com/repos/{org}/{repo}",
         headers={"Accept": "application/vnd.github.v3+json"},
         timeout=10,
-        **auth,  # type: ignore[arg-type]
+        **auth,
     )
     resp.raise_for_status()
     default_branch = resp.json()["default_branch"]
