@@ -24,7 +24,7 @@ class CurrentFileInfoBar(Widget):
     Thanks, Kupo. https://github.com/darrenburns/kupo
     """
 
-    file_info: FileInfo | None = reactive(None)
+    file_info: FileInfo | None = reactive(None)  # type: ignore[assignment]
 
     class FileInfoUpdate(Message):
         """

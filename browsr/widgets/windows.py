@@ -8,9 +8,9 @@ import json
 from json import JSONDecodeError
 from typing import Any, ClassVar
 
-import numpy as np
 import pandas as pd
 from art import text2art
+from numpy import nan
 from rich.markdown import Markdown
 from rich.syntax import Syntax
 from rich_pixels import Pixels
@@ -276,7 +276,7 @@ class DataTableWindow(VimDataTable, BaseCodeWindow):
             self.add_column(index_name)
         for column in pandas_dataframe.columns:
             self.add_column(str(column))
-        pandas_dataframe.replace([np.NaN], [""], inplace=True)
+        pandas_dataframe.replace([nan], [""], inplace=True)
         for index, value_list in enumerate(pandas_dataframe.values.tolist()):
             row = [str(index)] if show_index else []
             row += [str(x) for x in value_list]
@@ -321,7 +321,7 @@ class WindowSwitcher(Container):
         yield self.vim_scroll
         yield self.datatable_window
 
-    def get_active_widget(self) -> Widget:
+    def get_active_widget(self) -> Widget:  # type: ignore[return]
         """
         Get the active widget
         """
@@ -354,7 +354,7 @@ class WindowSwitcher(Container):
             self.datatable_window.refresh_from_file(
                 file_path=file_path, max_lines=self.config_object.max_lines
             )
-            switch_window = self.datatable_window
+            switch_window = self.datatable_window  # type: ignore[assignment]
         elif file_path.suffix.lower() in self.image_extensions:
             image = self.static_window.file_to_image(file_path=file_path)
             self.static_window.update(image)

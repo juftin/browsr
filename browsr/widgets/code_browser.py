@@ -80,10 +80,10 @@ class CodeBrowser(Container):
             msg = f"Unknown File Path: {file_path}"
             raise FileNotFoundError(msg)
         elif file_path.is_file():
-            self.selected_file_path = file_path
+            self.selected_file_path = file_path  # type: ignore[assignment]
             file_path = file_path.parent
         elif file_path.is_dir() and file_path.joinpath("README.md").exists():
-            self.selected_file_path = file_path.joinpath("README.md")
+            self.selected_file_path = file_path.joinpath("README.md")  # type: ignore[assignment]
             self.force_show_tree = True
         self.initial_file_path = file_path
         self.directory_tree = BrowsrDirectoryTree(file_path, id="tree-view")
@@ -128,7 +128,7 @@ class CodeBrowser(Container):
             self.app.bind(
                 keys="c", action="copy_file_path", description="Copy Path", show=True
             )
-        if is_remote_path(self.initial_file_path):
+        if is_remote_path(self.initial_file_path):  # type: ignore[arg-type]
             self.app.bind(
                 keys="x", action="download_file", description="Download File", show=True
             )
@@ -176,17 +176,18 @@ class CodeBrowser(Container):
         """
         Called when the user click a file in the directory tree.
         """
-        self.selected_file_path = message.path
-        file_info = get_file_info(file_path=self.selected_file_path)
+        self.selected_file_path = message.path  # type: ignore[assignment]
+        file_info = get_file_info(file_path=self.selected_file_path)  # type: ignore[arg-type]
         try:
             self.static_window.handle_file_size(
                 file_info=file_info, max_file_size=self.config_object.max_file_size
             )
-            self.window_switcher.render_file(file_path=self.selected_file_path)
+            self.window_switcher.render_file(file_path=self.selected_file_path)  # type: ignore[arg-type]
         except FileSizeError as e:
             error_message = self.static_window.handle_exception(exception=e)
             error_syntax = self.static_window.text_to_syntax(
-                text=error_message, file_path=self.selected_file_path
+                text=error_message,
+                file_path=self.selected_file_path,  # type: ignore[arg-type]
             )
             self.static_window.update(error_syntax)
             self.window_switcher.switch_window(self.static_window)
@@ -273,7 +274,7 @@ class CodeBrowser(Container):
                 timeout=2,
             )
 
-    def _get_download_file_name(self) -> UPath:
+    def _get_download_file_name(self) -> UPath | pathlib.Path:
         """
         Get the download file name.
         """

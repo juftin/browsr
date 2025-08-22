@@ -4,6 +4,7 @@ A universal directory tree widget for Textual.
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import ClassVar, Iterable
 
 from textual.binding import BindingType
@@ -26,7 +27,7 @@ class BrowsrDirectoryTree(DoubleClickDirectoryTree, UniversalDirectoryTree):
     ]
 
     @classmethod
-    def _handle_top_level_bucket(cls, dir_path: UPath) -> Iterable[UPath] | None:
+    def _handle_top_level_bucket(cls, dir_path: UPath | Path) -> Iterable[UPath] | None:
         """
         Handle scenarios when someone wants to browse all of s3
 
@@ -41,7 +42,7 @@ class BrowsrDirectoryTree(DoubleClickDirectoryTree, UniversalDirectoryTree):
         return None
 
     def _populate_node(
-        self, node: TreeNode[DirEntry], content: Iterable[UPath]
+        self, node: TreeNode[DirEntry], content: Iterable[UPath | Path]
     ) -> None:
         """
         Populate the given tree node with the given directory content.
@@ -49,7 +50,7 @@ class BrowsrDirectoryTree(DoubleClickDirectoryTree, UniversalDirectoryTree):
         This function overrides the original textual method to handle root level
         cloud buckets.
         """
-        top_level_buckets = self._handle_top_level_bucket(dir_path=node.data.path)
+        top_level_buckets = self._handle_top_level_bucket(dir_path=node.data.path)  # type: ignore[union-attr]
         if top_level_buckets is not None:
             content = top_level_buckets
         node.remove_children()

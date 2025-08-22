@@ -5,6 +5,7 @@ Directory Tree that copeis the path to the clipboard on double click
 from __future__ import annotations
 
 import datetime
+from pathlib import Path
 from typing import Any, ClassVar
 
 from textual import on
@@ -39,7 +40,7 @@ class DoubleClickDirectoryTree(DirectoryTree):
         A message that is emitted when the directory is changed
         """
 
-        def __init__(self, path: UPath) -> None:
+        def __init__(self, path: UPath | Path) -> None:
             """
             Initialize the message
             """
@@ -63,7 +64,7 @@ class DoubleClickDirectoryTree(DirectoryTree):
         """
         if (
             self.is_double_click(path=message.path)
-            and message.path != self.root.data.path
+            and message.path != self.root.data.path  # type: ignore[union-attr]
         ):
             message.stop()
             self.post_message(self.DirectoryDoubleClicked(path=message.path))
@@ -77,7 +78,7 @@ class DoubleClickDirectoryTree(DirectoryTree):
             message.stop()
             self.post_message(self.FileDoubleClicked(path=message.path))
 
-    def is_double_click(self, path: UPath) -> bool:
+    def is_double_click(self, path: UPath | Path) -> bool:
         """
         Check if the path is double clicked
         """
@@ -89,5 +90,5 @@ class DoubleClickDirectoryTree(DirectoryTree):
         elif self._last_clicked_path == path and click_delta > self._double_click_time:
             return False
         else:
-            self._last_clicked_path = path
+            self._last_clicked_path = path  # type: ignore[assignment]
             return False
