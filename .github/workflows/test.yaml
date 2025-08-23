@@ -1,4 +1,4 @@
-name: Tests
+name: test
 
 on:
     push:
@@ -7,17 +7,18 @@ on:
         paths:
             - browsr/**
             - pyproject.toml
-            - .github/workflows/tests.yaml
+            - uv.lock
+            - .github/workflows/test.yaml
     pull_request:
-        branches: ["**"]
         paths:
             - browsr/**
             - pyproject.toml
-            - .github/workflows/tests.yaml
+            - uv.lock
+            - .github/workflows/test.yaml
     schedule:
         - cron: 0 12 1 * *
 jobs:
-    test-suite:
+    test:
         runs-on: ubuntu-latest
         strategy:
             fail-fast: true
@@ -42,6 +43,6 @@ jobs:
                   install: true
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   annotations-pytest: ${{ matrix.python == '3.12' && true || false }}
-                  pytest-coverage: ${{ matrix.python == '3.12' && true || false }}
+                  pytest-coverage: ${{ matrix.python == '3.12' && github.event_name == 'pull_request' && true || false }}
               env:
                   UV_PYTHON: ${{ matrix.python }}

@@ -12,7 +12,7 @@ a pleasant <strong>file explorer</strong> in your terminal supporting <strong>al
   <a href="https://github.com/juftin/browsr"><img src="https://img.shields.io/pypi/v/browsr?color=blue&label=%F0%9F%97%82%EF%B8%8F%20browsr" alt="PyPI"></a>
   <a href="https://pypi.python.org/pypi/browsr/"><img src="https://img.shields.io/pypi/pyversions/browsr" alt="PyPI - Python Version"></a>
   <a href="https://github.com/juftin/browsr/blob/main/LICENSE"><img src="https://img.shields.io/github/license/juftin/browsr?color=blue&label=License" alt="GitHub License"></a>
-  <a href="https://github.com/juftin/browsr/actions/workflows/tests.yaml?query=branch%3Amain"><img src="https://github.com/juftin/browsr/actions/workflows/tests.yaml/badge.svg?branch=main" alt="Testing Status"></a>
+  <a href="https://github.com/juftin/browsr/actions/workflows/test.yaml?query=branch%3Amain"><img src="https://github.com/juftin/browsr/actions/workflows/test.yaml/badge.svg?branch=main" alt="Testing Status"></a>
   <a href="https://github.com/go-task/task"><img src="https://img.shields.io/badge/task---?message=task&logo=task&color=teal&labelColor=grey" alt="task"></a>
   <a href="https://github.com/astral-sh/uv"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json" alt="uv"></a>
   <a href="https://github.com/pre-commit/pre-commit"><img src="https://img.shields.io/badge/pre--commit-enabled-lightgreen?logo=pre-commit" alt="pre-commit"></a>

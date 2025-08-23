@@ -36,6 +36,13 @@ repos:
             language: system
             types:
                 - python
+          - id: uv-lock
+            name: uv-lock
+            description: Runs uv lock when pyproject.toml changes
+            entry: uv lock
+            language: system
+            pass_filenames: false
+            files: pyproject.toml
           - id: prettier
             name: prettier
             description: Runs Prettier Code Formatter
