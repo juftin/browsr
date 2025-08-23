@@ -12,7 +12,7 @@ jobs:
         runs-on: ubuntu-latest
         environment:
             name: pypi
-            url: https://pypi.org/p/lunchable
+            url: https://pypi.org/p/browsr
         permissions:
             id-token: write
         steps:
