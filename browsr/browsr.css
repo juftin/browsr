@@ -46,7 +46,7 @@ CurrentFileInfoBar {
 
 /* -- WindowSwitcher -- */
 
-VimScroll {
+KeyBindScroll {
     overflow: auto scroll;
     min-width: 100%;
 }
