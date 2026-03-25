@@ -15,11 +15,12 @@ from rich.markdown import Markdown
 from rich.syntax import Syntax
 from rich_pixels import Pixels
 from textual.app import ComposeResult
+from textual.binding import Binding
 from textual.containers import Container
 from textual.message import Message
 from textual.reactive import Reactive, reactive
 from textual.widget import Widget
-from textual.widgets import Static
+from textual.widgets import Static, TextArea
 from textual_universal_directorytree import UPath
 
 from browsr.base import TextualAppContext
@@ -224,6 +225,23 @@ class StaticWindow(Static, BaseCodeWindow):
         next_theme = favorite_themes[(current_index + 1) % len(favorite_themes)]
         self.theme = next_theme
         return next_theme
+
+
+class TextWindow(TextArea, BaseCodeWindow):
+    """
+    A window that displays text using a TextArea.
+    """
+
+    BINDINGS: ClassVar[list[Binding]] = [
+        Binding("j", "cursor_down", "Down", show=False),
+        Binding("k", "cursor_up", "Up", show=False),
+        Binding("l", "cursor_right", "Right", show=False),
+        Binding("h", "cursor_left", "Left", show=False),
+    ]
+
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(read_only=True, **kwargs)
+        self.show_line_numbers = True
 
 
 class DataTableWindow(VimDataTable, BaseCodeWindow):
