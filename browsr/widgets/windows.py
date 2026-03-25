@@ -224,10 +224,11 @@ class TextWindow(TextArea, BaseCodeWindow):
     ]
 
     THEME_MAP: ClassVar[dict[str, str]] = {
+        "css": "css",
         "monokai": "monokai",
         "dracula": "dracula",
-        "github-dark": "vscode_dark",
-        "solarized-light": "github_light",
+        "vscode-dark": "vscode_dark",
+        "github-light": "github_light",
     }
 
     def __init__(self, **kwargs: Any) -> None:
@@ -244,7 +245,7 @@ class TextWindow(TextArea, BaseCodeWindow):
         """
         Apply a theme to the TextArea
         """
-        with contextlib.suppress(AttributeError):
+        with contextlib.suppress(RuntimeError, AttributeError):
             if not self.app.dark:
                 self.theme = "github_light"
                 return
@@ -373,14 +374,29 @@ class WindowSwitcher(Container):
             self.static_window.renderable.line_numbers = linenos
             self.static_window.refresh()
 
+    def _update_subtitle(self) -> None:
+        """
+        Update the app subtitle
+        """
+        if self.rendered_file is None:
+            return
+        active_widget = self.get_active_widget()
+        if active_widget is self.text_window:
+            display_theme = self.text_window.theme
+        elif active_widget is self.vim_scroll:
+            display_theme = self.static_window.theme
+        else:
+            self.app.sub_title = str(self.rendered_file)
+            return
+        self.app.sub_title = str(self.rendered_file) + f" [{display_theme}]"
+
     def watch_theme(self, theme: str) -> None:
         """
         Called when theme is modified.
         """
         self.static_window.theme = theme
         self.text_window.apply_smart_theme(theme)
-        if self.rendered_file is not None:
-            self.app.sub_title = str(self.rendered_file) + f" [{theme}]"
+        self._update_subtitle()
 
     def watch_dark(self, _dark: bool) -> None:
         """
@@ -388,6 +404,7 @@ class WindowSwitcher(Container):
         """
         self.text_window.apply_smart_theme(self.theme)
         self.static_window.refresh()
+        self._update_subtitle()
 
     def compose(self) -> ComposeResult:
         """
@@ -475,8 +492,8 @@ class WindowSwitcher(Container):
                 self.vim_scroll.scroll_home(animate=False)
             else:
                 switch_window.scroll_home(animate=False)
-        self.app.sub_title = str(file_path) + f" [{self.theme}]"
         self.rendered_file = file_path
+        self._update_subtitle()
 
     def next_theme(self) -> str | None:
         """

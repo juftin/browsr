@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 import pytest
 from textual.widgets import TextArea
@@ -17,8 +17,10 @@ def test_text_window_inheritance():
 def test_text_window_theme_mapping():
     window = TextWindow()
     # Test with dark mode
-    with patch("textual.widget.Widget.app", new_callable=MagicMock) as mock_app:
-        mock_app.dark = True
+    mock_app = MagicMock()
+    mock_app.dark = True
+    with pytest.MonkeyPatch.context() as mp:
+        mp.setattr("textual.widget.Widget.app", mock_app, raising=False)
         window.apply_smart_theme("monokai")
         assert window.theme == "monokai"
         window.apply_smart_theme("invalid-theme")
@@ -48,8 +50,10 @@ def test_text_window_linenos():
 
 @pytest.mark.asyncio
 async def test_window_switcher_routing():
-    # We need to patch before init because watch_theme is called on init
-    with patch("textual.widget.Widget.app", new_callable=MagicMock):
+    mock_app = MagicMock()
+    # Patch the property on the class for the duration of the test
+    with pytest.MonkeyPatch.context() as mp:
+        mp.setattr("textual.widget.Widget.app", mock_app, raising=False)
         context = TextualAppContext()
         switcher = WindowSwitcher(config_object=context)
 
@@ -61,22 +65,23 @@ async def test_window_switcher_routing():
         mock_json.__str__.return_value = "test.json"
 
         # We need to patch various things to avoid NoActiveAppError and other issues
-        with patch.object(
-            switcher.static_window,
-            "file_to_json",
-            return_value='{\n  "key": "value"\n}',
-        ), patch.object(switcher.text_window, "scroll_home"), patch.object(
-            switcher.vim_scroll, "scroll_home"
-        ):
-            switcher.render_file(mock_json)
-            # JSON should now go to text_window
-            assert switcher.get_active_widget() == switcher.text_window
-            assert switcher.text_window.display is True
-            assert switcher.text_window.language == "json"
+        switcher.static_window.file_to_json = MagicMock(
+            return_value='{\n  "key": "value"\n}'
+        )
+        switcher.text_window.scroll_home = MagicMock()
+        switcher.vim_scroll.scroll_home = MagicMock()
+
+        switcher.render_file(mock_json)
+        # JSON should now go to text_window
+        assert switcher.get_active_widget() == switcher.text_window
+        assert switcher.text_window.display is True
+        assert switcher.text_window.language == "json"
 
 
 def test_window_switcher_linenos_sync():
-    with patch("textual.widget.Widget.app", new_callable=MagicMock):
+    mock_app = MagicMock()
+    with pytest.MonkeyPatch.context() as mp:
+        mp.setattr("textual.widget.Widget.app", mock_app, raising=False)
         context = TextualAppContext()
         switcher = WindowSwitcher(config_object=context)
         switcher.linenos = True
@@ -88,14 +93,24 @@ def test_window_switcher_linenos_sync():
 
 
 def test_window_switcher_theme_sync():
-    with patch("textual.widget.Widget.app", new_callable=MagicMock) as mock_app:
-        mock_app.dark = True
+    mock_app = MagicMock()
+    mock_app.dark = True
+    mock_app.sub_title = ""
+
+    with pytest.MonkeyPatch.context() as mp:
+        mp.setattr("textual.widget.Widget.app", mock_app, raising=False)
         context = TextualAppContext()
         switcher = WindowSwitcher(config_object=context)
+        switcher.rendered_file = "test.py"
+        switcher.text_window.display = True
 
         switcher.theme = "monokai"
         assert switcher.static_window.theme == "monokai"
         assert switcher.text_window.theme == "monokai"
+
+        # github-dark maps to vscode_dark in TextWindow
+        switcher.theme = "github-dark"
+        assert switcher.text_window.theme == "vscode_dark"
 
         mock_app.dark = False
         # Trigger the watch_dark
@@ -104,5 +119,5 @@ def test_window_switcher_theme_sync():
             switcher.text_window.theme == "github_light"
         )  # TextWindow forces light theme when app is light
         assert (
-            switcher.static_window.theme == "monokai"
+            switcher.static_window.theme == "github-dark"
         )  # StaticWindow keeps Browsr theme
