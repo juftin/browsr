@@ -4,6 +4,7 @@ Content Windows
 
 from __future__ import annotations
 
+import contextlib
 import json
 from json import JSONDecodeError
 from typing import Any, ClassVar
@@ -154,8 +155,6 @@ class StaticWindow(Static, BaseCodeWindow):
     A static widget for displaying code.
     """
 
-    theme: Reactive[str] = reactive(favorite_themes[0])
-
     rich_themes: ClassVar[list[str]] = favorite_themes
 
     def __init__(
@@ -164,6 +163,7 @@ class StaticWindow(Static, BaseCodeWindow):
         super().__init__(*args, **kwargs)
         self.config_object = config_object
         self.linenos = False
+        self.theme = favorite_themes[0]
 
     def file_to_markdown(
         self, file_path: UPath, max_lines: int | None = None
@@ -208,17 +208,6 @@ class StaticWindow(Static, BaseCodeWindow):
         elif isinstance(self.renderable, Markdown):
             self.renderable.code_theme = self.theme
 
-    def next_theme(self) -> str | None:
-        """
-        Switch to the next theme
-        """
-        if not isinstance(self.renderable, (Syntax, Markdown)):
-            return None
-        current_index = favorite_themes.index(self.theme)
-        next_theme = favorite_themes[(current_index + 1) % len(favorite_themes)]
-        self.theme = next_theme
-        return next_theme
-
 
 class TextWindow(TextArea, BaseCodeWindow):
     """
@@ -255,6 +244,10 @@ class TextWindow(TextArea, BaseCodeWindow):
         """
         Apply a theme to the TextArea
         """
+        with contextlib.suppress(AttributeError):
+            if not self.app.dark:
+                self.theme = "github_light"
+                return
         target = self.THEME_MAP.get(rich_theme, "vscode_dark")
         if target in self.available_themes:
             self.theme = target
@@ -340,6 +333,7 @@ class WindowSwitcher(Container):
 
     show_tree: Reactive[bool] = reactive(True)
     linenos: Reactive[bool] = reactive(False)
+    theme: Reactive[str] = reactive(favorite_themes[0])
 
     datatable_extensions: ClassVar[list[str]] = [
         ".csv",
@@ -356,16 +350,18 @@ class WindowSwitcher(Container):
         self, config_object: TextualAppContext, *args: Any, **kwargs: Any
     ) -> None:
         super().__init__(*args, **kwargs)
+        self.rendered_file: UPath | None = None
         self.config_object = config_object
         self.static_window = StaticWindow(expand=True, config_object=config_object)
         self.text_window = TextWindow()
-        self.text_window.linenos = self.linenos
         self.datatable_window = DataTableWindow(
             zebra_stripes=True, show_header=True, show_cursor=True, id="table-view"
         )
         self.datatable_window.display = False
         self.vim_scroll = VimScroll(self.static_window)
-        self.rendered_file: UPath | None = None
+        # Apply initial reactive state
+        self.text_window.linenos = self.linenos
+        self.text_window.apply_smart_theme(self.theme)
 
     def watch_linenos(self, linenos: bool) -> None:
         """
@@ -376,6 +372,22 @@ class WindowSwitcher(Container):
         if isinstance(self.static_window.renderable, Syntax):
             self.static_window.renderable.line_numbers = linenos
             self.static_window.refresh()
+
+    def watch_theme(self, theme: str) -> None:
+        """
+        Called when theme is modified.
+        """
+        self.static_window.theme = theme
+        self.text_window.apply_smart_theme(theme)
+        if self.rendered_file is not None:
+            self.app.sub_title = str(self.rendered_file) + f" [{theme}]"
+
+    def watch_dark(self, _dark: bool) -> None:
+        """
+        Called when dark mode is modified.
+        """
+        self.text_window.apply_smart_theme(self.theme)
+        self.static_window.refresh()
 
     def compose(self) -> ComposeResult:
         """
@@ -438,10 +450,11 @@ class WindowSwitcher(Container):
                 text=json_str, file_path=file_path
             )
             json_syntax.line_numbers = self.linenos
+            json_syntax.theme = self.theme
             self.static_window.update(json_syntax)
             self.text_window.load_text(json_str)
             self.text_window.detect_language(file_path)
-            self.text_window.apply_smart_theme(self.static_window.theme)
+            self.text_window.apply_smart_theme(self.theme)
             switch_window = self.text_window  # type: ignore[assignment]
         else:
             string = self.static_window.file_to_string(
@@ -449,10 +462,11 @@ class WindowSwitcher(Container):
             )
             syntax = self.static_window.text_to_syntax(text=string, file_path=file_path)
             syntax.line_numbers = self.linenos
+            syntax.theme = self.theme
             self.static_window.update(syntax)
             self.text_window.load_text(string)
             self.text_window.detect_language(file_path)
-            self.text_window.apply_smart_theme(self.static_window.theme)
+            self.text_window.apply_smart_theme(self.theme)
             switch_window = self.text_window  # type: ignore[assignment]
         self.switch_window(switch_window)
         active_widget = self.get_active_widget()
@@ -461,12 +475,7 @@ class WindowSwitcher(Container):
                 self.vim_scroll.scroll_home(animate=False)
             else:
                 switch_window.scroll_home(animate=False)
-        if active_widget is self.vim_scroll:
-            self.app.sub_title = str(file_path) + f" [{self.static_window.theme}]"
-        elif active_widget is self.text_window:
-            self.app.sub_title = str(file_path) + f" [{self.text_window.theme}]"
-        else:
-            self.app.sub_title = str(file_path)
+        self.app.sub_title = str(file_path) + f" [{self.theme}]"
         self.rendered_file = file_path
 
     def next_theme(self) -> str | None:
@@ -476,28 +485,13 @@ class WindowSwitcher(Container):
         active_widget = self.get_active_widget()
         if active_widget not in [self.vim_scroll, self.text_window]:
             return None
-        current_theme = (
-            self.static_window.theme
-            if active_widget is self.vim_scroll
-            else self.text_window.theme
-        )
         # Try to find the next theme in favorite_themes
         try:
-            current_index = favorite_themes.index(current_theme)
+            current_index = favorite_themes.index(self.theme)
         except ValueError:
-            # If current theme is a Textual-specific theme not in favorite_themes
-            # (e.g. vscode_dark), default to first favorite
             current_index = -1
         next_theme_rich = favorite_themes[(current_index + 1) % len(favorite_themes)]
-
-        if active_widget is self.vim_scroll:
-            self.static_window.theme = next_theme_rich
-            display_theme = self.static_window.theme
-        else:
-            self.text_window.apply_smart_theme(next_theme_rich)
-            display_theme = self.text_window.theme
-
-        self.app.sub_title = str(self.rendered_file) + f" [{display_theme}]"
+        self.theme = next_theme_rich
         return next_theme_rich
 
     def action_toggle_files(self) -> None:
