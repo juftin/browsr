@@ -356,6 +356,7 @@ class WindowSwitcher(Container):
         super().__init__(*args, **kwargs)
         self.config_object = config_object
         self.static_window = StaticWindow(expand=True, config_object=config_object)
+        self.text_window = TextWindow()
         self.datatable_window = DataTableWindow(
             zebra_stripes=True, show_header=True, show_cursor=True, id="table-view"
         )
@@ -368,6 +369,7 @@ class WindowSwitcher(Container):
         Compose the widget
         """
         yield self.vim_scroll
+        yield self.text_window
         yield self.datatable_window
 
     def get_active_widget(self) -> Widget:  # type: ignore[return]
@@ -376,6 +378,8 @@ class WindowSwitcher(Container):
         """
         if self.vim_scroll.display:
             return self.vim_scroll
+        elif self.text_window.display:
+            return self.text_window
         elif self.datatable_window.display:
             return self.datatable_window
 
@@ -385,6 +389,7 @@ class WindowSwitcher(Container):
         """
         screens: dict[Widget, Widget] = {
             self.static_window: self.vim_scroll,
+            self.text_window: self.text_window,
             self.datatable_window: self.datatable_window,
         }
         for window_screen in screens:
@@ -416,18 +421,18 @@ class WindowSwitcher(Container):
             json_str = self.static_window.file_to_json(
                 file_path=file_path, max_lines=self.config_object.max_lines
             )
-            json_syntax = self.static_window.text_to_syntax(
-                text=json_str, file_path=file_path
-            )
-            self.static_window.update(json_syntax)
-            switch_window = self.static_window
+            self.text_window.load_text(json_str)
+            self.text_window.detect_language(file_path)
+            self.text_window.apply_smart_theme(self.static_window.theme)
+            switch_window = self.text_window  # type: ignore[assignment]
         else:
             string = self.static_window.file_to_string(
                 file_path=file_path, max_lines=self.config_object.max_lines
             )
-            syntax = self.static_window.text_to_syntax(text=string, file_path=file_path)
-            self.static_window.update(syntax)
-            switch_window = self.static_window
+            self.text_window.load_text(string)
+            self.text_window.detect_language(file_path)
+            self.text_window.apply_smart_theme(self.static_window.theme)
+            switch_window = self.text_window  # type: ignore[assignment]
         self.switch_window(switch_window)
         active_widget = self.get_active_widget()
         if scroll_home:
@@ -437,6 +442,8 @@ class WindowSwitcher(Container):
                 switch_window.scroll_home(animate=False)
         if active_widget is self.vim_scroll:
             self.app.sub_title = str(file_path) + f" [{self.static_window.theme}]"
+        elif active_widget is self.text_window:
+            self.app.sub_title = str(file_path) + f" [{self.text_window.theme}]"
         else:
             self.app.sub_title = str(file_path)
         self.rendered_file = file_path
