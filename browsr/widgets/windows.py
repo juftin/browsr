@@ -261,6 +261,18 @@ class TextWindow(TextArea, BaseCodeWindow):
         "xslt": "xml",
     }
 
+    FILENAME_MAP: ClassVar[dict[str, str]] = {
+        "uv.lock": "toml",
+        "pyproject.toml": "toml",
+        "cargo.lock": "toml",
+        "cargo.toml": "toml",
+        "makefile": "bash",
+        "dockerfile": "bash",
+        "procfile": "yaml",
+        ".gitignore": "bash",
+        ".env": "bash",
+    }
+
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(read_only=True, **kwargs)
         self.show_line_numbers = self.linenos
@@ -289,6 +301,10 @@ class TextWindow(TextArea, BaseCodeWindow):
         """
         if isinstance(file_path, str):
             file_path = UPath(file_path)
+        file_name = file_path.name.lower()
+        if file_name in self.FILENAME_MAP:
+            self.language = self.FILENAME_MAP[file_name]
+            return
         ext = file_path.suffix.lstrip(".").lower()
         if ext in self.LANGUAGE_MAP:
             self.language = self.LANGUAGE_MAP[ext]
