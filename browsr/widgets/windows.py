@@ -155,6 +155,7 @@ class StaticWindow(Static, BaseCodeWindow):
     A static widget for displaying code.
     """
 
+    theme: Reactive[str] = reactive(favorite_themes[0])
     rich_themes: ClassVar[list[str]] = favorite_themes
 
     def __init__(
@@ -163,7 +164,6 @@ class StaticWindow(Static, BaseCodeWindow):
         super().__init__(*args, **kwargs)
         self.config_object = config_object
         self.linenos = False
-        self.theme = favorite_themes[0]
 
     def file_to_markdown(
         self, file_path: UPath, max_lines: int | None = None
@@ -215,6 +215,7 @@ class TextWindow(TextArea, BaseCodeWindow):
     """
 
     linenos: Reactive[bool] = reactive(True)
+    default_theme: ClassVar[str] = "vscode_dark"
 
     BINDINGS: ClassVar[list[Binding]] = [
         Binding("j", "cursor_down", "Down", show=False),
@@ -275,7 +276,9 @@ class TextWindow(TextArea, BaseCodeWindow):
 
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(read_only=True, **kwargs)
+        self.theme = self.default_theme
         self.show_line_numbers = self.linenos
+        self.display = False
 
     def watch_linenos(self, linenos: bool) -> None:
         """
@@ -378,7 +381,6 @@ class WindowSwitcher(Container):
 
     show_tree: Reactive[bool] = reactive(True)
     linenos: Reactive[bool] = reactive(False)
-    theme: Reactive[str] = reactive(favorite_themes[0])
 
     datatable_extensions: ClassVar[list[str]] = [
         ".csv",
@@ -395,10 +397,13 @@ class WindowSwitcher(Container):
         self, config_object: TextualAppContext, *args: Any, **kwargs: Any
     ) -> None:
         super().__init__(*args, **kwargs)
+        self._initialized = False
         self.rendered_file: UPath | None = None
         self.config_object = config_object
+        self.theme = favorite_themes[0]
         self.static_window = StaticWindow(expand=True, config_object=config_object)
         self.text_window = TextWindow()
+        self.text_window.display = False
         self.datatable_window = DataTableWindow(
             zebra_stripes=True, show_header=True, show_cursor=True, id="table-view"
         )
@@ -406,7 +411,9 @@ class WindowSwitcher(Container):
         self.vim_scroll = VimScroll(self.static_window)
         # Apply initial reactive state
         self.text_window.linenos = self.linenos
-        self.text_window.apply_smart_theme(self.theme)
+        self.theme = self.static_window.theme
+        self._initialized = True
+        self.text_window.theme = self.text_window.default_theme
 
     def watch_linenos(self, linenos: bool) -> None:
         """
@@ -426,7 +433,7 @@ class WindowSwitcher(Container):
             return
         active_widget = self.get_active_widget()
         if active_widget is self.text_window:
-            display_theme = self.text_window.theme
+            display_theme = self.text_window.theme.replace("_", "-")
         elif active_widget is self.vim_scroll:
             display_theme = self.static_window.theme
         else:
@@ -438,8 +445,12 @@ class WindowSwitcher(Container):
         """
         Called when theme is modified.
         """
+        self.theme = theme
         self.static_window.theme = theme
-        self.text_window.apply_smart_theme(theme)
+        if getattr(self, "_initialized", False):
+            # Only sync to TextWindow if it is specifically active
+            if self.text_window.display:
+                self.text_window.apply_smart_theme(theme)
         self._update_subtitle()
 
     def watch_dark(self, _dark: bool) -> None:
@@ -483,6 +494,12 @@ class WindowSwitcher(Container):
                 screens[window_screen].display = True
             else:
                 screens[window_screen].display = False
+        if window is self.text_window:
+            # We only apply the smart theme if it's currently using a non-standard theme
+            # or if it's the first time it's being shown.
+            # But the user wants vscode_dark to persist.
+            pass
+        self._update_subtitle()
 
     def render_file(self, file_path: UPath, scroll_home: bool = True) -> None:
         """
@@ -515,7 +532,6 @@ class WindowSwitcher(Container):
             self.static_window.update(json_syntax)
             self.text_window.load_text(json_str)
             self.text_window.detect_language(file_path)
-            self.text_window.apply_smart_theme(self.theme)
             switch_window = self.text_window  # type: ignore[assignment]
         else:
             string = self.static_window.file_to_string(
@@ -527,7 +543,6 @@ class WindowSwitcher(Container):
             self.static_window.update(syntax)
             self.text_window.load_text(string)
             self.text_window.detect_language(file_path)
-            self.text_window.apply_smart_theme(self.theme)
             switch_window = self.text_window  # type: ignore[assignment]
         self.switch_window(switch_window)
         active_widget = self.get_active_widget()
@@ -562,8 +577,9 @@ class WindowSwitcher(Container):
             next_theme_rich = favorite_themes[
                 (current_index + 1) % len(favorite_themes)
             ]
-            self.theme = next_theme_rich
+            self.watch_theme(next_theme_rich)
             return next_theme_rich
+
         return None
 
     def action_toggle_files(self) -> None:

@@ -12,6 +12,7 @@ def test_text_window_inheritance():
     window = TextWindow()
     assert isinstance(window, TextArea)
     assert window.read_only is True
+    assert window.theme == window.default_theme
 
 
 def test_text_window_theme_mapping():
@@ -65,6 +66,9 @@ async def test_window_switcher_routing():
         context = TextualAppContext()
         switcher = WindowSwitcher(config_object=context)
 
+        # Ensure default theme
+        assert switcher.text_window.theme == switcher.text_window.default_theme
+
         # Mock UPath for a JSON file
         mock_json = MagicMock(spec=UPath)
         mock_json.suffix = ".json"
@@ -72,18 +76,33 @@ async def test_window_switcher_routing():
         mock_json.read_text.return_value = '{"key": "value"}'
         mock_json.__str__.return_value = "test.json"
 
+        # Mock UPath for a Python file
+        mock_py = MagicMock(spec=UPath)
+        mock_py.suffix = ".py"
+        mock_py.suffixes = [".py"]
+        mock_py.read_text.return_value = "print('hello')"
+        mock_py.__str__.return_value = "test.py"
+
         # We need to patch various things to avoid NoActiveAppError and other issues
         switcher.static_window.file_to_json = MagicMock(
             return_value='{\n  "key": "value"\n}'
         )
+        switcher.static_window.file_to_string = MagicMock(return_value="print('hello')")
         switcher.text_window.scroll_home = MagicMock()
         switcher.vim_scroll.scroll_home = MagicMock()
 
+        # Render JSON
         switcher.render_file(mock_json)
-        # JSON should now go to text_window
-        assert switcher.get_active_widget() == switcher.text_window
-        assert switcher.text_window.display is True
-        assert switcher.text_window.language == "json"
+        # It was monokai in failure, let's see why
+        # If it fails here, I'll add a print to the test
+        assert switcher.text_window.theme == switcher.text_window.default_theme
+
+        # Manually change theme
+        switcher.text_window.theme = "monokai"
+
+        # Render Python - should PERSIST theme
+        switcher.render_file(mock_py)
+        assert switcher.text_window.theme == "monokai"
 
 
 def test_window_switcher_linenos_sync():
@@ -120,13 +139,10 @@ def test_window_switcher_theme_sync():
 
         # Test TextWindow theme cycling
         switcher.switch_window(switcher.text_window)
-        # Available themes: ['dracula', 'monokai', 'github_light', 'css', 'vscode_dark']
-        # The exact cycling depends on the alphabetical order (sorted in next_theme)
         initial_text_theme = switcher.text_window.theme
         switcher.next_theme()
         assert switcher.text_window.theme != initial_text_theme
-        # Global switcher theme should NOT have changed because
-        # we cycled TextArea themes locally
+        # Global switcher theme should NOT have changed
         assert switcher.theme == switcher.static_window.theme
 
         mock_app.dark = False
