@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 import pytest
 from textual.widgets import TextArea
@@ -55,6 +55,36 @@ def test_text_window_linenos():
     assert window.show_line_numbers is True
     window.linenos = False
     assert window.show_line_numbers is False
+
+
+def test_text_window_copy_text():
+    window = TextWindow()
+    window.text = "Hello World"
+    mock_app = MagicMock()
+
+    with pytest.MonkeyPatch.context() as mp:
+        mp.setattr("textual.widget.Widget.app", mock_app, raising=False)
+        with patch("pyperclip.copy") as mock_copy:
+            # Test no selection
+            window.action_copy_text()
+            mock_copy.assert_not_called()
+            mock_app.notify.assert_called_with(
+                title="No Selection",
+                message="No text selected to copy",
+                severity="warning",
+                timeout=1,
+            )
+
+            # Test selection
+            window.selection = ((0, 0), (0, 5))  # "Hello"
+            window.action_copy_text()
+            mock_copy.assert_called_with("Hello")
+            mock_app.notify.assert_called_with(
+                title="Copied",
+                message="Selected text copied to clipboard",
+                severity="information",
+                timeout=1,
+            )
 
 
 @pytest.mark.asyncio

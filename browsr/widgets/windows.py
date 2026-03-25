@@ -10,6 +10,7 @@ from json import JSONDecodeError
 from typing import Any, ClassVar
 
 import pandas as pd
+import pyperclip
 from art import text2art
 from numpy import nan
 from rich.markdown import Markdown
@@ -222,14 +223,15 @@ class TextWindow(TextArea, BaseCodeWindow):
         Binding("k", "cursor_up", "Up", show=False),
         Binding("l", "cursor_right", "Right", show=False),
         Binding("h", "cursor_left", "Left", show=False),
+        Binding("shift+c", "copy_text", "Copy Text", show=True),
     ]
 
     THEME_MAP: ClassVar[dict[str, str]] = {
-        "css": "css",
         "monokai": "monokai",
-        "dracula": "dracula",
         "vscode-dark": "vscode_dark",
+        "dracula": "dracula",
         "github-light": "github_light",
+        "css": "css",
     }
 
     LANGUAGE_MAP: ClassVar[dict[str, str]] = {
@@ -285,6 +287,26 @@ class TextWindow(TextArea, BaseCodeWindow):
         Called when linenos is modified.
         """
         self.show_line_numbers = linenos
+
+    def action_copy_text(self) -> None:
+        """
+        Copy the selected text to the clipboard.
+        """
+        if self.selected_text:
+            pyperclip.copy(self.selected_text)
+            self.app.notify(
+                title="Copied",
+                message="Selected text copied to clipboard",
+                severity="information",
+                timeout=1,
+            )
+        else:
+            self.app.notify(
+                title="No Selection",
+                message="No text selected to copy",
+                severity="warning",
+                timeout=1,
+            )
 
     def apply_smart_theme(self, rich_theme: str) -> None:
         """
@@ -560,7 +582,7 @@ class WindowSwitcher(Container):
         """
         active_widget = self.get_active_widget()
         if active_widget is self.text_window:
-            themes = sorted(self.text_window.available_themes)
+            themes = list(self.text_window.THEME_MAP.values())
             try:
                 current_index = themes.index(self.text_window.theme)
             except ValueError:
