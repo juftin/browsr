@@ -38,6 +38,10 @@ def test_text_window_language_detection():
     assert window.language == "python"
     window.detect_language("test.json")
     assert window.language == "json"
+    window.detect_language("test.yml")
+    assert window.language == "yaml"
+    window.detect_language("test.sh")
+    assert window.language == "bash"
 
 
 def test_text_window_linenos():

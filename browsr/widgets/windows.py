@@ -231,6 +231,36 @@ class TextWindow(TextArea, BaseCodeWindow):
         "github-light": "github_light",
     }
 
+    LANGUAGE_MAP: ClassVar[dict[str, str]] = {
+        "py": "python",
+        "pyi": "python",
+        "pyw": "python",
+        "md": "markdown",
+        "markdown": "markdown",
+        "json": "json",
+        "toml": "toml",
+        "yaml": "yaml",
+        "yml": "yaml",
+        "html": "html",
+        "htm": "html",
+        "css": "css",
+        "js": "javascript",
+        "mjs": "javascript",
+        "cjs": "javascript",
+        "rs": "rust",
+        "go": "go",
+        "sql": "sql",
+        "java": "java",
+        "sh": "bash",
+        "bash": "bash",
+        "zsh": "bash",
+        "xml": "xml",
+        "rss": "xml",
+        "svg": "xml",
+        "xsd": "xml",
+        "xslt": "xml",
+    }
+
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(read_only=True, **kwargs)
         self.show_line_numbers = self.linenos
@@ -260,12 +290,10 @@ class TextWindow(TextArea, BaseCodeWindow):
         if isinstance(file_path, str):
             file_path = UPath(file_path)
         ext = file_path.suffix.lstrip(".").lower()
-        if ext in self.available_languages:
+        if ext in self.LANGUAGE_MAP:
+            self.language = self.LANGUAGE_MAP[ext]
+        elif ext in self.available_languages:
             self.language = ext
-        elif ext == "py":
-            self.language = "python"
-        elif ext == "js":
-            self.language = "javascript"
         else:
             self.language = None
 
