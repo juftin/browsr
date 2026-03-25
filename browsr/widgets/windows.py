@@ -154,7 +154,6 @@ class StaticWindow(Static, BaseCodeWindow):
     A static widget for displaying code.
     """
 
-    linenos: Reactive[bool] = reactive(False)
     theme: Reactive[str] = reactive(favorite_themes[0])
 
     rich_themes: ClassVar[list[str]] = favorite_themes
@@ -164,6 +163,7 @@ class StaticWindow(Static, BaseCodeWindow):
     ) -> None:
         super().__init__(*args, **kwargs)
         self.config_object = config_object
+        self.linenos = False
 
     def file_to_markdown(
         self, file_path: UPath, max_lines: int | None = None
@@ -190,13 +190,6 @@ class StaticWindow(Static, BaseCodeWindow):
             indent_guides=False,
             theme=self.theme,
         )
-
-    def watch_linenos(self, linenos: bool) -> None:
-        """
-        Called when linenos is modified.
-        """
-        if isinstance(self.renderable, Syntax):
-            self.renderable.line_numbers = linenos
 
     def watch_theme(self, theme: str) -> None:
         """
@@ -232,6 +225,8 @@ class TextWindow(TextArea, BaseCodeWindow):
     A window that displays text using a TextArea.
     """
 
+    linenos: Reactive[bool] = reactive(True)
+
     BINDINGS: ClassVar[list[Binding]] = [
         Binding("j", "cursor_down", "Down", show=False),
         Binding("k", "cursor_up", "Up", show=False),
@@ -248,7 +243,13 @@ class TextWindow(TextArea, BaseCodeWindow):
 
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(read_only=True, **kwargs)
-        self.show_line_numbers = True
+        self.show_line_numbers = self.linenos
+
+    def watch_linenos(self, linenos: bool) -> None:
+        """
+        Called when linenos is modified.
+        """
+        self.show_line_numbers = linenos
 
     def apply_smart_theme(self, rich_theme: str) -> None:
         """
@@ -338,6 +339,7 @@ class WindowSwitcher(Container):
     """
 
     show_tree: Reactive[bool] = reactive(True)
+    linenos: Reactive[bool] = reactive(False)
 
     datatable_extensions: ClassVar[list[str]] = [
         ".csv",
@@ -357,12 +359,23 @@ class WindowSwitcher(Container):
         self.config_object = config_object
         self.static_window = StaticWindow(expand=True, config_object=config_object)
         self.text_window = TextWindow()
+        self.text_window.linenos = self.linenos
         self.datatable_window = DataTableWindow(
             zebra_stripes=True, show_header=True, show_cursor=True, id="table-view"
         )
         self.datatable_window.display = False
         self.vim_scroll = VimScroll(self.static_window)
         self.rendered_file: UPath | None = None
+
+    def watch_linenos(self, linenos: bool) -> None:
+        """
+        Called when linenos is modified.
+        """
+        self.static_window.linenos = linenos
+        self.text_window.linenos = linenos
+        if isinstance(self.static_window.renderable, Syntax):
+            self.static_window.renderable.line_numbers = linenos
+            self.static_window.refresh()
 
     def compose(self) -> ComposeResult:
         """
@@ -421,6 +434,11 @@ class WindowSwitcher(Container):
             json_str = self.static_window.file_to_json(
                 file_path=file_path, max_lines=self.config_object.max_lines
             )
+            json_syntax = self.static_window.text_to_syntax(
+                text=json_str, file_path=file_path
+            )
+            json_syntax.line_numbers = self.linenos
+            self.static_window.update(json_syntax)
             self.text_window.load_text(json_str)
             self.text_window.detect_language(file_path)
             self.text_window.apply_smart_theme(self.static_window.theme)
@@ -429,6 +447,9 @@ class WindowSwitcher(Container):
             string = self.static_window.file_to_string(
                 file_path=file_path, max_lines=self.config_object.max_lines
             )
+            syntax = self.static_window.text_to_syntax(text=string, file_path=file_path)
+            syntax.line_numbers = self.linenos
+            self.static_window.update(syntax)
             self.text_window.load_text(string)
             self.text_window.detect_language(file_path)
             self.text_window.apply_smart_theme(self.static_window.theme)

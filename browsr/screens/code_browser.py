@@ -156,8 +156,8 @@ class CodeBrowserScreen(SortedBindingsScreen):
         """
         if self.code_browser.selected_file_path is None:
             return
-        self.code_browser.static_window.linenos = (
-            not self.code_browser.static_window.linenos
+        self.code_browser.window_switcher.linenos = (
+            not self.code_browser.window_switcher.linenos
         )
 
     def action_reload(self) -> None:

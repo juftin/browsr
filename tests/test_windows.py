@@ -30,6 +30,14 @@ def test_text_window_language_detection():
     assert window.language == "json"
 
 
+def test_text_window_linenos():
+    window = TextWindow()
+    window.linenos = True
+    assert window.show_line_numbers is True
+    window.linenos = False
+    assert window.show_line_numbers is False
+
+
 @pytest.mark.asyncio
 async def test_window_switcher_routing():
     context = TextualAppContext()
@@ -53,3 +61,14 @@ async def test_window_switcher_routing():
         assert switcher.get_active_widget() == switcher.text_window
         assert switcher.text_window.display is True
         assert switcher.text_window.language == "json"
+
+
+def test_window_switcher_linenos_sync():
+    context = TextualAppContext()
+    switcher = WindowSwitcher(config_object=context)
+    switcher.linenos = True
+    assert switcher.static_window.linenos is True
+    assert switcher.text_window.linenos is True
+    switcher.linenos = False
+    assert switcher.static_window.linenos is False
+    assert switcher.text_window.linenos is False
