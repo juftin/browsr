@@ -500,16 +500,27 @@ class WindowSwitcher(Container):
         Switch to the next theme
         """
         active_widget = self.get_active_widget()
-        if active_widget not in [self.vim_scroll, self.text_window]:
-            return None
-        # Try to find the next theme in favorite_themes
-        try:
-            current_index = favorite_themes.index(self.theme)
-        except ValueError:
-            current_index = -1
-        next_theme_rich = favorite_themes[(current_index + 1) % len(favorite_themes)]
-        self.theme = next_theme_rich
-        return next_theme_rich
+        if active_widget is self.text_window:
+            themes = sorted(self.text_window.available_themes)
+            try:
+                current_index = themes.index(self.text_window.theme)
+            except ValueError:
+                current_index = -1
+            next_theme = themes[(current_index + 1) % len(themes)]
+            self.text_window.theme = next_theme
+            self._update_subtitle()
+            return next_theme
+        if active_widget is self.vim_scroll:
+            try:
+                current_index = favorite_themes.index(self.theme)
+            except ValueError:
+                current_index = -1
+            next_theme_rich = favorite_themes[
+                (current_index + 1) % len(favorite_themes)
+            ]
+            self.theme = next_theme_rich
+            return next_theme_rich
+        return None
 
     def action_toggle_files(self) -> None:
         """

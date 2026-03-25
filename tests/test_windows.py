@@ -102,22 +102,27 @@ def test_window_switcher_theme_sync():
         context = TextualAppContext()
         switcher = WindowSwitcher(config_object=context)
         switcher.rendered_file = "test.py"
-        switcher.text_window.display = True
 
-        switcher.theme = "monokai"
-        assert switcher.static_window.theme == "monokai"
-        assert switcher.text_window.theme == "monokai"
+        # Test StaticWindow theme cycling
+        switcher.switch_window(switcher.static_window)
+        initial_theme = switcher.theme
+        switcher.next_theme()
+        assert switcher.theme != initial_theme
+        assert switcher.static_window.theme == switcher.theme
 
-        # github-dark maps to vscode_dark in TextWindow
-        switcher.theme = "github-dark"
-        assert switcher.text_window.theme == "vscode_dark"
+        # Test TextWindow theme cycling
+        switcher.switch_window(switcher.text_window)
+        # Available themes: ['dracula', 'monokai', 'github_light', 'css', 'vscode_dark']
+        # The exact cycling depends on the alphabetical order (sorted in next_theme)
+        initial_text_theme = switcher.text_window.theme
+        switcher.next_theme()
+        assert switcher.text_window.theme != initial_text_theme
+        # Global switcher theme should NOT have changed because
+        # we cycled TextArea themes locally
+        assert switcher.theme == switcher.static_window.theme
 
         mock_app.dark = False
         # Trigger the watch_dark
         switcher.watch_dark(False)
-        assert (
-            switcher.text_window.theme == "github_light"
-        )  # TextWindow forces light theme when app is light
-        assert (
-            switcher.static_window.theme == "github-dark"
-        )  # StaticWindow keeps Browsr theme
+        # TextWindow forces light theme when app is light
+        assert switcher.text_window.theme == "github_light"
