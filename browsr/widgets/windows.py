@@ -538,12 +538,17 @@ class WindowSwitcher(Container):
         """
         active_widget = self.get_active_widget()
         if active_widget is self.text_window:
-            themes = sorted(self.text_window.available_themes)
+            themes = list(textarea_theme_map.values())
+            # Ensure uniqueness while preserving order
+            unique_themes = []
+            for t in themes:
+                if t not in unique_themes:
+                    unique_themes.append(t)
             try:
-                current_index = themes.index(self.text_window.theme)
+                current_index = unique_themes.index(self.text_window.theme)
             except ValueError:
                 current_index = -1
-            next_theme = themes[(current_index + 1) % len(themes)]
+            next_theme = unique_themes[(current_index + 1) % len(unique_themes)]
             self.text_window.theme = next_theme
             self._update_subtitle()
             return next_theme
