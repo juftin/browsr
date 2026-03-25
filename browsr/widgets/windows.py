@@ -26,7 +26,14 @@ from textual.widgets import Static, TextArea
 from textual_universal_directorytree import UPath
 
 from browsr.base import TextualAppContext
-from browsr.config import favorite_themes, image_file_extensions
+from browsr.config import (
+    favorite_themes,
+    filename_map,
+    image_file_extensions,
+    language_map,
+    textarea_default_theme,
+    textarea_theme_map,
+)
 from browsr.exceptions import FileSizeError
 from browsr.utils import (
     ArchiveFileError,
@@ -218,7 +225,7 @@ class TextWindow(TextArea, BaseCodeWindow):
     """
 
     linenos: Reactive[bool] = reactive(True)
-    default_theme: ClassVar[str] = "vscode_dark"
+    default_theme: ClassVar[str] = textarea_default_theme
 
     BINDINGS: ClassVar[list[Binding]] = [
         Binding("j", "cursor_down", "Down", show=False),
@@ -229,56 +236,6 @@ class TextWindow(TextArea, BaseCodeWindow):
             "C", "copy_text", "Copy Selected Text", show=True, key_display="shift+c"
         ),
     ]
-
-    THEME_MAP: ClassVar[dict[str, str]] = {
-        "monokai": "monokai",
-        "vscode-dark": "vscode_dark",
-        "dracula": "dracula",
-        "github-light": "github_light",
-        "css": "css",
-    }
-
-    LANGUAGE_MAP: ClassVar[dict[str, str]] = {
-        "py": "python",
-        "pyi": "python",
-        "pyw": "python",
-        "md": "markdown",
-        "markdown": "markdown",
-        "json": "json",
-        "toml": "toml",
-        "yaml": "yaml",
-        "yml": "yaml",
-        "html": "html",
-        "htm": "html",
-        "css": "css",
-        "js": "javascript",
-        "mjs": "javascript",
-        "cjs": "javascript",
-        "rs": "rust",
-        "go": "go",
-        "sql": "sql",
-        "java": "java",
-        "sh": "bash",
-        "bash": "bash",
-        "zsh": "bash",
-        "xml": "xml",
-        "rss": "xml",
-        "svg": "xml",
-        "xsd": "xml",
-        "xslt": "xml",
-    }
-
-    FILENAME_MAP: ClassVar[dict[str, str]] = {
-        "uv.lock": "toml",
-        "pyproject.toml": "toml",
-        "cargo.lock": "toml",
-        "cargo.toml": "toml",
-        "makefile": "bash",
-        "dockerfile": "bash",
-        "procfile": "yaml",
-        ".gitignore": "bash",
-        ".env": "bash",
-    }
 
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(read_only=True, **kwargs)
@@ -320,7 +277,7 @@ class TextWindow(TextArea, BaseCodeWindow):
             if not self.app.dark:
                 self.theme = "github_light"
                 return
-        target = self.THEME_MAP.get(rich_theme, "vscode_dark")
+        target = textarea_theme_map.get(rich_theme, self.default_theme)
         if target in self.available_themes:
             self.theme = target
 
@@ -331,12 +288,12 @@ class TextWindow(TextArea, BaseCodeWindow):
         if isinstance(file_path, str):
             file_path = UPath(file_path)
         file_name = file_path.name.lower()
-        if file_name in self.FILENAME_MAP:
-            self.language = self.FILENAME_MAP[file_name]
+        if file_name in filename_map:
+            self.language = filename_map[file_name]
             return
         ext = file_path.suffix.lstrip(".").lower()
-        if ext in self.LANGUAGE_MAP:
-            self.language = self.LANGUAGE_MAP[ext]
+        if ext in language_map:
+            self.language = language_map[ext]
         elif ext in self.available_languages:
             self.language = ext
         else:
@@ -406,7 +363,7 @@ class WindowSwitcher(Container):
     """
 
     show_tree: Reactive[bool] = reactive(True)
-    linenos: Reactive[bool] = reactive(False)
+    linenos: Reactive[bool] = reactive(False, init=False)
 
     datatable_extensions: ClassVar[list[str]] = [
         ".csv",
@@ -423,22 +380,19 @@ class WindowSwitcher(Container):
         self, config_object: TextualAppContext, *args: Any, **kwargs: Any
     ) -> None:
         super().__init__(*args, **kwargs)
-        self._initialized = False
         self.rendered_file: UPath | None = None
         self.config_object = config_object
         self.theme = favorite_themes[0]
         self.static_window = StaticWindow(expand=True, config_object=config_object)
         self.text_window = TextWindow()
-        self.text_window.display = False
         self.datatable_window = DataTableWindow(
             zebra_stripes=True, show_header=True, show_cursor=True, id="table-view"
         )
         self.datatable_window.display = False
         self.vim_scroll = VimScroll(self.static_window)
-        # Apply initial reactive state
+        # Apply initial state
+        self.static_window.theme = self.theme
         self.text_window.linenos = self.linenos
-        self.theme = self.static_window.theme
-        self._initialized = True
         self.text_window.theme = self.text_window.default_theme
 
     def watch_linenos(self, linenos: bool) -> None:
@@ -473,10 +427,8 @@ class WindowSwitcher(Container):
         """
         self.theme = theme
         self.static_window.theme = theme
-        if getattr(self, "_initialized", False):
-            # Only sync to TextWindow if it is specifically active
-            if self.text_window.display:
-                self.text_window.apply_smart_theme(theme)
+        if self.text_window.display:
+            self.text_window.apply_smart_theme(theme)
         self._update_subtitle()
 
     def watch_dark(self, _dark: bool) -> None:
@@ -586,7 +538,7 @@ class WindowSwitcher(Container):
         """
         active_widget = self.get_active_widget()
         if active_widget is self.text_window:
-            themes = list(self.text_window.THEME_MAP.values())
+            themes = sorted(self.text_window.available_themes)
             try:
                 current_index = themes.index(self.text_window.theme)
             except ValueError:
