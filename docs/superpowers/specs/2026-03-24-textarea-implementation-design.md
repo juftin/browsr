@@ -4,7 +4,7 @@
 - **Topic:** Replacing StaticWindow with TextArea for code/text files in Browsr
 
 ## 1. Goal
-Introduce a new `TextWindow` widget based on Textual's `TextArea` to provide a higher-performance, editor-like experience for viewing code and text files, while maintaining `StaticWindow` for specialized Rich rendering (Markdown, Images, Exceptions).
+Introduce a new `TextWindow` widget based on Textual's [TextArea](https://textual.textualize.io/widgets/text_area/) to provide a higher-performance, editor-like experience for viewing code and text files, while maintaining `StaticWindow` for specialized Rich rendering (Markdown, Images, Exceptions).
 
 ## 2. Research & Resources
 
