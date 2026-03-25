@@ -239,9 +239,40 @@ class TextWindow(TextArea, BaseCodeWindow):
         Binding("h", "cursor_left", "Left", show=False),
     ]
 
+    THEME_MAP: ClassVar[dict[str, str]] = {
+        "monokai": "monokai",
+        "dracula": "dracula",
+        "github-dark": "vscode_dark",
+        "solarized-light": "github_light",
+    }
+
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(read_only=True, **kwargs)
         self.show_line_numbers = True
+
+    def apply_smart_theme(self, rich_theme: str) -> None:
+        """
+        Apply a theme to the TextArea
+        """
+        target = self.THEME_MAP.get(rich_theme, "vscode_dark")
+        if target in self.available_themes:
+            self.theme = target
+
+    def detect_language(self, file_path: str | UPath) -> None:
+        """
+        Detect the language from the file path
+        """
+        if isinstance(file_path, str):
+            file_path = UPath(file_path)
+        ext = file_path.suffix.lstrip(".").lower()
+        if ext in self.available_languages:
+            self.language = ext
+        elif ext == "py":
+            self.language = "python"
+        elif ext == "js":
+            self.language = "javascript"
+        else:
+            self.language = None
 
 
 class DataTableWindow(VimDataTable, BaseCodeWindow):
