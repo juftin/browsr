@@ -225,7 +225,9 @@ class TextWindow(TextArea, BaseCodeWindow):
         Binding("k", "cursor_up", "Up", show=False),
         Binding("l", "cursor_right", "Right", show=False),
         Binding("h", "cursor_left", "Left", show=False),
-        Binding("shift+c", "copy_text", "Copy Selected Text", show=True),
+        Binding(
+            "C", "copy_text", "Copy Selected Text", show=True, key_display="shift+c"
+        ),
     ]
 
     THEME_MAP: ClassVar[dict[str, str]] = {

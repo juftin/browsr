@@ -32,7 +32,7 @@ class CodeBrowserScreen(SortedBindingsScreen):
         Binding(key="n", action="linenos", description="Line Numbers"),
         Binding(key="r", action="reload", description="Reload"),
         Binding(key=".", action="parent_dir", description="Parent Directory"),
-        Binding(key="shift+c", action="copy_text", description="Copy Text", show=False),
+        Binding(key="C", action="copy_text", description="Copy Text", show=False),
     ]
 
     BINDING_WEIGHTS: ClassVar[dict[str, int]] = {
@@ -46,7 +46,7 @@ class CodeBrowserScreen(SortedBindingsScreen):
         ".": 995,
         "c": 996,
         "x": 997,
-        "shift+c": 998,
+        "C": 998,
     }
 
     def __init__(
