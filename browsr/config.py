@@ -2,6 +2,7 @@
 browsr configuration file
 """
 
+from collections import OrderedDict
 from os import getenv
 from typing import List
 
@@ -61,19 +62,21 @@ image_file_extensions = [
 
 textarea_default_theme = "vscode_dark"
 
-textarea_theme_map = {
-    "monokai": "monokai",
-    "dracula": "dracula",
-    "github-dark": "vscode_dark",
-    "solarized-light": "github_light",
-    "material": "vscode_dark",
-    "one-dark": "vscode_dark",
-    "solarized-dark": "vscode_dark",
-    "native": "vscode_dark",
-    "emacs": "vscode_dark",
-    "vim": "vscode_dark",
-    "paraiso-dark": "vscode_dark",
-}
+textarea_theme_map = OrderedDict(
+    [
+        ("monokai", "monokai"),
+        ("dracula", "dracula"),
+        ("github-dark", "vscode_dark"),
+        ("solarized-light", "github_light"),
+        ("material", "vscode_dark"),
+        ("one-dark", "vscode_dark"),
+        ("solarized-dark", "vscode_dark"),
+        ("native", "vscode_dark"),
+        ("emacs", "vscode_dark"),
+        ("vim", "vscode_dark"),
+        ("paraiso-dark", "vscode_dark"),
+    ]
+)
 
 language_map = {
     "py": "python",
