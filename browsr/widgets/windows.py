@@ -5,10 +5,10 @@ Content Windows
 from __future__ import annotations
 
 import contextlib
-import json
 from json import JSONDecodeError
 from typing import Any, ClassVar
 
+import orjson
 import pandas as pd
 import pyperclip
 from art import text2art
@@ -82,8 +82,10 @@ class BaseCodeWindow(Widget):
         """
         code_str = self.file_to_string(file_path=file_path)
         try:
-            code_obj = json.loads(code_str)
-            code_str = json.dumps(code_obj, indent=2)
+            code_obj = orjson.loads(code_str)
+            code_str = orjson.dumps(code_obj, option=orjson.OPT_INDENT_2).decode(
+                "utf-8"
+            )
         except JSONDecodeError:
             pass
         if max_lines:
@@ -223,7 +225,7 @@ class TextWindow(TextArea, BaseCodeWindow):
         Binding("k", "cursor_up", "Up", show=False),
         Binding("l", "cursor_right", "Right", show=False),
         Binding("h", "cursor_left", "Left", show=False),
-        Binding("shift+c", "copy_text", "Copy Text", show=True),
+        Binding("shift+c", "copy_text", "Copy Selected Text", show=True),
     ]
 
     THEME_MAP: ClassVar[dict[str, str]] = {

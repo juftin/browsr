@@ -32,6 +32,7 @@ class CodeBrowserScreen(SortedBindingsScreen):
         Binding(key="n", action="linenos", description="Line Numbers"),
         Binding(key="r", action="reload", description="Reload"),
         Binding(key=".", action="parent_dir", description="Parent Directory"),
+        Binding(key="shift+c", action="copy_text", description="Copy Text", show=False),
     ]
 
     BINDING_WEIGHTS: ClassVar[dict[str, int]] = {
@@ -41,10 +42,11 @@ class CodeBrowserScreen(SortedBindingsScreen):
         "t": 4,
         "n": 5,
         "d": 6,
-        "r": 995,
-        ".": 996,
-        "c": 997,
-        "x": 998,
+        "r": 994,
+        ".": 995,
+        "c": 996,
+        "x": 997,
+        "shift+c": 998,
     }
 
     def __init__(
@@ -149,6 +151,21 @@ class CodeBrowserScreen(SortedBindingsScreen):
         An action to toggle rich theme.
         """
         self.code_browser.window_switcher.next_theme()
+
+    def action_copy_text(self) -> None:
+        """
+        An action to copy text.
+        """
+        active_widget = self.code_browser.window_switcher.get_active_widget()
+        if active_widget is self.code_browser.window_switcher.text_window:
+            self.code_browser.window_switcher.text_window.action_copy_text()
+        else:
+            self.notify(
+                title="No Selection",
+                message="Text selection is only supported in code files",
+                severity="warning",
+                timeout=1,
+            )
 
     def action_linenos(self) -> None:
         """
