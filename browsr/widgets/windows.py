@@ -232,15 +232,13 @@ class TextWindow(TextArea, BaseCodeWindow):
         Binding("k", "cursor_up", "Up", show=False),
         Binding("l", "cursor_right", "Right", show=False),
         Binding("h", "cursor_left", "Left", show=False),
-        Binding(
-            "C", "copy_text", "Copy Selected Text", show=True, key_display="shift+c"
-        ),
     ]
 
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(read_only=True, **kwargs)
         self.theme = self.default_theme
         self.show_line_numbers = self.linenos
+        self.soft_wrap = False
         self.display = False
 
     def watch_linenos(self, linenos: bool) -> None:
@@ -249,7 +247,7 @@ class TextWindow(TextArea, BaseCodeWindow):
         """
         self.show_line_numbers = linenos
 
-    def action_copy_text(self) -> None:
+    def copy_selected_text(self) -> None:
         """
         Copy the selected text to the clipboard.
         """

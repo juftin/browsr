@@ -32,21 +32,22 @@ class CodeBrowserScreen(SortedBindingsScreen):
         Binding(key="n", action="linenos", description="Line Numbers"),
         Binding(key="r", action="reload", description="Reload"),
         Binding(key=".", action="parent_dir", description="Parent Directory"),
-        Binding(key="C", action="copy_text", description="Copy Text", show=False),
+        Binding(key="w", action="toggle_wrap", description="Toggle Wrap"),
     ]
 
     BINDING_WEIGHTS: ClassVar[dict[str, int]] = {
-        "ctrl+c": 1,
-        "q": 2,
-        "f": 3,
-        "t": 4,
-        "n": 5,
-        "d": 6,
-        "r": 994,
-        ".": 995,
-        "c": 996,
-        "x": 997,
-        "C": 998,
+        "ctrl+c": 5,
+        "q": 10,
+        "f": 15,
+        "t": 20,
+        "n": 25,
+        "d": 30,
+        "r": 905,
+        ".": 910,
+        "c": 920,
+        "x": 925,
+        "w": 930,
+        "C": 935,
     }
 
     def __init__(
@@ -152,21 +153,6 @@ class CodeBrowserScreen(SortedBindingsScreen):
         """
         self.code_browser.window_switcher.next_theme()
 
-    def action_copy_text(self) -> None:
-        """
-        An action to copy text.
-        """
-        active_widget = self.code_browser.window_switcher.get_active_widget()
-        if active_widget is self.code_browser.window_switcher.text_window:
-            self.code_browser.window_switcher.text_window.action_copy_text()
-        else:
-            self.notify(
-                title="No Selection",
-                message="Text selection is only supported in code files",
-                severity="warning",
-                timeout=1,
-            )
-
     def action_linenos(self) -> None:
         """
         An action to toggle line numbers.
@@ -205,3 +191,11 @@ class CodeBrowserScreen(SortedBindingsScreen):
                 severity="information",
                 timeout=1,
             )
+
+    def action_toggle_wrap(self) -> None:
+        """
+        Toggle soft wrap for the text area.
+        """
+        self.code_browser.window_switcher.text_window.soft_wrap = (
+            not self.code_browser.window_switcher.text_window.soft_wrap
+        )

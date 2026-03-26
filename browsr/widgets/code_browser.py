@@ -128,6 +128,14 @@ class CodeBrowser(Container):
             self.app.bind(
                 keys="c", action="copy_file_path", description="Copy Path", show=True
             )
+            self.app.bind(
+                keys="C",
+                action="copy_text",
+                description="Copy Text",
+                show=True,
+                key_display="shift+c",
+            )
+
         if is_remote_path(self.initial_file_path):  # type: ignore[arg-type]
             self.app.bind(
                 keys="x", action="download_file", description="Download File", show=True
