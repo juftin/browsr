@@ -5,7 +5,7 @@ from textual.widgets import TextArea
 from textual_universal_directorytree import UPath
 
 from browsr.base import TextualAppContext
-from browsr.widgets.windows import TextWindow, WindowSwitcher
+from browsr.widgets.windows import FileToStringResult, TextWindow, WindowSwitcher
 
 
 def test_text_window_inheritance():
@@ -66,7 +66,7 @@ def test_text_window_copy_text():
         mp.setattr("textual.widget.Widget.app", mock_app, raising=False)
         with patch("pyperclip.copy") as mock_copy:
             # Test no selection
-            window.action_copy_text()
+            window.copy_selected_text()
             mock_copy.assert_not_called()
             mock_app.notify.assert_called_with(
                 title="No Selection",
@@ -77,7 +77,7 @@ def test_text_window_copy_text():
 
             # Test selection
             window.selection = ((0, 0), (0, 5))  # "Hello"
-            window.action_copy_text()
+            window.copy_selected_text()
             mock_copy.assert_called_with("Hello")
             mock_app.notify.assert_called_with(
                 title="Copied",
@@ -117,7 +117,11 @@ async def test_window_switcher_routing():
         switcher.static_window.file_to_json = MagicMock(
             return_value='{\n  "key": "value"\n}'
         )
-        switcher.static_window.file_to_string = MagicMock(return_value="print('hello')")
+        switcher.static_window.file_to_string = MagicMock(
+            return_value=FileToStringResult(
+                result="print('hello')", error_occurred=False
+            )
+        )
         switcher.text_window.scroll_home = MagicMock()
         switcher.vim_scroll.scroll_home = MagicMock()
 

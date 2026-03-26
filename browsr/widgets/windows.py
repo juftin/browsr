@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import contextlib
 from json import JSONDecodeError
-from typing import Any, ClassVar
+from typing import Any, ClassVar, NamedTuple
 
 import orjson
 import pandas as pd
@@ -43,6 +43,11 @@ from browsr.utils import (
 from browsr.widgets.vim import VimDataTable, VimScroll
 
 
+class FileToStringResult(NamedTuple):
+    result: str
+    error_occurred: bool
+
+
 class BaseCodeWindow(Widget):
     """
     Base code view widget
@@ -60,10 +65,15 @@ class BaseCodeWindow(Widget):
             self.scroll_home: bool = scroll_home
             super().__init__()
 
-    def file_to_string(self, file_path: UPath, max_lines: int | None = None) -> str:
+    def file_to_string(
+        self, file_path: UPath, max_lines: int | None = None
+    ) -> FileToStringResult:
         """
         Load a file into a string
+
+        Returns a tuple of the string and a boolean indicating if an exception occurred.
         """
+        error_occurred = False
         try:
             if file_path.suffix in self.archive_extensions:
                 message = f"Cannot render archive file {file_path}."
@@ -71,9 +81,10 @@ class BaseCodeWindow(Widget):
             text = file_path.read_text(encoding="utf-8")
         except Exception as e:
             text = self.handle_exception(exception=e)
+            error_occurred = True
         if max_lines:
             text = "\n".join(text.split("\n")[:max_lines])
-        return text
+        return FileToStringResult(result=text, error_occurred=error_occurred)
 
     def file_to_image(self, file_path: UPath) -> Pixels:
         """
@@ -87,7 +98,7 @@ class BaseCodeWindow(Widget):
         """
         Load a file into a JSON object
         """
-        code_str = self.file_to_string(file_path=file_path)
+        code_str = self.file_to_string(file_path=file_path).result
         try:
             code_obj = orjson.loads(code_str)
             code_str = orjson.dumps(code_obj, option=orjson.OPT_INDENT_2).decode(
@@ -182,7 +193,7 @@ class StaticWindow(Static, BaseCodeWindow):
         Load a file into a Markdown
         """
         return Markdown(
-            self.file_to_string(file_path, max_lines=max_lines),
+            self.file_to_string(file_path, max_lines=max_lines).result,
             code_theme=self.theme,
             hyperlinks=True,
         )
@@ -500,26 +511,20 @@ class WindowSwitcher(Container):
             json_str = self.static_window.file_to_json(
                 file_path=file_path, max_lines=self.config_object.max_lines
             )
-            json_syntax = self.static_window.text_to_syntax(
-                text=json_str, file_path=file_path
-            )
-            json_syntax.line_numbers = self.linenos
-            json_syntax.theme = self.theme
-            self.static_window.update(json_syntax)
             self.text_window.load_text(json_str)
             self.text_window.detect_language(file_path)
             switch_window = self.text_window  # type: ignore[assignment]
         else:
-            string = self.static_window.file_to_string(
+            result = self.static_window.file_to_string(
                 file_path=file_path, max_lines=self.config_object.max_lines
             )
-            syntax = self.static_window.text_to_syntax(text=string, file_path=file_path)
-            syntax.line_numbers = self.linenos
-            syntax.theme = self.theme
-            self.static_window.update(syntax)
-            self.text_window.load_text(string)
-            self.text_window.detect_language(file_path)
-            switch_window = self.text_window  # type: ignore[assignment]
+            if result.error_occurred:
+                self.static_window.update(result.result)
+                switch_window = self.static_window  # type: ignore[assignment]
+            else:
+                self.text_window.load_text(result.result)
+                self.text_window.detect_language(file_path)
+                switch_window = self.text_window  # type: ignore[assignment]
         self.switch_window(switch_window)
         active_widget = self.get_active_widget()
         if scroll_home:
