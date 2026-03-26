@@ -238,7 +238,7 @@ class TextWindow(TextArea, BaseCodeWindow):
     linenos: Reactive[bool] = reactive(True)
     default_theme: ClassVar[str] = textarea_default_theme
 
-    BINDINGS: ClassVar[list[Binding]] = [
+    BINDINGS: ClassVar[list[Binding | tuple[str, str] | tuple[str, str, str]]] = [
         Binding("j", "cursor_down", "Down", show=False),
         Binding("k", "cursor_up", "Up", show=False),
         Binding("l", "cursor_right", "Right", show=False),
@@ -283,7 +283,7 @@ class TextWindow(TextArea, BaseCodeWindow):
         Apply a theme to the TextArea
         """
         with contextlib.suppress(RuntimeError, AttributeError):
-            if not self.app.dark:
+            if not getattr(self.app, "dark", True):
                 self.theme = "github_light"
                 return
         target = textarea_theme_map.get(rich_theme, self.default_theme)
@@ -492,13 +492,13 @@ class WindowSwitcher(Container):
         """
         Render a file
         """
-        switch_window = self.static_window
+        switch_window: BaseCodeWindow = self.static_window
         joined_suffixes = "".join(file_path.suffixes).lower()
         if joined_suffixes in self.datatable_extensions:
             self.datatable_window.refresh_from_file(
                 file_path=file_path, max_lines=self.config_object.max_lines
             )
-            switch_window = self.datatable_window  # type: ignore[assignment]
+            switch_window = self.datatable_window
         elif file_path.suffix.lower() in self.image_extensions:
             image = self.static_window.file_to_image(file_path=file_path)
             self.static_window.update(image)
@@ -513,18 +513,18 @@ class WindowSwitcher(Container):
             )
             self.text_window.load_text(json_str)
             self.text_window.detect_language(file_path)
-            switch_window = self.text_window  # type: ignore[assignment]
+            switch_window = self.text_window
         else:
             result = self.static_window.file_to_string(
                 file_path=file_path, max_lines=self.config_object.max_lines
             )
             if result.error_occurred:
                 self.static_window.update(result.result)
-                switch_window = self.static_window  # type: ignore[assignment]
+                switch_window = self.static_window
             else:
                 self.text_window.load_text(result.result)
                 self.text_window.detect_language(file_path)
-                switch_window = self.text_window  # type: ignore[assignment]
+                switch_window = self.text_window
         self.switch_window(switch_window)
         active_widget = self.get_active_widget()
         if scroll_home:
