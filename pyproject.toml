@@ -10,11 +10,11 @@ classifiers = [
   "Development Status :: 4 - Beta",
   "Operating System :: OS Independent",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy"
 ]
@@ -37,19 +37,19 @@ keywords = []
 license = "MIT"
 name = "browsr"
 readme = "README.md"
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.10"
 version = "1.22.1"
 
 [project.optional-dependencies]
 all = [
-  "pyarrow~=21.0.0",
+  "pyarrow~=26.0.0",
   "textual-universal-directorytree[remote]~=1.6.0"
 ]
 data = [
-  "pyarrow~=21.0.0"
+  "pyarrow~=26.0.0"
 ]
 parquet = [
-  "pyarrow~=21.0.0"
+  "pyarrow~=26.0.0"
 ]
 remote = [
   "textual-universal-directorytree[remote]~=1.6.0"
@@ -176,7 +176,7 @@ select = [
   "W",  # pycodestyle (Warning)
   "YTT"  # flake8-2020
 ]
-target-version = "py38"
+target-version = "py314"
 
 [tool.ruff.flake8-tidy-imports]
 ban-relative-imports = "all"
