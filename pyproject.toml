@@ -30,8 +30,7 @@ dependencies = [
   "universal-pathlib~=0.2.6",
   "Pillow>=11.3.0",
   "PyMuPDF~=1.26.3",
-  "pyperclip~=1.9.0",
-  "orjson~=3.11.5"
+  "pyperclip~=1.9.0"
 ]
 description = "TUI File Browser App"
 keywords = []

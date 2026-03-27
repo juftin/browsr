@@ -5,10 +5,10 @@ Content Windows
 from __future__ import annotations
 
 import contextlib
+import json
 from json import JSONDecodeError
 from typing import Any, ClassVar, NamedTuple
 
-import orjson
 import pandas as pd
 import pyperclip
 from art import text2art
@@ -100,10 +100,8 @@ class BaseCodeWindow(Widget):
         """
         code_str = self.file_to_string(file_path=file_path).result
         try:
-            code_obj = orjson.loads(code_str)
-            code_str = orjson.dumps(code_obj, option=orjson.OPT_INDENT_2).decode(
-                "utf-8"
-            )
+            code_obj = json.loads(code_str)
+            code_str = json.dumps(code_obj, indent=2)
         except JSONDecodeError:
             pass
         if max_lines:
