@@ -218,7 +218,7 @@ class StaticWindow(Static, BaseCodeWindow):
         """
         Switch to the next theme
         """
-        if not isinstance(self.renderable, (Syntax, Markdown)):
+        if not isinstance(self.renderable, (Syntax, Markdown)):  # noqa: UP038
             return None
         current_index = favorite_themes.index(self.theme)
         next_theme = favorite_themes[(current_index + 1) % len(favorite_themes)]

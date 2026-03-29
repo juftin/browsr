@@ -4,8 +4,9 @@ A universal directory tree widget for Textual.
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from pathlib import Path
-from typing import ClassVar, Iterable
+from typing import ClassVar
 
 from textual.binding import BindingType
 from textual.widgets._directory_tree import DirEntry

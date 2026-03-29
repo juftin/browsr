@@ -10,9 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, BinaryIO
 
-import fitz
-import rich_pixels
-from fitz import Pixmap
+import pypdfium2 as pdfium
 from PIL import Image
 from rich_pixels import Pixels
 from textual_universal_directorytree import UPath, is_remote_path
@@ -22,17 +20,11 @@ def _open_pdf_as_image(buf: BinaryIO) -> Image.Image:
     """
     Open a PDF file and return a PIL.Image object
     """
-    doc = fitz.open(stream=buf.read(), filetype="pdf")
-    pix: Pixmap = doc[0].get_pixmap()
-    if pix.colorspace is None:
-        mode = "L"
-    elif pix.colorspace.n == 1:
-        mode = "L" if pix.alpha == 0 else "LA"
-    elif pix.colorspace.n == 3:  # noqa: PLR2004
-        mode = "RGB" if pix.alpha == 0 else "RGBA"
-    else:
-        mode = "CMYK"
-    return Image.frombytes(size=(pix.width, pix.height), data=pix.samples, mode=mode)
+    doc = pdfium.PdfDocument(buf)
+    page = doc[0]
+    bitmap = page.render()
+    image = bitmap.to_pil()
+    return image
 
 
 def open_image(document: UPath, screen_width: float) -> Pixels:
@@ -50,7 +42,7 @@ def open_image(document: UPath, screen_width: float) -> Pixels:
         new_width = min(int(image_width / size_ratio), image_width)
         new_height = min(int(image_height / size_ratio), image_height)
         resized = image.resize((new_width, new_height))
-        return rich_pixels.Pixels.from_image(resized)
+        return Pixels.from_image(resized)
 
 
 @dataclass

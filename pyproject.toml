@@ -20,17 +20,17 @@ classifiers = [
 ]
 dependencies = [
   "art~=6.5",
-  "click~=8.1.7",
+  "click~=8.3.1",
   "pandas>2,<3",
   "rich>=14,<15",
-  "rich-click~=1.8.9",
+  "rich-click~=1.9.7",
   "rich-pixels~=3.0.1",
   "textual>=5,<6",
   "textual-universal-directorytree~=1.6.0",
   "universal-pathlib~=0.2.6",
-  "Pillow>=11.3.0",
-  "PyMuPDF~=1.26.3",
-  "pyperclip~=1.9.0"
+  "Pillow>=12.1.1",
+  "pyperclip~=1.11.0",
+  "pypdfium2>=5.6.0",
 ]
 description = "TUI File Browser App"
 keywords = []
@@ -42,14 +42,14 @@ version = "1.22.1"
 
 [project.optional-dependencies]
 all = [
-  "pyarrow~=26.0.0",
+  "pyarrow~=23.0.1",
   "textual-universal-directorytree[remote]~=1.6.0"
 ]
 data = [
-  "pyarrow~=26.0.0"
+  "pyarrow~=23.0.1"
 ]
 parquet = [
-  "pyarrow~=26.0.0"
+  "pyarrow~=23.0.1"
 ]
 remote = [
   "textual-universal-directorytree[remote]~=1.6.0"
@@ -176,7 +176,7 @@ select = [
   "W",  # pycodestyle (Warning)
   "YTT"  # flake8-2020
 ]
-target-version = "py314"
+target-version = "py310"
 
 [tool.ruff.flake8-tidy-imports]
 ban-relative-imports = "all"

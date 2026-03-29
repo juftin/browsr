@@ -92,7 +92,7 @@ class SortedBindingsScreen(Screen[str]):
         builtin_index = 500
         max_weight = 999
         binding_range = range(builtin_index, builtin_index + len(existing_bindings))
-        weights = dict(zip(existing_bindings.keys(), binding_range))
+        weights = dict(zip(existing_bindings.keys(), binding_range, strict=False))
         if max(*self.BINDING_WEIGHTS.values(), 0) > max_weight:
             raise ValueError("Binding weights must be less than 1000")
         elif min(*self.BINDING_WEIGHTS.values(), 1) < 1:
