@@ -147,7 +147,7 @@ def handle_github_url(url: str) -> str:
     GitHub URLs are handled by converting them to the raw URL.
     """
     try:
-        import requests  # type: ignore[import-untyped]
+        import requests  # type: ignore[import-untyped] # noqa: PLC0415
     except ImportError as e:
         raise ImportError(
             "The requests library is required to browse GitHub files. "

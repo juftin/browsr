@@ -218,7 +218,7 @@ class StaticWindow(Static, BaseCodeWindow):
         """
         Switch to the next theme
         """
-        if not isinstance(self.renderable, (Syntax, Markdown)):  # noqa: UP038
+        if not isinstance(self.renderable, (Syntax, Markdown)):
             return None
         current_index = favorite_themes.index(self.theme)
         next_theme = favorite_themes[(current_index + 1) % len(favorite_themes)]
@@ -338,7 +338,7 @@ class WindowSwitcher(Container):
             self.static_window: self.vim_scroll,
             self.datatable_window: self.datatable_window,
         }
-        for window_screen in screens:
+        for window_screen, _ in screens.items():
             if window is window_screen:
                 screens[window_screen].display = True
             else:

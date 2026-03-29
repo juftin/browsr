@@ -36,9 +36,9 @@ class TextualAppContext:
         """
         if "github" in str(self.file_path).lower():
             file_path = str(self.file_path)
-            file_path = file_path.lstrip("https://")  # noqa: B005
-            file_path = file_path.lstrip("http://")  # noqa: B005
-            file_path = file_path.lstrip("www.")  # noqa: B005
+            file_path = file_path.removeprefix("https://")
+            file_path = file_path.removeprefix("http://")
+            file_path = file_path.removeprefix("www.")
             if file_path.endswith(".git"):
                 file_path = file_path[:-4]
             file_path = handle_github_url(url=str(file_path))

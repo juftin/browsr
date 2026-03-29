@@ -73,8 +73,8 @@ dev = [
   "pytest-textual-snapshot",
   "pytest-asyncio",
   # Linting
-  "mypy>=1.9.0",
-  "ruff~=0.1.7"
+  "mypy>=1.19.1",
+  "ruff~=0.15.8"
 ]
 docs = [
   "markdown-callouts",
@@ -129,6 +129,10 @@ addopts = [
 ]
 
 [tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
 ignore = [
   # Ignore checks for possible passwords
   "S105",
@@ -149,7 +153,6 @@ ignore = [
   # Exception must not use a string literal, assign to variable first
   "EM101"
 ]
-line-length = 88
 select = [
   "A",  # flake8-builtins
   "ARG",  # flake8-unused-arguments
@@ -176,17 +179,16 @@ select = [
   "W",  # pycodestyle (Warning)
   "YTT"  # flake8-2020
 ]
-target-version = "py310"
 
-[tool.ruff.flake8-tidy-imports]
+[tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["browsr"]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 # Tests can use magic values, assertions, and relative imports
 "tests/**/*" = ["PLR2004", "S101", "TID252"]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "numpy"
