@@ -410,8 +410,8 @@ class WindowSwitcher(Container):
         """
         self.static_window.linenos = linenos
         self.text_window.linenos = linenos
-        if isinstance(self.static_window.renderable, Syntax):
-            self.static_window.renderable.line_numbers = linenos
+        if isinstance(self.static_window.content, Syntax):
+            self.static_window.content.line_numbers = linenos
             self.static_window.refresh()
 
     def _update_subtitle(self) -> None:
