@@ -26,7 +26,8 @@ class ShortcutsPopUp(Container):
         table = self.query_one(DataTable)
         table.clear()
         # Use active_bindings to get deduplicated and prioritized shortcuts
-        for binding in self.app.active_bindings:
+        for active_binding in self.app.active_bindings.values():
+            binding = active_binding.binding
             if binding.show:
                 table.add_row(binding.key, binding.description)
 
