@@ -42,7 +42,7 @@ def test_github_screenshot(
     """
     app_path = tmp_path / "app.py"
     app_path.write_text(app_file.format(file_path=str(github_release_path)))
-    assert snap_compare(app_path=app_path, terminal_size=terminal_size)
+    assert snap_compare(app=app_path, terminal_size=terminal_size)
 
 
 @cassette
@@ -59,7 +59,7 @@ def test_github_screenshot_license(
     file_path = str(github_release_path / "LICENSE")
     app_path = tmp_path / "app.py"
     app_path.write_text(app_file.format(file_path=file_path))
-    assert snap_compare(app_path=app_path, terminal_size=terminal_size)
+    assert snap_compare(app=app_path, terminal_size=terminal_size)
 
 
 @cassette
@@ -76,4 +76,4 @@ def test_mkdocs_screenshot(
     file_path = str(github_release_path / "mkdocs.yaml")
     app_path = tmp_path / "app.py"
     app_path.write_text(app_file.format(file_path=file_path))
-    assert snap_compare(app_path=app_path, terminal_size=terminal_size)
+    assert snap_compare(app=app_path, terminal_size=terminal_size)
