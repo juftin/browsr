@@ -38,6 +38,10 @@ class ShortcutsPopUp(Container):
 class ShortcutsWindow(Container):
     """Window containing the Shortcuts Pop Up"""
 
+    def compose(self) -> ComposeResult:
+        """Compose the Shortcuts Window"""
+        yield ShortcutsPopUp()
+
     @on(ShortcutsPopUp.Toggle)
     def handle_toggle(self) -> None:
         self.display = False
