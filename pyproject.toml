@@ -38,7 +38,7 @@ keywords = []
 license = "MIT"
 name = "browsr"
 readme = "README.md"
-requires-python = ">=3.14,<4.0"
+requires-python = ">=3.10"
 version = "1.22.1"
 
 [project.optional-dependencies]
@@ -131,7 +131,7 @@ addopts = [
 
 [tool.ruff]
 line-length = 88
-target-version = "py314"
+target-version = "py310"
 
 [tool.ruff.lint]
 ignore = [
