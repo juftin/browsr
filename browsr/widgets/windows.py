@@ -5,10 +5,10 @@ Content Windows
 from __future__ import annotations
 
 import contextlib
-import json
 from json import JSONDecodeError
 from typing import Any, ClassVar, NamedTuple
 
+import orjson
 import pandas as pd
 import pyperclip
 from art import text2art
@@ -100,8 +100,10 @@ class BaseCodeWindow(Widget):
         """
         code_str = self.file_to_string(file_path=file_path).result
         try:
-            code_obj = json.loads(code_str)
-            code_str = json.dumps(code_obj, indent=2)
+            code_obj = orjson.loads(code_str)
+            code_str = orjson.dumps(code_obj, option=orjson.OPT_INDENT_2).decode(
+                "utf-8"
+            )
         except JSONDecodeError:
             pass
         if max_lines:
@@ -214,18 +216,18 @@ class StaticWindow(Static, BaseCodeWindow):
         """
         Called when theme is modified.
         """
-        if isinstance(self.renderable, Syntax):
+        if isinstance(self.content, Syntax):
             updated_syntax = Syntax(
-                code=self.renderable.code,
-                lexer=self.renderable.lexer,
-                line_numbers=self.renderable.line_numbers,
+                code=self.content.code,
+                lexer=self.content.lexer,
+                line_numbers=self.content.line_numbers,
                 word_wrap=False,
                 indent_guides=False,
                 theme=theme,
             )
             self.update(updated_syntax)
-        elif isinstance(self.renderable, Markdown):
-            self.renderable.code_theme = self.theme
+        elif isinstance(self.content, Markdown):
+            self.content.code_theme = self.theme
 
 
 class TextWindow(TextArea, BaseCodeWindow):
@@ -474,7 +476,7 @@ class WindowSwitcher(Container):
             self.text_window: self.text_window,
             self.datatable_window: self.datatable_window,
         }
-        for window_screen in screens:
+        for window_screen, _ in screens.items():
             if window is window_screen:
                 screens[window_screen].display = True
             else:

@@ -4,9 +4,8 @@ browsr configuration file
 
 from collections import OrderedDict
 from os import getenv
-from typing import List
 
-favorite_themes: List[str] = [
+favorite_themes: list[str] = [
     "monokai",
     "material",
     "dracula",

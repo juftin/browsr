@@ -5,7 +5,7 @@ repos:
       rev: v6.0.0
       hooks:
           - id: trailing-whitespace
-            exclude: tests/__snapshots__/test_screenshots.ambr
+            exclude: ^tests/__snapshots__/
           - id: end-of-file-fixer
           - id: check-yaml
           - id: check-ast

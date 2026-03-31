@@ -4,7 +4,8 @@ The App Screen
 
 from __future__ import annotations
 
-from typing import ClassVar, Iterable, cast
+from collections.abc import Iterable
+from typing import ClassVar, cast
 
 from rich import traceback
 from textual import on
@@ -174,7 +175,7 @@ class CodeBrowserScreen(SortedBindingsScreen):
             self.code_browser.directory_tree.reload()
             directory_name = self.code_browser.directory_tree.path.name or "/"  # type: ignore[union-attr]
             message_lines.append(
-                "[bold]Directory:[/bold] " f"[italic]{directory_name}[/italic]"
+                f"[bold]Directory:[/bold] [italic]{directory_name}[/italic]"
             )
         if reload_file:
             selected_file_path = cast(UPath, self.code_browser.selected_file_path)
@@ -183,7 +184,7 @@ class CodeBrowserScreen(SortedBindingsScreen):
                 file_path=selected_file_path,
                 scroll_home=False,
             )
-            message_lines.append("[bold]File:[/bold] " f"[italic]{file_name}[/italic]")
+            message_lines.append(f"[bold]File:[/bold] [italic]{file_name}[/italic]")
         if message_lines:
             self.notify(
                 title="Reloaded",
