@@ -196,31 +196,31 @@ class StaticWindow(Static, BaseCodeWindow):
         """
         Called when linenos is modified.
         """
-        if isinstance(self.renderable, Syntax):
-            self.renderable.line_numbers = linenos
+        if isinstance(self.content, Syntax):
+            self.content.line_numbers = linenos
 
     def watch_theme(self, theme: str) -> None:
         """
         Called when theme is modified.
         """
-        if isinstance(self.renderable, Syntax):
+        if isinstance(self.content, Syntax):
             updated_syntax = Syntax(
-                code=self.renderable.code,
-                lexer=self.renderable.lexer,
-                line_numbers=self.renderable.line_numbers,
+                code=self.content.code,
+                lexer=self.content.lexer,
+                line_numbers=self.content.line_numbers,
                 word_wrap=False,
                 indent_guides=False,
                 theme=theme,
             )
             self.update(updated_syntax)
-        elif isinstance(self.renderable, Markdown):
-            self.renderable.code_theme = self.theme
+        elif isinstance(self.content, Markdown):
+            self.content.code_theme = self.theme
 
     def next_theme(self) -> str | None:
         """
         Switch to the next theme
         """
-        if not isinstance(self.renderable, (Syntax, Markdown)):
+        if not isinstance(self.content, (Syntax, Markdown)):
             return None
         current_index = favorite_themes.index(self.theme)
         next_theme = favorite_themes[(current_index + 1) % len(favorite_themes)]
@@ -340,7 +340,7 @@ class WindowSwitcher(Container):
             self.static_window: self.vim_scroll,
             self.datatable_window: self.datatable_window,
         }
-        for window_screen in screens:
+        for window_screen, _ in screens.items():
             if window is window_screen:
                 screens[window_screen].display = True
             else:

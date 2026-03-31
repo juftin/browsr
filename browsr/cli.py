@@ -3,7 +3,6 @@ browsr command line interface
 """
 
 import os
-from typing import Optional, Tuple
 
 import click
 import rich_click
@@ -68,11 +67,11 @@ rich_click.rich_click.STYLE_COMMANDS_TABLE_BOX = "SIMPLE_HEAVY"
     show_envvar=True,
 )
 def browsr(
-    path: Optional[str],
+    path: str | None,
     debug: bool,
     max_lines: int,
     max_file_size: int,
-    kwargs: Tuple[str, ...],
+    kwargs: tuple[str, ...],
 ) -> None:
     """
     browsr 🗂️  a pleasant file explorer in your terminal

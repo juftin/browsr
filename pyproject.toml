@@ -10,27 +10,27 @@ classifiers = [
   "Development Status :: 4 - Beta",
   "Operating System :: OS Independent",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy"
 ]
 dependencies = [
   "art~=6.5",
-  "click~=8.1.7",
+  "click~=8.3.1",
   "pandas>2,<3",
   "rich>=14,<15",
-  "rich-click~=1.8.9",
+  "rich-click~=1.9.7",
   "rich-pixels~=3.0.1",
-  "textual>=5,<6",
+  "textual>=8,<9",
   "textual-universal-directorytree~=1.6.0",
   "universal-pathlib~=0.2.6",
-  "Pillow>=11.3.0",
-  "PyMuPDF~=1.26.3",
-  "pyperclip~=1.9.0",
+  "Pillow>=12.1.1",
+  "pypdfium2>=5.6.0",
+  "pyperclip~=1.11.0",
   "orjson~=3.11.5"
 ]
 description = "TUI File Browser App"
@@ -38,19 +38,19 @@ keywords = []
 license = "MIT"
 name = "browsr"
 readme = "README.md"
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.10"
 version = "1.22.1"
 
 [project.optional-dependencies]
 all = [
-  "pyarrow~=21.0.0",
+  "pyarrow~=23.0.1",
   "textual-universal-directorytree[remote]~=1.6.0"
 ]
 data = [
-  "pyarrow~=21.0.0"
+  "pyarrow~=23.0.1"
 ]
 parquet = [
-  "pyarrow~=21.0.0"
+  "pyarrow~=23.0.1"
 ]
 remote = [
   "textual-universal-directorytree[remote]~=1.6.0"
@@ -74,8 +74,8 @@ dev = [
   "pytest-textual-snapshot",
   "pytest-asyncio",
   # Linting
-  "mypy>=1.9.0",
-  "ruff~=0.1.7"
+  "mypy>=1.19.1",
+  "ruff~=0.15.8"
 ]
 docs = [
   "markdown-callouts",
@@ -130,6 +130,10 @@ addopts = [
 ]
 
 [tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
 ignore = [
   # Ignore checks for possible passwords
   "S105",
@@ -150,7 +154,6 @@ ignore = [
   # Exception must not use a string literal, assign to variable first
   "EM101"
 ]
-line-length = 88
 select = [
   "A",  # flake8-builtins
   "ARG",  # flake8-unused-arguments
@@ -177,17 +180,16 @@ select = [
   "W",  # pycodestyle (Warning)
   "YTT"  # flake8-2020
 ]
-target-version = "py38"
 
-[tool.ruff.flake8-tidy-imports]
+[tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["browsr"]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 # Tests can use magic values, assertions, and relative imports
 "tests/**/*" = ["PLR2004", "S101", "TID252"]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "numpy"

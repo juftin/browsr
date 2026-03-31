@@ -2,7 +2,7 @@
 Pytest Fixtures Shared Across all Unit Tests
 """
 
-from typing import Any, Dict, List
+from typing import Any
 
 import pyperclip
 import pytest
@@ -55,7 +55,7 @@ def copy_supported(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 @pytest.fixture(scope="module")
-def vcr_config() -> Dict[str, List[Any]]:
+def vcr_config() -> dict[str, list[Any]]:
     """
     VCR Cassette Privacy Enforcer
 

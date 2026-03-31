@@ -36,9 +36,9 @@ class TextualAppContext:
         """
         if "github" in str(self.file_path).lower():
             file_path = str(self.file_path)
-            file_path = file_path.lstrip("https://")  # noqa: B005
-            file_path = file_path.lstrip("http://")  # noqa: B005
-            file_path = file_path.lstrip("www.")  # noqa: B005
+            file_path = file_path.removeprefix("https://")
+            file_path = file_path.removeprefix("http://")
+            file_path = file_path.removeprefix("www.")
             if file_path.endswith(".git"):
                 file_path = file_path[:-4]
             file_path = handle_github_url(url=str(file_path))
@@ -92,7 +92,7 @@ class SortedBindingsScreen(Screen[str]):
         builtin_index = 500
         max_weight = 999
         binding_range = range(builtin_index, builtin_index + len(existing_bindings))
-        weights = dict(zip(existing_bindings.keys(), binding_range))
+        weights = dict(zip(existing_bindings.keys(), binding_range, strict=False))
         if max(*self.BINDING_WEIGHTS.values(), 0) > max_weight:
             raise ValueError("Binding weights must be less than 1000")
         elif min(*self.BINDING_WEIGHTS.values(), 1) < 1:
