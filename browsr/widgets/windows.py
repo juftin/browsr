@@ -48,6 +48,22 @@ class FileToStringResult(NamedTuple):
     error_occurred: bool
 
 
+class ThemeVisibleMixin:
+    """
+    Mixin for widgets with a theme
+    """
+
+    theme: Reactive[str] = reactive(favorite_themes[0])
+
+
+class LinenosVisibleMixin:
+    """
+    Mixin for widgets with line numbers
+    """
+
+    linenos: Reactive[bool] = reactive(False)
+
+
 class BaseCodeWindow(Widget):
     """
     Base code view widget
@@ -171,12 +187,11 @@ class BaseCodeWindow(Widget):
         return error_message
 
 
-class StaticWindow(Static, BaseCodeWindow):
+class StaticWindow(Static, BaseCodeWindow, ThemeVisibleMixin, LinenosVisibleMixin):
     """
     A static widget for displaying code.
     """
 
-    theme: Reactive[str] = reactive(favorite_themes[0])
     rich_themes: ClassVar[list[str]] = favorite_themes
 
     def __init__(
@@ -184,7 +199,6 @@ class StaticWindow(Static, BaseCodeWindow):
     ) -> None:
         super().__init__(*args, **kwargs)
         self.config_object = config_object
-        self.linenos = False
 
     def file_to_markdown(
         self, file_path: UPath, max_lines: int | None = None
@@ -212,6 +226,14 @@ class StaticWindow(Static, BaseCodeWindow):
             theme=self.theme,
         )
 
+    def watch_linenos(self, linenos: bool) -> None:
+        """
+        Called when linenos is modified.
+        """
+        if isinstance(self.content, Syntax):
+            self.content.line_numbers = linenos
+            self.refresh()
+
     def watch_theme(self, theme: str) -> None:
         """
         Called when theme is modified.
@@ -230,12 +252,11 @@ class StaticWindow(Static, BaseCodeWindow):
             self.content.code_theme = self.theme
 
 
-class TextWindow(TextArea, BaseCodeWindow):
+class TextWindow(TextArea, BaseCodeWindow, ThemeVisibleMixin, LinenosVisibleMixin):
     """
     A window that displays text using a TextArea.
     """
 
-    linenos: Reactive[bool] = reactive(True)
     default_theme: ClassVar[str] = textarea_default_theme
 
     BINDINGS: ClassVar[list[Binding | tuple[str, str] | tuple[str, str, str]]] = [
@@ -248,7 +269,6 @@ class TextWindow(TextArea, BaseCodeWindow):
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(read_only=True, **kwargs)
         self.theme = self.default_theme
-        self.show_line_numbers = self.linenos
         self.soft_wrap = False
         self.display = False
 
@@ -278,16 +298,23 @@ class TextWindow(TextArea, BaseCodeWindow):
                 timeout=1,
             )
 
+    def watch_theme(self, theme: str) -> None:
+        """
+        Called when theme is modified.
+        """
+        self.apply_smart_theme(theme)
+
     def apply_smart_theme(self, rich_theme: str) -> None:
         """
         Apply a theme to the TextArea
         """
         with contextlib.suppress(RuntimeError, AttributeError):
             if not getattr(self.app, "dark", True):
-                self.theme = "github_light"
+                if self.theme != "github_light":
+                    self.theme = "github_light"
                 return
         target = textarea_theme_map.get(rich_theme, self.default_theme)
-        if target in self.available_themes:
+        if target in self.available_themes and self.theme != target:
             self.theme = target
 
     def detect_language(self, file_path: str | UPath) -> None:
@@ -366,13 +393,12 @@ class DataTableWindow(VimDataTable, BaseCodeWindow):
             self.add_row(*row)
 
 
-class WindowSwitcher(Container):
+class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
     """
     A container that contains the file content windows
     """
 
     show_tree: Reactive[bool] = reactive(True)
-    linenos: Reactive[bool] = reactive(False, init=False)
 
     datatable_extensions: ClassVar[list[str]] = [
         ".csv",
@@ -391,7 +417,6 @@ class WindowSwitcher(Container):
         super().__init__(*args, **kwargs)
         self.rendered_file: UPath | None = None
         self.config_object = config_object
-        self.theme = favorite_themes[0]
         self.static_window = StaticWindow(expand=True, config_object=config_object)
         self.text_window = TextWindow()
         self.datatable_window = DataTableWindow(
@@ -399,10 +424,6 @@ class WindowSwitcher(Container):
         )
         self.datatable_window.display = False
         self.vim_scroll = VimScroll(self.static_window)
-        # Apply initial state
-        self.static_window.theme = self.theme
-        self.text_window.linenos = self.linenos
-        self.text_window.theme = self.text_window.default_theme
 
     def watch_linenos(self, linenos: bool) -> None:
         """
@@ -410,9 +431,14 @@ class WindowSwitcher(Container):
         """
         self.static_window.linenos = linenos
         self.text_window.linenos = linenos
-        if isinstance(self.static_window.content, Syntax):
-            self.static_window.content.line_numbers = linenos
-            self.static_window.refresh()
+
+    def watch_theme(self, theme: str) -> None:
+        """
+        Called when theme is modified.
+        """
+        self.static_window.theme = theme
+        self.text_window.theme = theme
+        self._update_subtitle()
 
     def _update_subtitle(self) -> None:
         """
@@ -429,16 +455,6 @@ class WindowSwitcher(Container):
             self.app.sub_title = str(self.rendered_file)
             return
         self.app.sub_title = str(self.rendered_file) + f" [{display_theme}]"
-
-    def watch_theme(self, theme: str) -> None:
-        """
-        Called when theme is modified.
-        """
-        self.theme = theme
-        self.static_window.theme = theme
-        if self.text_window.display:
-            self.text_window.apply_smart_theme(theme)
-        self._update_subtitle()
 
     def watch_dark(self, _dark: bool) -> None:
         """

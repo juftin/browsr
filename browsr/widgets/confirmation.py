@@ -1,29 +1,24 @@
+"""
+Confirmation Widget
+"""
+
+from __future__ import annotations
+
 from textwrap import dedent
-from typing import ClassVar
 
 from rich.markdown import Markdown
 from textual import on
 from textual.app import ComposeResult
-from textual.binding import Binding, BindingType
-from textual.containers import Container
 from textual.message import Message
 from textual.widgets import Button, Static
 
+from browsr.widgets.base import BaseOverlay, BasePopUp
 
-class ConfirmationPopUp(Container):
+
+class ConfirmationPopUp(BasePopUp):
     """
     A Pop Up that asks for confirmation
     """
-
-    BINDINGS: ClassVar[list[BindingType]] = [
-        Binding("escape", "close", "Close", show=False),
-    ]
-
-    def action_close(self) -> None:
-        """
-        Close the Confirmation Pop Up
-        """
-        self.post_message(self.ConfirmationWindowDisplay(display=False))
 
     __confirmation_message__: str = dedent(
         """
@@ -37,15 +32,6 @@ class ConfirmationPopUp(Container):
         """
         Confirmation Window
         """
-
-    class ConfirmationWindowDisplay(Message):
-        """
-        Confirmation Window
-        """
-
-        def __init__(self, display: bool) -> None:
-            self.display = display
-            super().__init__()
 
     class DisplayToggle(Message):
         """
@@ -66,32 +52,19 @@ class ConfirmationPopUp(Container):
         """
         Handle Button Presses
         """
-        self.post_message(self.ConfirmationWindowDisplay(display=False))
+        self.action_close()
         if message.button.variant == "success":
             self.post_message(self.ConfirmationWindowDownload())
         self.post_message(self.DisplayToggle())
 
 
-class ConfirmationWindow(Container):
+class ConfirmationWindow(BaseOverlay):
     """
     Window containing the Confirmation Pop Up
     """
 
-    BINDINGS: ClassVar[list[BindingType]] = [
-        Binding("escape", "close", "Close", show=False),
-    ]
-
-    def action_close(self) -> None:
+    def compose(self) -> ComposeResult:
         """
-        Close the Confirmation Pop Up
+        Compose the Confirmation Window
         """
-        self.display = False
-
-    @on(ConfirmationPopUp.ConfirmationWindowDisplay)
-    def handle_confirmation_window_display(
-        self, message: ConfirmationPopUp.ConfirmationWindowDisplay
-    ) -> None:
-        """
-        Handle Confirmation Window Display
-        """
-        self.display = message.display
+        yield ConfirmationPopUp()
