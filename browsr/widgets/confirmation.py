@@ -1,8 +1,10 @@
 from textwrap import dedent
+from typing import ClassVar
 
 from rich.markdown import Markdown
 from textual import on
 from textual.app import ComposeResult
+from textual.binding import Binding, BindingType
 from textual.containers import Container
 from textual.message import Message
 from textual.widgets import Button, Static
@@ -12,6 +14,16 @@ class ConfirmationPopUp(Container):
     """
     A Pop Up that asks for confirmation
     """
+
+    BINDINGS: ClassVar[list[BindingType]] = [
+        Binding("escape", "close", "Close", show=False),
+    ]
+
+    def action_close(self) -> None:
+        """
+        Close the Confirmation Pop Up
+        """
+        self.post_message(self.ConfirmationWindowDisplay(display=False))
 
     __confirmation_message__: str = dedent(
         """
@@ -64,6 +76,16 @@ class ConfirmationWindow(Container):
     """
     Window containing the Confirmation Pop Up
     """
+
+    BINDINGS: ClassVar[list[BindingType]] = [
+        Binding("escape", "close", "Close", show=False),
+    ]
+
+    def action_close(self) -> None:
+        """
+        Close the Confirmation Pop Up
+        """
+        self.display = False
 
     @on(ConfirmationPopUp.ConfirmationWindowDisplay)
     def handle_confirmation_window_display(

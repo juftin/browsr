@@ -260,6 +260,7 @@ class CodeBrowser(Container):
             self.datatable_window.display = False
             self.window_switcher.vim_scroll.display = False
             self.confirmation_window.display = True
+            self.confirmation_window.focus()
 
     @work(thread=True)
     def download_selected_file(self) -> None:
