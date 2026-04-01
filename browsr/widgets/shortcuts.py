@@ -13,7 +13,6 @@ class ShortcutsPopUp(Container):
 
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding("escape", "toggle", "Close", show=False),
-        Binding("q", "toggle", "Close", show=False),
     ]
 
     class Toggle(Message):
@@ -80,7 +79,6 @@ class ShortcutsWindow(Container):
 
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding("escape", "toggle", "Close", show=False),
-        Binding("q", "toggle", "Close", show=False),
     ]
 
     def action_toggle(self) -> None:
