@@ -257,6 +257,7 @@ class TextWindow(TextArea, BaseCodeWindow, ThemeVisibleMixin, LinenosVisibleMixi
     A window that displays text using a TextArea.
     """
 
+    theme: Reactive[str] = reactive(textarea_default_theme)
     default_theme: ClassVar[str] = textarea_default_theme
 
     BINDINGS: ClassVar[list[Binding | tuple[str, str] | tuple[str, str, str]]] = [
@@ -297,12 +298,6 @@ class TextWindow(TextArea, BaseCodeWindow, ThemeVisibleMixin, LinenosVisibleMixi
                 severity="warning",
                 timeout=1,
             )
-
-    def watch_theme(self, theme: str) -> None:
-        """
-        Called when theme is modified.
-        """
-        self.apply_smart_theme(theme)
 
     def apply_smart_theme(self, rich_theme: str) -> None:
         """
@@ -437,7 +432,8 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
         Called when theme is modified.
         """
         self.static_window.theme = theme
-        self.text_window.theme = theme
+        if self.text_window.display:
+            self.text_window.apply_smart_theme(theme)
         self._update_subtitle()
 
     def _update_subtitle(self) -> None:
