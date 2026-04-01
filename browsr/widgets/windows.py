@@ -508,39 +508,18 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
         """
         Render a file
         """
-        switch_window: BaseCodeWindow = self.static_window
         joined_suffixes = "".join(file_path.suffixes).lower()
         if joined_suffixes in self.datatable_extensions:
-            self.datatable_window.refresh_from_file(
-                file_path=file_path, max_lines=self.config_object.max_lines
-            )
-            switch_window = self.datatable_window
+            switch_window = self._render_datatable(file_path)
         elif file_path.suffix.lower() in self.image_extensions:
-            image = self.static_window.file_to_image(file_path=file_path)
-            self.static_window.update(image)
+            switch_window = self._render_image(file_path)
         elif file_path.suffix.lower() in self.markdown_extensions:
-            markdown = self.static_window.file_to_markdown(
-                file_path=file_path, max_lines=self.config_object.max_lines
-            )
-            self.static_window.update(markdown)
+            switch_window = self._render_markdown(file_path)
         elif file_path.suffix.lower() in self.json_extensions:
-            json_str = self.static_window.file_to_json(
-                file_path=file_path, max_lines=self.config_object.max_lines
-            )
-            self.text_window.load_text(json_str)
-            self.text_window.detect_language(file_path)
-            switch_window = self.text_window
+            switch_window = self._render_json(file_path)
         else:
-            result = self.static_window.file_to_string(
-                file_path=file_path, max_lines=self.config_object.max_lines
-            )
-            if result.error_occurred:
-                self.static_window.update(result.result)
-                switch_window = self.static_window
-            else:
-                self.text_window.load_text(result.result)
-                self.text_window.detect_language(file_path)
-                switch_window = self.text_window
+            switch_window = self._render_text(file_path)
+
         self.switch_window(switch_window)
         active_widget = self.get_active_widget()
         if scroll_home:
@@ -551,38 +530,82 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
         self.rendered_file = file_path
         self._update_subtitle()
 
+    def _render_datatable(self, file_path: UPath) -> BaseCodeWindow:
+        """Render a datatable file"""
+        self.datatable_window.refresh_from_file(
+            file_path=file_path, max_lines=self.config_object.max_lines
+        )
+        return self.datatable_window
+
+    def _render_image(self, file_path: UPath) -> BaseCodeWindow:
+        """Render an image file"""
+        image = self.static_window.file_to_image(file_path=file_path)
+        self.static_window.update(image)
+        return self.static_window
+
+    def _render_markdown(self, file_path: UPath) -> BaseCodeWindow:
+        """Render a markdown file"""
+        markdown = self.static_window.file_to_markdown(
+            file_path=file_path, max_lines=self.config_object.max_lines
+        )
+        self.static_window.update(markdown)
+        return self.static_window
+
+    def _render_json(self, file_path: UPath) -> BaseCodeWindow:
+        """Render a JSON file"""
+        json_str = self.static_window.file_to_json(
+            file_path=file_path, max_lines=self.config_object.max_lines
+        )
+        self.text_window.load_text(json_str)
+        self.text_window.detect_language(file_path)
+        return self.text_window
+
+    def _render_text(self, file_path: UPath) -> BaseCodeWindow:
+        """Render a text file"""
+        result = self.static_window.file_to_string(
+            file_path=file_path, max_lines=self.config_object.max_lines
+        )
+        if result.error_occurred:
+            self.static_window.update(result.result)
+            return self.static_window
+        else:
+            self.text_window.load_text(result.result)
+            self.text_window.detect_language(file_path)
+            return self.text_window
+
     def next_theme(self) -> str | None:
         """
         Switch to the next theme
         """
         active_widget = self.get_active_widget()
         if active_widget is self.text_window:
-            themes = list(textarea_theme_map.values())
-            # Ensure uniqueness while preserving order
-            unique_themes = []
-            for t in themes:
-                if t not in unique_themes:
-                    unique_themes.append(t)
-            try:
-                current_index = unique_themes.index(self.text_window.theme)
-            except ValueError:
-                current_index = -1
-            next_theme = unique_themes[(current_index + 1) % len(unique_themes)]
-            self.text_window.theme = next_theme
-            self._update_subtitle()
-            return next_theme
-        if active_widget is self.vim_scroll:
-            try:
-                current_index = favorite_themes.index(self.theme)
-            except ValueError:
-                current_index = -1
-            next_theme_rich = favorite_themes[
-                (current_index + 1) % len(favorite_themes)
-            ]
-            self.watch_theme(next_theme_rich)
-            return next_theme_rich
-
+            return self._next_textarea_theme()
+        elif active_widget is self.vim_scroll:
+            return self._next_rich_theme()
         return None
+
+    def _next_textarea_theme(self) -> str:
+        """Switch to the next TextArea theme"""
+        themes = list(textarea_theme_map.values())
+        unique_themes = list(dict.fromkeys(themes))
+        try:
+            current_index = unique_themes.index(self.text_window.theme)
+        except ValueError:
+            current_index = -1
+        next_theme = unique_themes[(current_index + 1) % len(unique_themes)]
+        self.text_window.theme = next_theme
+        self._update_subtitle()
+        return next_theme
+
+    def _next_rich_theme(self) -> str:
+        """Switch to the next Rich theme"""
+        try:
+            current_index = favorite_themes.index(self.theme)
+        except ValueError:
+            current_index = -1
+        next_theme = favorite_themes[(current_index + 1) % len(favorite_themes)]
+        self.watch_theme(next_theme)
+        return next_theme
 
     def action_toggle_files(self) -> None:
         """

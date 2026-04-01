@@ -17,6 +17,22 @@ from browsr.widgets.base import BaseOverlay, BasePopUp
 class ShortcutsPopUp(BasePopUp):
     """A Pop Up that displays keyboard shortcuts"""
 
+    IGNORED_DESCRIPTIONS: ClassVar[list[str]] = [
+        "Cursor",
+        "Focus",
+        "Scroll",
+        "Page",
+    ]
+    IGNORED_KEYS: ClassVar[list[str]] = [
+        "ctrl+c",
+        "super+c",
+        "ctrl+q",
+        "ctrl+p",
+        "shift+space",
+        "enter",
+        "space",
+    ]
+
     def compose(self) -> ComposeResult:
         """Compose the Shortcuts Pop Up"""
         yield Static("Keyboard Shortcuts", id="shortcuts-header")
@@ -30,38 +46,27 @@ class ShortcutsPopUp(BasePopUp):
         table.cursor_type = "row"
         self.update_shortcuts()
 
+    def _should_ignore_binding(self, binding: BindingType) -> bool:
+        """Check if a binding should be ignored"""
+        description = binding.description
+        key = binding.key
+        return any(
+            description.startswith(ignored) for ignored in self.IGNORED_DESCRIPTIONS
+        ) or any(key == ignored for ignored in self.IGNORED_KEYS)
+
     def update_shortcuts(self) -> None:
         """Update the shortcuts displayed in the table"""
         table = self.query_one(DataTable)
         table.clear()
-        ignored_bindings = [
-            "Cursor",
-            "Focus",
-            "Scroll",
-            "Page",
-        ]
-        ignored_keys = [
-            "ctrl+c",
-            "super+c",
-            "ctrl+q",
-            "ctrl+p",
-            "shift+space",
-            "enter",
-            "space",
-        ]
         rows = []
         for binding in self.app.active_bindings.values():
-            if any(
-                binding.binding.description.startswith(ignored)
-                for ignored in ignored_bindings
-            ) or any(binding.binding.key == ignored for ignored in ignored_keys):
+            if self._should_ignore_binding(binding.binding):
                 continue
-            else:
-                cells = [
-                    binding.binding.key_display or binding.binding.key,
-                    binding.binding.description,
-                ]
-                rows.append(cells)
+            cells = [
+                binding.binding.key_display or binding.binding.key,
+                binding.binding.description,
+            ]
+            rows.append(cells)
         sorted_rows = sorted(rows, key=lambda x: x[1])
         for row in sorted_rows:
             table.add_row(*row)
