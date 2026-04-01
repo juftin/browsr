@@ -67,6 +67,8 @@ ConfirmationWindow {
     width: 100%;
     height: 100%;
     align: center middle;
+    layer: overlay;
+    background: $background 50%;
 }
 
 ConfirmationPopUp {
@@ -92,6 +94,8 @@ ShortcutsWindow {
     height: 100%;
     align: center middle;
     display: none;
+    layer: overlay;
+    background: $background 50%;
 }
 
 ShortcutsPopUp {

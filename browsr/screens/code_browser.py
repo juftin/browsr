@@ -28,6 +28,8 @@ class CodeBrowserScreen(SortedBindingsScreen):
     Code Browser Screen
     """
 
+    LAYERS: ClassVar[list[str]] = ["default", "overlay"]
+
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding(key="f", action="toggle_files", description="File Browser"),
         Binding(key="t", action="theme", description="Toggle Theme"),
