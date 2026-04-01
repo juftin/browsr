@@ -600,7 +600,7 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
         except ValueError:
             current_index = -1
         next_theme = favorite_themes[(current_index + 1) % len(favorite_themes)]
-        self.watch_theme(next_theme)
+        self.theme = next_theme
         return next_theme
 
     def action_toggle_files(self) -> None:
