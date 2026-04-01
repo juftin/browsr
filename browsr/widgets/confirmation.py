@@ -67,4 +67,5 @@ class ConfirmationWindow(BaseOverlay):
         """
         Compose the Confirmation Window
         """
-        yield ConfirmationPopUp()
+        return
+        yield
