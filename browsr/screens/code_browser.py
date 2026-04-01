@@ -13,13 +13,14 @@ from textual.binding import Binding, BindingType
 from textual.containers import Horizontal
 from textual.events import Mount
 from textual.widget import Widget
-from textual.widgets import Footer, Header
+from textual.widgets import DataTable, Footer, Header
 from textual_universal_directorytree import UPath
 
 from browsr.base import SortedBindingsScreen, TextualAppContext
 from browsr.utils import get_file_info
 from browsr.widgets.code_browser import CodeBrowser
 from browsr.widgets.files import CurrentFileInfoBar
+from browsr.widgets.shortcuts import ShortcutsPopUp, ShortcutsWindow
 
 
 class CodeBrowserScreen(SortedBindingsScreen):
@@ -28,12 +29,21 @@ class CodeBrowserScreen(SortedBindingsScreen):
     """
 
     BINDINGS: ClassVar[list[BindingType]] = [
-        Binding(key="f", action="toggle_files", description="Files"),
-        Binding(key="t", action="theme", description="Theme"),
-        Binding(key="n", action="linenos", description="Line Numbers"),
-        Binding(key="r", action="reload", description="Reload"),
-        Binding(key=".", action="parent_dir", description="Parent Directory"),
-        Binding(key="w", action="toggle_wrap", description="Toggle Wrap"),
+        Binding(key="f", action="toggle_files", description="File Browser"),
+        Binding(key="t", action="theme", description="Toggle Theme"),
+        Binding(key="n", action="linenos", description="Toggle Line Numbers"),
+        Binding(key="r", action="reload", description="Reload", show=False),
+        Binding(
+            key=".",
+            action="parent_dir",
+            description="Parent Directory",
+            key_display=".",
+            show=False,
+        ),
+        Binding(key="w", action="toggle_wrap", description="Toggle Wrap", show=False),
+        Binding(
+            key="?", action="toggle_shortcuts", description="Shortcuts", key_display="?"
+        ),
     ]
 
     BINDING_WEIGHTS: ClassVar[dict[str, int]] = {
@@ -49,6 +59,7 @@ class CodeBrowserScreen(SortedBindingsScreen):
         "x": 925,
         "w": 930,
         "C": 935,
+        "?": 940,
     }
 
     def __init__(
@@ -81,6 +92,7 @@ class CodeBrowserScreen(SortedBindingsScreen):
         else:
             self.file_information.file_info = get_file_info(self.config_object.path)
         self.footer = Footer()
+        self.shortcuts_window = ShortcutsWindow(id="shortcuts-container")
 
     def compose(self) -> Iterable[Widget]:
         """
@@ -90,6 +102,7 @@ class CodeBrowserScreen(SortedBindingsScreen):
         yield self.code_browser
         yield self.info_bar
         yield self.footer
+        yield self.shortcuts_window
 
     @on(Mount)
     def start_up_app(self) -> None:
@@ -200,3 +213,13 @@ class CodeBrowserScreen(SortedBindingsScreen):
         self.code_browser.window_switcher.text_window.soft_wrap = (
             not self.code_browser.window_switcher.text_window.soft_wrap
         )
+
+    def action_toggle_shortcuts(self) -> None:
+        """
+        Toggle the shortcuts window
+        """
+        self.shortcuts_window.display = not self.shortcuts_window.display
+        if self.shortcuts_window.display:
+            popup = self.shortcuts_window.query_one(ShortcutsPopUp)
+            popup.update_shortcuts()
+            popup.query_one(DataTable).focus()

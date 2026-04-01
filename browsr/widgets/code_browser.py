@@ -126,13 +126,13 @@ class CodeBrowser(Container):
         """
         if self._copy_supported:
             self.app.bind(
-                keys="c", action="copy_file_path", description="Copy Path", show=True
+                keys="c", action="copy_file_path", description="Copy Path", show=False
             )
             self.app.bind(
                 keys="C",
                 action="copy_text",
                 description="Copy Text",
-                show=True,
+                show=False,
                 key_display="shift+c",
             )
 

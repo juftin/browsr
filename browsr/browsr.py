@@ -12,7 +12,7 @@ from os import getenv
 from typing import Any, ClassVar
 
 from textual import on
-from textual.app import App, ComposeResult
+from textual.app import App
 from textual.binding import Binding, BindingType
 from textual.events import Mount
 
@@ -21,7 +21,6 @@ from browsr.base import (
     TextualAppContext,
 )
 from browsr.screens import CodeBrowserScreen
-from browsr.widgets.shortcuts import ShortcutsPopUp, ShortcutsWindow
 
 
 class Browsr(App[str]):
@@ -33,8 +32,7 @@ class Browsr(App[str]):
     CSS_PATH = "browsr.css"
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding(key="q", action="quit", description="Quit"),
-        Binding(key="d", action="toggle_dark", description="Dark Mode"),
-        Binding(key="?", action="toggle_shortcuts", description="Shortcuts"),
+        Binding(key="d", action="toggle_dark", description="Toggle Dark Mode"),
     ]
 
     def __init__(
@@ -56,13 +54,6 @@ class Browsr(App[str]):
         self.config_object = config_object or TextualAppContext()
         self.code_browser_screen = CodeBrowserScreen(config_object=self.config_object)
         self.install_screen(self.code_browser_screen, name="code-browser")
-
-    def compose(self) -> ComposeResult:
-        """
-        Compose the app
-        """
-        self.shortcuts_window = ShortcutsWindow(id="shortcuts-container")
-        yield self.shortcuts_window
 
     @on(Mount)
     async def mount_screen(self) -> None:
@@ -88,15 +79,6 @@ class Browsr(App[str]):
         An action to copy text.
         """
         self.code_browser_screen.code_browser.window_switcher.text_window.copy_selected_text()
-
-    def action_toggle_shortcuts(self) -> None:
-        """
-        Toggle the shortcuts window
-        """
-        self.shortcuts_window.display = not self.shortcuts_window.display
-        if self.shortcuts_window.display:
-            self.shortcuts_window.query_one(ShortcutsPopUp).update_shortcuts()
-            self.shortcuts_window.focus()
 
 
 app = Browsr(

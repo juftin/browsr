@@ -30,7 +30,7 @@ def terminal_size() -> tuple[int, int]:
 
 
 @cassette
-def test_github_screenshot(
+def test_shortcuts_screenshot(
     snap_compare: Callable[..., bool],
     tmp_path: UPath,
     app_file: str,
@@ -38,11 +38,13 @@ def test_github_screenshot(
     terminal_size: tuple[int, int],
 ) -> None:
     """
-    Snapshot a release of this repo
+    Snapshot the shortcuts window
     """
     app_path = tmp_path / "app.py"
     app_path.write_text(app_file.format(file_path=str(github_release_path)))
-    assert snap_compare(app=app_path, terminal_size=terminal_size)
+    assert snap_compare(
+        app=app_path, terminal_size=terminal_size, press=["question_mark"]
+    )
 
 
 @cassette
@@ -77,20 +79,3 @@ def test_mkdocs_screenshot(
     app_path = tmp_path / "app.py"
     app_path.write_text(app_file.format(file_path=file_path))
     assert snap_compare(app=app_path, terminal_size=terminal_size)
-
-
-@cassette
-def test_shortcuts_screenshot(
-    snap_compare: Callable[..., bool],
-    tmp_path: UPath,
-    app_file: str,
-    terminal_size: tuple[int, int],
-    github_release_path: GitHubTextualPath,
-) -> None:
-    """
-    Snapshot the shortcuts window
-    """
-    file_path = str(github_release_path / "pyproject.toml")
-    app_path = tmp_path / "app.py"
-    app_path.write_text(app_file.format(file_path=file_path))
-    assert snap_compare(app=app_path, terminal_size=terminal_size, press=["?"])

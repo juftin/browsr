@@ -36,7 +36,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Tue, 31 Mar 2026 05:21:12 GMT
+                  - Wed, 01 Apr 2026 03:39:57 GMT
               ETag:
                   - W/"91ee3d202828b3c28fcd9be69924424a4f792f5f17ff608d6d4ac2b1e19e5fcd"
               Last-Modified:
@@ -56,17 +56,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - E0F1:134FBD:5765C1:16848F7:69CB59C8
+                  - EDC8:E0E0B:3F6066F:10681ED6:69CC938D
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "47"
+                  - "59"
               X-RateLimit-Reset:
-                  - "1774935866"
+                  - "1775018397"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "13"
+                  - "1"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -111,7 +111,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Tue, 31 Mar 2026 05:21:12 GMT
+                  - Wed, 01 Apr 2026 03:39:57 GMT
               ETag:
                   - W/"91ee3d202828b3c28fcd9be69924424a4f792f5f17ff608d6d4ac2b1e19e5fcd"
               Last-Modified:
@@ -131,17 +131,17 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - E0F2:221446:569CC0:164642F:69CB59C9
+                  - EDC9:82E6C:3D5DD44:FD7C591:69CC938D
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "46"
+                  - "58"
               X-RateLimit-Reset:
-                  - "1774935866"
+                  - "1775018397"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "14"
+                  - "2"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
@@ -161,10 +161,10 @@ interactions:
               User-Agent:
                   - python-requests/2.33.0
           method: GET
-          uri: https://api.github.com/repos/juftin/browsr/contents/pyproject.toml?ref=v1.6.0
+          uri: https://api.github.com/repos/juftin/browsr/contents/README.md?ref=v1.6.0
       response:
           body:
-              string: '{"name":"pyproject.toml","path":"pyproject.toml","sha":"98be6018858bf4ccf1dafa7509d388ea08537ed7","size":4448,"url":"https://api.github.com/repos/juftin/browsr/contents/pyproject.toml?ref=v1.6.0","html_url":"https://github.com/juftin/browsr/blob/v1.6.0/pyproject.toml","git_url":"https://api.github.com/repos/juftin/browsr/git/blobs/98be6018858bf4ccf1dafa7509d388ea08537ed7","download_url":"https://raw.githubusercontent.com/juftin/browsr/v1.6.0/pyproject.toml","type":"file","content":"W2J1aWxkLXN5c3RlbV0KYnVpbGQtYmFja2VuZCA9ICJoYXRjaGxpbmcuYnVp\nbGQiCnJlcXVpcmVzID0gWyJoYXRjaGxpbmciXQoKW3Byb2plY3RdCmF1dGhv\ncnMgPSBbe25hbWUgPSAiSnVzdGluIEZsYW5uZXJ5IiwgZW1haWwgPSAianVz\ndGluLmZsYW5uZXJ5QGp1ZnRpbi5jb20ifV0KY2xhc3NpZmllcnMgPSBbCiAg\nIkRldmVsb3BtZW50IFN0YXR1cyA6OiA0IC0gQmV0YSIsCiAgIlByb2dyYW1t\naW5nIExhbmd1YWdlIDo6IFB5dGhvbiIsCiAgIlByb2dyYW1taW5nIExhbmd1\nYWdlIDo6IFB5dGhvbiA6OiAzLjgiLAogICJQcm9ncmFtbWluZyBMYW5ndWFn\nZSA6OiBQeXRob24gOjogMy45IiwKICAiUHJvZ3JhbW1pbmcgTGFuZ3VhZ2Ug\nOjogUHl0aG9uIDo6IDMuMTAiLAogICJQcm9ncmFtbWluZyBMYW5ndWFnZSA6\nOiBQeXRob24gOjogMy4xMSIKXQojIFBvZXRyeSBEZXBlbmRlbmNpZXMKZGVw\nZW5kZW5jaWVzID0gWwogICJhcnR+PTUuNyIsCiAgImNsaWNrfj04LjEuMyIs\nCiAgImZzc3BlY349MjAyMy4xLjAiLAogICJwYW5kYXN+PTEuNS4yIiwKICAi\ncmljaH49MTMuMy41IiwKICAicmljaC1jbGlja349MS41LjIiLAogICJyaWNo\nLXBpeGVsc349Mi4xLjEiLAogICJ0ZXh0dWFsfj0wLjI0LjEiLAogICJ1bml2\nZXJzYWwtcGF0aGxpYn49MC4wLjIxIiwKICAiUGlsbG93Pj05LjEuMCIsCiAg\nIlB5TXVQREZ+PTEuMjIuMyIKXQpkZXNjcmlwdGlvbiA9ICJUVUkgRmlsZSBC\ncm93c2VyIEFwcCIKZHluYW1pYyA9IFsidmVyc2lvbiJdCmtleXdvcmRzID0g\nW10KbGljZW5zZSA9ICJNSVQiCm5hbWUgPSAiYnJvd3NyIgpyZWFkbWUgPSAi\nUkVBRE1FLm1kIgpyZXF1aXJlcy1weXRob24gPSAiPj0zLjgsPDQuMCIKCltw\ncm9qZWN0Lm9wdGlvbmFsLWRlcGVuZGVuY2llc10KYWxsID0gWwogICJzM2Zz\nfj0yMDIzLjEuMCIsCiAgInB5YXJyb3d+PTEwLjAuMCIsCiAgInJlcXVlc3Rz\nfj0yLjI4LjIiLAogICJnY3Nmc349MjAyMy4xLjAiLAogICJhZGxmc349MjAy\nMy4xLjAiLAogICJhaW9odHRwfj0zLjguMyIKXQpwYXJxdWV0ID0gWwogICJw\neWFycm93fj0xMC4wLjAiCl0KcmVtb3RlID0gWwogICJzM2Zzfj0yMDIzLjEu\nMCIsCiAgInJlcXVlc3Rzfj0yLjI4LjIiLAogICJnY3Nmc349MjAyMy4xLjAi\nLAogICJhZGxmc349MjAyMy4xLjAiLAogICJhaW9odHRwfj0zLjguMyIKXQoK\nW3Byb2plY3Quc2NyaXB0c10KYnJvd3NyID0gImJyb3dzci5fX21haW5fXzpi\ncm93c3IiCgpbcHJvamVjdC51cmxzXQpEb2N1bWVudGF0aW9uID0gImh0dHBz\nOi8vZ2l0aHViLmNvbS9qdWZ0aW4vYnJvd3NyI3JlYWRtZSIKSXNzdWVzID0g\nImh0dHBzOi8vZ2l0aHViLmNvbS9qdWZ0aW4vYnJvd3NyL2lzc3VlcyIKU291\ncmNlID0gImh0dHBzOi8vZ2l0aHViLmNvbS9qdWZ0aW4vYnJvd3NyIgoKW3Rv\nb2wuY292ZXJhZ2UucmVwb3J0XQpleGNsdWRlX2xpbmVzID0gWyJubyBjb3Yi\nLCAiaWYgX19uYW1lX18gPT0gLl9fbWFpbl9fLjoiLCAiaWYgVFlQRV9DSEVD\nS0lORzoiXQoKW3Rvb2wuY292ZXJhZ2UucnVuXQpicmFuY2ggPSB0cnVlCm9t\naXQgPSBbImJyb3dzci9fdmVyc2lvbi5weSJdCnBhcmFsbGVsID0gdHJ1ZQoK\nW3Rvb2wuaGF0Y2guZW52cy5kZWZhdWx0XQpkZXBlbmRlbmNpZXMgPSBbCiAg\nInB5dGVzdH49Ny4zLjEiLAogICJweXRlc3QtY292fj00LjAuMCIsCiAgInB5\ndGVzdC1tb2Nrfj0zLjEwLjAiLAogICJta2RvY3N+PTEuNC4yIiwKICAibWtk\nb2NzLW1hdGVyaWFsfj05LjEuNiIsCiAgIm1rZG9jcy1jbGlja349MC44LjAi\nLAogICJta2RvY3N0cmluZ3NbcHl0aG9uXX49MC4yMS4yIiwKICAibWtkb2Nz\nLWdlbi1maWxlc349MC40LjAiLAogICJta2RvY3MtbGl0ZXJhdGUtbmF2fj0w\nLjYuMCIsCiAgIm1rZG9jcy1zZWN0aW9uLWluZGV4fj0wLjMuNSIsCiAgImJs\nYWNrfj0yMy4zLjAiLAogICJydWZmfj0wLjAuMjYxIiwKICAibXlweX49MS4y\nLjAiLAogICJwYW5kYXMtc3R1YnN+PTIuMC4wLjIzMDQxMiIsCiAgInBpcC10\nb29sc349Ni4xMy4wIiwKICAidGV4dHVhbFtkZXZdfj0wLjI0LjEiCl0KZmVh\ndHVyZXMgPSBbImFsbCJdCnByZS1pbnN0YWxsLWNvbW1hbmRzID0gWyJwaXAg\naW5zdGFsbCAtVSAtLW5vLWRlcHMgLXIgcmVxdWlyZW1lbnRzL3JlcXVpcmVt\nZW50cy1kZXYudHh0Il0KcHl0aG9uID0gIjMuMTAiCgpbdG9vbC5oYXRjaC5l\nbnZzLmRlZmF1bHQuc2NyaXB0c10KX3BpcF9jb21waWxlID0gInBpcC1jb21w\naWxlIC0tcmVzb2x2ZXI9YmFja3RyYWNraW5nIC0tZ2VuZXJhdGUtaGFzaGVz\nIHJlcXVpcmVtZW50cy5pbiIKYWxsID0gWyJmb3JtYXQiLCAibGludCIsICJj\naGVjayIsICJ0ZXN0Il0KY2hlY2sgPSBbCiAgIm15cHkgLS1pbnN0YWxsLXR5\ncGVzIC0tc3RyaWN0LW9wdGlvbmFsIC0tbm9uLWludGVyYWN0aXZlIHthcmdz\nOmJyb3dzci8gdGVzdHMvfSIKXQpkb2NzLWJ1aWxkID0gWyJta2RvY3MgYnVp\nbGQgLS1jbGVhbiAtLXN0cmljdCJdCmRvY3MtZGVwbG95ID0gWyJta2RvY3Mg\nZ2gtZGVwbG95IHthcmdzOn0iXQpkb2NzLXNlcnZlID0gWyJta2RvY3Mgc2Vy\ndmUgLS1kZXYtYWRkciBsb2NhbGhvc3Q6ODAwMCJdCmZvcm1hdCA9IFsicnVm\nZiAtLWZpeCB7YXJnczoufSIsICJibGFjayB7YXJnczoufSJdCmxpbnQgPSBb\nInJ1ZmYge2FyZ3M6Ln0iLCAiYmxhY2sgLS1jaGVjayB7YXJnczoufSJdCnJl\ncXVpcmVtZW50cyA9IFsKICAiaGF0Y2ggZGVwIHNob3cgcmVxdWlyZW1lbnRz\nIC0tcHJvamVjdC1vbmx5IC0tYWxsID4gcmVxdWlyZW1lbnRzLmluIiwKICAi\nX3BpcF9jb21waWxlIC0tb3V0cHV0LWZpbGUgcmVxdWlyZW1lbnRzL3JlcXVp\ncmVtZW50cy1wcm9kLnR4dCIsCiAgImhhdGNoIGRlcCBzaG93IHJlcXVpcmVt\nZW50cyAtLWFsbCA+IHJlcXVpcmVtZW50cy5pbiIsCiAgIl9waXBfY29tcGls\nZSAtLW91dHB1dC1maWxlIHJlcXVpcmVtZW50cy9yZXF1aXJlbWVudHMtZGV2\nLnR4dCIsCiAgInJtIHJlcXVpcmVtZW50cy5pbiIKXQpyZXF1aXJlbWVudHMt\ndXBncmFkZSA9IFsKICAiaGF0Y2ggZGVwIHNob3cgcmVxdWlyZW1lbnRzIC0t\ncHJvamVjdC1vbmx5IC0tYWxsID4gcmVxdWlyZW1lbnRzLmluIiwKICAiX3Bp\ncF9jb21waWxlIC0tb3V0cHV0LWZpbGUgcmVxdWlyZW1lbnRzL3JlcXVpcmVt\nZW50cy1wcm9kLnR4dCAtLXVwZ3JhZGUiLAogICJoYXRjaCBkZXAgc2hvdyBy\nZXF1aXJlbWVudHMgLS1hbGwgPiByZXF1aXJlbWVudHMuaW4iLAogICJfcGlw\nX2NvbXBpbGUgLS1vdXRwdXQtZmlsZSByZXF1aXJlbWVudHMvcmVxdWlyZW1l\nbnRzLWRldi50eHQgLS11cGdyYWRlIiwKICAicm0gcmVxdWlyZW1lbnRzLmlu\nIgpdCnNlbWFudGljLXJlbGVhc2UgPSBbCiAgIm5wbSBpbnN0YWxsIC0tcHJl\nZml4IC5naXRodWIvc2VtYW50aWNfcmVsZWFzZS8iLAogICJucHggLS1wcmVm\naXggLmdpdGh1Yi9zZW1hbnRpY19yZWxlYXNlLyBzZW1hbnRpYy1yZWxlYXNl\nIHthcmdzOn0iCl0KdGVzdCA9ICJweXRlc3QgLS1jb3Y9YnJvd3NyIC0tY292\nLXJlcG9ydD17ZW52OkNPVkVSQUdFX1JFUE9SVDp0ZXJtLW1pc3Npbmd9IC0t\nY292LWNvbmZpZz1weXByb2plY3QudG9tbCB7YXJnczp0ZXN0cy99IgoKW1t0\nb29sLmhhdGNoLmVudnMudGVzdC5tYXRyaXhdXQpweXRob24gPSBbIjMuOCIs\nICIzLjkiLCAiMy4xMCIsICIzLjExIl0KClt0b29sLmhhdGNoLmVudnMudGVz\ndC5zY3JpcHRzXQptYXRyaXggPSAidGVzdCIKClt0b29sLmhhdGNoLnZlcnNp\nb25dCnBhdGggPSAiYnJvd3NyL192ZXJzaW9uLnB5IgoKW3Rvb2wubXlweV0K\nY2hlY2tfdW50eXBlZF9kZWZzID0gdHJ1ZQpkaXNhbGxvd19hbnlfZ2VuZXJp\nY3MgPSB0cnVlCmRpc2FsbG93X3VudHlwZWRfZGVmcyA9IHRydWUKZm9sbG93\nX2ltcG9ydHMgPSAic2lsZW50Igpub19pbXBsaWNpdF9yZWV4cG9ydCA9IHRy\ndWUKd2Fybl9yZWR1bmRhbnRfY2FzdHMgPSB0cnVlCndhcm5fdW51c2VkX2ln\nbm9yZXMgPSB0cnVlCgpbW3Rvb2wubXlweS5vdmVycmlkZXNdXQppZ25vcmVf\nZXJyb3JzID0gdHJ1ZQptb2R1bGUgPSBbCiAgInJpY2hfY2xpY2suKiIKXQoK\nW3Rvb2wucnVmZl0KaWdub3JlID0gWwogICJFNTAxIiAgIyBsaW5lIHRvbyBs\nb25nLCBoYW5kbGVkIGJ5IGJsYWNrCl0Kc2VsZWN0ID0gWwogICJFIiwgICMg\ncHljb2Rlc3R5bGUgZXJyb3JzCiAgIlciLCAgIyBweWNvZGVzdHlsZSB3YXJu\naW5ncwogICJGIiwgICMgcHlmbGFrZXMKICAiSSIsICAjIGlzb3J0CiAgIkMi\nLCAgIyBmbGFrZTgtY29tcHJlaGVuc2lvbnMKICAiUSIsICAjIGZsYWtlOC1x\ndW90ZXMKICAiQiIsICAjIGZsYWtlOC1idWdiZWFyCiAgIlBMRSIsICAjIHB5\nbGludAogICJQTFIiLCAgIyBweWxpbnQKICAiUExXIiwgICMgcHlsaW50CiAg\nIlJVRiIsICAjIHJ1ZmYKICAiQzkwIiAgIyBtY2NhYmUKXQoKW3Rvb2wucnVm\nZi5wZXItZmlsZS1pZ25vcmVzXQoidGVzdHMvKioiID0gWwogICJQTFIyMDA0\nIiAgIyBNYWdpYyB2YWx1ZSB1c2VkIGluIGNvbXBhcmlzb24KXQo=\n","encoding":"base64","_links":{"self":"https://api.github.com/repos/juftin/browsr/contents/pyproject.toml?ref=v1.6.0","git":"https://api.github.com/repos/juftin/browsr/git/blobs/98be6018858bf4ccf1dafa7509d388ea08537ed7","html":"https://github.com/juftin/browsr/blob/v1.6.0/pyproject.toml"}}'
+              string: '{"name":"README.md","path":"README.md","sha":"1b7227281e1ac90b906c05a82ce968b6d5e3114c","size":2728,"url":"https://api.github.com/repos/juftin/browsr/contents/README.md?ref=v1.6.0","html_url":"https://github.com/juftin/browsr/blob/v1.6.0/README.md","git_url":"https://api.github.com/repos/juftin/browsr/git/blobs/1b7227281e1ac90b906c05a82ce968b6d5e3114c","download_url":"https://raw.githubusercontent.com/juftin/browsr/v1.6.0/README.md","type":"file","content":"IyBicm93c3IKCjxkaXYgYWxpZ249ImNlbnRlciIgaHJlZj0iaHR0cHM6Ly9n\naXRodWIuY29tL2p1ZnRpbi9icm93c3IiPgogICAgPGEgaHJlZj0iaHR0cHM6\nLy9naXRodWIuY29tL2p1ZnRpbi9icm93c3IiPgogICAgICA8aW1nIHNyYz1o\ndHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vanVmdGluL2Jyb3dz\nci9tYWluL2RvY3MvX3N0YXRpYy9icm93c3IucG5nCiAgICAgICAgd2lkdGg9\nIjQwMCIgYWx0PSJicm93c3IiPgogICAgPC9hPgo8L2Rpdj4KClshW2Jyb3dz\nciBWZXJzaW9uXShodHRwczovL2ltZy5zaGllbGRzLmlvL3B5cGkvdi9icm93\nc3I/Y29sb3I9Ymx1ZSZsYWJlbD1icm93c3IpXShodHRwczovL2dpdGh1Yi5j\nb20vanVmdGluL2Jyb3dzcikKWyFbUHlQSV0oaHR0cHM6Ly9pbWcuc2hpZWxk\ncy5pby9weXBpL3B5dmVyc2lvbnMvYnJvd3NyKV0oaHR0cHM6Ly9weXBpLnB5\ndGhvbi5vcmcvcHlwaS9icm93c3IvKQpbIVtUZXN0aW5nIFN0YXR1c10oaHR0\ncHM6Ly9naXRodWIuY29tL2p1ZnRpbi9icm93c3IvYWN0aW9ucy93b3JrZmxv\nd3MvdGVzdHMueWFtbC9iYWRnZS5zdmc/YnJhbmNoPW1haW4pXShodHRwczov\nL2dpdGh1Yi5jb20vanVmdGluL2Jyb3dzci9hY3Rpb25zL3dvcmtmbG93cy90\nZXN0cy55YW1sP3F1ZXJ5PWJyYW5jaCUzQW1haW4pClshW0dpdEh1YiBMaWNl\nbnNlXShodHRwczovL2ltZy5zaGllbGRzLmlvL2dpdGh1Yi9saWNlbnNlL2p1\nZnRpbi9icm93c3I/Y29sb3I9Ymx1ZSZsYWJlbD1MaWNlbnNlKV0oaHR0cHM6\nLy9naXRodWIuY29tL2p1ZnRpbi9icm93c3IvYmxvYi9tYWluL0xJQ0VOU0Up\nCgoqKmBicm93c3JgKiogaXMgYSBUVUkgKHRleHQtYmFzZWQgdXNlciBpbnRl\ncmZhY2UpIGZpbGUgYnJvd3NlciBmb3IgeW91ciB0ZXJtaW5hbC4KSXQncyBh\nIHNpbXBsZSB3YXkgdG8gYnJvd3NlIHlvdXIgZmlsZXMgYW5kIHRha2UgYSBw\nZWVrIGF0IHRoZWlyIGNvbnRlbnRzLiBQbHVzIGl0CndvcmtzIG9uIGxvY2Fs\nIGFuZCByZW1vdGUgZmlsZSBzeXN0ZW1zLgoKPGRldGFpbHMgb3Blbj48L3N1\nbW1hcnk+PC9zdW1tYXJ5PgoKPGJvZHk+CjxkaXYgc3R5bGU9ImRpc3BsYXk6\nIGdyaWQ7IGdyaWQtdGVtcGxhdGUtY29sdW1uczogcmVwZWF0KDIsIDFmcik7\nIGdyaWQtZ2FwOiAxMHB4OyI+CiAgICA8aW1nIHNyYz0iaHR0cHM6Ly9yYXcu\nZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p1ZnRpbi9icm93c3IvbWFpbi9kb2Nz\nL19zdGF0aWMvc2NyZWVuc2hvdF91dGlscy5wbmciIGFsdD0iSW1hZ2UgMSI+\nCiAgICA8aW1nIHNyYz0iaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQu\nY29tL2p1ZnRpbi9icm93c3IvbWFpbi9kb2NzL19zdGF0aWMvc2NyZWVuc2hv\ndF9kYXRhdGFibGUucG5nIiBhbHQ9IkltYWdlIDIiPgogICAgPGltZyBzcmM9\nImh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9qdWZ0aW4vYnJv\nd3NyL21haW4vZG9jcy9fc3RhdGljL3NjcmVlbnNob3RfbW9uYV9saXNhLnBu\nZyIgYWx0PSJJbWFnZSAzIj4KICAgIDxpbWcgc3JjPSJodHRwczovL3Jhdy5n\naXRodWJ1c2VyY29udGVudC5jb20vanVmdGluL2Jyb3dzci9tYWluL2RvY3Mv\nX3N0YXRpYy9zY3JlZW5zaG90X21hcmtkb3duLnBuZyIgYWx0PSJJbWFnZSA0\nIj4KPC9kaXY+CjwvYm9keT4KCjwvZGV0YWlscz4KCiMjIEluc3RhbGxhdGlv\nbgoKVGhlIGJlbG93IGNvbW1hbmQgcmVjb21tZW5kcyBbcGlweF0oaHR0cHM6\nLy9weXBhLmdpdGh1Yi5pby9waXB4LykgaW5zdGVhZCBvZiBwaXAuIGBwaXB4\nYCBpbnN0YWxscyB0aGUgcGFja2FnZSBpbgphbiBpc29sYXRlZCBlbnZpcm9u\nbWVudCBhbmQgbWFrZXMgaXQgZWFzeSB0byB1bmluc3RhbGwuIElmIHlvdSdk\nIGxpa2UgdG8gdXNlIGBwaXBgIGluc3RlYWQsIGp1c3QgcmVwbGFjZSBgcGlw\neGAKd2l0aCBgcGlwYCBpbiB0aGUgYmVsb3cgY29tbWFuZC4KCmBgYHNoZWxs\nCnBpcHggaW5zdGFsbCBicm93c3IKYGBgCgojIyBFeHRyYSBJbnN0YWxsYXRp\nb24KCklmIHlvdSdyZSBsb29raW5nIHRvIHVzZSAqKmBicm93c3JgKiogb24g\ncmVtb3RlIGZpbGUgc3lzdGVtcywgbGlrZSBBV1MgUzMsIHlvdSdsbCBuZWVk\nIHRvIGluc3RhbGwgdGhlIGByZW1vdGVgIGV4dHJhLgpJZiB5b3UnZCBsaWtl\nIHRvIGJyb3dzZSBwYXJxdWV0IGZpbGVzLCB5b3UnbGwgbmVlZCB0byBpbnN0\nYWxsIHRoZSBgcGFycXVldGAgZXh0cmEuIE9yLCBldmVuIHNpbXBsZXIsCnlv\ndSBjYW4gaW5zdGFsbCB0aGUgYGFsbGAgZXh0cmEgdG8gZ2V0IGFsbCB0aGUg\nZXh0cmFzLgoKYGBgc2hlbGwKcGlweCBpbnN0YWxsICJicm93c3JbYWxsXSIK\nYGBgCgojIyBVc2FnZQoKYGBgc2hlbGwKYnJvd3NyIH4vRG93bmxvYWRzLwpg\nYGAKClNpbXBseSBnaXZlICoqYGJyb3dzcmAqKiBhIHBhdGggdG8gYSBmaWxl\nL2RpcmVjdG9yeSBhbmQgaXQgd2lsbCBvcGVuIGEgYnJvd3NlciB3aW5kb3cK\nd2l0aCBhIGZpbGUgYnJvd3Nlci4gWW91IGNhbiBhbHNvIGdpdmUgaXQgYSBV\nUkwgdG8gYSByZW1vdGUgZmlsZSBzeXN0ZW0sIGxpa2UgQVdTIFMzLgoKYGBg\nc2hlbGwKYnJvd3NyIHMzOi8vbXktYnVja2V0L215LWZpbGUucGFycXVldApg\nYGAKCiMjIyBbQ2hlY2sgb3V0IHRoZSBEb2N1bWVudGF0aW9uXShodHRwczov\nL2p1ZnRpbi5jb20vYnJvd3NyLykgZm9yIG1vcmUKCiMjIExpY2Vuc2UKCioq\nYGJyb3dzcmAqKiBpcyBkaXN0cmlidXRlZCB1bmRlciB0aGUgdGVybXMgb2Yg\ndGhlIFtNSVQgbGljZW5zZV0oTElDRU5TRSkuCg==\n","encoding":"base64","_links":{"self":"https://api.github.com/repos/juftin/browsr/contents/README.md?ref=v1.6.0","git":"https://api.github.com/repos/juftin/browsr/git/blobs/1b7227281e1ac90b906c05a82ce968b6d5e3114c","html":"https://github.com/juftin/browsr/blob/v1.6.0/README.md"}}'
           headers:
               Accept-Ranges:
                   - bytes
@@ -178,15 +178,15 @@ interactions:
               Cache-Control:
                   - public, max-age=60, s-maxage=60
               Content-Length:
-                  - "6908"
+                  - "4505"
               Content-Security-Policy:
                   - default-src 'none'
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Tue, 31 Mar 2026 05:21:13 GMT
+                  - Wed, 01 Apr 2026 03:39:58 GMT
               ETag:
-                  - '"98be6018858bf4ccf1dafa7509d388ea08537ed7"'
+                  - '"1b7227281e1ac90b906c05a82ce968b6d5e3114c"'
               Last-Modified:
                   - Tue, 16 May 2023 03:59:55 GMT
               Referrer-Policy:
@@ -202,23 +202,23 @@ interactions:
               X-GitHub-Media-Type:
                   - github.v3; format=json
               X-GitHub-Request-Id:
-                  - E0F3:27CC4C:5246A5:152E55D:69CB59C9
+                  - EDCA:2F48D8:4033BE0:10A44C84:69CC938D
               X-RateLimit-Limit:
                   - "60"
               X-RateLimit-Remaining:
-                  - "45"
+                  - "57"
               X-RateLimit-Reset:
-                  - "1774935866"
+                  - "1775018397"
               X-RateLimit-Resource:
                   - core
               X-RateLimit-Used:
-                  - "15"
+                  - "3"
               X-XSS-Protection:
                   - "0"
               x-github-api-version-selected:
                   - "2022-11-28"
               x-internal-experiment-version-metadata:
-                  - ZW1wdHlfcmVwb3NpdG9yeTpmYWxzZSxoZWFkX29pZDo5MDMzYzcwNGE5NmJkZDRiNDM1YTc2MWYwNDA5NzQ1NTIzYTc5NjkyLHJlZl9uYW1lOnYxLjYuMCxyZWZfY29tbWl0X29pZDpiODBlYTE5Mzc1NzIwNDFlMmVkODg0ZjNkMTc5MTlhNzMyNGIwODBiLHJvb3RfdHJlZV9lbnRyeV9vaWQ6M2U4NTA1ZTdmYjAyZDU4ZTgzNDQ5YTlmNTFlOGU2ZmQwM2Y5YmNkZSxwYXRoX29iamVjdF90eXBlOmJsb2IscGF0aF9vYmplY3Rfb2lkOjk4YmU2MDE4ODU4YmY0Y2NmMWRhZmE3NTA5ZDM4OGVhMDg1MzdlZDcscGF0aF9vYmplY3RfbW9kZTozMzE4OCxwYXRoX29iamVjdF9zaXplOjQ0NDg=
+                  - ZW1wdHlfcmVwb3NpdG9yeTpmYWxzZSxoZWFkX29pZDo5MDMzYzcwNGE5NmJkZDRiNDM1YTc2MWYwNDA5NzQ1NTIzYTc5NjkyLHJlZl9uYW1lOnYxLjYuMCxyZWZfY29tbWl0X29pZDpiODBlYTE5Mzc1NzIwNDFlMmVkODg0ZjNkMTc5MTlhNzMyNGIwODBiLHJvb3RfdHJlZV9lbnRyeV9vaWQ6M2U4NTA1ZTdmYjAyZDU4ZTgzNDQ5YTlmNTFlOGU2ZmQwM2Y5YmNkZSxwYXRoX29iamVjdF90eXBlOmJsb2IscGF0aF9vYmplY3Rfb2lkOjFiNzIyNzI4MWUxYWM5MGI5MDZjMDVhODJjZTk2OGI2ZDVlMzExNGMscGF0aF9vYmplY3RfbW9kZTozMzE4OCxwYXRoX29iamVjdF9zaXplOjI3Mjg=
           status:
               code: 200
               message: OK
