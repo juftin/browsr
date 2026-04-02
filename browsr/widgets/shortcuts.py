@@ -8,7 +8,7 @@ from typing import ClassVar
 
 from textual import on
 from textual.app import ComposeResult
-from textual.binding import BindingType
+from textual.binding import Binding, BindingType
 from textual.widgets import Button, DataTable, Static
 
 from browsr.widgets.base import BaseOverlay, BasePopUp
@@ -48,6 +48,8 @@ class ShortcutsPopUp(BasePopUp):
 
     def _should_ignore_binding(self, binding: BindingType) -> bool:
         """Check if a binding should be ignored"""
+        if not isinstance(binding, Binding):
+            return True
         description = binding.description
         key = binding.key
         return any(
@@ -59,12 +61,13 @@ class ShortcutsPopUp(BasePopUp):
         table = self.query_one(DataTable)
         table.clear()
         rows = []
-        for binding in self.app.active_bindings.values():
-            if self._should_ignore_binding(binding.binding):
+        for active_binding in self.app.active_bindings.values():
+            binding = active_binding.binding
+            if self._should_ignore_binding(binding) or not isinstance(binding, Binding):
                 continue
             cells = [
-                binding.binding.key_display or binding.binding.key,
-                binding.binding.description,
+                binding.key_display or binding.key,
+                binding.description,
             ]
             rows.append(cells)
         sorted_rows = sorted(rows, key=lambda x: x[1])

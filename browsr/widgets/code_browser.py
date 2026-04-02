@@ -26,7 +26,6 @@ from browsr.base import (
     TextualAppContext,
 )
 from browsr.config import favorite_themes
-from browsr.exceptions import FileSizeError
 from browsr.utils import (
     get_file_info,
     handle_duplicate_filenames,
@@ -182,19 +181,7 @@ class CodeBrowser(Container):
         """
         self.selected_file_path = message.path  # type: ignore[assignment]
         file_info = get_file_info(file_path=self.selected_file_path)  # type: ignore[arg-type]
-        try:
-            self.static_window.handle_file_size(
-                file_info=file_info, max_file_size=self.config_object.max_file_size
-            )
-            self.window_switcher.render_file(file_path=self.selected_file_path)  # type: ignore[arg-type]
-        except FileSizeError as e:
-            error_message = self.static_window.handle_exception(exception=e)
-            error_syntax = self.static_window.text_to_syntax(
-                text=error_message,
-                file_path=self.selected_file_path,  # type: ignore[arg-type]
-            )
-            self.static_window.update(error_syntax)
-            self.window_switcher.switch_window(self.static_window)
+        self.window_switcher.render_file(file_path=self.selected_file_path)  # type: ignore[arg-type]
         self.post_message(CurrentFileInfoBar.FileInfoUpdate(new_file=file_info))
 
     @on(DoubleClickDirectoryTree.DirectoryDoubleClicked)
