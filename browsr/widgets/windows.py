@@ -38,6 +38,7 @@ from browsr.exceptions import FileSizeError
 from browsr.utils import (
     ArchiveFileError,
     FileInfo,
+    get_file_info,
     open_image,
 )
 from browsr.widgets.vim import VimDataTable, VimScroll
@@ -140,51 +141,19 @@ class BaseCodeWindow(Widget):
     def handle_exception(cls, exception: Exception) -> str:
         """
         Handle an exception
-
-        This method is used to handle exceptions that occur when rendering a file.
-        When an uncommon exception occurs, the method will raise the exception.
-
-        Parameters
-        ----------
-        exception: Exception
-            The exception that occurred.
-
-        Raises
-        ------
-        Exception
-            If the exception is not one of the expected exceptions.
-
-        Returns
-        -------
-        str
-            The error message to display.
         """
         font = "univers"
-        if isinstance(exception, ArchiveFileError):
-            error_message = (
-                text2art("ARCHIVE", font=font) + "\n\n" + text2art("FILE", font=font)
-            )
-        elif isinstance(exception, FileSizeError):
-            error_message = (
-                text2art("FILE TOO", font=font) + "\n\n" + text2art("LARGE", font=font)
-            )
-        elif isinstance(exception, PermissionError):
-            error_message = (
-                text2art("PERMISSION", font=font)
-                + "\n\n"
-                + text2art("ERROR", font=font)
-            )
-        elif isinstance(exception, UnicodeError):
-            error_message = (
-                text2art("ENCODING", font=font) + "\n\n" + text2art("ERROR", font=font)
-            )
-        elif isinstance(exception, FileNotFoundError):
-            error_message = (
-                text2art("FILE NOT", font=font) + "\n\n" + text2art("FOUND", font=font)
-            )
-        else:
-            raise exception from exception
-        return error_message
+        exception_map = {
+            ArchiveFileError: ("ARCHIVE", "FILE"),
+            FileSizeError: ("FILE TOO", "LARGE"),
+            PermissionError: ("PERMISSION", "ERROR"),
+            UnicodeError: ("ENCODING", "ERROR"),
+            FileNotFoundError: ("FILE NOT", "FOUND"),
+        }
+        for exc_type, (line1, line2) in exception_map.items():
+            if isinstance(exception, exc_type):
+                return text2art(line1, font=font) + "\n\n" + text2art(line2, font=font)
+        raise exception from exception
 
 
 class StaticWindow(Static, BaseCodeWindow, ThemeVisibleMixin, LinenosVisibleMixin):
@@ -503,17 +472,30 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
         """
         Render a file
         """
-        joined_suffixes = "".join(file_path.suffixes).lower()
-        if joined_suffixes in self.datatable_extensions:
-            switch_window = self._render_datatable(file_path)
-        elif file_path.suffix.lower() in self.image_extensions:
-            switch_window = self._render_image(file_path)
-        elif file_path.suffix.lower() in self.markdown_extensions:
-            switch_window = self._render_markdown(file_path)
-        elif file_path.suffix.lower() in self.json_extensions:
-            switch_window = self._render_json(file_path)
-        else:
-            switch_window = self._render_text(file_path)
+        try:
+            file_info = get_file_info(file_path=file_path)
+            self.static_window.handle_file_size(
+                file_info=file_info, max_file_size=self.config_object.max_file_size
+            )
+            joined_suffixes = "".join(file_path.suffixes).lower()
+            if joined_suffixes in self.datatable_extensions:
+                switch_window = self._render_datatable(file_path)
+            elif file_path.suffix.lower() in self.image_extensions:
+                switch_window = self._render_image(file_path)
+            elif file_path.suffix.lower() in self.markdown_extensions:
+                switch_window = self._render_markdown(file_path)
+            elif file_path.suffix.lower() in self.json_extensions:
+                switch_window = self._render_json(file_path)
+            else:
+                switch_window = self._render_text(file_path)
+        except Exception as e:
+            error_message = self.static_window.handle_exception(exception=e)
+            error_syntax = self.static_window.text_to_syntax(
+                text=error_message,
+                file_path=file_path,
+            )
+            self.static_window.update(error_syntax)
+            switch_window = self.static_window
 
         self.switch_window(switch_window)
         active_widget = self.get_active_widget()
