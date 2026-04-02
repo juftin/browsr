@@ -54,18 +54,12 @@ class ShortcutsPopUp(BasePopUp):
         rows = []
         for active_binding in self.app.active_bindings.values():
             binding = active_binding.binding
-            if not all(
-                [
-                    isinstance(binding, Binding),
-                    binding.action in self.TRUSTED_ACTIONS,
-                    binding.key_display or binding.key not in self.IGNORED_KEYS,
-                ]
-            ):
+            if not isinstance(binding, Binding):
                 continue
-            cells = [
-                binding.key_display or binding.key,
-                binding.description,
-            ]
+            key = binding.key_display or binding.key
+            if binding.action not in self.TRUSTED_ACTIONS or key in self.IGNORED_KEYS:
+                continue
+            cells = [key, binding.description]
             rows.append(cells)
         sorted_rows = sorted(rows, key=lambda x: x[1])
         for row in sorted_rows:
