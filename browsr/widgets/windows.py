@@ -312,6 +312,13 @@ class TextWindow(TextArea, BaseCodeWindow, ThemeVisibleMixin, LinenosVisibleMixi
         if target in self.available_themes and self.theme != target:
             self.theme = target
 
+    def load_file(self, text: str, file_path: UPath) -> None:
+        """
+        Load text and detect language
+        """
+        self.load_text(text)
+        self.detect_language(file_path)
+
     def detect_language(self, file_path: str | UPath) -> None:
         """
         Detect the language from the file path
@@ -483,21 +490,13 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
         """
         Switch to the window
         """
-        screens: dict[Widget, Widget] = {
+        window_map: dict[Widget, Widget] = {
             self.static_window: self.vim_scroll,
             self.text_window: self.text_window,
             self.datatable_window: self.datatable_window,
         }
-        for window_screen, _ in screens.items():
-            if window is window_screen:
-                screens[window_screen].display = True
-            else:
-                screens[window_screen].display = False
-        if window is self.text_window:
-            # We only apply the smart theme if it's currently using a non-standard theme
-            # or if it's the first time it's being shown.
-            # But the user wants vscode_dark to persist.
-            pass
+        for window_widget, container_widget in window_map.items():
+            container_widget.display = window is window_widget
         self._update_subtitle()
 
     def render_file(self, file_path: UPath, scroll_home: bool = True) -> None:
@@ -552,8 +551,7 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
         json_str = self.static_window.file_to_json(
             file_path=file_path, max_lines=self.config_object.max_lines
         )
-        self.text_window.load_text(json_str)
-        self.text_window.detect_language(file_path)
+        self.text_window.load_file(json_str, file_path)
         return self.text_window
 
     def _render_text(self, file_path: UPath) -> BaseCodeWindow:
@@ -565,8 +563,7 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
             self.static_window.update(result.result)
             return self.static_window
         else:
-            self.text_window.load_text(result.result)
-            self.text_window.detect_language(file_path)
+            self.text_window.load_file(result.result, file_path)
             return self.text_window
 
     def next_theme(self) -> str | None:

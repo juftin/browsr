@@ -80,8 +80,6 @@ class ShortcutsPopUp(BasePopUp):
 class ShortcutsWindow(BaseOverlay):
     """Window containing the Shortcuts Pop Up"""
 
-    BINDINGS: ClassVar[list[BindingType]] = []
-
     def compose(self) -> ComposeResult:
         """Compose the Shortcuts Window"""
         yield ShortcutsPopUp()

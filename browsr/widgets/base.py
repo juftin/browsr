@@ -17,6 +17,8 @@ class BasePopUp(Container):
     Base class for popup widgets
     """
 
+    can_focus = True
+
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding("escape", "close", "Close", show=False),
     ]
@@ -42,6 +44,8 @@ class BaseOverlay(Container):
     Base class for overlay containers
     """
 
+    can_focus = True
+
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding("escape", "close", "Close", show=False),
     ]
@@ -57,6 +61,13 @@ class BaseOverlay(Container):
         On Mount
         """
         self.display = False
+
+    def watch_display(self, display: bool) -> None:
+        """
+        Focus the overlay when it is displayed
+        """
+        if display:
+            self.focus()
 
     @on(BasePopUp.Toggle)
     def handle_toggle(self, message: BasePopUp.Toggle) -> None:

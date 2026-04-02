@@ -47,6 +47,24 @@ class ConfirmationPopUp(BasePopUp):
         yield Button("Yes", variant="success")
         yield Button("No", variant="error")
 
+    def prompt_download(self, file_path: str, download_path: str) -> None:
+        """
+        Prompt the user to download a file
+        """
+        prompt_message: str = dedent(
+            f"""
+            ## File Download
+
+            **Are you sure you want to download that file?**
+
+            **File:** `{file_path}`
+
+            **Path:** `{download_path}`
+            """
+        )
+        self.download_message.update(Markdown(prompt_message))
+        self.refresh()
+
     @on(Button.Pressed)
     def handle_download_selection(self, message: Button.Pressed) -> None:
         """
