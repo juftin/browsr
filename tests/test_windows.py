@@ -105,6 +105,7 @@ async def test_window_switcher_routing():
         mock_json.suffixes = [".json"]
         mock_json.read_text.return_value = '{"key": "value"}'
         mock_json.__str__.return_value = "test.json"
+        mock_json.stat.return_value.st_size = 100
 
         # Mock UPath for a Python file
         mock_py = MagicMock(spec=UPath)
@@ -112,6 +113,7 @@ async def test_window_switcher_routing():
         mock_py.suffixes = [".py"]
         mock_py.read_text.return_value = "print('hello')"
         mock_py.__str__.return_value = "test.py"
+        mock_py.stat.return_value.st_size = 100
 
         # We need to patch various things to avoid NoActiveAppError and other issues
         switcher.static_window.file_to_json = MagicMock(
