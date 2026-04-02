@@ -8,7 +8,7 @@ from typing import ClassVar
 
 from textual import on
 from textual.app import ComposeResult
-from textual.binding import Binding, BindingType
+from textual.binding import Binding
 from textual.widgets import Button, DataTable, Static
 
 from browsr.widgets.base import BaseOverlay, BasePopUp
@@ -17,21 +17,22 @@ from browsr.widgets.base import BaseOverlay, BasePopUp
 class ShortcutsPopUp(BasePopUp):
     """A Pop Up that displays keyboard shortcuts"""
 
-    IGNORED_DESCRIPTIONS: ClassVar[list[str]] = [
-        "Cursor",
-        "Focus",
-        "Scroll",
-        "Page",
+    TRUSTED_ACTIONS: ClassVar[list[str]] = [
+        "copy_file_path",
+        "copy_text",
+        "download_file",
+        "toggle_files",
+        "parent_dir",
+        "quit",
+        "reload",
+        "toggle_shortcuts",
+        "toggle_dark",
+        "linenos",
+        "theme",
+        "toggle_wrap",
     ]
-    IGNORED_KEYS: ClassVar[list[str]] = [
-        "ctrl+c",
-        "super+c",
-        "ctrl+q",
-        "ctrl+p",
-        "shift+space",
-        "enter",
-        "space",
-    ]
+
+    IGNORED_KEYS: ClassVar[list[str]] = ["ctrl+q"]
 
     def compose(self) -> ComposeResult:
         """Compose the Shortcuts Pop Up"""
@@ -46,16 +47,6 @@ class ShortcutsPopUp(BasePopUp):
         table.cursor_type = "row"
         self.update_shortcuts()
 
-    def _should_ignore_binding(self, binding: BindingType) -> bool:
-        """Check if a binding should be ignored"""
-        if not isinstance(binding, Binding):
-            return True
-        description = binding.description
-        key = binding.key
-        return any(
-            description.startswith(ignored) for ignored in self.IGNORED_DESCRIPTIONS
-        ) or any(key == ignored for ignored in self.IGNORED_KEYS)
-
     def update_shortcuts(self) -> None:
         """Update the shortcuts displayed in the table"""
         table = self.query_one(DataTable)
@@ -63,7 +54,13 @@ class ShortcutsPopUp(BasePopUp):
         rows = []
         for active_binding in self.app.active_bindings.values():
             binding = active_binding.binding
-            if self._should_ignore_binding(binding) or not isinstance(binding, Binding):
+            if not all(
+                [
+                    isinstance(binding, Binding),
+                    binding.action in self.TRUSTED_ACTIONS,
+                    binding.key_display or binding.key not in self.IGNORED_KEYS,
+                ]
+            ):
                 continue
             cells = [
                 binding.key_display or binding.key,
