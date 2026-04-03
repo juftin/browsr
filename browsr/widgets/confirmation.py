@@ -80,10 +80,3 @@ class ConfirmationWindow(BaseOverlay):
     """
     Window containing the Confirmation Pop Up
     """
-
-    def compose(self) -> ComposeResult:
-        """
-        Compose the Confirmation Window
-        """
-        return
-        yield

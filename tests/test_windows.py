@@ -129,8 +129,7 @@ async def test_window_switcher_routing():
 
         # Render JSON
         switcher.render_file(mock_json)
-        # It was monokai in failure, let's see why
-        # If it fails here, I'll add a print to the test
+        # After rendering JSON, the theme should remain at the default theme
         assert switcher.text_window.theme == switcher.text_window.default_theme
 
         # Manually change theme
