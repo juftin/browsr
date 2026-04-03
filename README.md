@@ -27,8 +27,8 @@ and remote filesystems with your keyboard or mouse.
 
 You can quickly navigate through directories and peek at files whether they're hosted **locally**,
 in **GitHub**, over **SSH**, in **AWS S3**, **Google Cloud Storage**, or **Azure Blob Storage**. View code files
-with high-performance syntax highlighting using Textual's [TextArea](https://textual.textualize.io/widgets/text_area/),
-format JSON files, render images, convert data files to navigable datatables, and more.
+with syntax highlighting, format JSON files, render images, convert data files to navigable
+datatables, and more.
 
 ![](https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/screenshot_utils.png)
 
