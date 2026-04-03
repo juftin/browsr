@@ -2,6 +2,7 @@
 browsr configuration file
 """
 
+from collections import OrderedDict
 from os import getenv
 
 favorite_themes: list[str] = [
@@ -57,3 +58,63 @@ image_file_extensions = [
     ".xv",
     ".pdf",
 ]
+
+textarea_default_theme = "vscode_dark"
+
+textarea_theme_map = OrderedDict(
+    [
+        ("monokai", "monokai"),
+        ("dracula", "dracula"),
+        ("github-dark", "vscode_dark"),
+        ("solarized-light", "github_light"),
+        ("material", "vscode_dark"),
+        ("one-dark", "vscode_dark"),
+        ("solarized-dark", "vscode_dark"),
+        ("native", "vscode_dark"),
+        ("emacs", "vscode_dark"),
+        ("vim", "vscode_dark"),
+        ("paraiso-dark", "vscode_dark"),
+    ]
+)
+
+language_map = {
+    "py": "python",
+    "pyi": "python",
+    "pyw": "python",
+    "md": "markdown",
+    "markdown": "markdown",
+    "json": "json",
+    "toml": "toml",
+    "yaml": "yaml",
+    "yml": "yaml",
+    "html": "html",
+    "htm": "html",
+    "css": "css",
+    "js": "javascript",
+    "mjs": "javascript",
+    "cjs": "javascript",
+    "rs": "rust",
+    "go": "go",
+    "sql": "sql",
+    "java": "java",
+    "sh": "bash",
+    "bash": "bash",
+    "zsh": "bash",
+    "xml": "xml",
+    "rss": "xml",
+    "svg": "xml",
+    "xsd": "xml",
+    "xslt": "xml",
+}
+
+filename_map = {
+    "uv.lock": "toml",
+    "pyproject.toml": "toml",
+    "cargo.lock": "toml",
+    "cargo.toml": "toml",
+    "makefile": "bash",
+    "dockerfile": "bash",
+    "procfile": "yaml",
+    ".gitignore": "bash",
+    ".env": "bash",
+}

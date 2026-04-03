@@ -1,14 +1,21 @@
+"""
+Confirmation Widget
+"""
+
+from __future__ import annotations
+
 from textwrap import dedent
 
 from rich.markdown import Markdown
 from textual import on
 from textual.app import ComposeResult
-from textual.containers import Container
 from textual.message import Message
 from textual.widgets import Button, Static
 
+from browsr.widgets.base import BaseOverlay, BasePopUp
 
-class ConfirmationPopUp(Container):
+
+class ConfirmationPopUp(BasePopUp):
     """
     A Pop Up that asks for confirmation
     """
@@ -26,15 +33,6 @@ class ConfirmationPopUp(Container):
         Confirmation Window
         """
 
-    class ConfirmationWindowDisplay(Message):
-        """
-        Confirmation Window
-        """
-
-        def __init__(self, display: bool) -> None:
-            self.display = display
-            super().__init__()
-
     class DisplayToggle(Message):
         """
         TableView Display
@@ -49,27 +47,36 @@ class ConfirmationPopUp(Container):
         yield Button("Yes", variant="success")
         yield Button("No", variant="error")
 
+    def prompt_download(self, file_path: str, download_path: str) -> None:
+        """
+        Prompt the user to download a file
+        """
+        prompt_message: str = dedent(
+            f"""
+            ## File Download
+
+            **Are you sure you want to download that file?**
+
+            **File:** `{file_path}`
+
+            **Path:** `{download_path}`
+            """
+        )
+        self.download_message.update(Markdown(prompt_message))
+        self.refresh()
+
     @on(Button.Pressed)
     def handle_download_selection(self, message: Button.Pressed) -> None:
         """
         Handle Button Presses
         """
-        self.post_message(self.ConfirmationWindowDisplay(display=False))
+        self.action_close()
         if message.button.variant == "success":
             self.post_message(self.ConfirmationWindowDownload())
         self.post_message(self.DisplayToggle())
 
 
-class ConfirmationWindow(Container):
+class ConfirmationWindow(BaseOverlay):
     """
     Window containing the Confirmation Pop Up
     """
-
-    @on(ConfirmationPopUp.ConfirmationWindowDisplay)
-    def handle_confirmation_window_display(
-        self, message: ConfirmationPopUp.ConfirmationWindowDisplay
-    ) -> None:
-        """
-        Handle Confirmation Window Display
-        """
-        self.display = message.display

@@ -32,7 +32,7 @@ class Browsr(App[str]):
     CSS_PATH = "browsr.css"
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding(key="q", action="quit", description="Quit"),
-        Binding(key="d", action="toggle_dark", description="Dark Mode"),
+        Binding(key="d", action="toggle_dark", description="Toggle Dark Mode"),
     ]
 
     def __init__(
@@ -73,6 +73,12 @@ class Browsr(App[str]):
         Copy the file path to the clipboard
         """
         self.code_browser_screen.code_browser.download_file_workflow()
+
+    def action_copy_text(self) -> None:
+        """
+        An action to copy text.
+        """
+        self.code_browser_screen.code_browser.window_switcher.text_window.copy_selected_text()
 
 
 app = Browsr(

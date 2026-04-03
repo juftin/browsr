@@ -67,6 +67,8 @@ ConfirmationWindow {
     width: 100%;
     height: 100%;
     align: center middle;
+    layer: overlay;
+    background: $background 50%;
 }
 
 ConfirmationPopUp {
@@ -81,6 +83,46 @@ ConfirmationPopUp {
 }
 
 ConfirmationPopUp Button {
+    margin-top: 1;
+    width: 100%;
+}
+
+/* -- ShortcutsPopUp -- */
+
+ShortcutsWindow {
+    width: 100%;
+    height: 100%;
+    align: center middle;
+    layer: overlay;
+    background: $background 50%;
+}
+
+ShortcutsPopUp {
+    background: $boost;
+    height: auto;
+    max-height: 80%;
+    max-width: 80;
+    min-width: 40;
+    border: wide $primary;
+    padding: 1 2;
+    margin: 1 2;
+    box-sizing: border-box;
+}
+
+#shortcuts-header {
+    width: 100%;
+    content-align: center middle;
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+#shortcuts-table {
+    height: auto;
+    max-height: 20;
+    border: none;
+}
+
+ShortcutsPopUp Button {
     margin-top: 1;
     width: 100%;
 }

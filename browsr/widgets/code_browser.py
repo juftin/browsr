@@ -7,16 +7,15 @@ from __future__ import annotations
 import inspect
 import pathlib
 import shutil
-from textwrap import dedent
 from typing import Any
 
 import pyperclip
-from rich.markdown import Markdown
 from textual import on, work
 from textual.app import ComposeResult
 from textual.containers import Container
 from textual.events import Mount
 from textual.reactive import var
+from textual.widget import Widget
 from textual.widgets import DirectoryTree
 from textual_universal_directorytree import (
     UPath,
@@ -27,7 +26,6 @@ from browsr.base import (
     TextualAppContext,
 )
 from browsr.config import favorite_themes
-from browsr.exceptions import FileSizeError
 from browsr.utils import (
     get_file_info,
     handle_duplicate_filenames,
@@ -59,10 +57,6 @@ class CodeBrowser(Container):
     force_show_tree = var(False)
     selected_file_path: UPath | None | var[None] = var(None)
 
-    hidden_table_view = var(False)
-    table_view_status = var(False)
-    static_window_status = var(False)
-
     def __init__(
         self,
         config_object: TextualAppContext,
@@ -93,6 +87,7 @@ class CodeBrowser(Container):
             self.confirmation, id="confirmation-container"
         )
         self.confirmation_window.display = False
+        self._last_display_state: dict[Widget, bool] = {}
         # Copy Pasting
         self._copy_function = pyperclip.determine_clipboard()[0]
         self._copy_supported = inspect.isfunction(self._copy_function)
@@ -126,8 +121,16 @@ class CodeBrowser(Container):
         """
         if self._copy_supported:
             self.app.bind(
-                keys="c", action="copy_file_path", description="Copy Path", show=True
+                keys="c", action="copy_file_path", description="Copy Path", show=False
             )
+            self.app.bind(
+                keys="C",
+                action="copy_text",
+                description="Copy Text",
+                show=False,
+                key_display="shift+c",
+            )
+
         if is_remote_path(self.initial_file_path):  # type: ignore[arg-type]
             self.app.bind(
                 keys="x", action="download_file", description="Download File", show=True
@@ -168,8 +171,8 @@ class CodeBrowser(Container):
         """
         Handle the table view display toggle.
         """
-        self.datatable_window.display = self.table_view_status
-        self.window_switcher.vim_scroll.display = self.static_window_status
+        for widget, state in self._last_display_state.items():
+            widget.display = state
 
     @on(DirectoryTree.FileSelected)
     def handle_file_selected(self, message: DirectoryTree.FileSelected) -> None:
@@ -178,19 +181,7 @@ class CodeBrowser(Container):
         """
         self.selected_file_path = message.path  # type: ignore[assignment]
         file_info = get_file_info(file_path=self.selected_file_path)  # type: ignore[arg-type]
-        try:
-            self.static_window.handle_file_size(
-                file_info=file_info, max_file_size=self.config_object.max_file_size
-            )
-            self.window_switcher.render_file(file_path=self.selected_file_path)  # type: ignore[arg-type]
-        except FileSizeError as e:
-            error_message = self.static_window.handle_exception(exception=e)
-            error_syntax = self.static_window.text_to_syntax(
-                text=error_message,
-                file_path=self.selected_file_path,  # type: ignore[arg-type]
-            )
-            self.static_window.update(error_syntax)
-            self.window_switcher.switch_window(self.static_window)
+        self.window_switcher.render_file(file_path=self.selected_file_path)  # type: ignore[arg-type]
         self.post_message(CurrentFileInfoBar.FileInfoUpdate(new_file=file_info))
 
     @on(DoubleClickDirectoryTree.DirectoryDoubleClicked)
@@ -234,24 +225,20 @@ class CodeBrowser(Container):
             return
         elif is_remote_path(self.selected_file_path):
             handled_download_path = self._get_download_file_name()
-            prompt_message: str = dedent(
-                f"""
-                ## File Download
-
-                **Are you sure you want to download that file?**
-
-                **File:** `{self.selected_file_path}`
-
-                **Path:** `{handled_download_path}`
-                """
+            self.confirmation.prompt_download(
+                file_path=str(self.selected_file_path),
+                download_path=str(handled_download_path),
             )
-            self.confirmation.download_message.update(Markdown(prompt_message))
-            self.confirmation.refresh()
-            self.table_view_status = self.datatable_window.display
-            self.static_window_status = self.window_switcher.vim_scroll.display
+            self._last_display_state = {
+                self.datatable_window: self.datatable_window.display,
+                self.window_switcher.vim_scroll: (
+                    self.window_switcher.vim_scroll.display
+                ),
+            }
             self.datatable_window.display = False
             self.window_switcher.vim_scroll.display = False
             self.confirmation_window.display = True
+            self.confirmation_window.focus()
 
     @work(thread=True)
     def download_selected_file(self) -> None:
