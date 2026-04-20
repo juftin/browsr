@@ -71,7 +71,7 @@ dev = [
   "pytest-cov",
   "pytest-vcr~=1.0.2",
   "textual-dev~=1.4.0",
-  "pytest-textual-snapshot",
+  "pytest-textual-snapshot>=1.1.0",
   "pytest-asyncio",
   # Linting
   "mypy>=1.19.1",
