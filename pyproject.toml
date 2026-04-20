@@ -71,25 +71,27 @@ dev = [
   "pytest-cov",
   "pytest-vcr~=1.0.2",
   "textual-dev~=1.4.0",
-  "pytest-textual-snapshot",
+  "pytest-textual-snapshot>=1.1.0",
   "pytest-asyncio",
   # Linting
   "mypy>=1.19.1",
   "ruff~=0.15.8"
 ]
 docs = [
-  "markdown-callouts",
-  "markdown-exec",
-  "mkdocs",
-  "mkdocs-autorefs",
-  "mkdocs-click",
-  "mkdocs-gen-files",
-  "mkdocs-literate-nav",
-  "mkdocs-material",
-  "mkdocs-section-index",
-  "mkdocstrings",
-  "mkdocstrings-python",
-  "pymdown-extensions"
+  "markdown-callouts==0.4.0",
+  "markdown-exec==1.8.0",
+  "mkdocs==1.5.3",
+  "mkdocs-autorefs==v1.0.1",
+  "mkdocs-click==0.9.0",
+  "mkdocs-gen-files==0.5.0",
+  "mkdocs-literate-nav==0.6.1",
+  "mkdocs-material==9.5.14",
+  "mkdocs-section-index==0.3.8",
+  "mkdocstrings==0.24.1",
+  "mkdocstrings-python==1.9.0",
+  "pymdown-extensions==10.7.1",
+  "griffe==v0.42.1",
+  "pygments==2.19.2"
 ]
 
 [tool.coverage.paths]
