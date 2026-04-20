@@ -19,6 +19,7 @@ repos:
       hooks:
           - id: pretty-format-toml
             args: [--autofix, --no-sort]
+            exclude: ^uv.lock
 
     - repo: local
       hooks:

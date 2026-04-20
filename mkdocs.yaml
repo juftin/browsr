@@ -4,7 +4,7 @@ nav:
     - browsr 🗂️: index.md
     - Command Line Interface ⌨️: cli.md
     - Contributing 🤝: contributing.md
-    - API Documentation 🤖: reference/
+    - API Documentation 🤖: reference/SUMMARY.md
 theme:
     favicon: https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr_no_label.png
     logo: https://raw.githubusercontent.com/juftin/browsr/main/docs/_static/browsr_no_label.png
