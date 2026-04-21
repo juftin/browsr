@@ -55,6 +55,11 @@ StaticWindow {
     width: auto;
 }
 
+TextWindow {
+    border: none;
+    padding: 0;
+}
+
 DataTableWindow {
     overflow: auto scroll;
     min-width: 100%;
@@ -67,8 +72,6 @@ ConfirmationWindow {
     width: 100%;
     height: 100%;
     align: center middle;
-    layer: overlay;
-    background: $background 50%;
 }
 
 ConfirmationPopUp {
@@ -93,15 +96,12 @@ ShortcutsWindow {
     width: 100%;
     height: 100%;
     align: center middle;
-    layer: overlay;
-    background: $background 50%;
 }
 
 ShortcutsPopUp {
     background: $boost;
     height: auto;
-    max-height: 80%;
-    max-width: 80;
+    max-width: 100;
     min-width: 40;
     border: wide $primary;
     padding: 1 2;

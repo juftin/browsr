@@ -30,9 +30,11 @@ from browsr.utils import (
     get_file_info,
     handle_duplicate_filenames,
 )
+from browsr.widgets.base import BaseOverlay, BasePopUp
 from browsr.widgets.confirmation import ConfirmationPopUp, ConfirmationWindow
 from browsr.widgets.double_click_directory_tree import DoubleClickDirectoryTree
 from browsr.widgets.files import CurrentFileInfoBar
+from browsr.widgets.shortcuts import ShortcutsPopUp, ShortcutsWindow
 from browsr.widgets.universal_directory_tree import BrowsrDirectoryTree
 from browsr.widgets.windows import DataTableWindow, StaticWindow, WindowSwitcher
 
@@ -87,7 +89,17 @@ class CodeBrowser(Container):
             self.confirmation, id="confirmation-container"
         )
         self.confirmation_window.display = False
-        self._last_display_state: dict[Widget, bool] = {}
+        self.shortcuts = ShortcutsPopUp()
+        self.shortcuts_window = ShortcutsWindow(
+            self.shortcuts, id="shortcuts-container"
+        )
+        self.shortcuts_window.display = False
+        self._content_display_state: dict[Widget, bool] = {}
+        self._overlay_history: list[BaseOverlay] = []
+        self._overlay_popup_map: dict[BaseOverlay, BasePopUp] = {
+            self.confirmation_window: self.confirmation,
+            self.shortcuts_window: self.shortcuts,
+        }
         # Copy Pasting
         self._copy_function = pyperclip.determine_clipboard()[0]
         self._copy_supported = inspect.isfunction(self._copy_function)
@@ -113,6 +125,7 @@ class CodeBrowser(Container):
         yield self.directory_tree
         yield self.window_switcher
         yield self.confirmation_window
+        yield self.shortcuts_window
 
     @on(Mount)
     def bind_keys(self) -> None:
@@ -133,7 +146,7 @@ class CodeBrowser(Container):
 
         if is_remote_path(self.initial_file_path):  # type: ignore[arg-type]
             self.app.bind(
-                keys="x", action="download_file", description="Download File", show=True
+                keys="x", action="download_file", description="Download", show=True
             )
 
     def watch_show_tree(self, show_tree: bool) -> None:
@@ -165,14 +178,100 @@ class CodeBrowser(Container):
         self.download_selected_file()
 
     @on(ConfirmationPopUp.DisplayToggle)
-    def handle_table_view_display_toggle(
+    def handle_confirmation_window_display_toggle(
         self, _: ConfirmationPopUp.DisplayToggle
     ) -> None:
         """
-        Handle the table view display toggle.
+        Handle the confirmation window display toggle.
         """
-        for widget, state in self._last_display_state.items():
+        self._close_overlay(self.confirmation_window)
+
+    @on(ShortcutsPopUp.DisplayToggle)
+    def handle_shortcuts_window_display_toggle(
+        self, _: ShortcutsPopUp.DisplayToggle
+    ) -> None:
+        """
+        Handle the shortcuts window display toggle.
+        """
+        self._close_overlay(self.shortcuts_window)
+
+    def _get_content_window_display_state(self) -> dict[Widget, bool]:
+        """
+        Capture the current content window visibility state.
+        """
+        return {
+            self.window_switcher.datatable_window: (
+                self.window_switcher.datatable_window.display
+            ),
+            self.window_switcher.text_window: self.window_switcher.text_window.display,
+            self.window_switcher.vim_scroll: self.window_switcher.vim_scroll.display,
+        }
+
+    def _hide_content_windows(self) -> None:
+        """
+        Hide the content windows while an overlay is active.
+        """
+        self.window_switcher.datatable_window.display = False
+        self.window_switcher.text_window.display = False
+        self.window_switcher.vim_scroll.display = False
+
+    def _restore_content_windows(self) -> None:
+        """
+        Restore the content windows after all overlays are closed.
+        """
+        for widget, state in self._content_display_state.items():
             widget.display = state
+        active_widget = self.window_switcher.get_active_widget()
+        if active_widget is not None:
+            active_widget.focus()
+
+    def _get_active_overlay(self) -> BaseOverlay | None:
+        """
+        Get the currently active overlay.
+        """
+        if not self._overlay_history:
+            return None
+        return self._overlay_history[-1]
+
+    def _focus_overlay(self, overlay: BaseOverlay) -> None:
+        """
+        Focus the popup inside the active overlay.
+        """
+        self._overlay_popup_map[overlay].focus()
+
+    def _show_overlay(self, overlay: BaseOverlay) -> None:
+        """
+        Display an overlay while preserving the last content window state.
+        """
+        active_overlay = self._get_active_overlay()
+        if active_overlay is None:
+            self._content_display_state = self._get_content_window_display_state()
+            self._hide_content_windows()
+        elif active_overlay is not overlay:
+            active_overlay.display = False
+
+        if overlay in self._overlay_history:
+            self._overlay_history.remove(overlay)
+        self._overlay_history.append(overlay)
+        overlay.display = True
+        self._focus_overlay(overlay)
+
+    def _close_overlay(self, overlay: BaseOverlay) -> None:
+        """
+        Close an overlay and restore the previous overlay or content window.
+        """
+        if overlay in self._overlay_history:
+            was_active_overlay = self._overlay_history[-1] is overlay
+            self._overlay_history.remove(overlay)
+            overlay.display = False
+            if was_active_overlay and self._overlay_history:
+                previous_overlay = self._overlay_history[-1]
+                previous_overlay.display = True
+                self._focus_overlay(previous_overlay)
+            elif was_active_overlay:
+                self._restore_content_windows()
+        else:
+            overlay.display = False
 
     @on(DirectoryTree.FileSelected)
     def handle_file_selected(self, message: DirectoryTree.FileSelected) -> None:
@@ -224,21 +323,25 @@ class CodeBrowser(Container):
         elif self.selected_file_path.is_dir():
             return
         elif is_remote_path(self.selected_file_path):
+            if self._get_active_overlay() is self.confirmation_window:
+                self._close_overlay(self.confirmation_window)
+                return
             handled_download_path = self._get_download_file_name()
             self.confirmation.prompt_download(
                 file_path=str(self.selected_file_path),
                 download_path=str(handled_download_path),
             )
-            self._last_display_state = {
-                self.datatable_window: self.datatable_window.display,
-                self.window_switcher.vim_scroll: (
-                    self.window_switcher.vim_scroll.display
-                ),
-            }
-            self.datatable_window.display = False
-            self.window_switcher.vim_scroll.display = False
-            self.confirmation_window.display = True
-            self.confirmation_window.focus()
+            self._show_overlay(self.confirmation_window)
+
+    def toggle_shortcuts(self) -> None:
+        """
+        Toggle the shortcuts window.
+        """
+        if self._get_active_overlay() is self.shortcuts_window:
+            self._close_overlay(self.shortcuts_window)
+        else:
+            self.shortcuts.update_shortcuts()
+            self._show_overlay(self.shortcuts_window)
 
     @work(thread=True)
     def download_selected_file(self) -> None:

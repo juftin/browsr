@@ -13,14 +13,13 @@ from textual.binding import Binding, BindingType
 from textual.containers import Horizontal
 from textual.events import Mount
 from textual.widget import Widget
-from textual.widgets import DataTable, Footer, Header
+from textual.widgets import Footer, Header
 from textual_universal_directorytree import UPath
 
 from browsr.base import SortedBindingsScreen, TextualAppContext
 from browsr.utils import get_file_info
 from browsr.widgets.code_browser import CodeBrowser
 from browsr.widgets.files import CurrentFileInfoBar
-from browsr.widgets.shortcuts import ShortcutsPopUp, ShortcutsWindow
 
 
 class CodeBrowserScreen(SortedBindingsScreen):
@@ -31,9 +30,9 @@ class CodeBrowserScreen(SortedBindingsScreen):
     LAYERS: ClassVar[list[str]] = ["default", "overlay"]
 
     BINDINGS: ClassVar[list[BindingType]] = [
-        Binding(key="f", action="toggle_files", description="File Browser"),
-        Binding(key="t", action="theme", description="Toggle Theme"),
-        Binding(key="n", action="linenos", description="Toggle Line Numbers"),
+        Binding(key="f", action="toggle_files", description="Files"),
+        Binding(key="t", action="theme", description="Theme"),
+        Binding(key="n", action="linenos", description="Line Numbers"),
         Binding(key="r", action="reload", description="Reload", show=False),
         Binding(
             key=".",
@@ -94,7 +93,6 @@ class CodeBrowserScreen(SortedBindingsScreen):
         else:
             self.file_information.file_info = get_file_info(self.config_object.path)
         self.footer = Footer()
-        self.shortcuts_window = ShortcutsWindow(id="shortcuts-container")
 
     def compose(self) -> Iterable[Widget]:
         """
@@ -104,7 +102,6 @@ class CodeBrowserScreen(SortedBindingsScreen):
         yield self.code_browser
         yield self.info_bar
         yield self.footer
-        yield self.shortcuts_window
 
     @on(Mount)
     def start_up_app(self) -> None:
@@ -220,8 +217,4 @@ class CodeBrowserScreen(SortedBindingsScreen):
         """
         Toggle the shortcuts window
         """
-        self.shortcuts_window.display = not self.shortcuts_window.display
-        if self.shortcuts_window.display:
-            popup = self.shortcuts_window.query_one(ShortcutsPopUp)
-            popup.update_shortcuts()
-            popup.query_one(DataTable).focus()
+        self.code_browser.toggle_shortcuts()

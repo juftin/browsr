@@ -74,7 +74,11 @@ class BaseOverlay(Container):
         """
         Handle the toggle message from the popup
         """
-        if message.display is not None:
-            self.display = message.display
+        if message.display is False:
+            self.action_close()
+        elif message.display is True:
+            self.display = True
+        elif self.display:
+            self.action_close()
         else:
-            self.display = not self.display
+            self.display = True

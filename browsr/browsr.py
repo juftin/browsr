@@ -32,7 +32,7 @@ class Browsr(App[str]):
     CSS_PATH = "browsr.css"
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding(key="q", action="quit", description="Quit"),
-        Binding(key="d", action="toggle_dark", description="Toggle Dark Mode"),
+        Binding(key="d", action="toggle_dark", description="Dark Mode"),
     ]
 
     def __init__(

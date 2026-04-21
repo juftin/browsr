@@ -9,6 +9,7 @@ from textwrap import dedent
 from rich.markdown import Markdown
 from textual import on
 from textual.app import ComposeResult
+from textual.events import Key
 from textual.message import Message
 from textual.widgets import Button, Static
 
@@ -38,14 +39,21 @@ class ConfirmationPopUp(BasePopUp):
         TableView Display
         """
 
+    def action_close(self) -> None:
+        """
+        Close the popup and restore the previous display state.
+        """
+        super().action_close()
+        self.post_message(self.DisplayToggle())
+
     def compose(self) -> ComposeResult:
         """
         Compose the Confirmation Pop Up
         """
         self.download_message = Static(Markdown(""))
         yield self.download_message
-        yield Button("Yes", variant="success")
-        yield Button("No", variant="error")
+        yield Button("Yes (y)", variant="success", id="confirm-yes")
+        yield Button("No (n)", variant="error", id="confirm-no")
 
     def prompt_download(self, file_path: str, download_path: str) -> None:
         """
@@ -73,10 +81,27 @@ class ConfirmationPopUp(BasePopUp):
         self.action_close()
         if message.button.variant == "success":
             self.post_message(self.ConfirmationWindowDownload())
-        self.post_message(self.DisplayToggle())
+
+    @on(Key)
+    def handle_key_press(self, message: Key) -> None:
+        """
+        Handle Key Presses
+        """
+        if message.key.lower() == "y":
+            self.post_message(self.ConfirmationWindowDownload())
+            self.action_close()
+        elif message.key.lower() == "n":
+            self.action_close()
 
 
 class ConfirmationWindow(BaseOverlay):
     """
     Window containing the Confirmation Pop Up
     """
+
+    def action_close(self) -> None:
+        """
+        Close the overlay and restore the previous display state.
+        """
+        super().action_close()
+        self.post_message(ConfirmationPopUp.DisplayToggle())
