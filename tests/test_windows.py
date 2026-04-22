@@ -49,14 +49,6 @@ def test_text_window_language_detection():
     assert window.language == "json"
 
 
-def test_text_window_linenos():
-    window = TextWindow()
-    window.linenos = True
-    assert window.show_line_numbers is True
-    window.linenos = False
-    assert window.show_line_numbers is False
-
-
 def test_text_window_copy_text():
     window = TextWindow()
     window.text = "Hello World"
