@@ -39,8 +39,8 @@ def open_image(document: UPath, screen_width: float) -> Pixels:
         image_width = image.width
         image_height = image.height
         size_ratio = image_width / screen_width
-        new_width = min(int(image_width / size_ratio), image_width)
-        new_height = min(int(image_height / size_ratio), image_height)
+        new_width = int(image_width / size_ratio)
+        new_height = int(image_height / size_ratio)
         resized = image.resize((new_width, new_height))
         return Pixels.from_image(resized)
 

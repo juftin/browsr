@@ -189,15 +189,18 @@ def browsr(
     ```
 
     ## Key Bindings
-    - **`Q`** - Quit the application
-    - **`F`** - Toggle the file tree sidebar
-    - **`T`** - Toggle the rich theme for code formatting
-    - **`N`** - Toggle line numbers for code formatting
-    - **`D`** - Toggle dark mode for the application
+    - **`q`** - Quit the application
+    - **`f`** - Toggle the file tree sidebar
+    - **`t`** - Toggle the rich theme for code formatting
+    - **`n`** - Toggle line numbers for code formatting
+    - **`d`** - Toggle dark mode for the application
     - **`.`** - Parent Directory - go up one directory
-    - **`R`** - Reload the current directory
-    - **`C`** - Copy the current file or directory path to the clipboard
-    - **`X`** - Download the file from cloud storage
+    - **`r`** - Reload the current directory
+    - **`w`** - Toggle word wrap for code files
+    - **`c`** - Copy the current file or directory path to the clipboard
+    - **`shift+c`** - Copy the selected text to the clipboard
+    - **`x`** - Download the file from cloud storage
+    - **`?`** - View keyboard shortcuts
     """
     extra_kwargs = {}
     if kwargs:

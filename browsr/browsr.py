@@ -74,6 +74,12 @@ class Browsr(App[str]):
         """
         self.code_browser_screen.code_browser.download_file_workflow()
 
+    def action_copy_text(self) -> None:
+        """
+        An action to copy text.
+        """
+        self.code_browser_screen.code_browser.window_switcher.text_window.copy_selected_text()
+
 
 app = Browsr(
     config_object=TextualAppContext(

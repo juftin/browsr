@@ -27,25 +27,40 @@ class CodeBrowserScreen(SortedBindingsScreen):
     Code Browser Screen
     """
 
+    LAYERS: ClassVar[list[str]] = ["default", "overlay"]
+
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding(key="f", action="toggle_files", description="Files"),
         Binding(key="t", action="theme", description="Theme"),
         Binding(key="n", action="linenos", description="Line Numbers"),
-        Binding(key="r", action="reload", description="Reload"),
-        Binding(key=".", action="parent_dir", description="Parent Directory"),
+        Binding(key="r", action="reload", description="Reload", show=False),
+        Binding(
+            key=".",
+            action="parent_dir",
+            description="Parent Directory",
+            key_display=".",
+            show=False,
+        ),
+        Binding(key="w", action="toggle_wrap", description="Toggle Wrap", show=False),
+        Binding(
+            key="?", action="toggle_shortcuts", description="Shortcuts", key_display="?"
+        ),
     ]
 
     BINDING_WEIGHTS: ClassVar[dict[str, int]] = {
-        "ctrl+c": 1,
-        "q": 2,
-        "f": 3,
-        "t": 4,
-        "n": 5,
-        "d": 6,
-        "r": 995,
-        ".": 996,
-        "c": 997,
-        "x": 998,
+        "ctrl+c": 5,
+        "q": 10,
+        "f": 15,
+        "t": 20,
+        "n": 25,
+        "d": 30,
+        "r": 905,
+        ".": 910,
+        "c": 920,
+        "x": 925,
+        "w": 930,
+        "C": 935,
+        "?": 940,
     }
 
     def __init__(
@@ -157,8 +172,8 @@ class CodeBrowserScreen(SortedBindingsScreen):
         """
         if self.code_browser.selected_file_path is None:
             return
-        self.code_browser.static_window.linenos = (
-            not self.code_browser.static_window.linenos
+        self.code_browser.window_switcher.linenos = (
+            not self.code_browser.window_switcher.linenos
         )
 
     def action_reload(self) -> None:
@@ -189,3 +204,17 @@ class CodeBrowserScreen(SortedBindingsScreen):
                 severity="information",
                 timeout=1,
             )
+
+    def action_toggle_wrap(self) -> None:
+        """
+        Toggle soft wrap for the text area.
+        """
+        self.code_browser.window_switcher.text_window.soft_wrap = (
+            not self.code_browser.window_switcher.text_window.soft_wrap
+        )
+
+    def action_toggle_shortcuts(self) -> None:
+        """
+        Toggle the shortcuts window
+        """
+        self.code_browser.toggle_shortcuts()
