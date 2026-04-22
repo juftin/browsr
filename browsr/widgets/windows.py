@@ -246,7 +246,9 @@ class TextWindow(TextArea, BaseCodeWindow, ThemeVisibleMixin, LinenosVisibleMixi
         """
         Called when linenos is modified.
         """
+        before_scroll = self.scroll_x, self.scroll_y
         self.show_line_numbers = linenos
+        self.scroll_to(x=before_scroll[0], y=before_scroll[1], animate=False)
 
     def copy_selected_text(self) -> None:
         """
