@@ -88,11 +88,10 @@ browsr ~/Downloads/
 
 Open a `.db`, `.db3`, `.sqlite`, or `.sqlite3` file to browse its tables and views
 without modifying the database. Select an object from the dropdown to browse its
-rows. Use **Previous** and **Next** (or **Ctrl+Left** and **Ctrl+Right**) to page
-through rows. The `--max-lines` option controls the number of rows per page
-(default: 1000).
+rows. Use **Previous** and **Next** (or `{` and `}`) to page through rows. The
+`--max-lines` option controls the number of rows per page (default: 1000).
 
-Use **Ctrl+Up** and **Ctrl+Down** to switch to the previous or next table or view.
+Use `[` and `]` to switch to the previous or next table or view.
 Navigation wraps at either end of the dropdown and starts each selected object
 at its first page. These shortcuts are also listed under **?**.
 

@@ -99,7 +99,7 @@ async def test_sqlite_file_routing_and_paging(
         assert viewer.data_table.row_count == 1
         assert viewer.data_table.get_row_at(0)[0].plain == "3"
         assert viewer.next_button.disabled is True
-        await pilot.press("ctrl+left")
+        await pilot.press("left_curly_bracket")
         assert viewer.row_offset == 0
         assert viewer.data_table.row_count == 2
 
@@ -157,25 +157,25 @@ async def test_table_shortcuts_wrap_reset_paging_and_preserve_focus(
         viewer = browser.window_switcher.sqlite_window
         focused_widget = getattr(viewer, focus_target)
         focused_widget.focus()
-        await pilot.press("ctrl+right")
+        await pilot.press("right_curly_bracket")
         assert viewer.row_offset == 2
 
-        await pilot.press("ctrl+up")
+        await pilot.press("left_square_bracket")
         assert viewer.table_name == viewer.selector.value == "example_view"
         assert viewer.row_offset == 0
         assert viewer.data_table.row_count == 2
         assert app.focused is focused_widget
 
-        await pilot.press("ctrl+down")
+        await pilot.press("right_square_bracket")
         assert viewer.table_name == viewer.selector.value == 'a weird " table'
         assert viewer.data_table.get_row_at(0)[0].plain == "1"
-        await pilot.press("ctrl+down")
+        await pilot.press("right_square_bracket")
         assert viewer.table_name == viewer.selector.value == "broken_view"
         assert "Unable to read" in str(viewer.status.content)
-        await pilot.press("ctrl+down")
+        await pilot.press("right_square_bracket")
         assert viewer.table_name == viewer.selector.value == "empty"
         assert viewer.data_table.row_count == 0
-        await pilot.press("ctrl+down")
+        await pilot.press("right_square_bracket")
         assert viewer.table_name == viewer.selector.value == "example_view"
         assert viewer.data_table.row_count == 2
         assert app.focused is focused_widget
@@ -183,10 +183,10 @@ async def test_table_shortcuts_wrap_reset_paging_and_preserve_focus(
         await pilot.press("question_mark")
         shortcuts = browser.shortcuts.query_one(DataTable)
         rows = [shortcuts.get_row_at(index) for index in range(shortcuts.row_count)]
-        assert ["ctrl+up", "Previous Table"] in rows
-        assert ["ctrl+down", "Next Table"] in rows
-        assert ["ctrl+left", "Previous Page"] in rows
-        assert ["ctrl+right", "Next Page"] in rows
+        assert ["[", "Previous Table"] in rows
+        assert ["]", "Next Table"] in rows
+        assert ["{", "Previous Page"] in rows
+        assert ["}", "Next Page"] in rows
         assert ["c", "Copy Cell"] in rows
         assert ["shift+c", "Copy Row"] in rows
 
@@ -203,7 +203,9 @@ async def test_table_shortcuts_preserve_page_for_single_table(tmp_path: Path) ->
     async with app.run_test() as pilot:
         viewer = app.code_browser_screen.code_browser.window_switcher.sqlite_window
         viewer.data_table.focus()
-        await pilot.press("ctrl+right", "ctrl+up", "ctrl+down")
+        await pilot.press(
+            "right_curly_bracket", "left_square_bracket", "right_square_bracket"
+        )
         assert viewer.table_name == viewer.selector.value == "numbers"
         assert viewer.row_offset == 1
         assert viewer.data_table.get_row_at(0)[0].plain == "2"
@@ -286,15 +288,15 @@ async def test_copy_row_tracks_selection_pages_and_tables(
             "value": None,
             "data": {"type": "blob", "hex": ""},
         }
-        await pilot.press("ctrl+right", "C")
+        await pilot.press("right_curly_bracket", "C")
         assert json.loads(copied[-1]) == {"id": 3, "value": 1.5, "data": None}
-        await pilot.press("ctrl+down", "C")
+        await pilot.press("right_square_bracket", "C")
         assert viewer.table_name == "broken_view"
         assert len(copied) == 2
-        await pilot.press("ctrl+down", "C")
+        await pilot.press("right_square_bracket", "C")
         assert viewer.table_name == "empty"
         assert len(copied) == 2
-        await pilot.press("ctrl+down", "C")
+        await pilot.press("right_square_bracket", "C")
         assert viewer.table_name == "example_view"
         assert json.loads(copied[-1]) == {
             "id": 1,
@@ -319,15 +321,15 @@ async def test_copy_cell_tracks_selection_pages_and_tables(
         assert copied == ["NULL"]
         await pilot.press("right", "c")
         assert copied[-1] == ""
-        await pilot.press("ctrl+right", "right", "c")
+        await pilot.press("right_curly_bracket", "right", "c")
         assert copied[-1] == "1.5"
-        await pilot.press("ctrl+down", "c")
+        await pilot.press("right_square_bracket", "c")
         assert viewer.table_name == "broken_view"
         assert len(copied) == 3
-        await pilot.press("ctrl+down", "c")
+        await pilot.press("right_square_bracket", "c")
         assert viewer.table_name == "empty"
         assert len(copied) == 3
-        await pilot.press("ctrl+down", "right", "c")
+        await pilot.press("right_square_bracket", "right", "c")
         assert viewer.table_name == "example_view"
         assert copied[-1] == "[bold]literal[/bold]"
 
@@ -375,10 +377,10 @@ async def test_sqlite_help_lists_all_shortcuts_outside_viewer_focus(
         expected = [
             ["c", "Copy Cell"],
             ["shift+c", "Copy Row"],
-            ["ctrl+left", "Previous Page"],
-            ["ctrl+right", "Next Page"],
-            ["ctrl+up", "Previous Table"],
-            ["ctrl+down", "Next Table"],
+            ["{", "Previous Page"],
+            ["}", "Next Page"],
+            ["[", "Previous Table"],
+            ["]", "Next Table"],
         ]
         assert all(row in rows for row in expected)
         assert len({row[0] for row in rows}) == len(rows)
@@ -408,7 +410,7 @@ async def test_empty_and_invalid_databases(
     async with app.run_test() as pilot:
         viewer = app.code_browser_screen.code_browser.window_switcher.sqlite_window
         viewer.focus()
-        await pilot.press("ctrl+up", "ctrl+down")
+        await pilot.press("left_square_bracket", "right_square_bracket")
         assert viewer.display
         assert viewer.data_table.row_count == 0
         assert viewer.selector.disabled
