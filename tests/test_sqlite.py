@@ -1,8 +1,10 @@
 """SQLite access and integration with the browser's file previews."""
 
+import json
 import sqlite3
 from pathlib import Path
 
+import pyperclip
 import pytest
 from textual.widgets import DataTable
 from textual_universal_directorytree import UPath
@@ -183,6 +185,7 @@ async def test_table_shortcuts_wrap_reset_paging_and_preserve_focus(
         rows = [shortcuts.get_row_at(index) for index in range(shortcuts.row_count)]
         assert ["ctrl+up", "Previous Table"] in rows
         assert ["ctrl+down", "Next Table"] in rows
+        assert ["shift+c", "Copy Row"] in rows
 
 
 @pytest.mark.asyncio
@@ -201,6 +204,106 @@ async def test_table_shortcuts_preserve_page_for_single_table(tmp_path: Path) ->
         assert viewer.table_name == viewer.selector.value == "numbers"
         assert viewer.row_offset == 1
         assert viewer.data_table.get_row_at(0)[0].plain == "2"
+
+
+@pytest.mark.asyncio
+async def test_bounded_columns_copy_full_row(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    path = tmp_path / "long-values.db"
+    column_name = "long column " + "長" * 40
+    value = "line one\nline two\ttab\rcarriage return " + "界" * 80
+    blob = bytes(range(100))
+    connection = sqlite3.connect(path)
+    with connection:
+        connection.execute(
+            f'CREATE TABLE entries (id INTEGER, "{column_name}" TEXT, '
+            "missing TEXT, payload BLOB, price REAL)"
+        )
+        connection.execute(
+            "INSERT INTO entries VALUES (?, ?, ?, ?, ?)",
+            (1, value, None, blob, 1.25),
+        )
+    connection.close()
+    copied: list[str] = []
+    monkeypatch.setattr(pyperclip, "copy", copied.append)
+    app = Browsr(config_object=TextualAppContext(file_path=str(path)))
+    async with app.run_test() as pilot:
+        viewer = app.code_browser_screen.code_browser.window_switcher.sqlite_window
+        table = viewer.data_table
+        table.focus()
+        assert all(column.width <= 40 for column in table.columns.values())
+        assert all(column.label.cell_len <= 40 for column in table.columns.values())
+        cells = table.get_row_at(0)
+        assert all(cell.cell_len <= 40 for cell in cells)
+        assert cells[1].plain.endswith("…")
+        assert "\\n" in cells[1].plain
+        assert "\n" not in cells[1].plain
+        assert cells[3].plain.endswith("…")
+        await pilot.press("C")
+        assert len(copied) == 1
+        assert json.loads(copied[0]) == {
+            "id": 1,
+            column_name: value,
+            "missing": None,
+            "payload": {"type": "blob", "hex": blob.hex()},
+            "price": 1.25,
+        }
+
+
+@pytest.mark.asyncio
+async def test_copy_row_tracks_selection_pages_and_tables(
+    database_path: UPath, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    copied: list[str] = []
+    monkeypatch.setattr(pyperclip, "copy", copied.append)
+    app = Browsr(
+        config_object=TextualAppContext(file_path=str(database_path), max_lines=2)
+    )
+    async with app.run_test() as pilot:
+        viewer = app.code_browser_screen.code_browser.window_switcher.sqlite_window
+        viewer.data_table.focus()
+        await pilot.press("down", "C")
+        assert json.loads(copied[-1]) == {
+            "id": 2,
+            "value": None,
+            "data": {"type": "blob", "hex": ""},
+        }
+        await pilot.press("ctrl+right", "C")
+        assert json.loads(copied[-1]) == {"id": 3, "value": 1.5, "data": None}
+        await pilot.press("ctrl+down", "C")
+        assert viewer.table_name == "broken_view"
+        assert len(copied) == 2
+        await pilot.press("ctrl+down", "C")
+        assert viewer.table_name == "empty"
+        assert len(copied) == 2
+        await pilot.press("ctrl+down", "C")
+        assert viewer.table_name == "example_view"
+        assert json.loads(copied[-1]) == {
+            "id": 1,
+            "value": "[bold]literal[/bold]",
+            "data": {"type": "blob", "hex": "00ff"},
+        }
+
+
+@pytest.mark.asyncio
+async def test_copy_row_uses_terminal_clipboard_when_system_clipboard_is_unavailable(
+    database_path: UPath, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    def unavailable_clipboard(_: str) -> None:
+        raise pyperclip.PyperclipException("No system clipboard")
+
+    monkeypatch.setattr(pyperclip, "copy", unavailable_clipboard)
+    app = Browsr(config_object=TextualAppContext(file_path=str(database_path)))
+    async with app.run_test() as pilot:
+        viewer = app.code_browser_screen.code_browser.window_switcher.sqlite_window
+        viewer.data_table.focus()
+        await pilot.press("C")
+        assert json.loads(app.clipboard) == {
+            "id": 1,
+            "value": "[bold]literal[/bold]",
+            "data": {"type": "blob", "hex": "00ff"},
+        }
 
 
 @pytest.mark.parametrize("contents", [None, b"not a SQLite database"])

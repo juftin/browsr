@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+import json
 import sqlite3
 from typing import Any, ClassVar
 
+import pyperclip
 from rich.text import Text
 from textual import on
 from textual.app import ComposeResult
@@ -13,10 +15,11 @@ from textual.containers import Container, Horizontal
 from textual.widgets import Button, DataTable, Select, Static
 from textual_universal_directorytree import UPath
 
-from browsr.sqlite import SQLiteDatabase
+from browsr.sqlite import SQLiteDatabase, SQLitePage
 from browsr.widgets.vim import vim_cursor_bindings
 
 BLOB_PREVIEW_BYTES = 32
+MAX_COLUMN_WIDTH = 40
 
 
 class SQLiteDataTable(DataTable[Text]):
@@ -37,6 +40,7 @@ class SQLiteWindow(Container):
         Binding("ctrl+right", "next_page", "Next Page"),
         Binding("ctrl+up", "previous_table", "Previous Table"),
         Binding("ctrl+down", "next_table", "Next Table"),
+        Binding("C", "copy_row", "Copy Row", key_display="shift+c"),
     ]
     DEFAULT_CSS = """
     SQLiteWindow { height: 100%; }
@@ -50,6 +54,7 @@ class SQLiteWindow(Container):
     def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self.database: SQLiteDatabase | None = None
+        self._page: SQLitePage | None = None
         self.table_name: str | None = None
         self.row_offset = 0
         self.page_size = 1000
@@ -119,17 +124,22 @@ class SQLiteWindow(Container):
 
     @staticmethod
     def _format_value(value: Any) -> Text:
-        """Render values literally, preserving NULL, BLOBs, and Rich-like text."""
+        """Render a bounded, single-line preview while keeping raw values separate."""
         if value is None:
-            return Text("NULL", style="dim italic")
-        if isinstance(value, bytes):
+            text = Text("NULL", style="dim italic")
+        elif isinstance(value, bytes):
             preview = value[:BLOB_PREVIEW_BYTES].hex()
             suffix = "…" if len(value) > BLOB_PREVIEW_BYTES else ""
-            return Text(f"BLOB ({len(value)} bytes): {preview}{suffix}")
-        return Text(str(value))
+            text = Text(f"BLOB ({len(value)} bytes): {preview}{suffix}")
+        else:
+            preview = str(value).replace("\r", "\\r").replace("\n", "\\n")
+            text = Text(preview.replace("\t", "\\t"))
+        text.truncate(MAX_COLUMN_WIDTH, overflow="ellipsis")
+        return text
 
     def _load_page(self) -> None:
         """Fetch a bounded page, reporting SQL errors inside the viewer."""
+        self._page = None
         self.data_table.clear(columns=True)
         self.has_next = False
         if self.database is None or self.table_name is None:
@@ -138,9 +148,14 @@ class SQLiteWindow(Container):
             page = self.database.read_page(
                 self.table_name, self.row_offset, self.page_size
             )
-            self.data_table.add_columns(*(Text(name) for name in page.columns))
-            for row in page.rows:
-                self.data_table.add_row(*(self._format_value(value) for value in row))
+            headers = [self._format_value(name) for name in page.columns]
+            rows = [[self._format_value(value) for value in row] for row in page.rows]
+            for index, header in enumerate(headers):
+                width = max(header.cell_len, *(row[index].cell_len for row in rows), 1)
+                self.data_table.add_column(header, width=width)
+            for row in rows:
+                self.data_table.add_row(*row)
+            self._page = page
             self.has_next = page.has_next
             if page.rows:
                 start, end = self.row_offset + 1, self.row_offset + len(page.rows)
@@ -201,12 +216,34 @@ class SQLiteWindow(Container):
         """Show the next table, wrapping to the first at the end."""
         self._change_table(1)
 
+    def action_copy_row(self) -> None:
+        """Copy the selected row's full values as JSON, including complete BLOBs."""
+        index = self.data_table.cursor_row
+        if self._page is None or not 0 <= index < len(self._page.rows):
+            self.notify("No row selected to copy", title="No Row", severity="warning")
+            return
+        values = {
+            name: {"type": "blob", "hex": value.hex()}
+            if isinstance(value, bytes)
+            else value
+            for name, value in zip(
+                self._page.columns, self._page.rows[index], strict=True
+            )
+        }
+        contents = json.dumps(values, ensure_ascii=False, indent=2)
+        try:
+            pyperclip.copy(contents)
+        except pyperclip.PyperclipException:
+            self.app.copy_to_clipboard(contents)
+        self.notify("Row copied as JSON", title="Copied", timeout=1)
+
     def close(self) -> None:
         """Release resources when switching files or leaving the app."""
         if self.database is not None:
             self.database.close()
             self.database = None
         self.table_name = None
+        self._page = None
         self.row_offset = 0
         self.has_next = False
 

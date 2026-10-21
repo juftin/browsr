@@ -23,6 +23,7 @@ class ShortcutsPopUp(BasePopUp):
     TRUSTED_ACTIONS: ClassVar[list[str]] = [
         "copy_file_path",
         "copy_text",
+        "copy_row",
         "download_file",
         "toggle_files",
         "parent_dir",

@@ -96,6 +96,12 @@ Use **Ctrl+Up** and **Ctrl+Down** to switch to the previous or next table or vie
 Navigation wraps at either end of the dropdown and starts each selected object
 at its first page. These shortcuts are also listed under **?**.
 
+Columns are limited to 40 terminal cells, with long values shortened using an
+ellipsis. Press **Shift+C** to copy the selected row's full contents as JSON.
+The copied row includes the original column names and unshortened values; NULL
+becomes JSON `null`, and BLOBs become `{"type": "blob", "hex": "..."}` with the
+complete hexadecimal contents.
+
 ```shell
 browsr ~/data/example.sqlite
 ```
