@@ -37,15 +37,31 @@ class SQLiteWindow(Container):
     can_focus = True
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding(
-            "left_curly_bracket", "previous_page", "Previous Page", key_display="{"
+            "left_curly_bracket",
+            "previous_page",
+            "Previous Page",
+            show=False,
+            key_display="{",
         ),
-        Binding("right_curly_bracket", "next_page", "Next Page", key_display="}"),
         Binding(
-            "left_square_bracket", "previous_table", "Previous Table", key_display="["
+            "right_curly_bracket", "next_page", "Next Page", show=False, key_display="}"
         ),
-        Binding("right_square_bracket", "next_table", "Next Table", key_display="]"),
-        Binding("c", "copy_cell", "Copy Cell"),
-        Binding("C", "copy_row", "Copy Row", key_display="shift+c"),
+        Binding(
+            "left_square_bracket",
+            "previous_table",
+            "Previous Table",
+            show=False,
+            key_display="[",
+        ),
+        Binding(
+            "right_square_bracket",
+            "next_table",
+            "Next Table",
+            show=False,
+            key_display="]",
+        ),
+        Binding("c", "copy_cell", "Copy Cell", show=False),
+        Binding("C", "copy_row", "Copy Row", show=False, key_display="shift+c"),
     ]
     DEFAULT_CSS = """
     SQLiteWindow { height: 100%; }
