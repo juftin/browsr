@@ -40,6 +40,7 @@ class SQLiteWindow(Container):
         Binding("ctrl+right", "next_page", "Next Page"),
         Binding("ctrl+up", "previous_table", "Previous Table"),
         Binding("ctrl+down", "next_table", "Next Table"),
+        Binding("c", "copy_cell", "Copy Cell"),
         Binding("C", "copy_row", "Copy Row", key_display="shift+c"),
     ]
     DEFAULT_CSS = """
@@ -216,6 +217,33 @@ class SQLiteWindow(Container):
         """Show the next table, wrapping to the first at the end."""
         self._change_table(1)
 
+    def _copy_contents(self, contents: str, message: str) -> None:
+        """Copy through the system clipboard, falling back to the terminal."""
+        try:
+            pyperclip.copy(contents)
+        except pyperclip.PyperclipException:
+            self.app.copy_to_clipboard(contents)
+        self.notify(message, title="Copied", timeout=1)
+
+    def action_copy_cell(self) -> None:
+        """Copy the selected cell's full value, without preview truncation."""
+        cursor = self.data_table.cursor_coordinate
+        if (
+            self._page is None
+            or not 0 <= cursor.row < len(self._page.rows)
+            or not 0 <= cursor.column < len(self._page.columns)
+        ):
+            self.notify("No cell selected to copy", title="No Cell", severity="warning")
+            return
+        value = self._page.rows[cursor.row][cursor.column]
+        if value is None:
+            contents = "NULL"
+        elif isinstance(value, bytes):
+            contents = value.hex()
+        else:
+            contents = str(value)
+        self._copy_contents(contents, "Cell copied")
+
     def action_copy_row(self) -> None:
         """Copy the selected row's full values as JSON, including complete BLOBs."""
         index = self.data_table.cursor_row
@@ -231,11 +259,7 @@ class SQLiteWindow(Container):
             )
         }
         contents = json.dumps(values, ensure_ascii=False, indent=2)
-        try:
-            pyperclip.copy(contents)
-        except pyperclip.PyperclipException:
-            self.app.copy_to_clipboard(contents)
-        self.notify("Row copied as JSON", title="Copied", timeout=1)
+        self._copy_contents(contents, "Row copied as JSON")
 
     def close(self) -> None:
         """Release resources when switching files or leaving the app."""

@@ -344,7 +344,15 @@ class CodeBrowser(Container):
         if self._get_active_overlay() is self.shortcuts_window:
             self._close_overlay(self.shortcuts_window)
         else:
-            self.shortcuts.update_shortcuts()
+            sqlite_window = self.window_switcher.sqlite_window
+            sqlite_active = (
+                self._content_display_state.get(sqlite_window, False)
+                if self._get_active_overlay() is not None
+                else sqlite_window.display
+            )
+            self.shortcuts.update_shortcuts(
+                extra_bindings=sqlite_window.BINDINGS if sqlite_active else ()
+            )
             self._show_overlay(self.shortcuts_window)
 
     @work(thread=True)

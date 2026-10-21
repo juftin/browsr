@@ -185,6 +185,9 @@ async def test_table_shortcuts_wrap_reset_paging_and_preserve_focus(
         rows = [shortcuts.get_row_at(index) for index in range(shortcuts.row_count)]
         assert ["ctrl+up", "Previous Table"] in rows
         assert ["ctrl+down", "Next Table"] in rows
+        assert ["ctrl+left", "Previous Page"] in rows
+        assert ["ctrl+right", "Next Page"] in rows
+        assert ["c", "Copy Cell"] in rows
         assert ["shift+c", "Copy Row"] in rows
 
 
@@ -240,9 +243,23 @@ async def test_bounded_columns_copy_full_row(
         assert "\\n" in cells[1].plain
         assert "\n" not in cells[1].plain
         assert cells[3].plain.endswith("…")
-        await pilot.press("C")
-        assert len(copied) == 1
-        assert json.loads(copied[0]) == {
+        table.move_cursor(column=1)
+        await pilot.press("c")
+        assert copied[-1] == value
+        table.move_cursor(column=3)
+        await pilot.press("c")
+        assert copied[-1] == blob.hex()
+        table.move_cursor(column=2)
+        await pilot.press("c")
+        assert copied[-1] == "NULL"
+        table.move_cursor(column=4)
+        await pilot.press("c")
+        assert copied[-1] == "1.25"
+        table.move_cursor(column=0)
+        await pilot.press("c", "C")
+        assert copied[-2] == "1"
+        assert len(copied) == 6
+        assert json.loads(copied[-1]) == {
             "id": 1,
             column_name: value,
             "missing": None,
@@ -287,8 +304,38 @@ async def test_copy_row_tracks_selection_pages_and_tables(
 
 
 @pytest.mark.asyncio
-async def test_copy_row_uses_terminal_clipboard_when_system_clipboard_is_unavailable(
+async def test_copy_cell_tracks_selection_pages_and_tables(
     database_path: UPath, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    copied: list[str] = []
+    monkeypatch.setattr(pyperclip, "copy", copied.append)
+    app = Browsr(
+        config_object=TextualAppContext(file_path=str(database_path), max_lines=2)
+    )
+    async with app.run_test() as pilot:
+        viewer = app.code_browser_screen.code_browser.window_switcher.sqlite_window
+        viewer.data_table.focus()
+        await pilot.press("down", "right", "c")
+        assert copied == ["NULL"]
+        await pilot.press("right", "c")
+        assert copied[-1] == ""
+        await pilot.press("ctrl+right", "right", "c")
+        assert copied[-1] == "1.5"
+        await pilot.press("ctrl+down", "c")
+        assert viewer.table_name == "broken_view"
+        assert len(copied) == 3
+        await pilot.press("ctrl+down", "c")
+        assert viewer.table_name == "empty"
+        assert len(copied) == 3
+        await pilot.press("ctrl+down", "right", "c")
+        assert viewer.table_name == "example_view"
+        assert copied[-1] == "[bold]literal[/bold]"
+
+
+@pytest.mark.parametrize("copy_key", ["c", "C"])
+@pytest.mark.asyncio
+async def test_copy_uses_terminal_clipboard_when_system_clipboard_is_unavailable(
+    database_path: UPath, monkeypatch: pytest.MonkeyPatch, copy_key: str
 ) -> None:
     def unavailable_clipboard(_: str) -> None:
         raise pyperclip.PyperclipException("No system clipboard")
@@ -298,12 +345,53 @@ async def test_copy_row_uses_terminal_clipboard_when_system_clipboard_is_unavail
     async with app.run_test() as pilot:
         viewer = app.code_browser_screen.code_browser.window_switcher.sqlite_window
         viewer.data_table.focus()
-        await pilot.press("C")
-        assert json.loads(app.clipboard) == {
-            "id": 1,
-            "value": "[bold]literal[/bold]",
-            "data": {"type": "blob", "hex": "00ff"},
-        }
+        await pilot.press("right", copy_key)
+        if copy_key == "c":
+            assert app.clipboard == "[bold]literal[/bold]"
+        else:
+            assert json.loads(app.clipboard) == {
+                "id": 1,
+                "value": "[bold]literal[/bold]",
+                "data": {"type": "blob", "hex": "00ff"},
+            }
+
+
+@pytest.mark.parametrize("focus_context", ["tree", "confirmation"])
+@pytest.mark.asyncio
+async def test_sqlite_help_lists_all_shortcuts_outside_viewer_focus(
+    database_path: UPath, focus_context: str
+) -> None:
+    app = Browsr(config_object=TextualAppContext(file_path=str(database_path)))
+    async with app.run_test(size=(140, 35)) as pilot:
+        browser = app.code_browser_screen.code_browser
+        browser.show_tree = True
+        if focus_context == "tree":
+            browser.directory_tree.focus()
+        else:
+            browser._show_overlay(browser.confirmation_window)
+        await pilot.press("question_mark")
+        shortcuts = browser.shortcuts.query_one(DataTable)
+        rows = [shortcuts.get_row_at(index) for index in range(shortcuts.row_count)]
+        expected = [
+            ["c", "Copy Cell"],
+            ["shift+c", "Copy Row"],
+            ["ctrl+left", "Previous Page"],
+            ["ctrl+right", "Next Page"],
+            ["ctrl+up", "Previous Table"],
+            ["ctrl+down", "Next Table"],
+        ]
+        assert all(row in rows for row in expected)
+        assert len({row[0] for row in rows}) == len(rows)
+        browser.toggle_shortcuts()
+        if focus_context == "confirmation":
+            browser._close_overlay(browser.confirmation_window)
+        text_path = database_path.parent / "plain.txt"
+        text_path.write_text("Hello")
+        browser.window_switcher.render_file(text_path)
+        browser.directory_tree.focus()
+        await pilot.press("question_mark")
+        rows = [shortcuts.get_row_at(index) for index in range(shortcuts.row_count)]
+        assert all(row not in rows for row in expected)
 
 
 @pytest.mark.parametrize("contents", [None, b"not a SQLite database"])

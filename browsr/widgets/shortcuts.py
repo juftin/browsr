@@ -4,10 +4,11 @@ Shortcuts Widget
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from typing import ClassVar
 
 from textual.app import ComposeResult
-from textual.binding import Binding
+from textual.binding import Binding, BindingType
 from textual.message import Message
 from textual.widgets import DataTable, Static
 
@@ -24,6 +25,7 @@ class ShortcutsPopUp(BasePopUp):
         "copy_file_path",
         "copy_text",
         "copy_row",
+        "copy_cell",
         "download_file",
         "toggle_files",
         "parent_dir",
@@ -66,15 +68,20 @@ class ShortcutsPopUp(BasePopUp):
         table.cursor_type = "row"
         self.update_shortcuts()
 
-    def update_shortcuts(self) -> None:
+    def update_shortcuts(self, extra_bindings: Iterable[BindingType] = ()) -> None:
         """Update the shortcuts displayed in the table"""
         table = self.query_one(DataTable)
         table.clear()
         rows = []
-        for active_binding in self.app.active_bindings.values():
-            binding = active_binding.binding
-            if not isinstance(binding, Binding):
-                continue
+        bindings = {
+            binding.key: binding
+            for active in self.app.active_bindings.values()
+            if isinstance(binding := active.binding, Binding)
+        }
+        for extra in extra_bindings:
+            binding = extra if isinstance(extra, Binding) else Binding(*extra)
+            bindings[binding.key] = binding
+        for binding in bindings.values():
             key = binding.key_display or binding.key
             if binding.action not in self.TRUSTED_ACTIONS or key in self.IGNORED_KEYS:
                 continue
