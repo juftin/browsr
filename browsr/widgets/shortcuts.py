@@ -33,6 +33,10 @@ class ShortcutsPopUp(BasePopUp):
         "linenos",
         "theme",
         "toggle_wrap",
+        "previous_page",
+        "next_page",
+        "previous_table",
+        "next_table",
     ]
     DESCRIPTION_MAPPINGS: ClassVar[dict[str, str]] = {
         "toggle_dark": "Toggle Dark Mode",

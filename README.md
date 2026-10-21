@@ -92,6 +92,10 @@ rows. Use **Previous** and **Next** (or **Ctrl+Left** and **Ctrl+Right**) to pag
 through rows. The `--max-lines` option controls the number of rows per page
 (default: 1000).
 
+Use **Ctrl+Up** and **Ctrl+Down** to switch to the previous or next table or view.
+Navigation wraps at either end of the dropdown and starts each selected object
+at its first page. These shortcuts are also listed under **?**.
+
 ```shell
 browsr ~/data/example.sqlite
 ```

@@ -4,6 +4,7 @@ import sqlite3
 from pathlib import Path
 
 import pytest
+from textual.widgets import DataTable
 from textual_universal_directorytree import UPath
 
 from browsr.base import TextualAppContext
@@ -141,6 +142,67 @@ async def test_table_reload_overlays_and_switching(database_path: UPath) -> None
         assert database.connection is None
 
 
+@pytest.mark.parametrize("focus_target", ["data_table", "selector"])
+@pytest.mark.asyncio
+async def test_table_shortcuts_wrap_reset_paging_and_preserve_focus(
+    database_path: UPath, focus_target: str
+) -> None:
+    app = Browsr(
+        config_object=TextualAppContext(file_path=str(database_path), max_lines=2)
+    )
+    async with app.run_test(size=(140, 35)) as pilot:
+        browser = app.code_browser_screen.code_browser
+        viewer = browser.window_switcher.sqlite_window
+        focused_widget = getattr(viewer, focus_target)
+        focused_widget.focus()
+        await pilot.press("ctrl+right")
+        assert viewer.row_offset == 2
+
+        await pilot.press("ctrl+up")
+        assert viewer.table_name == viewer.selector.value == "example_view"
+        assert viewer.row_offset == 0
+        assert viewer.data_table.row_count == 2
+        assert app.focused is focused_widget
+
+        await pilot.press("ctrl+down")
+        assert viewer.table_name == viewer.selector.value == 'a weird " table'
+        assert viewer.data_table.get_row_at(0)[0].plain == "1"
+        await pilot.press("ctrl+down")
+        assert viewer.table_name == viewer.selector.value == "broken_view"
+        assert "Unable to read" in str(viewer.status.content)
+        await pilot.press("ctrl+down")
+        assert viewer.table_name == viewer.selector.value == "empty"
+        assert viewer.data_table.row_count == 0
+        await pilot.press("ctrl+down")
+        assert viewer.table_name == viewer.selector.value == "example_view"
+        assert viewer.data_table.row_count == 2
+        assert app.focused is focused_widget
+
+        await pilot.press("question_mark")
+        shortcuts = browser.shortcuts.query_one(DataTable)
+        rows = [shortcuts.get_row_at(index) for index in range(shortcuts.row_count)]
+        assert ["ctrl+up", "Previous Table"] in rows
+        assert ["ctrl+down", "Next Table"] in rows
+
+
+@pytest.mark.asyncio
+async def test_table_shortcuts_preserve_page_for_single_table(tmp_path: Path) -> None:
+    path = tmp_path / "single.db"
+    connection = sqlite3.connect(path)
+    with connection:
+        connection.execute("CREATE TABLE numbers (value INTEGER)")
+        connection.executemany("INSERT INTO numbers VALUES (?)", [(1,), (2,)])
+    connection.close()
+    app = Browsr(config_object=TextualAppContext(file_path=str(path), max_lines=1))
+    async with app.run_test() as pilot:
+        viewer = app.code_browser_screen.code_browser.window_switcher.sqlite_window
+        viewer.data_table.focus()
+        await pilot.press("ctrl+right", "ctrl+up", "ctrl+down")
+        assert viewer.table_name == viewer.selector.value == "numbers"
+        assert viewer.row_offset == 1
+        assert viewer.data_table.get_row_at(0)[0].plain == "2"
+
+
 @pytest.mark.parametrize("contents", [None, b"not a SQLite database"])
 @pytest.mark.asyncio
 async def test_empty_and_invalid_databases(
@@ -152,8 +214,10 @@ async def test_empty_and_invalid_databases(
     else:
         path.write_bytes(contents)
     app = Browsr(config_object=TextualAppContext(file_path=str(path)))
-    async with app.run_test():
+    async with app.run_test() as pilot:
         viewer = app.code_browser_screen.code_browser.window_switcher.sqlite_window
+        viewer.focus()
+        await pilot.press("ctrl+up", "ctrl+down")
         assert viewer.display
         assert viewer.data_table.row_count == 0
         assert viewer.selector.disabled

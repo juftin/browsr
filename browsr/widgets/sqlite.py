@@ -35,6 +35,8 @@ class SQLiteWindow(Container):
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding("ctrl+left", "previous_page", "Previous Page"),
         Binding("ctrl+right", "next_page", "Next Page"),
+        Binding("ctrl+up", "previous_table", "Previous Table"),
+        Binding("ctrl+down", "next_table", "Next Table"),
     ]
     DEFAULT_CSS = """
     SQLiteWindow { height: 100%; }
@@ -176,6 +178,28 @@ class SQLiteWindow(Container):
         if self.has_next:
             self.row_offset += self.page_size
             self._load_page()
+
+    def _change_table(self, direction: int) -> None:
+        """Cycle through the dropdown's tables and views without moving focus."""
+        if self.database is None or not self.database.objects:
+            return
+        names = [item.name for item in self.database.objects]
+        if self.table_name in names:
+            index = (names.index(self.table_name) + direction) % len(names)
+        else:
+            index = 0 if direction > 0 else -1
+        name = names[index]
+        self.selector.value = name
+        if name != self.table_name:
+            self.select_table(name)
+
+    def action_previous_table(self) -> None:
+        """Show the previous table, wrapping to the last at the beginning."""
+        self._change_table(-1)
+
+    def action_next_table(self) -> None:
+        """Show the next table, wrapping to the first at the end."""
+        self._change_table(1)
 
     def close(self) -> None:
         """Release resources when switching files or leaving the app."""
