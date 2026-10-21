@@ -4,7 +4,6 @@ import sqlite3
 from pathlib import Path
 
 import pytest
-from textual.widgets import TabbedContent
 from textual_universal_directorytree import UPath
 
 from browsr.base import TextualAppContext
@@ -103,7 +102,7 @@ async def test_sqlite_file_routing_and_paging(
 
 
 @pytest.mark.asyncio
-async def test_table_schema_reload_overlays_and_switching(database_path: UPath) -> None:
+async def test_table_reload_overlays_and_switching(database_path: UPath) -> None:
     app = Browsr(
         config_object=TextualAppContext(file_path=str(database_path), max_lines=2)
     )
@@ -115,11 +114,6 @@ async def test_table_schema_reload_overlays_and_switching(database_path: UPath) 
         await pilot.pause()
         assert viewer.table_name == "example_view"
         assert viewer.data_table.row_count == 2
-        assert "CREATE VIEW" in viewer.schema.content.code
-        viewer.query_one(TabbedContent).active = "sqlite-schema-tab"
-        await pilot.pause()
-        assert viewer.schema.visible
-        assert viewer.schema.region.height > 0
         browser.toggle_shortcuts()
         assert viewer.display is False
         await pilot.press("escape")

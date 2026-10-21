@@ -87,10 +87,10 @@ browsr ~/Downloads/
 ### SQLite
 
 Open a `.db`, `.db3`, `.sqlite`, or `.sqlite3` file to browse its tables and views
-without modifying the database. Select an object from the dropdown, inspect its
-rows in **Data**, or view its SQL definition in **Schema**. Use **Previous** and
-**Next** (or **Ctrl+Left** and **Ctrl+Right**) to page through rows. The
-`--max-lines` option controls the number of rows per page (default: 1000).
+without modifying the database. Select an object from the dropdown to browse its
+rows. Use **Previous** and **Next** (or **Ctrl+Left** and **Ctrl+Right**) to page
+through rows. The `--max-lines` option controls the number of rows per page
+(default: 1000).
 
 ```shell
 browsr ~/data/example.sqlite

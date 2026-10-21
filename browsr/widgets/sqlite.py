@@ -1,21 +1,20 @@
-"""SQLite table selection, paged data, and schema inspection."""
+"""SQLite table selection and paged data."""
 
 from __future__ import annotations
 
 import sqlite3
 from typing import Any, ClassVar
 
-from rich.syntax import Syntax
 from rich.text import Text
 from textual import on
 from textual.app import ComposeResult
 from textual.binding import Binding, BindingType
 from textual.containers import Container, Horizontal
-from textual.widgets import Button, DataTable, Select, Static, TabbedContent, TabPane
+from textual.widgets import Button, DataTable, Select, Static
 from textual_universal_directorytree import UPath
 
 from browsr.sqlite import SQLiteDatabase
-from browsr.widgets.vim import VimScroll, vim_cursor_bindings
+from browsr.widgets.vim import vim_cursor_bindings
 
 BLOB_PREVIEW_BYTES = 32
 
@@ -42,10 +41,7 @@ class SQLiteWindow(Container):
     SQLiteWindow .sqlite-toolbar { height: 3; }
     SQLiteWindow Select { width: 1fr; }
     SQLiteWindow Button { min-width: 10; width: auto; }
-    SQLiteWindow TabbedContent { height: 1fr; }
-    SQLiteWindow ContentSwitcher { height: 1fr; }
-    SQLiteWindow TabPane { height: 100%; padding: 0; }
-    SQLiteWindow SQLiteDataTable { height: 100%; }
+    SQLiteWindow SQLiteDataTable { height: 1fr; }
     SQLiteWindow .sqlite-status { height: auto; padding: 0 1; color: $text-muted; }
     """
 
@@ -60,7 +56,6 @@ class SQLiteWindow(Container):
         self.previous_button = Button("Previous", id="sqlite-previous", disabled=True)
         self.next_button = Button("Next", id="sqlite-next", disabled=True)
         self.data_table = SQLiteDataTable(zebra_stripes=True, id="sqlite-data")
-        self.schema = Static(markup=False)
         self.status = Static("", classes="sqlite-status", markup=False)
         self.display = False
 
@@ -69,12 +64,7 @@ class SQLiteWindow(Container):
             yield self.selector
             yield self.previous_button
             yield self.next_button
-        with TabbedContent(initial="sqlite-data-tab"):
-            with TabPane("Data", id="sqlite-data-tab"):
-                yield self.data_table
-            with TabPane("Schema", id="sqlite-schema-tab"):
-                with VimScroll():
-                    yield self.schema
+        yield self.data_table
         yield self.status
 
     def refresh_from_file(self, file_path: UPath, max_lines: int = 1000) -> None:
@@ -82,11 +72,9 @@ class SQLiteWindow(Container):
         self.close()
         self.page_size = max(1, max_lines)
         self.data_table.clear(columns=True)
-        self.schema.update("")
         self.selector.set_options([])
         self.selector.disabled = True
         self._update_buttons()
-        self.query_one(TabbedContent).active = "sqlite-data-tab"
         try:
             self.database = SQLiteDatabase(file_path)
         except (sqlite3.Error, OSError, ValueError) as error:
@@ -115,7 +103,7 @@ class SQLiteWindow(Container):
             self.select_table(event.value)
 
     def select_table(self, name: str) -> None:
-        """Reset paging and display the selected object's data and schema."""
+        """Reset paging and display the selected object's data."""
         if self.database is None:
             return
         selected = next(
@@ -125,7 +113,6 @@ class SQLiteWindow(Container):
             return
         self.table_name = name
         self.row_offset = 0
-        self.schema.update(Syntax(selected.sql, "sql", word_wrap=True))
         self._load_page()
 
     @staticmethod

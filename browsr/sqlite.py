@@ -12,11 +12,10 @@ from textual_universal_directorytree import UPath, is_remote_path
 
 
 class SQLiteObject(NamedTuple):
-    """A user table or view and its creation statement."""
+    """A user table or view available for browsing."""
 
     name: str
     kind: str
-    sql: str
 
 
 class SQLitePage(NamedTuple):
@@ -46,9 +45,9 @@ class SQLiteDatabase:
             )
             self.connection.execute("PRAGMA query_only = ON")
             self.objects = [
-                SQLiteObject(name, kind, sql or "")
-                for name, kind, sql in self.connection.execute(
-                    "SELECT name, type, sql FROM sqlite_master "
+                SQLiteObject(name, kind)
+                for name, kind in self.connection.execute(
+                    "SELECT name, type FROM sqlite_master "
                     "WHERE type IN ('table', 'view') AND name NOT GLOB 'sqlite_*' "
                     "ORDER BY name"
                 )
