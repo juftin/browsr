@@ -84,6 +84,22 @@ about the file systems supported.
 browsr ~/Downloads/
 ```
 
+### SQLite
+
+Open a `.db`, `.db3`, `.sqlite`, or `.sqlite3` file to browse its tables and views
+without modifying the database. Select an object from the dropdown, inspect its
+rows in **Data**, or view its SQL definition in **Schema**. Use **Previous** and
+**Next** (or **Ctrl+Left** and **Ctrl+Right**) to page through rows. The
+`--max-lines` option controls the number of rows per page (default: 1000).
+
+```shell
+browsr ~/data/example.sqlite
+```
+
+Remote databases are downloaded to a temporary file that is removed when you
+switch files or exit. The usual `--max-file-size` limit applies. Remote previews
+read the database file alone; checkpoint any WAL changes before uploading it.
+
 ### GitHub
 
 ```

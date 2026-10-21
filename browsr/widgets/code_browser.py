@@ -205,6 +205,9 @@ class CodeBrowser(Container):
             ),
             self.window_switcher.text_window: self.window_switcher.text_window.display,
             self.window_switcher.vim_scroll: self.window_switcher.vim_scroll.display,
+            self.window_switcher.sqlite_window: (
+                self.window_switcher.sqlite_window.display
+            ),
         }
 
     def _hide_content_windows(self) -> None:
@@ -214,6 +217,7 @@ class CodeBrowser(Container):
         self.window_switcher.datatable_window.display = False
         self.window_switcher.text_window.display = False
         self.window_switcher.vim_scroll.display = False
+        self.window_switcher.sqlite_window.display = False
 
     def _restore_content_windows(self) -> None:
         """

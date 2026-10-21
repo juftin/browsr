@@ -123,6 +123,11 @@ class CodeBrowserScreen(SortedBindingsScreen):
                 and self.code_browser.datatable_window.display is True
             ):
                 self.code_browser.datatable_window.focus()
+            elif (
+                self.code_browser.show_tree is False
+                and self.code_browser.window_switcher.sqlite_window.display is True
+            ):
+                self.code_browser.window_switcher.sqlite_window.selector.focus()
         else:
             self.code_browser.show_tree = True
 
