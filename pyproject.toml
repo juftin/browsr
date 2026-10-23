@@ -10,18 +10,19 @@ classifiers = [
   "Development Status :: 4 - Beta",
   "Operating System :: OS Independent",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy"
 ]
 dependencies = [
   "art~=6.5",
   "click~=8.3.1",
-  "pandas>2,<3",
+  "pandas>=2,<3; python_version < '3.15'",
+  "pandas>=3,<4; python_version >= '3.15'",
   "rich>=14,<15",
   "rich-click~=1.9.7",
   "rich-pixels~=3.0.1",
@@ -38,19 +39,19 @@ keywords = []
 license = "MIT"
 name = "browsr"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 version = "1.24.0"
 
 [project.optional-dependencies]
 all = [
-  "pyarrow~=23.0.1",
+  "pyarrow>=26,<27",
   "textual-universal-directorytree[remote]~=1.6.0"
 ]
 data = [
-  "pyarrow~=23.0.1"
+  "pyarrow>=26,<27"
 ]
 parquet = [
-  "pyarrow~=23.0.1"
+  "pyarrow>=26,<27"
 ]
 remote = [
   "textual-universal-directorytree[remote]~=1.6.0"
@@ -133,7 +134,7 @@ addopts = [
 
 [tool.ruff]
 line-length = 88
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
 ignore = [
