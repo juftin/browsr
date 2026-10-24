@@ -32,7 +32,7 @@ dependencies = [
   "Pillow>=12.1.1",
   "pypdfium2>=5.6.0",
   "pyperclip~=1.11.0",
-  "orjson~=3.11.5"
+  "orjson>=3.11.5,<4"
 ]
 description = "TUI File Browser App"
 keywords = []
