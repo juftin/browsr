@@ -45,6 +45,8 @@ version = "1.24.0"
 [project.optional-dependencies]
 all = [
   "pyarrow>=26,<27",
+  # Avoid legacy s3fs builds when resolving the remote dependency stack.
+  "s3fs>=2024.5.0",
   "textual-universal-directorytree[remote]~=1.6.0"
 ]
 data = [
@@ -54,6 +56,7 @@ parquet = [
   "pyarrow>=26,<27"
 ]
 remote = [
+  "s3fs>=2024.5.0",
   "textual-universal-directorytree[remote]~=1.6.0"
 ]
 

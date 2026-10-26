@@ -9,12 +9,14 @@ on:
             - pyproject.toml
             - uv.lock
             - .github/workflows/test.yaml
+            - scripts/test_uv_tools.sh
     pull_request:
         paths:
             - browsr/**
             - pyproject.toml
             - uv.lock
             - .github/workflows/test.yaml
+            - scripts/test_uv_tools.sh
     schedule:
         - cron: 0 12 1 * *
 jobs:
@@ -44,5 +46,9 @@ jobs:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   annotations-pytest: ${{ matrix.python == '3.12' && true || false }}
                   pytest-coverage: ${{ matrix.python == '3.12' && github.event_name == 'pull_request' && true || false }}
+              env:
+                  UV_PYTHON: ${{ matrix.python }}
+            - name: Test uv tool installation and upgrades
+              run: bash scripts/test_uv_tools.sh
               env:
                   UV_PYTHON: ${{ matrix.python }}

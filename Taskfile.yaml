@@ -35,6 +35,12 @@ tasks:
             GITHUB_TOKEN: placeholder
             UV_PYTHON: "{{.UV_PYTHON}}"
     #######################################
+    test:tools:
+        desc: Test uv Tool Installation and Upgrades
+        cmd: bash scripts/test_uv_tools.sh
+        env:
+            UV_PYTHON: "{{.UV_PYTHON}}"
+    #######################################
     test:matrix:
         desc: Run Tests with different Python versions
         cmds:

@@ -387,6 +387,7 @@ dependencies = [
 [package.optional-dependencies]
 all = [
     { name = "pyarrow" },
+    { name = "s3fs" },
     { name = "textual-universal-directorytree", extra = ["remote"] },
 ]
 data = [
@@ -396,6 +397,7 @@ parquet = [
     { name = "pyarrow" },
 ]
 remote = [
+    { name = "s3fs" },
     { name = "textual-universal-directorytree", extra = ["remote"] },
 ]
 
@@ -443,6 +445,8 @@ requires-dist = [
     { name = "rich", specifier = ">=14,<15" },
     { name = "rich-click", specifier = "~=1.9.7" },
     { name = "rich-pixels", specifier = "~=3.0.1" },
+    { name = "s3fs", marker = "extra == 'all'", specifier = ">=2024.5.0" },
+    { name = "s3fs", marker = "extra == 'remote'", specifier = ">=2024.5.0" },
     { name = "textual", extras = ["syntax"], specifier = ">=8,<9" },
     { name = "textual-universal-directorytree", specifier = "~=1.6.0" },
     { name = "textual-universal-directorytree", extras = ["remote"], marker = "extra == 'all'", specifier = "~=1.6.0" },
@@ -3471,26 +3475,24 @@ wheels = [
 
 [[package]]
 name = "urllib3"
-version = "1.26.20"
+version = "2.8.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/e4/e8/6ff5e6bc22095cfc59b6ea711b687e2b7ed4bdb373f7eeec370a97d7392f/urllib3-1.26.20.tar.gz", hash = "sha256:40c2dc0c681e47eb8f90e7e27bf6ff7df2e677421fd46756da1161c39ca70d32", size = 307380, upload-time = "2024-08-29T15:43:11.37Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e3/05/b17359e1cefb4f909b5e40b1b90a496d987258916dbbf88e842c729f510e/urllib3-2.8.0.tar.gz", hash = "sha256:63bf2ead4c879426ebf22ef2a781eeb4aa3b4ae798a0435506f8687fd5bb9b63", size = 458972, upload-time = "2026-09-15T19:29:36.253Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/33/cf/8435d5a7159e2a9c83a95896ed596f68cf798005fe107cc655b5c5c14704/urllib3-1.26.20-py2.py3-none-any.whl", hash = "sha256:0ed14ccfbf1c30a9072c7ca157e4319b70d65f623e91e7b32fadb2853431016e", size = 144225, upload-time = "2024-08-29T15:43:08.921Z" },
+    { url = "https://files.pythonhosted.org/packages/92/9d/c4e665119135114480843e7ab388fa94d8480650450e6f8e26b70d323a4c/urllib3-2.8.0-py3-none-any.whl", hash = "sha256:0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3", size = 135717, upload-time = "2026-09-15T19:29:34.577Z" },
 ]
 
 [[package]]
 name = "vcrpy"
-version = "6.0.1"
+version = "9.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pyyaml" },
-    { name = "urllib3", marker = "platform_python_implementation == 'PyPy'" },
     { name = "wrapt" },
-    { name = "yarl" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bf/59/9fe85bf7af469bdb0ab8416c76cde630cdff6d1790ecb87e5a58f259c89c/vcrpy-6.0.1.tar.gz", hash = "sha256:9e023fee7f892baa0bbda2f7da7c8ac51165c1c6e38ff8688683a12a4bde9278", size = 84836, upload-time = "2024-01-25T16:17:46.838Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9a/5e/7e75478db669231809ba9f4197f3460d1a4603e5ecb1d894b967cca5a7e8/vcrpy-9.2.0.tar.gz", hash = "sha256:c325fa276b175de06bc7afe1b2a45204dbe1fddd90d1b2a18ab14dff2e8e2e4a", size = 113323, upload-time = "2026-10-25T22:29:44.293Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/dd/eb/922cfd27d6593363c3e50b7808bcc234ec996128813fd34341685bb307b7/vcrpy-6.0.1-py2.py3-none-any.whl", hash = "sha256:621c3fb2d6bd8aa9f87532c688e4575bcbbde0c0afeb5ebdb7e14cac409edfdd", size = 41880, upload-time = "2024-07-30T07:34:50.1Z" },
+    { url = "https://files.pythonhosted.org/packages/2e/27/4a23141b26d604e5c1a67d5d9df726a517ca625499860bae4bf7a75b6faa/vcrpy-9.2.0-py3-none-any.whl", hash = "sha256:a22f6f2cd47687e363c64ff77fbc7b7bbfbc036db793b4413faf6dd9d6718f93", size = 54278, upload-time = "2026-10-25T22:29:42.674Z" },
 ]
 
 [[package]]
