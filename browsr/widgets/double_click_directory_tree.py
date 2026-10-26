@@ -31,9 +31,7 @@ class DoubleClickDirectoryTree(DirectoryTree):
         self._last_clicked_path: UPath = UPath(
             "13041530b3174c569e1895fdfc2676fc57af1e02606059e0d2472d04c1bb360f"
         )
-        self._last_clicked_time = datetime.datetime(
-            1970, 1, 1, tzinfo=datetime.timezone.utc
-        )
+        self._last_clicked_time = datetime.datetime(1970, 1, 1, tzinfo=datetime.UTC)
 
     class DoubleClicked(Message):
         """
@@ -82,7 +80,7 @@ class DoubleClickDirectoryTree(DirectoryTree):
         """
         Check if the path is double clicked
         """
-        click_time = datetime.datetime.now(datetime.timezone.utc)
+        click_time = datetime.datetime.now(datetime.UTC)
         click_delta = click_time - self._last_clicked_time
         self._last_clicked_time = click_time
         if self._last_clicked_path == path and click_delta <= self._double_click_time:

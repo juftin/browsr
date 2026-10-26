@@ -55,7 +55,7 @@ def copy_supported(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 @pytest.fixture(scope="module")
-def vcr_config() -> dict[str, list[Any]]:
+def vcr_config() -> dict[str, list[Any] | bool]:
     """
     VCR Cassette Privacy Enforcer
 
@@ -63,9 +63,11 @@ def vcr_config() -> dict[str, list[Any]]:
 
     Returns
     -------
-    Dict[str, list]:
+    dict[str, list[Any] | bool]:
     """
     return {
+        # Existing cassettes include gzip bodies that must be decoded on replay.
+        "decode_compressed_response": True,
         "filter_headers": [("authorization", "XXXXXXXXXX")],
         "filter_query_parameters": [("user", "XXXXXXXXXX"), ("token", "XXXXXXXXXX")],
     }

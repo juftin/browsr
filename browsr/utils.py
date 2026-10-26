@@ -99,9 +99,7 @@ def get_file_info(file_path: UPath | Path) -> FileInfo:
             is_cloudpath=is_cloudpath,
         )
     else:
-        last_modified = datetime.datetime.fromtimestamp(
-            stat.st_mtime, tz=datetime.timezone.utc
-        )
+        last_modified = datetime.datetime.fromtimestamp(stat.st_mtime, tz=datetime.UTC)
         try:
             owner = file_path.owner()
             group = file_path.group()
