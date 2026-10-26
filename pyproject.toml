@@ -21,8 +21,7 @@ classifiers = [
 dependencies = [
   "art~=6.5",
   "click~=8.3.1",
-  "pandas>=2,<3; python_version < '3.15'",
-  "pandas>=3,<4; python_version >= '3.15'",
+  "pandas>=3.1,<4",
   "rich>=14,<15",
   "rich-click~=1.9.7",
   "rich-pixels~=3.0.1",
