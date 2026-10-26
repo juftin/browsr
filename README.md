@@ -54,13 +54,13 @@ https://user-images.githubusercontent.com/49741340/238535232-459847af-a15c-4d9b-
 
 ## Installation
 
-It's recommended to use [pipx](https://pypa.github.io/pipx/) instead of pip. `pipx` installs the package in
-an isolated environment and makes it available everywhere. If you'd like to use `pip` instead, just replace `pipx`
-with `pip` in the below command.
+Install **`browsr`** in an isolated environment with [uv](https://docs.astral.sh/uv/guides/tools/):
 
 ```shell
-pipx install browsr
+uv tool install browsr
 ```
+
+You can also use [pipx](https://pypa.github.io/pipx/) (`pipx install browsr`) or `pip install browsr`.
 
 ### Extra Installation
 
@@ -69,8 +69,16 @@ If you'd like to browse parquet / feather files, you'll need to install the `dat
 you can install the `all` extra to get all the extras.
 
 ```shell
-pipx install "browsr[all]"
+uv tool install "browsr[all]"
 ```
+
+### Upgrading
+
+```shell
+uv tool upgrade browsr
+```
+
+To upgrade all tools installed with uv, use `uv tool upgrade --all`.
 
 ## Usage
 
