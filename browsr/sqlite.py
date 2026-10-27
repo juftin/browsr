@@ -32,6 +32,8 @@ class SQLiteDatabase:
     def __init__(self, file_path: UPath) -> None:
         self.connection: sqlite3.Connection | None = None
         self._temporary_directory: TemporaryDirectory[str] | None = None
+        self.objects: list[SQLiteObject] = []
+        self._object_names: set[str] = set()
         try:
             if is_remote_path(file_path):
                 self._temporary_directory = TemporaryDirectory(prefix="browsr-sqlite-")
@@ -52,6 +54,7 @@ class SQLiteDatabase:
                     "ORDER BY name"
                 )
             ]
+            self._object_names = {item.name for item in self.objects}
         except Exception:
             self.close()
             raise
@@ -60,7 +63,7 @@ class SQLiteDatabase:
         """Read at most one page and one lookahead row without counting all rows."""
         if self.connection is None:
             raise ValueError("The database is closed")
-        if name not in {item.name for item in self.objects}:
+        if name not in self._object_names:
             raise ValueError("Unknown table or view")
         if limit < 1 or offset < 0:
             raise ValueError("Page size must be positive and offset cannot be negative")
@@ -85,3 +88,4 @@ class SQLiteDatabase:
         if self._temporary_directory is not None:
             self._temporary_directory.cleanup()
             self._temporary_directory = None
+        self._object_names.clear()

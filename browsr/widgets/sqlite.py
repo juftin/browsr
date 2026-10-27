@@ -34,6 +34,7 @@ class SQLiteDataTable(DataTable[Text]):
 class SQLiteWindow(Container):
     """A read-only SQLite viewer using the browser's normal navigation keys."""
 
+    DEFAULT_FOCUS: ClassVar[str | None] = "SQLiteDataTable"
     can_focus = True
     BINDINGS: ClassVar[list[BindingType]] = [
         Binding(
@@ -94,6 +95,11 @@ class SQLiteWindow(Container):
             yield self.next_button
         yield self.data_table
         yield self.status
+
+    def focus(self, scroll_visible: bool = True) -> SQLiteWindow:
+        """Focus the data table so table navigation and row browsing work."""
+        self.data_table.focus(scroll_visible=scroll_visible)
+        return self
 
     def refresh_from_file(self, file_path: UPath, max_lines: int = 1000) -> None:
         """Load a database, resetting the selection and any stale results."""

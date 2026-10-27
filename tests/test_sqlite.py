@@ -431,3 +431,58 @@ async def test_database_closed_on_exit(database_path: UPath) -> None:
         )
         assert database.connection is not None
     assert database.connection is None
+
+
+@pytest.mark.asyncio
+async def test_sqlite_startup_and_overlay_restore_focus(database_path: UPath) -> None:
+    app = Browsr(config_object=TextualAppContext(file_path=str(database_path)))
+    async with app.run_test(size=(140, 35)) as pilot:
+        browser = app.code_browser_screen.code_browser
+        viewer = browser.window_switcher.sqlite_window
+        assert app.focused is viewer.data_table
+        browser.toggle_shortcuts()
+        await pilot.pause()
+        assert app.focused is not viewer.data_table
+        await pilot.press("escape")
+        assert app.focused is viewer.data_table
+
+
+@pytest.mark.asyncio
+async def test_sqlite_navigation_shortcuts_from_tree(database_path: UPath) -> None:
+    app = Browsr(
+        config_object=TextualAppContext(file_path=str(database_path), max_lines=2)
+    )
+    async with app.run_test(size=(140, 35)) as pilot:
+        browser = app.code_browser_screen.code_browser
+        browser.show_tree = True
+        browser.directory_tree.focus()
+        await pilot.pause()
+        viewer = browser.window_switcher.sqlite_window
+        assert app.focused is browser.directory_tree
+        assert viewer.table_name == 'a weird " table'
+        assert viewer.row_offset == 0
+
+        # Page next and previous from tree
+        await pilot.press("right_curly_bracket")
+        assert viewer.row_offset == 2
+        assert app.focused is browser.directory_tree
+        await pilot.press("left_curly_bracket")
+        assert viewer.row_offset == 0
+        assert app.focused is browser.directory_tree
+
+        # Switch table from tree
+        await pilot.press("left_square_bracket")
+        assert viewer.table_name == "example_view"
+        assert app.focused is browser.directory_tree
+        await pilot.press("right_square_bracket")
+        assert viewer.table_name == 'a weird " table'
+        assert app.focused is browser.directory_tree
+
+
+def test_sqlite_object_names_cached(database_path: UPath) -> None:
+    database = SQLiteDatabase(database_path)
+    try:
+        assert database._object_names == {item.name for item in database.objects}
+    finally:
+        database.close()
+    assert database._object_names == set()
