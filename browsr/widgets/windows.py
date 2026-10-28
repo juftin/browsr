@@ -41,6 +41,7 @@ from browsr.utils import (
     get_file_info,
     open_image,
 )
+from browsr.widgets.sqlite import SQLiteWindow
 from browsr.widgets.vim import VimDataTable, VimScroll
 
 
@@ -383,6 +384,7 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
     image_extensions: ClassVar[list[str]] = image_file_extensions.copy()
     markdown_extensions: ClassVar[list[str]] = [".md"]
     json_extensions: ClassVar[list[str]] = [".json"]
+    sqlite_extensions: ClassVar[list[str]] = [".db", ".sqlite", ".sqlite3", ".db3"]
 
     def __init__(
         self, config_object: TextualAppContext, *args: Any, **kwargs: Any
@@ -396,6 +398,7 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
             zebra_stripes=True, show_header=True, show_cursor=True, id="table-view"
         )
         self.datatable_window.display = False
+        self.sqlite_window = SQLiteWindow()
         self.vim_scroll = VimScroll(self.static_window)
 
     def watch_linenos(self, linenos: bool) -> None:
@@ -445,6 +448,7 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
         yield self.vim_scroll
         yield self.text_window
         yield self.datatable_window
+        yield self.sqlite_window
 
     def get_active_widget(self) -> Widget:  # type: ignore[return]
         """
@@ -456,8 +460,10 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
             return self.text_window
         elif self.datatable_window.display:
             return self.datatable_window
+        elif self.sqlite_window.display:
+            return self.sqlite_window
 
-    def switch_window(self, window: BaseCodeWindow) -> None:
+    def switch_window(self, window: BaseCodeWindow | SQLiteWindow) -> None:
         """
         Switch to the window
         """
@@ -465,6 +471,7 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
             self.static_window: self.vim_scroll,
             self.text_window: self.text_window,
             self.datatable_window: self.datatable_window,
+            self.sqlite_window: self.sqlite_window,
         }
         for window_widget, container_widget in window_map.items():
             container_widget.display = window is window_widget
@@ -474,13 +481,20 @@ class WindowSwitcher(Container, ThemeVisibleMixin, LinenosVisibleMixin):
         """
         Render a file
         """
+        self.sqlite_window.close()
         try:
             file_info = get_file_info(file_path=file_path)
             self.static_window.handle_file_size(
                 file_info=file_info, max_file_size=self.config_object.max_file_size
             )
             joined_suffixes = "".join(file_path.suffixes).lower()
-            if joined_suffixes in self.datatable_extensions:
+            switch_window: BaseCodeWindow | SQLiteWindow
+            if file_path.suffix.lower() in self.sqlite_extensions:
+                self.sqlite_window.refresh_from_file(
+                    file_path, max_lines=self.config_object.max_lines
+                )
+                switch_window = self.sqlite_window
+            elif joined_suffixes in self.datatable_extensions:
                 switch_window = self._render_datatable(file_path)
             elif file_path.suffix.lower() in self.image_extensions:
                 switch_window = self._render_image(file_path)

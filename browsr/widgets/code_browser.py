@@ -10,7 +10,7 @@ import shutil
 from typing import Any
 
 import pyperclip
-from textual import on, work
+from textual import events, on, work
 from textual.app import ComposeResult
 from textual.containers import Container
 from textual.events import Mount
@@ -195,6 +195,40 @@ class CodeBrowser(Container):
         """
         self._close_overlay(self.shortcuts_window)
 
+    def on_key(self, event: events.Key) -> None:
+        """
+        Handle SQLite table and page navigation shortcuts when viewing a database.
+        """
+        if self._get_active_overlay() is not None:
+            return
+        sqlite_window = self.window_switcher.sqlite_window
+        if not sqlite_window.display:
+            return
+        if (
+            event.key in ("left_square_bracket", "bracketleft")
+            or event.character == "["
+        ):
+            sqlite_window.action_previous_table()
+            event.stop()
+            event.prevent_default()
+        elif (
+            event.key in ("right_square_bracket", "bracketright")
+            or event.character == "]"
+        ):
+            sqlite_window.action_next_table()
+            event.stop()
+            event.prevent_default()
+        elif event.key in ("left_curly_bracket", "braceleft") or event.character == "{":
+            sqlite_window.action_previous_page()
+            event.stop()
+            event.prevent_default()
+        elif (
+            event.key in ("right_curly_bracket", "braceright") or event.character == "}"
+        ):
+            sqlite_window.action_next_page()
+            event.stop()
+            event.prevent_default()
+
     def _get_content_window_display_state(self) -> dict[Widget, bool]:
         """
         Capture the current content window visibility state.
@@ -205,6 +239,9 @@ class CodeBrowser(Container):
             ),
             self.window_switcher.text_window: self.window_switcher.text_window.display,
             self.window_switcher.vim_scroll: self.window_switcher.vim_scroll.display,
+            self.window_switcher.sqlite_window: (
+                self.window_switcher.sqlite_window.display
+            ),
         }
 
     def _hide_content_windows(self) -> None:
@@ -214,6 +251,7 @@ class CodeBrowser(Container):
         self.window_switcher.datatable_window.display = False
         self.window_switcher.text_window.display = False
         self.window_switcher.vim_scroll.display = False
+        self.window_switcher.sqlite_window.display = False
 
     def _restore_content_windows(self) -> None:
         """
@@ -340,7 +378,15 @@ class CodeBrowser(Container):
         if self._get_active_overlay() is self.shortcuts_window:
             self._close_overlay(self.shortcuts_window)
         else:
-            self.shortcuts.update_shortcuts()
+            sqlite_window = self.window_switcher.sqlite_window
+            sqlite_active = (
+                self._content_display_state.get(sqlite_window, False)
+                if self._get_active_overlay() is not None
+                else sqlite_window.display
+            )
+            self.shortcuts.update_shortcuts(
+                extra_bindings=sqlite_window.BINDINGS if sqlite_active else ()
+            )
             self._show_overlay(self.shortcuts_window)
 
     @work(thread=True)

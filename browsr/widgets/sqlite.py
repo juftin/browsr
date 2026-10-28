@@ -1,0 +1,301 @@
+"""SQLite table selection and paged data."""
+
+from __future__ import annotations
+
+import json
+import sqlite3
+from typing import Any, ClassVar
+
+import pyperclip
+from rich.text import Text
+from textual import on
+from textual.app import ComposeResult
+from textual.binding import Binding, BindingType
+from textual.containers import Container, Horizontal
+from textual.widgets import Button, DataTable, Select, Static
+from textual_universal_directorytree import UPath
+
+from browsr.sqlite import SQLiteDatabase, SQLitePage
+from browsr.widgets.vim import vim_cursor_bindings
+
+BLOB_PREVIEW_BYTES = 32
+MAX_COLUMN_WIDTH = 40
+
+
+class SQLiteDataTable(DataTable[Text]):
+    """Display literal SQLite values with the browser's Vim navigation."""
+
+    BINDINGS: ClassVar[list[BindingType]] = [
+        *DataTable.BINDINGS,
+        *vim_cursor_bindings,
+    ]
+
+
+class SQLiteWindow(Container):
+    """A read-only SQLite viewer using the browser's normal navigation keys."""
+
+    DEFAULT_FOCUS: ClassVar[str | None] = "SQLiteDataTable"
+    can_focus = True
+    BINDINGS: ClassVar[list[BindingType]] = [
+        Binding(
+            "left_curly_bracket",
+            "previous_page",
+            "Previous Page",
+            show=False,
+            key_display="{",
+        ),
+        Binding(
+            "right_curly_bracket", "next_page", "Next Page", show=False, key_display="}"
+        ),
+        Binding(
+            "left_square_bracket",
+            "previous_table",
+            "Previous Table",
+            show=False,
+            key_display="[",
+        ),
+        Binding(
+            "right_square_bracket",
+            "next_table",
+            "Next Table",
+            show=False,
+            key_display="]",
+        ),
+        Binding("c", "copy_cell", "Copy Cell", show=False),
+        Binding("C", "copy_row", "Copy Row", show=False, key_display="shift+c"),
+    ]
+    DEFAULT_CSS = """
+    SQLiteWindow { height: 100%; }
+    SQLiteWindow .sqlite-toolbar { height: 3; }
+    SQLiteWindow Select { width: 1fr; }
+    SQLiteWindow Button { min-width: 10; width: auto; }
+    SQLiteWindow SQLiteDataTable { height: 1fr; }
+    SQLiteWindow .sqlite-status { height: auto; padding: 0 1; color: $text-muted; }
+    """
+
+    def __init__(self, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
+        self.database: SQLiteDatabase | None = None
+        self._page: SQLitePage | None = None
+        self.table_name: str | None = None
+        self.row_offset = 0
+        self.page_size = 1000
+        self.has_next = False
+        self.selector: Select[str] = Select([], prompt="Select a table or view")
+        self.previous_button = Button("Previous", id="sqlite-previous", disabled=True)
+        self.next_button = Button("Next", id="sqlite-next", disabled=True)
+        self.data_table = SQLiteDataTable(zebra_stripes=True, id="sqlite-data")
+        self.status = Static("", classes="sqlite-status", markup=False)
+        self.display = False
+
+    def compose(self) -> ComposeResult:
+        with Horizontal(classes="sqlite-toolbar"):
+            yield self.selector
+            yield self.previous_button
+            yield self.next_button
+        yield self.data_table
+        yield self.status
+
+    def focus(self, scroll_visible: bool = True) -> SQLiteWindow:
+        """Focus the data table so table navigation and row browsing work."""
+        self.data_table.focus(scroll_visible=scroll_visible)
+        return self
+
+    def refresh_from_file(self, file_path: UPath, max_lines: int = 1000) -> None:
+        """Load a database, resetting the selection and any stale results."""
+        self.close()
+        self.page_size = max(1, max_lines)
+        self.data_table.clear(columns=True)
+        self.selector.set_options([])
+        self.selector.disabled = True
+        self._update_buttons()
+        try:
+            self.database = SQLiteDatabase(file_path)
+        except (sqlite3.Error, OSError, ValueError) as error:
+            self.status.update(f"Unable to open SQLite database: {error}")
+            return
+        objects = self.database.objects
+        if not objects:
+            self.status.update("This SQLite database has no user tables or views.")
+            return
+        self.selector.set_options(
+            [(Text(f"{item.name} ({item.kind})"), item.name) for item in objects]
+        )
+        self.selector.disabled = False
+        self.selector.value = objects[0].name
+        self.select_table(objects[0].name)
+
+    @on(Select.Changed)
+    def table_changed(self, event: Select.Changed) -> None:
+        """Switch tables without allowing queued events to restore old selections."""
+        event.stop()
+        if (
+            isinstance(event.value, str)
+            and event.value == self.selector.value
+            and event.value != self.table_name
+        ):
+            self.select_table(event.value)
+
+    def select_table(self, name: str) -> None:
+        """Reset paging and display the selected object's data."""
+        if self.database is None:
+            return
+        selected = next(
+            (item for item in self.database.objects if item.name == name), None
+        )
+        if selected is None:
+            return
+        self.table_name = name
+        self.row_offset = 0
+        self._load_page()
+
+    @staticmethod
+    def _format_value(value: Any) -> Text:
+        """Render a bounded, single-line preview while keeping raw values separate."""
+        if value is None:
+            text = Text("NULL", style="dim italic")
+        elif isinstance(value, bytes):
+            preview = value[:BLOB_PREVIEW_BYTES].hex()
+            suffix = "…" if len(value) > BLOB_PREVIEW_BYTES else ""
+            text = Text(f"BLOB ({len(value)} bytes): {preview}{suffix}")
+        else:
+            preview = str(value).replace("\r", "\\r").replace("\n", "\\n")
+            text = Text(preview.replace("\t", "\\t"))
+        text.truncate(MAX_COLUMN_WIDTH, overflow="ellipsis")
+        return text
+
+    def _load_page(self) -> None:
+        """Fetch a bounded page, reporting SQL errors inside the viewer."""
+        self._page = None
+        self.data_table.clear(columns=True)
+        self.has_next = False
+        if self.database is None or self.table_name is None:
+            return
+        try:
+            page = self.database.read_page(
+                self.table_name, self.row_offset, self.page_size
+            )
+            headers = [self._format_value(name) for name in page.columns]
+            rows = [[self._format_value(value) for value in row] for row in page.rows]
+            for index, header in enumerate(headers):
+                width = max(header.cell_len, *(row[index].cell_len for row in rows), 1)
+                self.data_table.add_column(header, width=width)
+            for row in rows:
+                self.data_table.add_row(*row)
+            self._page = page
+            self.has_next = page.has_next
+            if page.rows:
+                start, end = self.row_offset + 1, self.row_offset + len(page.rows)
+                self.status.update(
+                    f"Read-only · {self.table_name} · Rows {start}-{end}"
+                )
+            else:
+                self.status.update(f"Read-only · {self.table_name} · No rows")
+        except (sqlite3.Error, ValueError) as error:
+            self.status.update(f"Unable to read {self.table_name}: {error}")
+        self._update_buttons()
+
+    def _update_buttons(self) -> None:
+        self.previous_button.disabled = self.row_offset == 0
+        self.next_button.disabled = not self.has_next
+
+    @on(Button.Pressed, "#sqlite-previous")
+    def previous_page(self, event: Button.Pressed) -> None:
+        event.stop()
+        self.action_previous_page()
+
+    @on(Button.Pressed, "#sqlite-next")
+    def next_page(self, event: Button.Pressed) -> None:
+        event.stop()
+        self.action_next_page()
+
+    def action_previous_page(self) -> None:
+        """Show the previous page."""
+        if self.row_offset > 0:
+            self.row_offset = max(0, self.row_offset - self.page_size)
+            self._load_page()
+
+    def action_next_page(self) -> None:
+        """Show the next page when the lookahead found more rows."""
+        if self.has_next:
+            self.row_offset += self.page_size
+            self._load_page()
+
+    def _change_table(self, direction: int) -> None:
+        """Cycle through the dropdown's tables and views without moving focus."""
+        if self.database is None or not self.database.objects:
+            return
+        names = [item.name for item in self.database.objects]
+        if self.table_name in names:
+            index = (names.index(self.table_name) + direction) % len(names)
+        else:
+            index = 0 if direction > 0 else -1
+        name = names[index]
+        self.selector.value = name
+        if name != self.table_name:
+            self.select_table(name)
+
+    def action_previous_table(self) -> None:
+        """Show the previous table, wrapping to the last at the beginning."""
+        self._change_table(-1)
+
+    def action_next_table(self) -> None:
+        """Show the next table, wrapping to the first at the end."""
+        self._change_table(1)
+
+    def _copy_contents(self, contents: str, message: str) -> None:
+        """Copy through the system clipboard, falling back to the terminal."""
+        try:
+            pyperclip.copy(contents)
+        except pyperclip.PyperclipException:
+            self.app.copy_to_clipboard(contents)
+        self.notify(message, title="Copied", timeout=1)
+
+    def action_copy_cell(self) -> None:
+        """Copy the selected cell's full value, without preview truncation."""
+        cursor = self.data_table.cursor_coordinate
+        if (
+            self._page is None
+            or not 0 <= cursor.row < len(self._page.rows)
+            or not 0 <= cursor.column < len(self._page.columns)
+        ):
+            self.notify("No cell selected to copy", title="No Cell", severity="warning")
+            return
+        value = self._page.rows[cursor.row][cursor.column]
+        if value is None:
+            contents = "NULL"
+        elif isinstance(value, bytes):
+            contents = value.hex()
+        else:
+            contents = str(value)
+        self._copy_contents(contents, "Cell copied")
+
+    def action_copy_row(self) -> None:
+        """Copy the selected row's full values as JSON, including complete BLOBs."""
+        index = self.data_table.cursor_row
+        if self._page is None or not 0 <= index < len(self._page.rows):
+            self.notify("No row selected to copy", title="No Row", severity="warning")
+            return
+        values = {
+            name: {"type": "blob", "hex": value.hex()}
+            if isinstance(value, bytes)
+            else value
+            for name, value in zip(
+                self._page.columns, self._page.rows[index], strict=True
+            )
+        }
+        contents = json.dumps(values, ensure_ascii=False, indent=2)
+        self._copy_contents(contents, "Row copied as JSON")
+
+    def close(self) -> None:
+        """Release resources when switching files or leaving the app."""
+        if self.database is not None:
+            self.database.close()
+            self.database = None
+        self.table_name = None
+        self._page = None
+        self.row_offset = 0
+        self.has_next = False
+
+    def on_unmount(self) -> None:
+        self.close()

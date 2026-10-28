@@ -92,6 +92,34 @@ about the file systems supported.
 browsr ~/Downloads/
 ```
 
+### SQLite
+
+Open a `.db`, `.db3`, `.sqlite`, or `.sqlite3` file to browse its tables and views
+without modifying the database. Select an object from the dropdown to browse its
+rows. Use **Previous** and **Next** (or `{` and `}`) to page through rows. The
+`--max-lines` option controls the number of rows per page (default: 1000).
+
+Use `[` and `]` to switch to the previous or next table or view.
+Navigation wraps at either end of the dropdown and starts each selected object
+at its first page. These shortcuts are also listed under **?**.
+
+Columns are limited to 40 terminal cells, with long values shortened using an
+ellipsis. Press **c** to copy the selected cell's full value as plain text,
+preserving line breaks. NULL copies as `NULL`, and BLOBs copy as full hexadecimal
+contents. Press **Shift+C** to copy the selected row's full contents as JSON,
+including original column names and unshortened values. In copied rows, NULL
+becomes JSON `null`, and BLOBs become `{"type": "blob", "hex": "..."}`.
+All SQLite navigation and copy shortcuts appear in **?** while viewing a SQLite
+file, including when the file tree has focus.
+
+```shell
+browsr ~/data/example.sqlite
+```
+
+Remote databases are downloaded to a temporary file that is removed when you
+switch files or exit. The usual `--max-file-size` limit applies. Remote previews
+read the database file alone; checkpoint any WAL changes before uploading it.
+
 ### GitHub
 
 ```

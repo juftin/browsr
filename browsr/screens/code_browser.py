@@ -115,14 +115,19 @@ class CodeBrowserScreen(SortedBindingsScreen):
             )
             if (
                 self.code_browser.show_tree is False
-                and self.code_browser.static_window.display is True
+                and self.code_browser.window_switcher.sqlite_window.display is True
             ):
-                self.code_browser.window_switcher.focus()
+                self.code_browser.window_switcher.sqlite_window.data_table.focus()
             elif (
                 self.code_browser.show_tree is False
                 and self.code_browser.datatable_window.display is True
             ):
                 self.code_browser.datatable_window.focus()
+            elif (
+                self.code_browser.show_tree is False
+                and self.code_browser.static_window.display is True
+            ):
+                self.code_browser.window_switcher.focus()
         else:
             self.code_browser.show_tree = True
 
