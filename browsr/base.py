@@ -34,7 +34,9 @@ class TextualAppContext:
         """
         Resolve `file_path` to a UPath object
         """
-        if "github" in str(self.file_path).lower():
+        lowered = str(self.file_path).lower()
+        is_github_ref = lowered.startswith("github://") or "github.com" in lowered
+        if "github" in lowered and is_github_ref:
             file_path = str(self.file_path)
             file_path = file_path.removeprefix("https://")
             file_path = file_path.removeprefix("http://")
